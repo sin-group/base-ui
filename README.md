@@ -1,2 +1,2 @@
 # base-ui
-A component library for Vue developmemt
+A component library for Vue development

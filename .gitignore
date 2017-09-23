@@ -1,0 +1,36 @@
+# Intellij
+.idea
+*.iml
+
+# OS X
+.DS_Store*
+._*
+Icon?
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+.directory
+*~
+
+# npm
+node_modules
+npm-debug.* 
+*.log
+*.gz
+
+# bower
+bower_components
+
+# fis
+output
+build
+
+# log
+log
+
+# personal
+local.js
