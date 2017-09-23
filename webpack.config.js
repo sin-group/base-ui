@@ -8,5 +8,13 @@ module.exports = {
         filename: 'base-ui.js',
         path: path.resolve(__dirname, './dist')
     },
-    plugins: [new webpack.optimize.UglifyJsPlugin()]
+    module: {
+    	rules: [
+    		{
+		        test: /\.vue$/,
+		        loader: 'vue-loader'
+		    }
+    	]
+    },
+    // plugins: [new webpack.optimize.UglifyJsPlugin()]
 }

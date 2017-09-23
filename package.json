@@ -5,8 +5,9 @@
   "main": "base-ui.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node ./demo",
-    "build": "webpack"
+    "start": "babel-node ./demo/run.js",
+    "build": "webpack",
+    "dev": "cd ./demo&&webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --port 9000"
   },
   "repository": {
     "type": "git",
@@ -24,8 +25,15 @@
   "homepage": "https://github.com/Sin-Group/base-ui#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
-    "webpack": "^3.6.0"
+    "css-loader": "^0.28.7",
+    "html-webpack-plugin": "^2.30.1",
+    "vue-loader": "^13.0.5",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^3.6.0",
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-dev-server": "^2.8.2"
   },
   "dependencies": {
     "vue": "^2.4.4"
