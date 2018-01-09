@@ -15,7 +15,7 @@ export default {
     input: 'src/base-ui.js',
     output: {
         file: 'dist/base-ui.min.js',
-        format: 'iife',
+        format: 'cjs',
         name: 'BaseUI'
     },
     plugins: [

@@ -11,8 +11,14 @@
 </template>
 
 <script>
+    import BDialog from '../../../../component/b-dialog';
+
     export default {
         name: 'info-modal',
+
+        components: {
+            BDialog
+        },
 
         data() {
             return {

@@ -6,9 +6,14 @@
 </template>
 
 <script>
+    import BDialog from '../../../../component/b-dialog';
     import AlertType from '../../constant/AlertType';
 
     export default {
+        components: {
+            BDialog
+        },
+
         data() {
             return {
                 visible: false,
