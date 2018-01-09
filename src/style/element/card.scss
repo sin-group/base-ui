@@ -1,0 +1,13 @@
+@import '../variables.scss';
+
+.card {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: $white;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2);
+
+    .heading:first-child {
+        margin-top: 10px;
+    }
+}

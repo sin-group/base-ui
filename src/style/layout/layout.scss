@@ -1,0 +1,68 @@
+@import '../variables.scss';
+@import './tiles.scss';
+@import './level.scss';
+
+* {
+    margin: 0;
+}
+
+.container {
+    width: auto;
+    box-sizing: border-box;
+    padding: 20px 10px;
+    margin: 0 10px;
+
+    @media screen and (min-width: $desktop-min) {
+        width: $small-desktop-min;
+        margin: 0 auto;
+    }
+
+    @media screen and (min-width: $large-desktop-min) {
+        width: $desktop-min;
+        margin: 0 auto;
+    }
+
+    @media screen and (max-width: $desktop-min) {
+        flex: 1;
+    }
+
+    &-wide {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+    }
+}
+
+.mat {
+    display: flex;
+    color: $white;
+    background-color: $blue;
+
+    align-items: center;
+
+    &-sm {
+        height: $mat-height;
+    }
+}
+
+.space {
+    &-left {
+        margin-left: 8px;
+    }
+
+    &-right {
+        margin-right: 8px;
+    }
+}
+
+.heading,
+.heading-light {
+    padding-left: 10px;
+    margin: 30px 0 15px;
+    border-color: $blue;
+    border-left: 5px solid;
+}
+
+.heading {
+    border-color: $gray;
+}

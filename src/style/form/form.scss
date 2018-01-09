@@ -1,0 +1,74 @@
+@import '../variables.scss';
+@import './button.scss';
+@import './input.scss';
+@import './textarea.scss';
+@import './group-pick.scss';
+
+.form-group {
+    display: inline-block;
+    min-width: 256px;
+    margin-right: 8px;
+    margin-bottom: 15px;
+    vertical-align: top;
+
+    label {
+        display: block;
+        font-size: 15px;
+        color: $gray-dark;
+    }
+
+    input,
+    textarea {
+        display: inline-block;
+    }
+
+    input {
+        margin-top: 5px;
+    }
+
+    textarea {
+        padding: 4px 0;
+        margin-top: 5px;
+    }
+}
+
+.form-inline .form-group {
+    display: inline-block;
+}
+
+.form-block .form-group {
+    display: block;
+
+    input,
+    textarea {
+        width: 100%;
+    }
+}
+
+.form-block-horizontal {
+    input,
+    textarea {
+        width: 100%;
+    }
+
+    > .form-group {
+        display: flex;
+
+        align-items: center;
+        justify-content: flex-start;
+
+        > * {
+            &:first-child {
+                flex: 1;
+            }
+
+            &:last-child {
+                flex: 4;
+            }
+        }
+
+        @media screen and (max-width: $tablet-min) {
+            display: block;
+        }
+    }
+}

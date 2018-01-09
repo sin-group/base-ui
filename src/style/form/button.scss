@@ -1,0 +1,88 @@
+@import './../variables.scss';
+
+button {
+    height: 30px;
+    padding: 0 15px;
+    font-weight: 500;
+    color: $white;
+    text-align: center;
+    cursor: pointer;
+    background-color: $blue-dark;
+    border: 1px solid $blue-dark;
+    border-radius: 3px;
+    outline: none;
+    box-shadow: none;
+    transition: .3s;
+
+    &:hover {
+        background-color: $blue;
+    }
+
+    &:active {
+        background-color: $blue-dark;
+    }
+
+    &.normal {
+        color: $gray-darker;
+        background-color: $white;
+        border-color: $gray;
+
+        &:hover {
+            color: $blue;
+            border-color: $gray;
+        }
+
+        &:active {
+            color: $blue;
+            border-color: $blue;
+        }
+    }
+
+    &.disabled {
+        color: $black;
+        cursor: not-allowed;
+        background-color: $gray-lighter;
+        border: 1px dashed $gray;
+    }
+
+    &.danger {
+        color: $red;
+        background-color: $gray-lighter;
+        border-color: $gray;
+
+        &:hover {
+            color: $white;
+            background-color: $red;
+            border-color: $red;
+        }
+
+        &:active {
+            color: $white;
+            background-color: $red-dark;
+            border-color: $red;
+        }
+    }
+
+    &.simple {
+        color: $blue;
+        background-color: $white;
+        border: none;
+        font-size: 15px;
+        font-weight: 400;
+        padding: 0 20px;
+        height: 35px;
+
+        &:hover {
+            background-color: $gray-light;
+        }
+
+        &:active {
+            background-color: $gray;
+        }
+    }
+
+    &.block {
+        display: block;
+        width: 100%;
+    }
+}

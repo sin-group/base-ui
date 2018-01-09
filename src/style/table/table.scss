@@ -1,0 +1,40 @@
+@import '../variables.scss';
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    font-size: 12px;
+    color: rgba(0, 0, 0, .9);
+    text-align: center;
+    border-spacing: 0;
+    border-collapse: collapse;
+    background-color: $white;
+    border-radius: 2px;
+
+    thead {
+        tr {
+            height: 56px;
+            line-height: 56px;
+            vertical-align: middle;
+            border-bottom: 1px solid rgb(128, 128, 128);
+
+            th {
+                padding: 0 24px;
+                color: rgba(0, 0, 0, .54);
+                user-select: none;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            height: 40px;
+            line-height: 40px;
+            vertical-align: middle;
+            border-bottom: 1px solid rgba(0, 0, 0, .12);
+            transition: background .3s cubic-bezier(.25, .8, .5, 1);
+
+            will-change: backgaound;
+        }
+    }
+}

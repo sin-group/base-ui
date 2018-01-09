@@ -1,0 +1,37 @@
+@import '../variables.scss';
+
+input {
+    &[type='text'],
+    &[type='password'],
+    &[type='number'],
+    &[type='tel'] {
+        width: 256px;
+        height: 30px;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        font-size: 15px;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid $gray;
+        border-radius: 0;
+        outline: none;
+        transition: .3s;
+
+        &:active {
+            border-color: $blue-light;
+        }
+
+        &:focus {
+            border-color: $blue;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+
+            &:active {
+                border-color: $gray;
+            }
+        }
+    }
+}

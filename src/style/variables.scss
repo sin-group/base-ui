@@ -1,0 +1,38 @@
+// Color
+$white: #fff;
+$black: #000;
+$gray-darker: #333;
+$gray-dark: #727276;
+$gray: #ccc;
+$gray-light: #ddd;
+$gray-lighter: #f3f3f3;
+$blue-dark: #3b78e7;
+$blue: #3e82f7;
+$blue-light: rgba(66, 133, 244, .5);
+$blue-lighter: rgba(66, 133, 244, .3);
+$red-dark: #ff2f05;
+$red: #ff4500;
+$red-light: #ff5e00;
+
+// Dimension
+// Screen
+$large-desktop-min: 1400px;
+$desktop-min: 1200px;
+$small-desktop-min: 960px;
+$tablet-min: 480px;
+
+// Element
+$mat-height: 60px;
+
+// Font
+$heading1: 40px;
+$heading2: 30px;
+$heading3: 25px;
+$heading4: 20px;
+$heading5: 18px;
+$heading6: 16px;
+
+// Transition
+$all-transition: all .36s cubic-bezier(.78, .14, .15, .86);
+$z-index-toast: 9999;
+$z-index-dialog: 9998;

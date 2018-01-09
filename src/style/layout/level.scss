@@ -1,0 +1,27 @@
+@import '../variables.scss';
+
+.level,
+.level-center,
+.level-between,
+.level-end {
+    display: flex;
+    overflow-x: auto;
+
+    align-items: center;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+}
+
+.level {
+    &-center {
+        justify-content: center;
+    }
+
+    &-between {
+        justify-content: space-between;
+    }
+
+    &-end {
+        justify-content: flex-end;
+    }
+}

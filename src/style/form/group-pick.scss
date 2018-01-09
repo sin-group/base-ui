@@ -1,0 +1,82 @@
+@import '../variables.scss';
+
+.group-pick {
+    display: flex;
+    min-height: 30px;
+    margin-top: 5px;
+
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    span {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 13px;
+        font-weight: 500;
+        color: $gray-dark;
+        cursor: pointer;
+        border: 1px solid $gray;
+        border-right: none;
+        transition: .3s;
+
+        &:first-child {
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        &:last-child {
+            border-right: 1px solid $gray;
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        &:hover {
+            color: $blue;
+        }
+
+        &:active {
+            border-color: $blue;
+
+            & + * {
+                border-left-color: $blue;
+            }
+        }
+
+        &.active {
+            color: $white;
+            background-color: $blue;
+            border-color: $blue;
+
+            & + * {
+                border-left-color: $blue;
+            }
+        }
+
+        &.disabled {
+            cursor: not-allowed;
+
+            &:active {
+                border-color: $gray;
+            }
+
+            &.active {
+                color: $white;
+                background-color: $gray-dark;
+                border-color: $gray-dark;
+
+                & + * {
+                    border-left-color: $gray-dark;
+                }
+            }
+
+            &:hover {
+                color: $gray-dark;
+
+                &.active {
+                    color: $white;
+                }
+            }
+        }
+    }
+}

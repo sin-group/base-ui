@@ -1,0 +1,79 @@
+@import '../variables.scss';
+
+.tiles {
+    &,
+    .t-col,
+    .t-row {
+        display: flex;
+    }
+
+    .t-col {
+        flex-direction: column;
+    }
+
+    &,
+    .t-row {
+        flex-direction: row;
+
+        & {
+            .is-1 {
+                flex: 1;
+            }
+
+            .is-2 {
+                flex: 2;
+            }
+
+            .is-3 {
+                flex: 3;
+            }
+
+            .is-4 {
+                flex: 4;
+            }
+
+            .is-5 {
+                flex: 5;
+            }
+
+            .is-6 {
+                flex: 6;
+            }
+
+            .is-7 {
+                flex: 7;
+            }
+
+            .is-8 {
+                flex: 8;
+            }
+
+            .is-9 {
+                flex: 9;
+            }
+
+            .is-10 {
+                flex: 10;
+            }
+
+            .is-11 {
+                flex: 11;
+            }
+
+            .is-12 {
+                flex: 12;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $small-desktop-min) {
+    .tiles {
+        &,
+        .t-col,
+        .t-row {
+            display: block;
+            flex-direction: initial;
+        }
+    }
+}

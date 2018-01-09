@@ -1,0 +1,31 @@
+@import '../variables.scss';
+
+textarea {
+    width: 256px;
+    max-width: 1200px;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-size: 15px;
+    border: none;
+    border-bottom: 1px solid $gray;
+    border-radius: 0;
+    outline: none;
+    transition: .3s;
+
+    &:active {
+        border-color: $blue-light;
+    }
+
+    &:focus {
+        border-color: $blue;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+
+        &:active {
+            border-color: $gray;
+        }
+    }
+}

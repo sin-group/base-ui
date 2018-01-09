@@ -1,0 +1,78 @@
+@import '../variables.scss';
+$default-color: $gray-dark !default;
+
+.tabs-light,
+.tabs {
+    display: flex;
+
+    a {
+        display: flex;
+        padding: 8px 10px;
+        overflow: hidden;
+        overflow-x: auto;
+        color: $default-color;
+        vertical-align: top;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            border-bottom-color: $gray-dark;
+        }
+
+        &:active {
+            color: $blue;
+            border-bottom-color: $blue;
+        }
+    }
+
+    li {
+        display: block;
+
+        &.active a {
+            color: $blue;
+            border-bottom-color: $blue;
+        }
+    }
+
+    ul {
+        display: flex;
+
+        align-items: center;
+        justify-content: flex-start;
+    }
+}
+
+.tabs-light {
+    a {
+        &:hover {
+            background-color: $gray-light;
+            border-color: transparent;
+        }
+
+        &:active {
+            color: $gray-dark;
+            background-color: initial;
+        }
+    }
+
+    li.active {
+        a {
+            border: 1px solid $blue;
+            border-bottom: none;
+
+            &:hover {
+                color: $white;
+                background-color: $blue;
+            }
+
+            &:active {
+                background-color: $blue-dark;
+            }
+        }
+    }
+}
