@@ -35,10 +35,7 @@
     "rollup-plugin-uglify": "^2.0.1",
     "rollup-plugin-vue": "^3.0.0",
     "vue-loader": "^13.0.5",
-    "vue-template-compiler": "^2.4.4",
-    "webpack": "^3.6.0",
-    "webpack-dev-middleware": "^1.12.0",
-    "webpack-dev-server": "^2.8.2"
+    "vue-template-compiler": "^2.4.4"
   },
   "dependencies": {
     "vue": "^2.5.13",
