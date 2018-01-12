@@ -1,3 +1,197 @@
+.b-dialog-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.b-dialog {
+  width: 75%;
+  max-width: 768px;
+  background-color: #fff;
+  box-shadow: 0 19px 60px rgba(0, 0, 0, 0.298039), 0 15px 20px rgba(0, 0, 0, 0.219608); }
+
+.b-dialog-title {
+  padding: 5px 24px 0; }
+
+.b-dialog-body {
+  padding: 20px 24px 10px;
+  color: rgba(0, 0, 0, 0.6); }
+
+.b-dialog-actions {
+  min-height: 40px;
+  padding: 0 15px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; }
+
+.b-form-group.b-form-group-block {
+  display: block; }
+  .b-form-group.b-form-group-block input,
+  .b-form-group.b-form-group-block textarea {
+    width: 100%; }
+
+.b-form-group.b-form-group-label-horizontal {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; }
+  .b-form-group.b-form-group-label-horizontal input,
+  .b-form-group.b-form-group-label-horizontal textarea {
+    width: 100%; }
+  .b-form-group.b-form-group-label-horizontal .b-form-group-label-wrap {
+    flex: 1; }
+  .b-form-group.b-form-group-label-horizontal .b-form-group-input-wrap {
+    flex: 4; }
+  @media screen and (max-width: 480px) {
+    .b-form-group.b-form-group-label-horizontal {
+      display: block; } }
+
+textarea {
+  line-height: 1.5;
+  overflow: auto;
+  background-color: transparent; }
+
+.b-input-shadow-textarea {
+  overflow: hidden;
+  position: absolute;
+  width: auto;
+  height: initial;
+  visibility: hidden; }
+
+.b-pagination button {
+  padding: 0 10px;
+  color: black;
+  background-color: transparent;
+  border-color: transparent;
+  transition: none; }
+  .b-pagination button:hover {
+    color: #fff;
+    background-color: rgba(66, 133, 244, 0.5); }
+    .b-pagination button:hover.disabled {
+      color: #fff;
+      background-color: rgba(66, 133, 244, 0.3); }
+  .b-pagination button.active {
+    color: #fff;
+    background-color: #3e82f7; }
+  .b-pagination button.disabled {
+    color: #ccc; }
+
+.b-pagination .page-info,
+.b-pagination .page-size {
+  margin-left: 15px;
+  font-size: 11px;
+  color: #727276; }
+  .b-pagination .page-info .b-select,
+  .b-pagination .page-size .b-select {
+    display: inline; }
+    .b-pagination .page-info .b-select input,
+    .b-pagination .page-size .b-select input {
+      width: 60px;
+      font-size: 11px;
+      text-align: center; }
+
+.b-select > input {
+  cursor: pointer; }
+
+.b-select-menu {
+  padding: 10px 0;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  overflow-y: auto; }
+  .b-select-menu li {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    min-width: 200px;
+    background-color: #fff;
+    padding: 0 10px;
+    cursor: pointer; }
+    .b-select-menu li:hover, .b-select-menu li.b-select-menu-selected {
+      background-color: rgba(66, 133, 244, 0.3); }
+  .b-select-menu .empty-list-item {
+    justify-content: center;
+    color: #666; }
+
+.b-switch {
+  display: inline-block;
+  margin-top: 5px;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: sub; }
+  .b-switch .b-switch-wrap {
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    background-color: #ccc;
+    position: relative;
+    transition: all 0.36s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+    overflow: hidden;
+    margin-top: 5px; }
+    .b-switch .b-switch-wrap:active .b-switch-inner {
+      width: 24px; }
+    .b-switch .b-switch-wrap .b-switch-inner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 100%;
+      background-color: #fff;
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      right: 1px;
+      transition: all 0.36s cubic-bezier(0.78, 0.14, 0.15, 0.86); }
+  .b-switch.b-switch-checked .b-switch-wrap {
+    background-color: #3e82f7; }
+    .b-switch.b-switch-checked .b-switch-wrap:active .b-switch-inner {
+      width: 22px;
+      margin-left: -23px; }
+    .b-switch.b-switch-checked .b-switch-wrap .b-switch-inner {
+      left: 100%;
+      margin-left: -19px; }
+  .b-switch.b-switch-disabled .b-switch-wrap {
+    background-color: #ddd; }
+    .b-switch.b-switch-disabled .b-switch-wrap .b-switch-inner {
+      background-color: #727276; }
+
+.b-table {
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12); }
+
+.b-toast {
+  z-index: 9999;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 24px;
+  max-width: 568px;
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); }
+
+.INFO {
+  background-color: green; }
+
+.ERROR {
+  background-color: red; }
+
+@media only screen and (min-width: 500px) {
+  .b-toast {
+    min-width: 10%;
+    text-align: center;
+    top: 13%;
+    right: -3%;
+    left: auto;
+    bottom: auto; } }
+
 /**
  * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
  * http://cssreset.com
@@ -589,6 +783,43 @@ textarea {
       padding: 0 24px;
       color: rgba(0, 0, 0, 0.54);
       user-select: none; }
+      .table thead tr th .sort-click-area.enabled-click {
+        cursor: pointer; }
+      .table thead tr th .filter-area,
+      .table thead tr th .sort-area {
+        display: inline-block;
+        position: relative;
+        top: 2px;
+        left: 2px;
+        width: 12px;
+        height: 12px; }
+        .table thead tr th .filter-area .sort-icon,
+        .table thead tr th .sort-area .sort-icon {
+          width: 0;
+          height: 0;
+          border-top: 6px solid transparent;
+          border-bottom: 6px solid transparent;
+          border-left: 6px solid #ccc; }
+          .table thead tr th .filter-area .sort-icon-up,
+          .table thead tr th .sort-area .sort-icon-up {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 6px solid #3e82f7;
+            position: relative;
+            top: -3px;
+            left: -3px; }
+          .table thead tr th .filter-area .sort-icon-down,
+          .table thead tr th .sort-area .sort-icon-down {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid #3e82f7;
+            position: relative;
+            top: 3px;
+            left: -3px; }
   .table tbody tr {
     height: 40px;
     line-height: 40px;
@@ -596,32 +827,3 @@ textarea {
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     transition: background 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
     will-change: backgaound; }
-
-.b-toast {
-  z-index: 9999;
-  height: 45px;
-  line-height: 45px;
-  padding: 0 24px;
-  max-width: 568px;
-  border-radius: 2px;
-  background-color: rgba(0, 0, 0, 0.9);
-  color: white;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%); }
-
-.INFO {
-  background-color: green; }
-
-.ERROR {
-  background-color: red; }
-
-@media only screen and (min-width: 500px) {
-  .b-toast {
-    min-width: 10%;
-    text-align: center;
-    top: 13%;
-    right: -3%;
-    left: auto;
-    bottom: auto; } }

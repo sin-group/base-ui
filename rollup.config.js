@@ -7,7 +7,7 @@
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import sass from 'rollup-plugin-sass';
+import scss from 'rollup-plugin-scss';
 import vue from 'rollup-plugin-vue';
 import uglify from 'rollup-plugin-uglify';
 
@@ -19,16 +19,20 @@ export default {
         name: 'BaseUI'
     },
     plugins: [
-        sass({
-            output: './dist/base-ui.css'
+        vue({
+            autoStyles: false,
+            styleToImports: true
         }),
-        vue(),
+        scss({
+            output: 'dist/base-ui.css'
+        }),
         babel({
-            exclude: 'node_modules/**'
+            exclude: 'node_modules/**',
+            plugins: ['external-helpers']
         }),
         commonjs(),
         resolve({
-            extensions: [ '.js', '.json'],
+            extensions: ['.js', '.json'],
             jsnext: true,
             main: true,
             browser: true

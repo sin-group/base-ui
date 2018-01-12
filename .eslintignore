@@ -1,7 +1,5 @@
 **/node_modules/**
 **/build/**
 **/log/**
+**/dist/**
 **/vendor/**
-projects/yqd-admin/**
-
-projects/yqg-oa/tool/babel-plugin/import-asset/dist.js
