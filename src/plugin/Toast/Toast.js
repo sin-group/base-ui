@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import {createVueInstanceEle} from '../helper/helper';
-import ToastComponent from './component/toast';
+import BToast from './component/b-toast';
 import ToastType from './constant/ToastType';
 
 const ToastEleId = 'toast';
@@ -10,7 +10,7 @@ class Toast {
     constructor() {
         const self = this;
         createVueInstanceEle(ToastEleId);
-        self.toastInstance = new Vue(ToastComponent);
+        self.toastInstance = new Vue(BToast);
 
         self.toastInstance.$mount(`#${ToastEleId}`);
     }

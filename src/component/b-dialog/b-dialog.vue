@@ -20,8 +20,6 @@
 
 <script>
     export default {
-        name: 'b-dialog',
-
         data() {
             const vm = this;
             return {

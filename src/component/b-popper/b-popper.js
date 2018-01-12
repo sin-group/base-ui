@@ -5,31 +5,25 @@
  */
 /* eslint-disable */
 
-import Position from './position';
+import {initPosition} from './position';
 
 import {on, off} from '../../util/dom';
-import emitter from '../../mixin/emitter';
 
 export default {
     name: 'b-popper',
 
-    mixins: [emitter],
-
     render(createElement) {
         const vm = this;
-        const {$slots, needRender} = vm;
+        const {$slots, needRender, visible} = vm;
 
         return needRender ? createElement(
             'div',
             {
                 class: 'b-popper-wrap',
                 style: {
-                    display: 'inline-block',
-                    opacity: 0,
-                    transform: 'scaleY(0)',
-                    transition: `transform .36s cubic-bezier(.78, .14, .15, .86),
-                                 opacity .36s cubic-bezier(.78, .14, .15, .86)`,
-                    transformOrigin: 'center top'
+                    display: visible ? 'inline-block' : 'none',
+                    position: 'absolute',
+                    top: 0
                 }
             },
             $slots.default
@@ -37,9 +31,6 @@ export default {
     },
 
     props: {
-        wrapClass: {
-            type: [Array, String]
-        },
         refEl: {},
         place: {
             type: String,
@@ -65,50 +56,25 @@ export default {
     methods: {
         open() {
             const vm = this;
-            vm.broadcastAll('b-popper-open');
             vm.visible = true;
+
             vm.$nextTick(() => {
                 vm.makePosition();
-                vm.addTransition();
-                vm.broadcastAll('b-popper-opened');
             });
         },
 
         close() {
             const vm = this;
-            vm.broadcastAll('b-popper-close');
             vm.visible = false;
-            vm.$nextTick(() => {
-                vm.addTransition();
-                vm.broadcastAll('b-popper-closed');
-            });
         },
 
         makePosition() {
             const vm = this;
-            const {needRender, $el, refEl, place, $$Positon} = vm;
-
-            if (needRender) {
-                document.body.appendChild(vm.$el);
-
-                if (!$$Positon) {
-                    vm.$$Positon = new Position(refEl, $el, {place});
-                } else {
-                    vm.$$Positon.reset();
-                }
-            }
-        },
-
-        addTransition() {
-            const vm = this;
-            const {needRender, visible, $el} = vm;
-
-            if (!needRender) return;
+            const {visible, $el, refEl: $refEl, place} = vm;
 
             if (visible) {
-                Object.assign($el.style, {opacity: 1, transform: 'scaleY(1)'});
-            } else {
-                Object.assign($el.style, {opacity: 0, transform: 'scaleY(0)'});
+                document.body.appendChild(vm.$el);
+                initPosition({$refEl, $el, place});
             }
         }
     },

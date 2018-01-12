@@ -3,26 +3,20 @@
  * @date 2017/11/21-下午7:13
  * @file dom
  */
-/* global navigator */
+/* global document */
 
 export const getRect = (el) => {
     const rect = el.getBoundingClientRect();
-
-    // whether the IE version is lower than 11
-    const isIE = navigator.userAgent.indexOf('MSIE') !== -1;
-
-    // fix ie document bounding top always 0 bug
-    const rectTop = isIE && el.tagName === 'HTML'
-        ? -el.scrollTop
-        : rect.top;
+    const bodyRect = document.body.getBoundingClientRect();
 
     return {
         left: rect.left,
-        top: rectTop,
+        top: rect.top,
         right: rect.right,
         bottom: rect.bottom,
         width: rect.right - rect.left,
-        height: rect.bottom - rectTop
+        height: rect.bottom - rect.top,
+        offsetY: rect.top - bodyRect.top
     };
 };
 

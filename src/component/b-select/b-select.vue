@@ -6,7 +6,6 @@
                  :value="searchText"
                  @input="input"
                  @focus="openMenu"
-                 @blur="closeMenu"
                  @keydown="handleKeyDown"></b-input>
 
         <b-popper ref="popper"
@@ -23,9 +22,6 @@
 </template>
 
 <script type="text/babel">
-
-import keyCodeMap from '../../util/keyCodeMap';
-
 import BInput from '../b-input';
 import BSelectMenu from './b-select-menu.vue';
 
@@ -71,13 +67,6 @@ export default {
             }
         },
 
-        closeMenu() {
-            const vm = this;
-            const {$refs: {popper}, map, value} = vm;
-            vm.searchText = map[value];
-            popper.close();
-        },
-
         input(value) {
             const vm = this;
             const {$refs: {popper}} = vm;
@@ -91,10 +80,19 @@ export default {
             menu.handleKeyDown(keyCode);
         },
 
+        closeMenu() {
+            const vm = this;
+            const {$refs: {popper}, map, value} = vm;
+            vm.searchText = map[value];
+            popper.close();
+        },
+
         choose(value) {
             const vm = this;
+            const {$refs: {popper}, map} = vm;
+            vm.searchText = map[value];
             vm.$emit('change', value);
-            vm.closeMenu();
+            popper.close();
         }
     },
 
@@ -111,5 +109,11 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss">
+
+    .b-select {
+        > input {
+            cursor: pointer;
+        }
+    }
 
 </style>

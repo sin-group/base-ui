@@ -1,4 +1,5 @@
 @import '../variables.scss';
+@import '../mixin/arrow.scss';
 
 .table {
     width: 100%;
@@ -22,6 +23,42 @@
                 padding: 0 24px;
                 color: rgba(0, 0, 0, .54);
                 user-select: none;
+
+                .sort-click-area {
+                    &.enabled-click {
+                        cursor: pointer;
+                    }
+                }
+
+                .filter-area,
+                .sort-area {
+                    display: inline-block;
+                    position: relative;
+                    top: 2px;
+                    left: 2px;
+                    width: 12px;
+                    height: 12px;
+
+                    .sort-icon {
+                        @include genArrow('right', 6px, $gray);
+
+                        &-up {
+                            @include genArrow('up', 6px, $blue);
+
+                            position: relative;
+                            top: -3px;
+                            left: -3px;
+                        }
+
+                        &-down {
+                            @include genArrow('down', 6px, $blue);
+
+                            position: relative;
+                            top: 3px;
+                            left: -3px;
+                        }
+                    }
+                }
             }
         }
     }

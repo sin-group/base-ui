@@ -7,37 +7,34 @@
 
 import {getRect, isDOM} from '../../util/dom';
 
-export default class Position {
-    constructor($refEl, $el, config) {
-        if (!isDOM($refEl) || !isDOM($el)) throw `init Popper position invalid DOM Object: $refEl: ${$refEl.tagName}, $el: ${$el.tagName}`;
+export const initPosition = ({$refEl, $el, place}) => {
+    if (!isDOM($refEl) || !isDOM($el)) throw `init Popper position invalid DOM Object: $refEl: ${$refEl.tagName}, $el: ${$el.tagName}`;
 
-        this.$refEl = $refEl;
-        this.$el = $el;
-        this.config = config;
+    const refElRect = getRect($refEl);
+    const ElRect = getRect($el);
 
-        this.reset();
+    const {innerHeight, innerWidth, pageXOffset, pageYOffset} = window;
+    const windowRect = {
+        innerHeight,
+        innerWidth,
+        top: pageYOffset,
+        left: pageXOffset,
+        bottom: pageYOffset + innerHeight,
+        right: pageXOffset + innerWidth
+    };
+
+    let x = 0;
+    let y = 0;
+    switch (place) {
+        case 'bottom-start': {
+            x = refElRect.left;
+            y = refElRect.offsetY + refElRect.height;
+
+            if ((x + ElRect.width) > windowRect.right) x = x - ElRect.width;
+            if ((y + ElRect.height) > windowRect.bottom) y = refElRect.offsetY - ElRect.height;
+            break;
+        }
     }
 
-    reset() {
-        const {$refEl, $el, config: {place}} = this;
-        const firstPlace = place.split('-')[0];
-        const lastPlace = place.split('-')[1];
-        const refElRect = getRect($refEl);
-
-        let x = 0;
-        let y = 0;
-        switch (firstPlace) {
-            case 'bottom': {
-                y = refElRect.bottom;
-            }
-        }
-
-        switch (lastPlace) {
-            case 'start': {
-                x = refElRect.left;
-            }
-        }
-
-        Object.assign($el.style, {position: 'absolute', top: `${y}px`, left: `${x}px`});
-    }
-}
+    Object.assign($el.style, {top: `${y}px`, left: `${x}px`});
+};

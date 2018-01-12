@@ -10,6 +10,8 @@
     import AlertType from '../../constant/AlertType';
 
     export default {
+        name: 'b-alert',
+
         components: {
             BDialog
         },

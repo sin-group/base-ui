@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import {createVueInstanceEle} from '../helper/helper';
-import AlertComponent from './component/alert';
+import BAlert from './component/b-alert';
 import AlertType from './constant/AlertType';
 
 const AlertEleId = 'alert';
@@ -11,7 +11,7 @@ class Alert {
         const self = this;
 
         createVueInstanceEle(AlertEleId);
-        self.alertInstance = new Vue(AlertComponent);
+        self.alertInstance = new Vue(BAlert);
         self.alertInstance.$mount(`#${AlertEleId}`);
     }
 

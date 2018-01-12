@@ -3,8 +3,10 @@
         class="b-select-menu"
         :style="{maxHeight: listHeight}">
         <li v-for="(item, index) in menuList"
-            :class="{'b-select-menu-selected': index === signIndex}"
+            :class="{'b-select-menu-selected': index === highlightIndex}"
             @click="handleChoose(item)">{{ map[item] }}</li>
+
+        <li v-if="menuList.length === 0" class="empty-list-item">无匹配选项</li>
     </ul>
 </template>
 
@@ -38,16 +40,17 @@
 
         data() {
             return {
-                signIndex: null,
-                menuListWhenPopperClose: null
+                highlightIndex: null
             }
         },
 
         computed: {
             menuList() {
                 const vm = this;
-                const {map, searchText, menuListWhenPopperClose} = vm;
-                return menuListWhenPopperClose || Object.keys(map).filter(value => map[value].match(searchText))
+                const {map, searchText} = vm;
+                const searchTexter = new RegExp(searchText, 'i');
+
+                return Object.keys(map).filter(value => map[value].match(searchTexter))
             },
             listHeight() {
                 const vm = this;
@@ -66,33 +69,33 @@
         },
 
         methods: {
-            initScrollTop() {
+            initHighlight(value) {
                 const vm = this;
-                const {reservedCount, renderCount, menuList, value, padding, itemHeight} = vm;
-                let initScrollTop;
+                const {reservedCount, renderCount, menuList, padding, itemHeight} = vm;
 
-                const signIndex = menuList.indexOf(value);
-                if (signIndex > -1) {
-                    if (signIndex < reservedCount) {
+                const highlightIndex = menuList.indexOf(value);
+
+                let initScrollTop = 0;
+                if (highlightIndex > -1) {
+                    if (highlightIndex < reservedCount) {
                         initScrollTop = 0;
-                    } else if (signIndex > menuList.length - renderCount + reservedCount - 1) {
+                    } else if (highlightIndex > menuList.length - renderCount + reservedCount - 1) {
                         initScrollTop = vm.maxScrollTop;
                     } else {
-                        initScrollTop = (signIndex - reservedCount) * itemHeight + padding;
+                        initScrollTop = (highlightIndex - reservedCount) * itemHeight + padding;
                     }
-                } else {
-                    initScrollTop = 0;
                 }
 
-                vm.signIndex = signIndex;
+                vm.highlightIndex = highlightIndex;
+
                 vm.$nextTick(() => {
                     vm.$refs.list.scrollTop = initScrollTop;
                 })
             },
 
-            changeSign(direction) {
+            changeHighlight(direction) {
                 const vm = this;
-                const {$refs: {list}, popper, signIndex, itemHeight, menuList, renderCount, maxScrollTop} = vm;
+                const {$refs: {list}, popper, highlightIndex, itemHeight, menuList, renderCount, maxScrollTop} = vm;
 
                 if (!popper.visible) return popper.open();
 
@@ -100,37 +103,37 @@
                 const contentMin = Math.floor(scrollTop / itemHeight);
                 const contentMax = contentMin + renderCount - 1;
 
-                const isOutOfContent = Boolean(signIndex < contentMin || signIndex > contentMax);
+                const isOutOfContent = Boolean(highlightIndex < contentMin || highlightIndex > contentMax);
                 let nextScrollTop = scrollTop;
-                let nextSignIndex = signIndex;
+                let nextHighlightIndex = highlightIndex;
 
                 if (direction === 'up') {
-                    nextSignIndex = signIndex === 0 ? 0 : signIndex - 1;
+                    nextHighlightIndex = highlightIndex === 0 ? 0 : highlightIndex - 1;
 
-                    if (signIndex === contentMin) {
+                    if (highlightIndex === contentMin) {
                         nextScrollTop = scrollTop - itemHeight;
-                        nextScrollTop = nextSignIndex === 0 ? 0 : nextScrollTop;
+                        nextScrollTop = nextHighlightIndex === 0 ? 0 : nextScrollTop;
                     }
                     if (isOutOfContent) {
-                        nextScrollTop = (nextSignIndex - renderCount + 1) * itemHeight;
+                        nextScrollTop = (nextHighlightIndex - renderCount + 1) * itemHeight;
                         nextScrollTop = nextScrollTop > maxScrollTop ? maxScrollTop : nextScrollTop;
                     }
                 }
 
                 if (direction === 'down') {
-                    nextSignIndex = signIndex + 1 === menuList.length ? signIndex : signIndex + 1;
+                    nextHighlightIndex = highlightIndex + 1 === menuList.length ? highlightIndex : highlightIndex + 1;
 
-                    if (signIndex === contentMax) {
+                    if (highlightIndex === contentMax) {
                         nextScrollTop = scrollTop + itemHeight;
-                        nextScrollTop = nextSignIndex ===  menuList.length ? maxScrollTop : nextScrollTop;
+                        nextScrollTop = nextHighlightIndex ===  menuList.length ? maxScrollTop : nextScrollTop;
                     }
                     if (isOutOfContent) {
-                        nextScrollTop = nextSignIndex * itemHeight;
+                        nextScrollTop = nextHighlightIndex * itemHeight;
                         nextScrollTop = nextScrollTop < 0 ? 0 : nextScrollTop;
                     }
                 }
 
-                vm.signIndex = nextSignIndex;
+                vm.highlightIndex = nextHighlightIndex;
                 vm.$nextTick(() => {
                     vm.$refs.list.scrollTop = nextScrollTop;
                 })
@@ -142,18 +145,33 @@
 
             handleKeyDown(keyCode) {
                 const vm = this;
-                const {signIndex, menuList} = vm;
+                const {highlightIndex, menuList, popper, value} = vm;
                 switch (keyCode) {
                     case keyCodeMap.up: {
-                        vm.changeSign('up');
+                        vm.changeHighlight('up');
                         break;
                     }
                     case keyCodeMap.down: {
-                        vm.changeSign('down');
+                        vm.changeHighlight('down');
+                        break;
+                    }
+                    case keyCodeMap.tab: {
+                        if (popper.visible) {
+                            vm.handleChoose(value);
+                        }
                         break;
                     }
                     case keyCodeMap.enter: {
-                        vm.handleChoose(menuList[signIndex]);
+                        if (!popper.visible) {
+                            popper.open();
+                            break;
+                        }
+
+                        if (highlightIndex > -1) {
+                            vm.handleChoose(menuList[highlightIndex]);
+                        } else {
+                            vm.handleChoose(value);
+                        }
                         break;
                     }
                 }
@@ -162,17 +180,19 @@
 
         mounted() {
             const vm = this;
-            vm.$on('b-popper-open', () => {
-                vm.menuListWhenPopperClose = null;
-            });
+            vm.initHighlight(vm.value);
+        },
 
-            vm.$on('b-popper-close', () => {
-                vm.menuListWhenPopperClose = vm.menuList;
-            });
-
-            vm.$on('b-popper-opened', () => {
-                vm.initScrollTop();
-            });
+        watch: {
+            searchText(text) {
+                const vm = this;
+                const {menuList, map, value} = vm;
+                if (menuList.indexOf(map[text]) > -1) {
+                    vm.initHighlight(map[text])
+                } else {
+                    vm.initHighlight(value)
+                }
+            }
         }
     }
 
@@ -183,7 +203,6 @@
 
     .b-select-menu {
         padding: 10px 0;
-        margin: 10px 0;
         background-color: $white;
         border-radius: 3px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2);
@@ -203,6 +222,11 @@
             &.b-select-menu-selected {
                 background-color: $blue-lighter;
             }
+        }
+
+        .empty-list-item {
+            justify-content: center;
+            color: #666;
         }
     }
 </style>
