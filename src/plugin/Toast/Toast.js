@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import {createVueInstanceEle} from '../helper/helper';
 import BToast from './component/b-toast';
 import ToastType from './constant/ToastType';
@@ -7,7 +6,7 @@ const ToastEleId = 'toast';
 
 class Toast {
 
-    constructor() {
+    constructor(Vue) {
         const self = this;
         createVueInstanceEle(ToastEleId);
         self.toastInstance = new Vue(BToast);
@@ -44,4 +43,12 @@ class Toast {
 
 }
 
-export default Toast;
+export default {
+
+    install(Vue) {
+        const $toast = new Toast(Vue);
+
+        Object.assign(Vue.prototype, {$toast});
+    }
+
+};

@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import {createVueInstanceEle} from '../helper/helper';
 import BAlert from './component/b-alert';
 import AlertType from './constant/AlertType';
@@ -7,7 +6,7 @@ const AlertEleId = 'alert';
 
 class Alert {
 
-    constructor() {
+    constructor(Vue) {
         const self = this;
 
         createVueInstanceEle(AlertEleId);
@@ -42,4 +41,12 @@ class Alert {
 
 }
 
-export default Alert;
+export default {
+
+    install(Vue) {
+        const $alert = new Alert(Vue);
+
+        Object.assign(Vue.prototype, {$alert});
+    }
+
+};
