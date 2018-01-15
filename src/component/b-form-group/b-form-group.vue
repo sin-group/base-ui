@@ -66,6 +66,10 @@
                 width: 100%;
             }
 
+            label {
+                padding-top: 8px;
+            }
+
             .b-form-group-label-wrap {
                 flex: 1;
             }

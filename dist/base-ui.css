@@ -41,6 +41,8 @@
   .b-form-group.b-form-group-label-horizontal input,
   .b-form-group.b-form-group-label-horizontal textarea {
     width: 100%; }
+  .b-form-group.b-form-group-label-horizontal label {
+    padding-top: 8px; }
   .b-form-group.b-form-group-label-horizontal .b-form-group-label-wrap {
     flex: 1; }
   .b-form-group.b-form-group-label-horizontal .b-form-group-input-wrap {
@@ -48,6 +50,13 @@
   @media screen and (max-width: 480px) {
     .b-form-group.b-form-group-label-horizontal {
       display: block; } }
+
+.b-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .b-input .content {
+    flex: 1; }
 
 textarea {
   line-height: 1.5;
@@ -628,16 +637,17 @@ textarea {
   .form-block .form-group textarea {
     width: 100%; }
 
-.form-block-horizontal input,
-.form-block-horizontal textarea {
-  width: 100%; }
-
 .form-block-horizontal > .form-group {
   display: flex;
   align-items: center;
   justify-content: flex-start; }
+  .form-block-horizontal > .form-group input,
+  .form-block-horizontal > .form-group textarea {
+    width: 100%; }
   .form-block-horizontal > .form-group > *:first-child {
     flex: 1; }
+    .form-block-horizontal > .form-group > *:first-child label {
+      padding-top: 8px; }
   .form-block-horizontal > .form-group > *:last-child {
     flex: 4; }
   @media screen and (max-width: 480px) {

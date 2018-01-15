@@ -1,35 +1,47 @@
 <template>
-    <input v-if="!multiLine"
-           :name="name"
-           :type="type"
-           :placeholder="placeholder"
-           :disabled="disabled"
-           :value="value"
-           :pattern="pattern"
-           :required="required"
-           @keyup="handleKeyUp"
-           @keydown="handleKeyDwon"
-           @change="handleChange"
-           @input="handleInput"
-           @focus="handleFocus"
-           @blur="handleBlur">
+    <div class="b-input">
+        <div v-if="$slots.left">
+            <slot name="leftIcon"></slot>
+        </div>
 
-    <b-textarea v-else
-                ref="b-textarea"
-                :placeholder="placeholder"
-                :disabled="disabled"
-                :value="value"
-                :pattern="pattern"
-                :required="required"
-                :rows="rows"
-                :rows-max="rowsMax"
-                :multi-line-height="multiLineHeight"
-                :multi-padding-top="multiPaddingTop"
-                :multi-padding-bottom="multiPaddingBottom"
-                @change="handleChange"
-                @input="handleInput"
-                @focus="handleFocus"
-                @blur="handleBlur"></b-textarea>
+        <div class="content">
+            <input v-if="!multiLine"
+                   :name="name"
+                   :type="type"
+                   :placeholder="placeholder"
+                   :disabled="disabled"
+                   :value="value"
+                   :pattern="pattern"
+                   :required="required"
+                   @keyup="handleKeyUp"
+                   @keydown="handleKeyDwon"
+                   @change="handleChange"
+                   @input="handleInput"
+                   @focus="handleFocus"
+                   @blur="handleBlur">
+
+            <b-textarea v-else
+                        ref="b-textarea"
+                        :placeholder="placeholder"
+                        :disabled="disabled"
+                        :value="value"
+                        :pattern="pattern"
+                        :required="required"
+                        :rows="rows"
+                        :rows-max="rowsMax"
+                        :multi-line-height="multiLineHeight"
+                        :multi-padding-top="multiPaddingTop"
+                        :multi-padding-bottom="multiPaddingBottom"
+                        @change="handleChange"
+                        @input="handleInput"
+                        @focus="handleFocus"
+                        @blur="handleBlur"></b-textarea>
+        </div>
+
+        <div v-if="$slots.right">
+            <slot name="right"></slot>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -143,6 +155,16 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
+    .b-input {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .content {
+            flex: 1;
+        }
+    }
 
 </style>

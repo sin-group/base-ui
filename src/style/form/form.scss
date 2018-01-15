@@ -36,30 +36,36 @@
     display: inline-block;
 }
 
-.form-block .form-group {
-    display: block;
+.form-block {
+    .form-group {
+        display: block;
 
-    input,
-    textarea {
-        width: 100%;
+        input,
+        textarea {
+            width: 100%;
+        }
     }
 }
 
 .form-block-horizontal {
-    input,
-    textarea {
-        width: 100%;
-    }
-
     > .form-group {
         display: flex;
 
         align-items: center;
         justify-content: flex-start;
 
+        input,
+        textarea {
+            width: 100%;
+        }
+
         > * {
             &:first-child {
                 flex: 1;
+
+                label {
+                    padding-top: 8px;
+                }
             }
 
             &:last-child {
