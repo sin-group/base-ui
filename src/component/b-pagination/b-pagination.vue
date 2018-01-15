@@ -198,14 +198,25 @@ export default {
             vm.innerPagination.pageNo = targetPageNo === SKIP_SYMBOL ? SKIP_SYMBOL_JUMP_MAP[type] : targetPageNo;
 
             vm.$emit(EventTypes.ON_CHANGE, vm.innerPagination);
+        },
+
+        updateInnerPagination(pagination) {
+            const vm = this;
+
+            vm.innerPagination = {...pagination};
+            vm.stringPageSize = `${pagination.pageSize}`;
         }
     },
 
     created() {
         const vm = this;
 
-        vm.innerPagination = {...vm.pagination};
-        vm.stringPageSize = `${vm.pagination.pageSize}`;
+        vm.updateInnerPagination(vm.pagination);
+        vm.$watch('pagination', (newPagination) => {
+            vm.updateInnerPagination(newPagination);
+        }, {
+            deep: true
+        });
     }
 };
 
