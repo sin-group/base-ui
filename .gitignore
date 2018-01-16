@@ -18,7 +18,8 @@ Desktop.ini
 
 # npm
 node_modules
-npm-debug.* 
+npm-debug.*
+package-lock.json
 *.log
 *.gz
 
