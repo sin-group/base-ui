@@ -218,7 +218,10 @@
             padding: 0 10px;
             cursor: pointer;
 
-            &:hover,
+            &:hover {
+                 background-color: $blue-light;
+            }
+
             &.b-select-menu-selected {
                 background-color: $blue-lighter;
             }

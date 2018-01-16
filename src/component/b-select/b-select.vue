@@ -111,8 +111,12 @@ export default {
 <style lang="scss" rel="stylesheet/scss">
 
     .b-select {
-        > input {
-            cursor: pointer;
+        .b-input {
+            input {
+                &:hover {
+                    cursor: pointer;
+                }
+            }
         }
     }
 
