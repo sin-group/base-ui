@@ -52,7 +52,7 @@
       display: block; } }
 
 .b-input {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: space-between; }
   .b-input .content {

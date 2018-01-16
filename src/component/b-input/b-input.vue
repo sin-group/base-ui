@@ -158,7 +158,7 @@ export default {
 <style lang="scss" scoped>
 
     .b-input {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: space-between;
 
