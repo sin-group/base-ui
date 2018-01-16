@@ -61,13 +61,13 @@
             align-items: center;
             justify-content: flex-start;
 
+            label {
+                padding-top: 8px;
+            }
+
             input,
             textarea {
                 width: 100%;
-            }
-
-            label {
-                padding-top: 8px;
             }
 
             .b-form-group-label-wrap {

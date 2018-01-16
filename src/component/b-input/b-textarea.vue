@@ -139,8 +139,9 @@
     .b-input-shadow-textarea {
         overflow: hidden;
         position: absolute;
-        width: auto;
+        width: 100px !important;
         height: initial;
         visibility: hidden;
     }
+
 </style>

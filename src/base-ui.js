@@ -11,10 +11,10 @@ import './style/main.scss';
 
 export default {
 
-    install(Vue) {
+    install(Vue, options = {}) {
         Vue.use(component);
         Vue.use(directive);
-        Vue.use(plugin);
+        Vue.use(plugin, options);
     }
 
 };

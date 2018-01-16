@@ -4,7 +4,7 @@ import ToastType from './constant/ToastType';
 
 const ToastEleId = 'toast';
 
-class Toast {
+export const Toast = class Toast {
 
     constructor(Vue) {
         const self = this;
@@ -41,7 +41,7 @@ class Toast {
         self.toast(ToastType.ERROR, ...arg);
     }
 
-}
+};
 
 export default {
 

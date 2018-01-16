@@ -155,7 +155,7 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
     .b-input {
         display: inline-flex;
@@ -164,6 +164,13 @@ export default {
 
         .content {
             flex: 1;
+        }
+    }
+
+    .form-block,
+    .form-block-horizontal {
+        .b-input {
+            display: flex;
         }
     }
 

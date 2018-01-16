@@ -38,11 +38,11 @@
   display: flex;
   align-items: center;
   justify-content: flex-start; }
+  .b-form-group.b-form-group-label-horizontal label {
+    padding-top: 8px; }
   .b-form-group.b-form-group-label-horizontal input,
   .b-form-group.b-form-group-label-horizontal textarea {
     width: 100%; }
-  .b-form-group.b-form-group-label-horizontal label {
-    padding-top: 8px; }
   .b-form-group.b-form-group-label-horizontal .b-form-group-label-wrap {
     flex: 1; }
   .b-form-group.b-form-group-label-horizontal .b-form-group-input-wrap {
@@ -58,6 +58,10 @@
   .b-input .content {
     flex: 1; }
 
+.form-block .b-input,
+.form-block-horizontal .b-input {
+  display: flex; }
+
 textarea {
   line-height: 1.5;
   overflow: auto;
@@ -66,7 +70,7 @@ textarea {
 .b-input-shadow-textarea {
   overflow: hidden;
   position: absolute;
-  width: auto;
+  width: 100px !important;
   height: initial;
   visibility: hidden; }
 
