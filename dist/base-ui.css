@@ -187,18 +187,18 @@ textarea {
   padding: 0 24px;
   max-width: 568px;
   border-radius: 2px;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: #616161;
   color: white;
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%); }
 
-.INFO {
-  background-color: green; }
+.SUCCESS {
+  background-color: #4caf50; }
 
 .ERROR {
-  background-color: red; }
+  background-color: #ff1744; }
 
 @media only screen and (min-width: 500px) {
   .b-toast {
@@ -508,11 +508,7 @@ button {
   button.simple {
     color: #304ffe;
     background-color: #fff;
-    border: none;
-    font-size: 15px;
-    font-weight: 400;
-    padding: 0 20px;
-    height: 35px; }
+    border: none; }
     button.simple:hover {
       background-color: #e0e0e0; }
     button.simple:active {
@@ -520,8 +516,13 @@ button {
   button.block {
     display: block;
     width: 100%; }
+  button.lg {
+    font-size: 15px;
+    font-weight: 400;
+    padding: 0 20px;
+    height: 35px; }
 
-input[type='text'], input[type='password'], input[type='number'], input[type='tel'] {
+input[type='text'], input[type='password'], input[type='number'], input[type='tel'], input[type='email'] {
   width: 256px;
   height: 30px;
   box-sizing: border-box;
@@ -534,13 +535,13 @@ input[type='text'], input[type='password'], input[type='number'], input[type='te
   border-radius: 0;
   outline: none;
   transition: .3s; }
-  input[type='text']:active, input[type='password']:active, input[type='number']:active, input[type='tel']:active {
+  input[type='text']:active, input[type='password']:active, input[type='number']:active, input[type='tel']:active, input[type='email']:active {
     border-color: #9fa8da; }
-  input[type='text']:focus, input[type='password']:focus, input[type='number']:focus, input[type='tel']:focus {
+  input[type='text']:focus, input[type='password']:focus, input[type='number']:focus, input[type='tel']:focus, input[type='email']:focus {
     border-color: #304ffe; }
-  input[type='text']:disabled, input[type='password']:disabled, input[type='number']:disabled, input[type='tel']:disabled {
+  input[type='text']:disabled, input[type='password']:disabled, input[type='number']:disabled, input[type='tel']:disabled, input[type='email']:disabled {
     cursor: not-allowed; }
-    input[type='text']:disabled:active, input[type='password']:disabled:active, input[type='number']:disabled:active, input[type='tel']:disabled:active {
+    input[type='text']:disabled:active, input[type='password']:disabled:active, input[type='number']:disabled:active, input[type='tel']:disabled:active, input[type='email']:disabled:active {
       border-color: #bdbdbd; }
 
 textarea {

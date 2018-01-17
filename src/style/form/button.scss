@@ -67,10 +67,6 @@ button {
         color: $blue;
         background-color: $white;
         border: none;
-        font-size: 15px;
-        font-weight: 400;
-        padding: 0 20px;
-        height: 35px;
 
         &:hover {
             background-color: $gray-light;
@@ -84,5 +80,12 @@ button {
     &.block {
         display: block;
         width: 100%;
+    }
+
+    &.lg {
+        font-size: 15px;
+        font-weight: 400;
+        padding: 0 20px;
+        height: 35px;
     }
 }

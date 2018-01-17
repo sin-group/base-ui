@@ -31,7 +31,7 @@
         padding: 0 24px;
         max-width: 568px;
         border-radius: 2px;
-        background-color: rgba(0, 0, 0, .9);
+        background-color: $gray-dark;
         color: white;
         position: fixed;
         left: 50%;
@@ -39,12 +39,12 @@
         transform: translate(-50%, -50%);
     }
 
-    .INFO {
-        background-color: green;
+    .SUCCESS {
+        background-color: $green;
     }
 
     .ERROR {
-        background-color: red;
+        background-color: $red-light;
     }
 
     @media only screen and (min-width: 500px) {

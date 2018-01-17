@@ -5,7 +5,7 @@
                 <p>{{ message }}</p>
             </div>
 
-            <button slot="actions" class="simple" @click="close">{{ confirmText }}</button>
+            <button slot="actions" class="simple lg" @click="close">{{ confirmText }}</button>
         </b-dialog>
     </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
     <b-dialog :open="visible" :title="title" @close="close">
         {{ message }}
-        <button slot="actions" class="simple" @click="close">确定</button>
+        <button slot="actions" class="simple lg" @click="close">确定</button>
     </b-dialog>
 </template>
 
