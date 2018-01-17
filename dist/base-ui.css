@@ -109,6 +109,9 @@ textarea {
 .b-select .b-input input:hover {
   cursor: pointer; }
 
+.b-select.disabled .b-input input:hover {
+  cursor: not-allowed; }
+
 .b-select-menu {
   padding: 10px 0;
   background-color: #fff;
@@ -399,7 +402,7 @@ a {
     color: #3f51b5; }
 
 .card {
-  padding: 10px;
+  padding: 20px;
   margin: 10px 0;
   background-color: #fff;
   border-radius: 3px;
@@ -741,7 +744,7 @@ textarea {
 .container {
   width: auto;
   box-sizing: border-box;
-  padding: 20px 10px;
+  padding: 20px 0;
   margin: 0 10px; }
   @media screen and (min-width: 1200px) {
     .container {

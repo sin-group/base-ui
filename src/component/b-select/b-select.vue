@@ -1,5 +1,5 @@
 <template>
-    <div class="b-select" ref="ref">
+    <div class="b-select" ref="ref" :class="{disabled: disabled}">
         <b-input ref="input"
                  type="text"
                  :name="name"
@@ -115,6 +115,16 @@ export default {
             input {
                 &:hover {
                     cursor: pointer;
+                }
+            }
+        }
+
+        &.disabled {
+            .b-input {
+                input {
+                    &:hover {
+                         cursor: not-allowed;
+                    }
                 }
             }
         }
