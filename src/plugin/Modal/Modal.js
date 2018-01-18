@@ -1,4 +1,3 @@
-/* global window, document */
 
 import {createVueInstanceEle} from '../helper/helper';
 import MessageModal from './component/message-modal';
@@ -22,25 +21,13 @@ export default {
                 Object.assign(modalInstance, resolved);
                 modalInstance.visible = true;
 
-                const destroy = () => {
-                    if (!document.body.contains(modalInstance.$el)) return;
-                    modalInstance.visible = false;
-                    document.body.removeChild(modalInstance.$el);
-                };
-
-                window.onpopstate = () => {
-                    destroy();
-                };
-
                 return new Promise((resolve, reject) => {
                     Object.assign(modalInstance, {
                         resolve(data) {
-                            destroy();
                             resolve(data);
                         },
 
                         reject() {
-                            destroy();
                             reject();
                         }
                     });

@@ -1,13 +1,11 @@
 <template>
-    <div class="modal" v-if="visible">
-        <b-dialog :open="visible" :title="title">
-            <div class="message-modal-body">
-                <p>{{ message }}</p>
-            </div>
+    <b-dialog :open="visible" :title="title" @close="close">
+        <div class="message-modal-body">
+            <p>{{ message }}</p>
+        </div>
 
-            <button slot="actions" class="simple lg" @click="close">{{ confirmText }}</button>
-        </b-dialog>
-    </div>
+        <button slot="actions" class="simple lg" @click="close">{{ confirmText }}</button>
+    </b-dialog>
 </template>
 
 <script>
