@@ -1,3 +1,29 @@
+.b-date {
+  display: inline-block; }
+
+.b-input {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between; }
+  .b-input .content {
+    flex: 1; }
+
+.form-block .b-input,
+.form-block-horizontal .b-input {
+  display: flex; }
+
+textarea {
+  line-height: 1.5;
+  overflow: auto;
+  background-color: transparent; }
+
+.b-input-shadow-textarea {
+  overflow: hidden;
+  position: absolute;
+  width: 100px !important;
+  height: initial;
+  visibility: hidden; }
+
 .b-dialog-wrapper {
   position: fixed;
   top: 0;
@@ -62,29 +88,6 @@
   @media screen and (max-width: 480px) {
     .b-form-group.b-form-group-label-horizontal {
       display: block; } }
-
-.b-input {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between; }
-  .b-input .content {
-    flex: 1; }
-
-.form-block .b-input,
-.form-block-horizontal .b-input {
-  display: flex; }
-
-textarea {
-  line-height: 1.5;
-  overflow: auto;
-  background-color: transparent; }
-
-.b-input-shadow-textarea {
-  overflow: hidden;
-  position: absolute;
-  width: 100px !important;
-  height: initial;
-  visibility: hidden; }
 
 .b-pagination button {
   padding: 0 10px;

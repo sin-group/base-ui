@@ -14,24 +14,23 @@ export default {
 
     render(createElement) {
         const vm = this;
-        const {$slots, needRender, visible} = vm;
+        const {$slots} = vm;
 
-        return needRender ? createElement(
+        return createElement(
             'div',
             {
                 class: 'b-popper-wrap',
                 style: {
-                    display: visible ? 'inline-block' : 'none',
+                    display: 'inline-block',
                     position: 'absolute',
                     top: 0
                 }
             },
             $slots.default
-        ) : null;
+        );
     },
 
     props: {
-        refEl: {},
         place: {
             type: String,
             default: 'bottom-start'
@@ -40,54 +39,32 @@ export default {
 
     data() {
         return {
-            visible: false
+            refEl: null
         };
     },
 
-    computed: {
-        needRender() {
-            const vm = this;
-            const {visible, $$isRendered = false} = vm;
-
-            return $$isRendered || (vm.$$isRendered = visible);
-        }
-    },
-
     methods: {
-        open() {
-            const vm = this;
-            vm.visible = true;
-
-            vm.$nextTick(() => {
-                vm.makePosition();
-            });
-        },
-
-        close() {
-            const vm = this;
-            vm.visible = false;
-        },
-
         makePosition() {
             const vm = this;
-            const {visible, $el, refEl: $refEl, place} = vm;
-
-            if (visible) {
-                document.body.appendChild(vm.$el);
-                initPosition({$refEl, $el, place});
-            }
+            const {$el, refEl: $refEl, place} = vm;
+            document.body.appendChild(vm.$el);
+            initPosition({$refEl, $el, place});
         }
     },
 
     mounted() {
         const vm = this;
+        const {$parent} = vm;
+        vm.refEl = $parent.$el;
+
+        vm.makePosition();
         on(window, 'resize', vm.makePosition);
     },
 
     destroyed() {
         const vm = this;
         off(window, 'resize', vm.makePosition);
-        if (vm.needRender) {
+        if (document.body.contains(vm.$el)) {
             document.body.removeChild(vm.$el);
         }
     }

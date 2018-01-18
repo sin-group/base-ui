@@ -1,7 +1,6 @@
 <template>
     <div class="b-select" ref="ref" :class="{disabled: disabled}">
-        <b-input ref="input"
-                 type="text"
+        <b-input type="text"
                  :name="name"
                  :value="searchText"
                  @input="input"
