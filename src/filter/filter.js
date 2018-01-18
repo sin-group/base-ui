@@ -7,7 +7,7 @@
 import {
     getDate,
     getDateTime
-} from './filter-util';
+} from '../util/time';
 
 export const filterFuncMap = {
     'b-date': getDate,

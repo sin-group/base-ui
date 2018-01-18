@@ -12,6 +12,7 @@
                    :disabled="disabled"
                    :value="value"
                    :pattern="pattern"
+                   :readonly="disabled"
                    :required="required"
                    @keyup="handleKeyUp"
                    @keydown="handleKeyDwon"

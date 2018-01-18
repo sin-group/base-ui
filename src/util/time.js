@@ -8,11 +8,13 @@ const DatePresentationReg = /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).(\d
 const DateFormat = 'YYYY-MM-DD';
 const DateTimeFormat = 'YYYY-MM-DD HH:mm:ss';
 const MillisecondInMinute = 60 * 1e3;
+export const DailyMillisecond = 24 * 60 * MillisecondInMinute;
 
-const getTimeComponent = (timeStamp) => {
+export const getTimeComponent = (timeStamp) => {
     if (typeof timeStamp !== typeof 0) return {};
 
     const offset = (new Date()).getTimezoneOffset() * MillisecondInMinute;
+    const day = (new Date(timeStamp - offset)).getDay();
     const timePresentation = new Date(timeStamp - offset).toJSON();
     const [
         entity, // eslint-disable-line no-unused-vars
@@ -32,7 +34,8 @@ const getTimeComponent = (timeStamp) => {
         hour,
         minute,
         second,
-        millisecond
+        millisecond,
+        day
     };
 };
 

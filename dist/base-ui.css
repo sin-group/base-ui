@@ -1,5 +1,9 @@
 .b-date {
   display: inline-block; }
+  .b-date .b-input input {
+    cursor: pointer; }
+  .b-date .b-input.disabled input {
+    cursor: not-allowed; }
 
 .b-input {
   display: inline-flex;
@@ -23,6 +27,53 @@ textarea {
   width: 100px !important;
   height: initial;
   visibility: hidden; }
+
+.b-date-picker {
+  width: 256px;
+  box-sizing: border-box;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  overflow-y: auto; }
+  .b-date-picker .date-title {
+    margin-bottom: 10px;
+    padding: 0 10px;
+    text-align: center;
+    color: #3f51b5; }
+  .b-date-picker .date-day-type,
+  .b-date-picker .date-btn-wrap {
+    display: inline-block;
+    width: 32px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center; }
+  .b-date-picker .date-day-type {
+    font-size: 13px;
+    color: #bdbdbd; }
+  .b-date-picker .date-row-wrap {
+    margin-top: 10px; }
+    .b-date-picker .date-row-wrap .date-row {
+      margin-bottom: 8px; }
+      .b-date-picker .date-row-wrap .date-row .date-btn-wrap .date-btn {
+        height: 28px;
+        width: 28px;
+        padding: 0;
+        line-height: 28px;
+        border: none;
+        border-radius: 50%;
+        color: #bdbdbd;
+        background-color: transparent; }
+        .b-date-picker .date-row-wrap .date-row .date-btn-wrap .date-btn.selected-month {
+          color: #212121; }
+        .b-date-picker .date-row-wrap .date-row .date-btn-wrap .date-btn.current-date {
+          color: #304ffe; }
+        .b-date-picker .date-row-wrap .date-row .date-btn-wrap .date-btn.selected-date {
+          color: #fff;
+          background-color: #304ffe; }
+        .b-date-picker .date-row-wrap .date-row .date-btn-wrap .date-btn:hover {
+          color: #fff;
+          background-color: #9fa8da; }
 
 .b-dialog-wrapper {
   position: fixed;
@@ -123,9 +174,6 @@ textarea {
 
 .b-select .b-input input:hover {
   cursor: pointer; }
-
-.b-select.disabled .b-input input:hover {
-  cursor: not-allowed; }
 
 .b-select-menu {
   padding: 10px 0;
@@ -566,7 +614,8 @@ input[type='text'], input[type='password'], input[type='number'], input[type='te
   input[type='text']:focus, input[type='password']:focus, input[type='number']:focus, input[type='tel']:focus, input[type='email']:focus {
     border-color: #304ffe; }
   input[type='text']:disabled, input[type='password']:disabled, input[type='number']:disabled, input[type='tel']:disabled, input[type='email']:disabled {
-    cursor: not-allowed; }
+    cursor: not-allowed;
+    border-color: #bdbdbd; }
     input[type='text']:disabled:active, input[type='password']:disabled:active, input[type='number']:disabled:active, input[type='tel']:disabled:active, input[type='email']:disabled:active {
       border-color: #bdbdbd; }
 

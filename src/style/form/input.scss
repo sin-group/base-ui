@@ -29,6 +29,7 @@ input {
 
         &:disabled {
             cursor: not-allowed;
+            border-color: $gray;
 
             &:active {
                 border-color: $gray;

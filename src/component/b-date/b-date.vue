@@ -1,20 +1,22 @@
 <template>
-    <div class="b-date">
-        <b-input type="number"
+    <div class="b-date" :class="{disabled: disabled}">
+        <b-input type="text"
                  :name="name"
-                 :value="innerValue"
+                 :value="displayTime"
+                 :disabled="disabled"
                  @focus="openDatePicker"></b-input>
 
         <b-popper v-if="visible"
                   v-b-click-outside="closeDatePicker">
-            <b-date-picker :value="value"
-                           :popper="$refs.popper"
+            <b-date-picker v-model="innerValue"
                            @choose="choose"></b-date-picker>
         </b-popper>
     </div>
 </template>
 
 <script type="text/babel">
+
+import {getDate} from '../../util/time';
 
 import BInput from '../b-input';
 import BPopover from '../b-popper';
@@ -38,6 +40,9 @@ export default {
         value: {
             required: true
         },
+        name: {
+            type: String
+        },
         disabled: {
             type: Boolean,
             default: false
@@ -48,6 +53,17 @@ export default {
         return {
             innerValue: null,
             visible: false
+        }
+    },
+
+    computed: {
+        displayTime() {
+            const vm = this;
+            const {innerValue} = vm;
+
+            if (!innerValue && typeof innerValue !== typeof 0) return '';
+
+            return getDate(innerValue);
         }
     },
 
@@ -70,13 +86,14 @@ export default {
             const vm = this;
             vm.innerValue = timeStamp;
             vm.$emit('change', timeStamp);
+            vm.closeDatePicker();
         }
     },
 
     mounted() {
         const vm = this;
         const {value} = vm;
-        vm.innerValue = value;
+        if (value) vm.innerValue = value;
     }
 };
 
@@ -85,5 +102,17 @@ export default {
 <style lang="scss" rel="stylesheet/scss" scoped>
 .b-date {
     display: inline-block;
+
+    .b-input {
+        input {
+            cursor: pointer;
+        }
+
+        &.disabled {
+            input {
+                cursor: not-allowed;
+            }
+        }
+    }
 }
 </style>

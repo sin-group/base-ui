@@ -3,6 +3,7 @@
         <b-input type="text"
                  :name="name"
                  :value="searchText"
+                 :disabled="disabled"
                  @input="input"
                  @focus="openMenu"
                  @keydown="handleKeyDown"></b-input>
@@ -114,16 +115,6 @@ export default {
             input {
                 &:hover {
                     cursor: pointer;
-                }
-            }
-        }
-
-        &.disabled {
-            .b-input {
-                input {
-                    &:hover {
-                         cursor: not-allowed;
-                    }
                 }
             }
         }
