@@ -1,7 +1,5 @@
 <template>
-    <ul ref="list"
-        class="b-select-menu"
-        :style="{maxHeight: listHeight}">
+    <ul ref="list" class="b-select-menu" :style="{maxHeight: listHeight}">
         <li v-for="(item, index) in menuList"
             :class="{'b-select-menu-selected': index === highlightIndex}"
             @click="handleChoose(item)">{{ map[item] }}</li>
@@ -18,9 +16,6 @@
         name: 'b-select-menu',
 
         props: {
-            popper: {
-                required: true
-            },
             map: Object,
             value: String,
             searchText: String,
@@ -95,9 +90,7 @@
 
             changeHighlight(direction) {
                 const vm = this;
-                const {$refs: {list}, popper, highlightIndex, itemHeight, menuList, renderCount, maxScrollTop} = vm;
-
-                if (!popper.visible) return popper.open();
+                const {$refs: {list}, highlightIndex, itemHeight, menuList, renderCount, maxScrollTop} = vm;
 
                 const scrollTop = list.scrollTop;
                 const contentMin = Math.floor(scrollTop / itemHeight);
@@ -145,7 +138,7 @@
 
             handleKeyDown(keyCode) {
                 const vm = this;
-                const {highlightIndex, menuList, popper, value} = vm;
+                const {highlightIndex, menuList, value} = vm;
                 switch (keyCode) {
                     case keyCodeMap.up: {
                         vm.changeHighlight('up');
@@ -155,18 +148,7 @@
                         vm.changeHighlight('down');
                         break;
                     }
-                    case keyCodeMap.tab: {
-                        if (popper.visible) {
-                            vm.handleChoose(value);
-                        }
-                        break;
-                    }
                     case keyCodeMap.enter: {
-                        if (!popper.visible) {
-                            popper.open();
-                            break;
-                        }
-
                         if (highlightIndex > -1) {
                             vm.handleChoose(menuList[highlightIndex]);
                         } else {

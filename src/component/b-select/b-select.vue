@@ -1,5 +1,5 @@
 <template>
-    <div class="b-select" ref="ref" :class="{disabled: disabled}">
+    <div class="b-select" :class="{disabled: disabled}">
         <b-input type="text"
                  :name="name"
                  :value="searchText"
@@ -8,11 +8,9 @@
                  @focus="openMenu"
                  @keydown="handleKeyDown"></b-input>
 
-        <b-popper ref="popper"
-                  :ref-el="$refs.ref"
+        <b-popper v-if="visible"
                   v-b-click-outside="closeMenu">
             <b-select-menu ref="menu"
-                           :popper="$refs.popper"
                            :map="map"
                            :value="value"
                            :searchText="searchText"
@@ -22,89 +20,113 @@
 </template>
 
 <script type="text/babel">
-import BInput from '../b-input';
-import BSelectMenu from './b-select-menu.vue';
 
-export default {
-    name: 'b-select',
+    import keyCodeMap from '../../util/keyCodeMap';
 
-    components: {
-        BInput,
-        BSelectMenu
-    },
+    import BInput from '../b-input';
+    import BSelectMenu from './b-select-menu.vue';
 
-    model: {
-        prop: 'value',
-        event: 'change'
-    },
+    export default {
+        name: 'b-select',
 
-    props: {
-        name: String,
-        value: String,
-        map: {
-            type: Object,
-            default: () => {},
-            required: true
+        components: {
+            BInput,
+            BSelectMenu
         },
-        disabled: Boolean
-    },
 
-    data() {
-        const vm = this;
-        const {map, value} = vm;
-        return {
-            searchText: map[value]
-        }
-    },
+        model: {
+            prop: 'value',
+            event: 'change'
+        },
 
-    methods: {
-        openMenu() {
+        props: {
+            name: String,
+            value: String,
+            map: {
+                type: Object,
+                default: () => {},
+                required: true
+            },
+            disabled: Boolean
+        },
+
+        data() {
             const vm = this;
-            const {$refs: {popper}, disabled} = vm;
-            if (!disabled) {
-                vm.searchText = '';
-                popper.open();
+            const {map, value} = vm;
+            return {
+                visible: false,
+                searchText: map[value]
             }
         },
 
-        input(value) {
-            const vm = this;
-            const {$refs: {popper}} = vm;
-            vm.searchText = value;
-            popper.open();
+        methods: {
+            openMenu() {
+                const vm = this;
+                if (!vm.disabled) {
+                    vm.searchText = '';
+                    vm.visible = true;
+                }
+            },
+
+            input(value) {
+                const vm = this;
+                vm.searchText = value;
+                vm.visible = true;
+            },
+
+            handleKeyDown(TargetValue, {keyCode}) {
+                const vm = this;
+                const {$refs: {menu}, visible} = vm;
+
+                switch (keyCode) {
+                    case keyCodeMap.up:
+                    case keyCodeMap.down: {
+                        if (!visible) {
+                            return vm.openMenu();
+                        }
+
+                        menu.handleKeyDown(keyCode);
+                        break;
+                    }
+                    case keyCodeMap.tab: {
+                        vm.closeMenu();
+                        break;
+                    }
+                    case keyCodeMap.enter: {
+                        if (!visible) {
+                            vm.openMenu();
+                        } else {
+                            menu.handleKeyDown(keyCode);
+                        }
+                        break;
+                    }
+                }
+            },
+
+            closeMenu() {
+                const vm = this;
+                const {map, value} = vm;
+                vm.searchText = map[value];
+                vm.visible = false;
+            },
+
+            choose(value) {
+                const vm = this;
+                vm.searchText = vm.map[value];
+                vm.$emit('change', value);
+                vm.visible = false;
+            }
         },
 
-        handleKeyDown(TargetValue, {keyCode}) {
-            const vm = this;
-            const {$refs: {menu}} = vm;
-            menu.handleKeyDown(keyCode);
-        },
-
-        closeMenu() {
-            const vm = this;
-            const {$refs: {popper}, map, value} = vm;
-            vm.searchText = map[value];
-            popper.close();
-        },
-
-        choose(value) {
-            const vm = this;
-            const {$refs: {popper}, map} = vm;
-            vm.searchText = map[value];
-            vm.$emit('change', value);
-            popper.close();
-        }
-    },
-
-    watch: {
-        value(val) {
-            const vm = this;
-            if (vm.map[val]) {
-                vm.searchText = vm.map[val];
+        watch: {
+            value(val) {
+                const vm = this;
+                if (vm.map[val]) {
+                    vm.searchText = vm.map[val];
+                }
             }
         }
-    }
-};
+    };
 
 </script>
 
