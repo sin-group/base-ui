@@ -43,6 +43,10 @@
             event: 'choose'
         },
 
+        props: {
+            timeStamp: {}
+        },
+
         data() {
             const vm = this;
             const {timeStamp} = vm;
