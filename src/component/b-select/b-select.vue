@@ -135,8 +135,14 @@
     .b-select {
         .b-input {
             input {
-                &:hover {
-                    cursor: pointer;
+                cursor: pointer;
+            }
+        }
+
+        &:disabled {
+            b-input {
+                input {
+                    cursor: not-allowed;
                 }
             }
         }

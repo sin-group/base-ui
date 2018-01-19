@@ -37,10 +37,54 @@ textarea {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   overflow-y: auto; }
   .b-date-picker .date-title {
-    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 5px;
     padding: 0 10px;
     text-align: center;
     color: #3f51b5; }
+    .b-date-picker .date-title .month-btn-wrap {
+      position: relative;
+      box-sizing: border-box;
+      top: -5px;
+      width: 25px;
+      height: 25px;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: .3s; }
+      .b-date-picker .date-title .month-btn-wrap:hover {
+        background-color: #9fa8da; }
+        .b-date-picker .date-title .month-btn-wrap:hover .previous-month-btn {
+          width: 0;
+          height: 0;
+          border-top: 4px solid transparent;
+          border-bottom: 4px solid transparent;
+          border-right: 4px solid #fff; }
+        .b-date-picker .date-title .month-btn-wrap:hover .next-month-btn {
+          width: 0;
+          height: 0;
+          border-top: 4px solid transparent;
+          border-bottom: 4px solid transparent;
+          border-left: 4px solid #fff; }
+    .b-date-picker .date-title .previous-month-btn,
+    .b-date-picker .date-title .next-month-btn {
+      position: relative;
+      top: -1px; }
+    .b-date-picker .date-title .previous-month-btn {
+      left: -1px;
+      width: 0;
+      height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-right: 4px solid #304ffe; }
+    .b-date-picker .date-title .next-month-btn {
+      left: 1px;
+      width: 0;
+      height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 4px solid #304ffe; }
   .b-date-picker .date-day-type,
   .b-date-picker .date-btn-wrap {
     display: inline-block;
@@ -64,7 +108,7 @@ textarea {
         border-radius: 50%;
         color: #bdbdbd;
         background-color: transparent; }
-        .b-date-picker .date-row-wrap .date-row .date-btn-wrap .date-btn.selected-month {
+        .b-date-picker .date-row-wrap .date-row .date-btn-wrap .date-btn.view-month {
           color: #212121; }
         .b-date-picker .date-row-wrap .date-row .date-btn-wrap .date-btn.current-date {
           color: #304ffe; }
@@ -172,8 +216,11 @@ textarea {
       font-size: 11px;
       text-align: center; }
 
-.b-select .b-input input:hover {
+.b-select .b-input input {
   cursor: pointer; }
+
+.b-select:disabled b-input input {
+  cursor: not-allowed; }
 
 .b-select-menu {
   padding: 10px 0;
@@ -185,8 +232,9 @@ textarea {
   .b-select-menu li {
     display: flex;
     align-items: center;
+    box-sizing: border-box;
     height: 30px;
-    min-width: 200px;
+    min-width: 256px;
     background-color: #fff;
     padding: 0 10px;
     cursor: pointer; }

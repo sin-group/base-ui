@@ -194,8 +194,9 @@
         li {
             display: flex;
             align-items: center;
+            box-sizing: border-box;
             height: 30px;
-            min-width: 200px;
+            min-width: 256px;
             background-color: $white;
             padding: 0 10px;
             cursor: pointer;

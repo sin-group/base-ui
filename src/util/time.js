@@ -39,6 +39,30 @@ export const getTimeComponent = (timeStamp) => {
     };
 };
 
+export const getTimeDigitalComponent = (timeStamp) => {
+    const {
+        year,
+        month,
+        date,
+        hour,
+        minute,
+        second,
+        millisecond,
+        day
+    } = getTimeComponent(timeStamp);
+
+    return {
+        year: +year,
+        month: +month,
+        date: +date,
+        hour: +hour,
+        minute: +minute,
+        second: +second,
+        millisecond: +millisecond,
+        day: +day
+    };
+};
+
 export const genDateStringWithFormat = (timeStamp, format) => {
     const {year, month, date, hour, minute, second, millisecond} = getTimeComponent(timeStamp);
 
