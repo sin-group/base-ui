@@ -184,6 +184,18 @@ textarea {
     .b-form-group.b-form-group-label-horizontal {
       display: block; } }
 
+.b-md-view h1:first-child {
+  margin-top: 0.5em; }
+
+.b-md-view ul,
+.b-md-view ol {
+  padding-left: 20px;
+  list-style-position: outside; }
+  .b-md-view ul li,
+  .b-md-view ol li {
+    list-style: inherit;
+    margin-bottom: 5px; }
+
 .b-pagination button {
   padding: 0 10px;
   color: black;
@@ -291,6 +303,8 @@ textarea {
 
 .b-table {
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12); }
+  .b-table .table-area {
+    overflow-x: auto; }
   .b-table .foot-area .b-pagination {
     padding: 10px; }
 
@@ -472,53 +486,62 @@ h3,
 h4,
 h5,
 h6 {
-  margin: .7em 0 .5em;
-  font-weight: 600;
-  color: #000; }
+  font-family: inherit;
+  line-height: 1.5em;
+  font-weight: 500;
+  margin-bottom: 0.7em;
+  margin-top: 1em; }
 
 h1 {
-  font-size: 40px; }
+  font-size: 2.4em; }
 
 h2 {
-  font-size: 30px; }
+  font-size: 1.8em; }
 
 h3 {
-  font-size: 25px; }
+  font-size: 1.4em; }
 
 h4 {
-  font-size: 20px; }
+  font-size: 1.2em; }
 
 h5 {
-  font-size: 18px; }
+  font-size: 1.1em; }
 
 h6 {
-  font-size: 16px; }
+  font-size: 1em; }
+
+a,
+a:visited {
+  text-decoration: none;
+  color: #3949ab; }
 
 hr {
-  margin: .5em 0 .6em;
-  border-color: #304ffe; }
+  border-color: #616161; }
 
-blockquote {
-  padding: 10px;
-  margin: 20px 0 10px;
-  background-color: #f3f3f3;
-  border-color: #304ffe;
-  border-left: 5px solid; }
+p {
+  margin-top: 0.7em;
+  margin-bottom: 0.7em;
+  line-height: 1.2em; }
+
+pre, code {
+  font-family: 'Latin Modern Mono Light', "Latin Modern Mono", monospace !important; }
 
 pre {
-  padding: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-  overflow-x: auto;
-  font-size: 90%;
-  color: #212529;
-  border: 0; }
+  padding: 15px;
+  background-color: #f3f3f3;
+  line-height: 1.2em;
+  overflow-x: auto; }
 
-a {
-  color: #304ffe;
-  text-decoration: none; }
-  a:hover {
-    color: #3f51b5; }
+blockquote {
+  font-style: italic;
+  margin: 1em 0;
+  padding: 1em 20px;
+  position: relative;
+  color: #616161;
+  border-left: 5px solid;
+  background-color: #f3f3f3; }
+  blockquote p {
+    margin: 0; }
 
 .card {
   padding: 20px;
@@ -526,8 +549,8 @@ a {
   background-color: #fff;
   border-radius: 3px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); }
-  .card .heading:first-child {
-    margin-top: 10px; }
+  .card h1:first-child {
+    margin-top: 0.5em; }
 
 .tabs-light,
 .tabs {
@@ -922,6 +945,7 @@ textarea {
     vertical-align: middle;
     border-bottom: 1px solid gray; }
     .table thead tr th {
+      min-width: 120px;
       padding: 0 24px;
       color: rgba(0, 0, 0, 0.54);
       user-select: none; }
@@ -969,3 +993,6 @@ textarea {
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     transition: background 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
     will-change: backgaound; }
+    .table tbody tr td {
+      padding: 10px;
+      line-height: 1.5em; }

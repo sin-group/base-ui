@@ -1,14 +1,15 @@
 <template>
     <div class="b-table">
-        <table class="table">
-            <thead>
-            <tr>
-                <th v-for="colDef in options.colDefs">
-                    <div class="filter-area"></div>
+        <div class="table-area">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th v-for="colDef in options.colDefs">
+                        <div class="filter-area"></div>
 
-                    <span class="sort-click-area"
-                          :class="{'enabled-click': options.enableClientSort}"
-                          @click="toggleSort(colDef.field)">
+                        <span class="sort-click-area"
+                              :class="{'enabled-click': options.enableClientSort}"
+                              @click="toggleSort(colDef.field)">
                             {{ colDef.name }}
 
                             <div class="sort-area">
@@ -20,18 +21,19 @@
                                      }"></div>
                             </div>
                         </span>
-                </th>
-            </tr>
-            </thead>
+                    </th>
+                </tr>
+                </thead>
 
-            <tbody>
-            <tr v-for="record in renderedRecords">
-                <td v-for="colDef in options.colDefs">
-                    {{ getCellValue(record, colDef) }}
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                <tbody>
+                <tr v-for="record in renderedRecords">
+                    <td v-for="colDef in options.colDefs">
+                        {{ getCellValue(record, colDef) }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
         <div class="foot-area" v-if="options.enableClientPagination">
             <b-pagination :pagination="innerPagination"
@@ -182,12 +184,15 @@
     .b-table {
         box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
 
-    .foot-area {
+        .table-area {
+            overflow-x: auto;
+        }
 
-    .b-pagination {
-        padding: 10px;
-    }
+        .foot-area {
+            .b-pagination {
+                padding: 10px;
+            }
 
-    }
+        }
     }
 </style>

@@ -8,6 +8,7 @@ import BDate from './b-date';
 import BDialog from './b-dialog';
 import BFormGroup from './b-form-group';
 import BInput from './b-input';
+import BMdView from './b-md-view';
 import BPagination from './b-pagination';
 import BPopper from './b-popper';
 import BSelect from './b-select';
@@ -21,6 +22,7 @@ export default {
         Vue.component('b-dialog', BDialog);
         Vue.component('b-form-group', BFormGroup);
         Vue.component('b-input', BInput);
+        Vue.component('b-md-view', BMdView);
         Vue.component('b-pagination', BPagination);
         Vue.component('b-popper', BPopper);
         Vue.component('b-select', BSelect);

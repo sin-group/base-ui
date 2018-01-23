@@ -13,63 +13,75 @@ h3,
 h4,
 h5,
 h6 {
-    margin: .7em 0 .5em;
-    font-weight: 600;
-    color: $black;
+    font-family: inherit;
+    line-height: 1.5em;
+    font-weight: 500;
+    margin-bottom: 0.7em;
+    margin-top: 1em;
 }
 
 h1 {
-    font-size: $heading1;
+    font-size: 2.4em;
 }
 
 h2 {
-    font-size: $heading2;
+    font-size: 1.8em;
 }
 
 h3 {
-    font-size: $heading3;
+    font-size: 1.4em;
 }
 
 h4 {
-    font-size: $heading4;
+    font-size: 1.2em;
 }
 
 h5 {
-    font-size: $heading5;
+    font-size: 1.1em;
 }
 
 h6 {
-    font-size: $heading6;
+    font-size: 1em;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    color: $blue-darker;
 }
 
 hr {
-    margin: .5em 0 .6em;
-    border-color: $blue;
+    border-color: $gray-dark;
 }
 
-blockquote {
-    padding: 10px;
-    margin: 20px 0 10px;
-    background-color: $gray-lighter;
-    border-color: $blue;
-    border-left: 5px solid;
+p {
+    margin-top: 0.7em;
+    margin-bottom: 0.7em;
+    line-height: 1.2em;
+}
+
+pre,
+code {
+    font-family: 'Latin Modern Mono Light', 'Latin Modern Mono', monospace !important;
 }
 
 pre {
-    padding: 0;
-    margin-top: 0;
-    margin-bottom: 0;
+    padding: 15px;
+    background-color: $gray-lighter;
+    line-height: 1.2em;
     overflow-x: auto;
-    font-size: 90%;
-    color: #212529;
-    border: 0;
 }
 
-a {
-    color: $blue;
-    text-decoration: none;
+blockquote {
+    font-style: italic;
+    margin: 1em 0;
+    padding: 1em 20px;
+    position: relative;
+    color: $gray-dark;
+    border-left: 5px solid;
+    background-color: $gray-lighter;
 
-    &:hover {
-        color: $blue-dark;
+    p {
+        margin: 0;
     }
 }
