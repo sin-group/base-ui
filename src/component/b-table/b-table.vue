@@ -60,11 +60,11 @@
         props: {
             options: {
                 type: Object,
-                default: {}
+                default: () => {}
             },
             records: {
                 type: Array,
-                default: []
+                default: () => []
             },
             pagination: {
                 type: Object

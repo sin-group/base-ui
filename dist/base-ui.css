@@ -523,8 +523,9 @@ p {
   margin-bottom: 0.7em;
   line-height: 1.2em; }
 
-pre, code {
-  font-family: 'Latin Modern Mono Light', "Latin Modern Mono", monospace !important; }
+pre,
+code {
+  font-family: 'Latin Modern Mono Light', 'Latin Modern Mono', monospace !important; }
 
 pre {
   padding: 15px;
@@ -785,7 +786,8 @@ textarea {
   display: inline-block; }
 
 .form-block .form-group {
-  display: block; }
+  display: block;
+  margin-right: 0; }
   .form-block .form-group input,
   .form-block .form-group textarea {
     width: 100%; }
@@ -793,7 +795,8 @@ textarea {
 .form-block-horizontal > .form-group {
   display: flex;
   align-items: center;
-  justify-content: flex-start; }
+  justify-content: flex-start;
+  margin-right: 0; }
   .form-block-horizontal > .form-group input,
   .form-block-horizontal > .form-group textarea {
     width: 100%; }

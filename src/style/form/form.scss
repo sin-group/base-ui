@@ -39,6 +39,7 @@
 .form-block {
     .form-group {
         display: block;
+        margin-right: 0;
 
         input,
         textarea {
@@ -53,6 +54,7 @@
 
         align-items: center;
         justify-content: flex-start;
+        margin-right: 0;
 
         input,
         textarea {
