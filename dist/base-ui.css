@@ -127,9 +127,12 @@ textarea {
   background-color: rgba(0, 0, 0, 0.4); }
 
 .b-dialog {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 75%;
   max-width: 768px;
-  margin: 30vh auto;
   padding: 20px 20px 10px;
   border-radius: 2px;
   background-color: #fff;
@@ -159,7 +162,7 @@ textarea {
   opacity: 0; }
   .b-dialog-slide-enter .b-dialog,
   .b-dialog-slide-leave-to .b-dialog {
-    transform: translate3d(0, -10px, 0); }
+    transform: translate(-50%, -40%); }
 
 .b-form-group.b-form-group-block {
   display: block; }
@@ -408,7 +411,6 @@ tfoot,
 thead,
 tr,
 th,
-td,
 article,
 aside,
 canvas,
@@ -449,9 +451,6 @@ nav,
 section {
   display: block; }
 
-body {
-  line-height: 1; }
-
 blockquote,
 q {
   quotes: none; }
@@ -471,6 +470,7 @@ li {
   list-style: none; }
 
 body {
+  line-height: 1;
   -webkit-text-size-adjust: none;
   -webkit-tap-highlight-color: transparent; }
 
@@ -998,4 +998,4 @@ textarea {
     will-change: backgaound; }
     .table tbody tr td {
       padding: 10px;
-      line-height: 1.5em; }
+      line-height: normal; }

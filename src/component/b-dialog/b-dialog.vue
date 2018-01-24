@@ -67,9 +67,12 @@
     }
 
     .b-dialog {
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
         width: 75%;
         max-width: 768px;
-        margin: 30vh auto;
         padding: 20px 20px 10px;
         border-radius: 2px;
         background-color: #fff;
@@ -105,7 +108,7 @@
         opacity: 0;
 
         .b-dialog {
-            transform: translate3d(0, -10px, 0);
+            transform: translate(-50%, -40%);
         }
     }
 

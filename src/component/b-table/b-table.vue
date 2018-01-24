@@ -28,7 +28,15 @@
                 <tbody>
                 <tr v-for="record in renderedRecords">
                     <td v-for="colDef in options.colDefs">
-                        {{ getCellValue(record, colDef) }}
+                        <span>
+                            <slot :name="colDef.field"
+                                  :field="colDef.field"
+                                  :colDef="colDef"
+                                  :record="record"
+                                  :value="getCellValue(record, colDef)">
+                                {{ getCellValue(record, colDef) }}
+                            </slot>
+                        </span>
                     </td>
                 </tr>
                 </tbody>
