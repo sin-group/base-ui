@@ -5,11 +5,13 @@
  */
 
 import clickOutside from './click-outside';
+import clipboard from './clipboard';
 
 export default {
 
     install(Vue) {
         Vue.directive('b-click-outside', clickOutside);
+        Vue.directive('b-clipboard', clipboard);
     }
 
 };

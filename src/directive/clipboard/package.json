@@ -1,0 +1,4 @@
+{
+    "name": "clipboard",
+    "main": "./clipboard.js"
+}
