@@ -7,7 +7,7 @@
 
 import {initPosition} from './position';
 
-import {on, off, isChildrenDOM} from '../../util/dom';
+import {on, off} from '../../util/dom';
 
 export default {
     name: 'b-popper',
@@ -46,8 +46,9 @@ export default {
     methods: {
         makePosition() {
             const vm = this;
-            const {$el, refEl: $refEl, place} = vm;
-            document.body.appendChild(vm.$el);
+            const {$el, place, refEl: $refEl} = vm;
+
+            document.body.appendChild($el);
             initPosition({$refEl, $el, place});
         }
     },
@@ -62,10 +63,6 @@ export default {
 
     destroyed() {
         const vm = this;
-        const body = document.body;
         off(window, 'resize', vm.makePosition);
-        if (isChildrenDOM(body, vm.$el)) {
-            body.removeChild(vm.$el);
-        }
     }
 };
