@@ -16,9 +16,9 @@ export default {
                 const modalInstance = new Vue(component);
 
                 createVueInstanceEle(ModalEleId);
-                modalInstance.$mount(`#${ModalEleId}`);
-
                 Object.assign(modalInstance, resolved);
+
+                modalInstance.$mount(`#${ModalEleId}`);
                 modalInstance.visible = true;
 
                 return new Promise((resolve, reject) => {

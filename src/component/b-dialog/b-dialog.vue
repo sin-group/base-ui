@@ -1,7 +1,7 @@
 <template>
-    <transition name="b-dialog-slide">
+    <transition name="b-dialog-slide" @after-leave="destory">
         <div class="b-dialog-wrapper" v-if="open" @click="close">
-            <div class="b-dialog" @click.stop.prevent.self>
+            <div class="b-dialog" :class="dialogClass" @click.stop.prevent.self>
                 <h3 class="b-dialog-title" v-if="showTitle">
                     <slot name="title">{{ title }}</slot>
                 </h3>
@@ -10,7 +10,7 @@
                     <slot></slot>
                 </div>
 
-                <div class="b-dialog-actions">
+                <div class="b-dialog-actions" v-if="$slots.actions">
                     <slot name="actions"></slot>
                 </div>
             </div>
@@ -37,7 +37,9 @@
             open: {
                 type: Boolean,
                 default: false
-            }
+            },
+
+            dialogClass: [String, Array, Object]
         },
 
         computed: {
@@ -50,6 +52,11 @@
             close() {
                 const vm = this;
                 vm.$emit('close');
+            },
+
+            destory() {
+                const vm = this;
+                vm.$destroy();
             }
         }
     };
