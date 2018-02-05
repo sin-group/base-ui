@@ -1,0 +1,11 @@
+{
+  "name": "base-ui-demo",
+  "version": "0.0.1",
+  "scripts": {
+    "clean": "babel-node ../tools/run vue/clean --project base-ui",
+    "copy": "babel-node ../tools/run vue/copy --project base-ui",
+    "bundle": "babel-node ../tools/run vue/bundle --project base-ui",
+    "build": "babel-node ../tools/run vue/build --project base-ui",
+    "start": "babel-node ../tools/run vue/start --project base-ui"
+  }
+}

@@ -27,8 +27,10 @@ export default {
             output: 'dist/base-ui.css'
         }),
         babel({
+            presets: [['env', {modules: false}], 'stage-3'],
             exclude: 'node_modules/**',
-            plugins: ['external-helpers']
+            plugins: ['external-helpers'],
+            babelrc: false
         }),
         commonjs(),
         resolve({

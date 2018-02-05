@@ -1,0 +1,4 @@
+{
+  "name": "comp-plugin",
+  "main": "./comp-plugin.vue"
+}

@@ -1,0 +1,69 @@
+<template>
+    <div class="plugin">
+        <h4 class="heading-light">Toast</h4>
+        <div class="card">
+            <button @click="toastError">Error</button>
+            <button @click="toastSuccess">Success</button>
+            <button @click="toastInfo">Info</button>
+        </div>
+
+        <h4 class="heading-light">Alert</h4>
+        <div class="card">
+            <button @click="alert">Alert</button>
+        </div>
+
+        <h4 class="heading-light">Modal</h4>
+        <div class="card">
+            <button @click="modal">Customized Modal</button>
+            <button @click="messageModal">Message Modal</button>
+        </div>
+    </div>
+</template>
+
+<script type="text/babel">
+    import TestGulpModal from './modal/test-gulp-modal';
+
+    export default {
+        name: 'comp-plugin',
+
+        data() {
+            return {
+                value1: true
+            }
+        },
+
+        methods: {
+            toastInfo() {
+                const vm = this;
+                vm.$toast.info('Please stand firm and hold the handrail.');
+            },
+
+            toastSuccess() {
+                const vm = this;
+                vm.$toast.success('Success!');
+            },
+
+            toastError() {
+                const vm = this;
+                vm.$toast.error('You shall not pass');
+            },
+
+            alert() {
+                const vm = this;
+                vm.$alert.success('Dialog Content', 'Title');
+            },
+
+            modal() {
+                const vm = this;
+                vm.$modal.open(TestGulpModal).then((resolve) => {
+                    vm.$toast.info(resolve);
+                }).catch(x => x);
+            },
+
+            messageModal() {
+                const vm = this;
+                vm.$modal.openMessageModal('You are reading the message', 'Confirm').catch(x => x);
+            }
+        }
+    };
+</script>

@@ -8,6 +8,7 @@ import component from './component';
 import directive from './directive';
 import plugin from './plugin';
 import './style/main.scss';
+import './style/icon/icon.scss';
 
 export default {
 
