@@ -1,6 +1,12 @@
 {
-    "parser": "babel-eslint",
-    "extends": "airbnb",
+    "parser": "vue-eslint-parser",
+    "parserOptions": {
+        "parser": "babel-eslint"
+    },
+    "extends": [
+        "airbnb",
+        "plugin:vue/recommended"
+    ],
     "env": {"mocha": true},
     "globals": {
         "runTestCases": true,
@@ -60,7 +66,6 @@
         "consistent-this": [2, "self", "vm"],
         "eol-last": [2],
         "id-length": [2, {"min": 2, "properties": "never", "exceptions": ["i", "s", "t", "x", "fs", "hm", "Q", "_", "$"]}],
-        "indent": [2, 4, {"SwitchCase": 1}],
         "key-spacing": [2, {"beforeColon": false, "afterColon": true}],
         "keyword-spacing": [2],
         "linebreak-style": [2, "unix"],
@@ -103,6 +108,7 @@
         "import/no-extraneous-dependencies": [0],
         "import/no-unresolved": [0, {"commonjs": true, "amd": true}],
         "import/prefer-default-export": [0],
+        "indent": [0, 4, {"SwitchCase": 1}],
         "no-console": [2],
         "no-multi-assign": [1],
         "no-restricted-globals": [1],
@@ -111,6 +117,15 @@
         "object-curly-newline": [0],
         "object-property-newline": [0],
         "prefer-destructuring": [1],
-        "prefer-promise-reject-errors": [1]
+        "prefer-promise-reject-errors": [1],
+        "vue/html-indent": [2, 4],
+        "vue/max-attributes-per-line": [2, {
+            "singleline": 8,
+            "multiline": {
+                "max": 1,
+                "allowFirstLine": false
+            }
+        }],
+        "vue/script-indent": [2, 4, {"baseIndent": 1, "switchCase": 1}]
     }
 }

@@ -2,7 +2,7 @@
     "project.name": "BaseUI",
     "phabricator.uri": "https://code.yangqianguan.com/",
     "phutil_libraries": {
-        "libcustom": "arcanist/"
+        "libcustom": "node_modules/@yqg/arcanist"
     },
     "lint.engine": "YqgWebDiffLintEngine"
 }
