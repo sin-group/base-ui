@@ -311,6 +311,33 @@ textarea {
   .b-table .foot-area .b-pagination {
     padding: 10px; }
 
+.b-tree {
+  margin-left: 30px; }
+
+.leaf {
+  position: relative; }
+  .leaf:before {
+    position: absolute;
+    content: '';
+    left: -20px;
+    top: 20px;
+    width: 20px;
+    border-top: 1px dotted black; }
+  .leaf:after {
+    position: absolute;
+    content: '';
+    height: 100%;
+    top: -20px;
+    left: -20px;
+    border-left: 1px dotted black; }
+
+.node-el {
+  height: 40px;
+  display: flex;
+  align-items: center; }
+  .node-el .change-fold.is-unfold {
+    transform: rotate(90deg); }
+
 .b-toast {
   position: fixed;
   left: 50%;

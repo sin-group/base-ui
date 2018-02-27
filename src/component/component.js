@@ -14,6 +14,7 @@ import BPopper from './b-popper';
 import BSelect from './b-select';
 import BSwitch from './b-switch';
 import BTable from './b-table';
+import BTree from './b-tree';
 
 export default {
 
@@ -28,6 +29,7 @@ export default {
         Vue.component('b-select', BSelect);
         Vue.component('b-switch', BSwitch);
         Vue.component('b-table', BTable);
+        Vue.component('b-tree', BTree);
     }
 
 };

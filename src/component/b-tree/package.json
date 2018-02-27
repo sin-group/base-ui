@@ -1,0 +1,4 @@
+{
+    "name": "b-tree",
+    "main": "./b-tree.vue"
+}
