@@ -7,6 +7,12 @@
         <div class="level-center">
             <p>Say hello to the future.</p>
         </div>
+
+        <div class="level-center">
+            <router-link :to="$RouterMap.intro">
+                <button class="btn-get-started lg">Get Started</button>
+            </router-link>
+        </div>
     </div>
 </template>
 

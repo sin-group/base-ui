@@ -6,12 +6,12 @@
                     <slot name="title">{{ title }}</slot>
                 </h3>
 
-                <div class=b-dialog-body>
-                    <slot></slot>
+                <div class="b-dialog-body">
+                    <slot/>
                 </div>
 
                 <div class="b-dialog-actions" v-if="$slots.actions">
-                    <slot name="actions"></slot>
+                    <slot name="actions"/>
                 </div>
             </div>
         </div>
@@ -20,18 +20,12 @@
 
 <script>
     export default {
-        name: 'b-dialog',
-
-        data() {
-            const vm = this;
-            return {
-                visible: vm.open
-            };
-        },
+        name: 'BDialog',
 
         props: {
             title: {
-                type: String
+                type: String,
+                default: ''
             },
 
             open: {
@@ -39,7 +33,17 @@
                 default: false
             },
 
-            dialogClass: [String, Array, Object]
+            dialogClass: {
+                type: [String, Array, Object],
+                default: ''
+            }
+        },
+
+        data() {
+            const vm = this;
+            return {
+                visible: vm.open
+            };
         },
 
         computed: {
@@ -71,6 +75,7 @@
         height: 100vh;
         width: 100vw;
         background-color: rgba(0, 0, 0, .4);
+        z-index: $z-index-wrapper;
     }
 
     .b-dialog {

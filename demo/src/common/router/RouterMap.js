@@ -4,6 +4,10 @@
  * @date 2017-12-28 16:28:40.980
  */
 
+import Intro from '../../app/intro';
+import IntroOverview from '../../app/intro/overview';
+import IntroConceptions from '../../app/intro/conceptions';
+
 import CSSFramework from '../../app/css-framework';
 import CssElement from '../../app/css-framework/component/css-element';
 import CssForm from '../../app/css-framework/component/css-form';
@@ -35,8 +39,27 @@ export default {
         component: Index
     },
 
+    intro: {
+        name: 'Intro',
+        path: '/intro',
+        component: Intro,
+        redirect: '/intro/overview',
+        children: [
+            {
+                name: 'Overview',
+                path: '/intro/overview',
+                component: IntroOverview
+            },
+            {
+                name: 'Conceptions',
+                path: '/intro/conceptions',
+                component: IntroConceptions
+            }
+        ]
+    },
+
     cssFramework: {
-        name: 'CSS',
+        name: 'Style',
         path: '/css-framework',
         component: CSSFramework,
         redirect: '/css-framework/typography',
