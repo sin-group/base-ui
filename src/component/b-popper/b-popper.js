@@ -64,5 +64,8 @@ export default {
     destroyed() {
         const vm = this;
         off(window, 'resize', vm.makePosition);
+        if (vm.$el && vm.$el.parentNode) {
+            vm.$el.parentNode.removeChild(vm.$el);
+        }
     }
 };
