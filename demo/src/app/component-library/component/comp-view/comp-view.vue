@@ -1,8 +1,9 @@
 <template>
     <div class="comp-view">
-        <comp-table></comp-table>
-        <comp-pagination></comp-pagination>
-        <comp-md-view></comp-md-view>
+        <comp-table/>
+        <comp-pagination/>
+        <comp-md-view/>
+        <comp-tree/>
     </div>
 </template>
 
@@ -10,14 +11,16 @@
     import CompMdView from './comp-md-view';
     import CompPagination from './comp-pagination';
     import CompTable from './comp-table';
+    import CompTree from './comp-tree';
 
     export default {
-        name: 'comp-view',
+        name: 'CompView',
 
         components: {
             CompMdView,
             CompPagination,
-            CompTable
+            CompTable,
+            CompTree
         }
     };
 
