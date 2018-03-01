@@ -1,6 +1,6 @@
 <template>
-    <transition name="b-dialog-slide" @after-leave="destory">
-        <div class="b-dialog-wrapper" v-if="open" @click="close">
+    <transition name="b-dialog-slide">
+        <div v-if="open" class="b-dialog-wrapper" @click="close">
             <div class="b-dialog" :class="dialogClass" @click.stop.prevent.self>
                 <h3 class="b-dialog-title" v-if="showTitle">
                     <slot name="title">{{ title }}</slot>
@@ -25,7 +25,7 @@
         props: {
             title: {
                 type: String,
-                default: ''
+                default: null
             },
 
             open: {
@@ -35,7 +35,7 @@
 
             dialogClass: {
                 type: [String, Array, Object],
-                default: ''
+                default: null
             }
         },
 
@@ -56,11 +56,6 @@
             close() {
                 const vm = this;
                 vm.$emit('close');
-            },
-
-            destory() {
-                const vm = this;
-                vm.$destroy();
             }
         }
     };
