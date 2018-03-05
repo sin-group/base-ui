@@ -1,4 +1,4 @@
-## What is Base-UI?
+## What is base-ui?
 
 `base-ui` is UI Framework made by Sin Group for Vue development, which contains:
 

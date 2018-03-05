@@ -8,7 +8,7 @@
             <p>Say hello to the future.</p>
         </div>
 
-        <div class="level-center">
+        <div class="level-center get-started">
             <router-link :to="$RouterMap.intro">
                 <button class="btn-get-started lg">Get Started</button>
             </router-link>
@@ -27,7 +27,7 @@
         font-size: 400px;
         color: transparent;
         user-select: none;
-        background: linear-gradient(-45deg, #ee7752, #e73C7e, #3f51b5, #23d5ab);
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #3f51b5, #23d5ab);
         background-size: 400% 400%;
         -webkit-text-fill-color: transparent;
         -webkit-background-clip: text;
@@ -43,6 +43,10 @@
 
     .level-center {
         overflow-x: inherit;
+    }
+
+    .get-started {
+        margin-top: 5vh;
     }
 
     @media screen and (max-width: 960px) {
@@ -68,9 +72,11 @@
         0% {
             background-position: 0% 50%;
         }
+
         50% {
             background-position: 100% 50%;
         }
+
         100% {
             background-position: 0% 50%;
         }
