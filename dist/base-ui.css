@@ -124,7 +124,8 @@ textarea {
   top: 0;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.4); }
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9997; }
 
 .b-dialog {
   position: relative;
@@ -187,17 +188,23 @@ textarea {
     .b-form-group.b-form-group-label-horizontal {
       display: block; } }
 
-.b-md-view h1:first-child {
-  margin-top: 0.5em; }
-
-.b-md-view ul,
-.b-md-view ol {
-  padding-left: 20px;
-  list-style-position: outside; }
-  .b-md-view ul li,
-  .b-md-view ol li {
-    list-style: inherit;
-    margin-bottom: 5px; }
+.b-md-view {
+  padding: 10px 20px;
+  color: #616161; }
+  .b-md-view h1:first-child {
+    margin-top: 0.5em; }
+  .b-md-view ul,
+  .b-md-view ol {
+    padding-left: 20px;
+    margin-bottom: 20px;
+    list-style-position: outside; }
+    .b-md-view ul li,
+    .b-md-view ol li {
+      list-style: inherit;
+      line-height: 1.3em;
+      margin-bottom: 5px; }
+  .b-md-view hr {
+    margin-bottom: 20px; }
 
 .b-pagination button {
   padding: 0 10px;
@@ -313,30 +320,34 @@ textarea {
 
 .b-tree {
   margin-left: 30px; }
+  .b-tree.root {
+    margin-left: 0; }
 
 .leaf {
   position: relative; }
   .leaf:before {
     position: absolute;
-    content: '';
+    content: "";
     left: -20px;
-    top: 20px;
+    top: 15px;
     width: 20px;
     border-top: 1px dotted black; }
   .leaf:after {
     position: absolute;
-    content: '';
+    content: "";
     height: 100%;
     top: -20px;
     left: -20px;
     border-left: 1px dotted black; }
 
 .node-el {
-  height: 40px;
+  height: 35px;
   display: flex;
   align-items: center; }
-  .node-el .change-fold.is-unfold {
-    transform: rotate(90deg); }
+  .node-el .change-fold {
+    cursor: pointer; }
+    .node-el .change-fold.is-unfold {
+      transform: rotate(90deg); }
 
 .b-toast {
   position: fixed;
@@ -518,7 +529,8 @@ h6 {
   line-height: 1.5em;
   font-weight: 500;
   margin-bottom: 0.7em;
-  margin-top: 1em; }
+  margin-top: 1em;
+  color: #212121; }
 
 h1 {
   font-size: 2.4em; }
@@ -544,12 +556,12 @@ a:visited {
   color: #3949ab; }
 
 hr {
-  border-color: #616161; }
+  border-color: #eee; }
 
 p {
   margin-top: 0.7em;
-  margin-bottom: 0.7em;
-  line-height: 1.2em; }
+  margin-bottom: 1.2em;
+  line-height: 1.5em; }
 
 pre,
 code {
@@ -647,7 +659,7 @@ button {
   border-radius: 3px;
   outline: none;
   box-shadow: none;
-  transition: .3s; }
+  transition: background-color .3s; }
   button:hover {
     background-color: #304ffe; }
   button:active {
@@ -837,6 +849,10 @@ textarea {
   @media screen and (max-width: 480px) {
     .form-block-horizontal > .form-group {
       display: block; } }
+
+form .btn-group {
+  margin-top: 20px;
+  display: inline-block; }
 
 .tiles,
 .tiles .t-col,

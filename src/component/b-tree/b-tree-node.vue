@@ -1,10 +1,10 @@
 <template>
-    <div class="b-tree-node" :class="{'leaf': parent}">
+    <div :class="{'leaf': parent}" class="b-tree-node">
         <div class="node-el">
             <span
                 v-if="node.children.length > 0"
-                class="change-fold"
                 :class="{'is-unfold': !isFold}"
+                class="change-fold"
                 @click="changeFold">
                 <i class="b-icon-right"/>
             </span>
@@ -38,8 +38,13 @@
 
         data() {
             return {
-                isFold: true
+                isFold: false
             };
+        },
+
+        created() {
+            const vm = this;
+            vm.node.parent = vm.parent;
         },
 
         methods: {
@@ -59,16 +64,16 @@
 
         &:before {
             position: absolute;
-            content: '';
+            content: "";
             left: -20px;
-            top: 20px;
+            top: 15px;
             width: 20px;
             border-top: 1px dotted black;
         }
 
         &:after {
             position: absolute;
-            content: '';
+            content: "";
             height: 100%;
             top: -20px;
             left: -20px;
@@ -77,11 +82,13 @@
     }
 
     .node-el {
-        height: 40px;
+        height: 35px;
         display: flex;
         align-items: center;
 
         .change-fold {
+            cursor: pointer;
+
             &.is-unfold {
                 transform: rotate(90deg);
             }

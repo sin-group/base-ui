@@ -1,6 +1,6 @@
 <template>
-    <ul class="b-tree">
-        <li v-for="(item, index) in data" :key="index" class="tree-node" :class="{'leaf': parent}">
+    <ul :class="{'root': !parent}" class="b-tree">
+        <li v-for="(item, index) in data" :key="index" class="tree-node">
             <b-tree-node :node="item" :parent="parent">
                 <template slot="content">
                     <slot :node="item" :parent="parent"/>
@@ -63,6 +63,10 @@
 
     .b-tree {
         margin-left: 30px;
+
+        &.root {
+            margin-left: 0;
+        }
     }
 
 </style>

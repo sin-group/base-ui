@@ -1,8 +1,8 @@
-@import '../variables.scss';
-@import './button.scss';
-@import './input.scss';
-@import './textarea.scss';
-@import './group-pick.scss';
+@import "../variables.scss";
+@import "./button.scss";
+@import "./input.scss";
+@import "./textarea.scss";
+@import "./group-pick.scss";
 
 .form-group {
     display: inline-block;
@@ -80,3 +80,11 @@
         }
     }
 }
+
+form {
+    .btn-group {
+        margin-top: 20px;
+        display: inline-block;
+    }
+}
+
