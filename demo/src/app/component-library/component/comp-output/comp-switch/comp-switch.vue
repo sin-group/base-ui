@@ -1,15 +1,15 @@
 <template>
     <div class="switch">
-        <h4 class="heading-light">Switch</h4>
+        <h4 class="heading">Switch</h4>
 
         <div class="card">
             <form class="form-block">
                 <b-form-group label="Basic">
-                    <b-switch v-model="editing.basic"></b-switch>
+                    <b-switch v-model="editing.basic"/>
                 </b-form-group>
 
                 <b-form-group label="Disabled">
-                    <b-switch v-model="editing.disabled" :checked="true" disabled></b-switch>
+                    <b-switch v-model="editing.disabled" :checked="true" disabled/>
                 </b-form-group>
             </form>
         </div>
@@ -21,7 +21,7 @@
 <script type="text/babel">
 
     export default {
-        name: 'comp-switch',
+        name: 'CompSwitch',
 
         data() {
             return {
@@ -29,7 +29,7 @@
                     basic: true,
                     disabled: true
                 }
-            }
+            };
         }
     };
 

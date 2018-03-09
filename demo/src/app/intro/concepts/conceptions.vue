@@ -7,7 +7,7 @@
 
     <div class="conceptions container">
         <div class="card">
-            <b-md-view :md-text="MD.IntroConceptions"/>
+            <b-md-view :md-text="MD.IntroConcepts"/>
         </div>
     </div>
 

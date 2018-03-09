@@ -88,4 +88,11 @@ button {
         padding: 0 20px;
         height: 35px;
     }
+
+    &.sm {
+        font-size: 12px;
+        font-weight: 100;
+        padding: 0 10px;
+        height: 24px;
+    }
 }

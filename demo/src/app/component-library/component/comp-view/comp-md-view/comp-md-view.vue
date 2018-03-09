@@ -1,9 +1,9 @@
 <template>
     <div class="comp-md-view">
-        <h4 class="heading-light">Markdown View</h4>
+        <h4 class="heading">Markdown View</h4>
 
         <div class="card">
-            <b-md-view :md-text="mdText"></b-md-view>
+            <b-md-view :md-text="mdText"/>
         </div>
     </div>
 </template>
@@ -12,7 +12,7 @@
     import mdSampleText from './sample.md';
 
     export default {
-        name: 'comp-md-view',
+        name: 'CompMdView',
 
         data() {
             return {
@@ -22,8 +22,3 @@
     };
 
 </script>
-
-<style lang="scss" rel="stylesheet/scss" scoped>
-    .comp-md-view {
-    }
-</style>

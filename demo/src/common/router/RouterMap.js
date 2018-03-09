@@ -6,7 +6,7 @@
 
 import Intro from '../../app/intro';
 import IntroOverview from '../../app/intro/overview';
-import IntroConceptions from '../../app/intro/conceptions';
+import IntroConcepts from '../../app/intro/concepts';
 
 import CSSFramework from '../../app/css-framework';
 import CssElement from '../../app/css-framework/component/css-element';
@@ -51,9 +51,9 @@ export default {
                 component: IntroOverview
             },
             {
-                name: 'Conceptions',
-                path: '/intro/conceptions',
-                component: IntroConceptions
+                name: 'Concepts',
+                path: '/intro/concepts',
+                component: IntroConcepts
             }
         ]
     },

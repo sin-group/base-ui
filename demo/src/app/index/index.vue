@@ -10,7 +10,7 @@
 
         <div class="level-center get-started">
             <router-link :to="$RouterMap.intro">
-                <button class="btn-get-started lg">Get Started</button>
+                <button class="btn-get-started lg">Get Started!</button>
             </router-link>
         </div>
     </div>
@@ -46,7 +46,13 @@
     }
 
     .get-started {
-        margin-top: 5vh;
+        @media screen and (max-width: 960px) {
+            margin-top: 3vh;
+        }
+
+        @media screen and (max-width: 600px) {
+            margin-top: 5vh;
+        }
     }
 
     @media screen and (max-width: 960px) {

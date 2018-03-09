@@ -4,7 +4,7 @@ We consider all the single component we designed works as a kind of role, one ro
 
 We have made a list of roles in 3 categories, and each component implements a role below:
 
-`() => Output` :  takes no explicit input (or the input is made by human being), generates a kind of data as output
+[`() => Output`](/component-library/output) :  takes no explicit input (or the input is made by human being), generates a kind of data as output
 
 * `role=text`: `() => String`
 * `role=textarea`: `() => MultiLineString`
@@ -22,7 +22,7 @@ We have made a list of roles in 3 categories, and each component implements a ro
 * `role=number-list`: `() => NumberList`
 * `role=switch`: `() => Boolean`
 
-`Input => View`: takes input data and generates a view rendering on screen
+[`Input => View`](/component-library/view): takes input data and generates a view rendering on screen
 
 * `role=text-view`: `String => StringView`
 * `role=image-view`: `ImageUrl => ImageView`
@@ -36,7 +36,7 @@ We have made a list of roles in 3 categories, and each component implements a ro
 * `role=tree-view`: `Tree => TreeView`
 * `role=chart-view`: `ChartData => ChartView`
 
-`Input => Output`: takes input data and generates output data
+[`Input => Output`](/component-library/in-out): takes input data and generates output data
 
 * `role=select`: `Map => String`
 * `role=multi-select`: `List => List`

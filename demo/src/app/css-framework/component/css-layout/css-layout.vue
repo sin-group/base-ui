@@ -1,7 +1,8 @@
 <template>
+    <!-- eslint-disable -->
     <div>
         <div class="container">
-            <h4 class="heading-light">Container</h4>
+            <h4 class="heading">Container</h4>
         </div>
 
         <div class="container demo-container">
@@ -13,7 +14,7 @@
         </div>
 
         <div class="container">
-            <h4 class="heading-light">Tile</h4>
+            <h4 class="heading">Tile</h4>
 
             <div class="tiles">
                 <div class="t-col is-8">
@@ -51,7 +52,7 @@
                 </div>
             </div>
 
-            <h4 class="heading-light">Level</h4>
+            <h4 class="heading">Level</h4>
             <div class="levels">
                 <div class="level">
                     <div class="bg-box level-center">I`m in .level</div>
@@ -79,8 +80,8 @@
 
 <script>
     export default {
-        name: 'css-layout'
-    }
+        name: 'CssLayout'
+    };
 </script>
 
 <style scoped>

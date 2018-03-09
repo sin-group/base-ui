@@ -3,7 +3,17 @@
 </template>
 
 <script type="text/babel">
+    import Prism from '../../util/prism';
     import marked from '../../util/marked';
+    import '../../style/highlight/prism.css';
+
+    marked.setOptions({
+        highlight: (code, lang) => {
+            const langGrammar = Prism.languages[lang] || Prism.languages.javascript;
+
+            return Prism.highlight(code, langGrammar, lang);
+        }
+    });
 
     export default {
         name: 'BMdView',
@@ -29,14 +39,14 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss">
-    @import '../../style/variables.scss';
+    @import "../../style/variables.scss";
 
     .b-md-view {
         padding: 10px 20px;
         color: $gray-dark;
 
         h1:first-child {
-            margin-top: 0.5em;
+            margin-top: .5em;
         }
 
         ul,

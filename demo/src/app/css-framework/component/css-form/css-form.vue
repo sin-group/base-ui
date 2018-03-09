@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h4 class="heading-light">Button</h4>
+        <h4 class="heading">Button</h4>
         <div class="card">
             <h4 class="heading">Button Inline</h4>
             <button>Primary</button>
@@ -13,7 +13,7 @@
             <button class="block">Block</button>
         </div>
 
-        <h4 class="heading-light">Form Inline</h4>
+        <h4 class="heading">Form Inline</h4>
         <div class="card">
             <form class="form-inline">
                 <div class="form-group">
@@ -80,7 +80,7 @@
             </form>
         </div>
 
-        <h4 class="heading-light">Form Block</h4>
+        <h4 class="heading">Form Block</h4>
         <div class="card">
             <form class="form-block">
                 <div class="form-group">
@@ -142,7 +142,7 @@
             </form>
         </div>
 
-        <h4 class="heading-light">Form Block Horizontal</h4>
+        <h4 class="heading">Form Block Horizontal</h4>
         <div class="card">
             <form class="form-block-horizontal">
                 <div class="form-group">
@@ -208,8 +208,8 @@
 
 <script>
     export default {
-        name: 'css-form'
-    }
+        name: 'CssForm'
+    };
 </script>
 
 <style>

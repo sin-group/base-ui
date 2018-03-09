@@ -6,7 +6,7 @@
 * **Component Layer**: components that work as functions, which have clear responsibility with its input and output and easy usage to combinate
 * **Essential Tools**: such as form validation, common filters, and plugins
 
-The core of Base-UI code provides all the features above, but is designed carefully (Base-UI Core relies on zero dependence!) to be light-weighted, stable and efficient.
+The core of Base-UI code provides all the features above, but is designed carefully to be lightweight (Base-UI Core relies on zero dependence!), stable and efficient.
 
 And now you are ready to get started!
 

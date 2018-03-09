@@ -1,18 +1,18 @@
 <template>
     <div class="plugin">
-        <h4 class="heading-light">Toast</h4>
+        <h4 class="heading">Toast</h4>
         <div class="card">
             <button @click="toastError">Error</button>
             <button @click="toastSuccess">Success</button>
             <button @click="toastInfo">Info</button>
         </div>
 
-        <h4 class="heading-light">Alert</h4>
+        <h4 class="heading">Alert</h4>
         <div class="card">
             <button @click="alert">Alert</button>
         </div>
 
-        <h4 class="heading-light">Modal</h4>
+        <h4 class="heading">Modal</h4>
         <div class="card">
             <button @click="modal">Customized Modal</button>
             <button @click="messageModal">Message Modal</button>
@@ -24,12 +24,12 @@
     import TestGulpModal from './modal/test-gulp-modal';
 
     export default {
-        name: 'comp-plugin',
+        name: 'CompPlugin',
 
         data() {
             return {
                 value1: true
-            }
+            };
         },
 
         methods: {

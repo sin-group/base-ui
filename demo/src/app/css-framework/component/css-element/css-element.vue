@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h4 class="heading-light">Tab</h4>
+        <h4 class="heading">Tab</h4>
         <div class="card">
             <div class="tabs">
                 <ul>
@@ -25,7 +25,7 @@
 
 <script>
     export default {
-        name: 'css-elements'
+        name: 'CssElements'
     };
 
 </script>

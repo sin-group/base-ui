@@ -1,6 +1,6 @@
 <template>
     <div class="comp-tree">
-        <h4 class="heading-light">
+        <h4 class="heading">
             Tree
         </h4>
 
@@ -8,7 +8,7 @@
             <b-tree :data="treeData">
                 <div slot-scope="scope">
                     <span class="node-name">{{ scope.node.name }}</span>
-                    <button @click="viewNode(scope.node)">viewNode</button>
+                    <button class="sm" @click="viewNode(scope.node)">view node</button>
                 </div>
             </b-tree>
         </div>
@@ -45,7 +45,7 @@
         },
         {
             id: 2,
-            name: 'root-2',
+            name: 'node-2',
             children: [
                 {id: 5, name: 'node-2-1', children: []},
                 {id: 6, name: 'node-2-2', children: []}
@@ -63,11 +63,11 @@
         },
 
         methods: {
-            viewNode(node) {
+            viewNode({id, name}) {
                 const vm = this;
                 vm.$modal
                     .open(ViewRecordModal, {
-                        record: node
+                        record: {id, name}
                     })
                     .catch(x => x);
             }

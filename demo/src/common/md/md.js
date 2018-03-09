@@ -5,9 +5,9 @@
  */
 
 import IntroOverview from './intro-overview.md';
-import IntroConceptions from './intro-conceptions.md';
+import IntroConcepts from './intro-concepts.md';
 
 export default {
     IntroOverview,
-    IntroConceptions
+    IntroConcepts
 };
