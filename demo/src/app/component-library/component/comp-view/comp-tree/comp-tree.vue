@@ -39,8 +39,8 @@
                             children: []
                         }
                     ]
-                },
-                {id: 4, name: 'node-1-2', children: []}
+                }
+                // {id: 4, name: 'node-1-2', children: []}
             ]
         },
         {

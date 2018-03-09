@@ -1,4 +1,3 @@
-
 import {createVueInstanceEle} from '../helper/helper';
 import MessageModal from './component/message-modal';
 
@@ -13,10 +12,14 @@ export default {
 
                 const ModalEleId = `modal${Date.now()}`;
 
-                const modalInstance = new Vue(component);
+                const Comp = Vue.extend(component);
+                const modalInstance = new Comp({
+                    propsData: {
+                        ...resolved
+                    }
+                });
 
                 createVueInstanceEle(ModalEleId);
-                Object.assign(modalInstance, resolved);
 
                 modalInstance.$mount(`#${ModalEleId}`);
                 modalInstance.visible = true;

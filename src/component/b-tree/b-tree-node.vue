@@ -1,5 +1,10 @@
 <template>
-    <div :class="{'leaf': parent}" class="b-tree-node">
+    <div
+        :class="{
+            'leaf': parent,
+            'single-child': isSingleChild
+        }"
+        class="b-tree-node">
         <div class="node-el">
             <span
                 v-if="node.children.length > 0"
@@ -42,6 +47,13 @@
             };
         },
 
+        computed: {
+            isSingleChild() {
+                const vm = this;
+                return vm.parent && vm.parent.children.length === 1;
+            }
+        },
+
         created() {
             const vm = this;
             vm.node.parent = vm.parent;
@@ -67,7 +79,7 @@
             content: "";
             left: -20px;
             top: 15px;
-            width: 20px;
+            width: 25px;
             border-top: 1px dotted black;
         }
 
@@ -81,6 +93,12 @@
         }
     }
 
+    .single-child {
+        &:after {
+            height: 35px;
+        }
+    }
+
     .node-el {
         height: 35px;
         display: flex;
@@ -91,6 +109,12 @@
 
             &.is-unfold {
                 transform: rotate(90deg);
+            }
+
+            .b-icon-right:before {
+                position: relative;
+                bottom: 1px;
+                left: -3px;
             }
         }
     }

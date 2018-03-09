@@ -1,13 +1,14 @@
-@import '../variables.scss';
+@import "../variables.scss";
 
 input {
-    &[type='text'],
-    &[type='password'],
-    &[type='number'],
-    &[type='tel'],
-    &[type='email'] {
+    &[type="text"],
+    &[type="password"],
+    &[type="number"],
+    &[type="tel"],
+    &[type="email"] {
         width: 256px;
         height: 30px;
+        line-height: 30px;
         box-sizing: border-box;
         padding: 0;
         margin: 0;

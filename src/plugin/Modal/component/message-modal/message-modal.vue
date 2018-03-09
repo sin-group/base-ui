@@ -1,5 +1,5 @@
 <template>
-    <b-dialog :open="visible" :title="title" @close="close">
+    <b-dialog :open="visible" title="" @close="close">
         <div class="message-modal-body">
             <p>{{ message }}</p>
         </div>
@@ -12,18 +12,30 @@
     import BDialog from '../../../../component/b-dialog';
 
     export default {
-        name: 'info-modal',
+        name: 'InfoModal',
 
         components: {
             BDialog
         },
 
+        props: {
+            message: {
+                type: String,
+                required: true
+            },
+            confirmText: {
+                type: String,
+                required: true
+            },
+            options: {
+                type: Object,
+                default: () => {}
+            }
+        },
+
         data() {
             return {
-                confirmText: '',
-                visible: false,
-                message: '',
-                title: ''
+                visible: false
             };
         },
 

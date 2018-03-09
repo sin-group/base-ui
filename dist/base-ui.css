@@ -192,7 +192,7 @@ textarea {
   padding: 10px 20px;
   color: #616161; }
   .b-md-view h1:first-child {
-    margin-top: 0.5em; }
+    margin-top: .5em; }
   .b-md-view ul,
   .b-md-view ol {
     padding-left: 20px;
@@ -216,7 +216,7 @@ pre[class*="language-"] {
   color: black;
   background: none;
   text-shadow: 0 1px white;
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
@@ -231,13 +231,17 @@ pre[class*="language-"] {
   -ms-hyphens: none;
   hyphens: none; }
 
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
   text-shadow: none;
   background: #b3d4fc; }
 
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
-code[class*="language-"]::selection, code[class*="language-"] ::selection {
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
   text-shadow: none;
   background: #b3d4fc; }
 
@@ -247,13 +251,13 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
     text-shadow: none; } }
 
 /* Code blocks */
-pre[class*="language-"] {
+pre[class*="language-"]::-moz-selection {
   padding: 1em;
   margin: .5em 0;
   overflow: auto; }
 
 :not(pre) > code[class*="language-"],
-pre[class*="language-"] {
+pre[class*="language-"]::-moz-selection {
   background: #f5f2f0; }
 
 /* Inline code */
@@ -305,7 +309,7 @@ pre[class*="language-"] {
   color: #07a; }
 
 .token.function {
-  color: #DD4A68; }
+  color: #dd4a68; }
 
 .token.regex,
 .token.important,
@@ -446,7 +450,7 @@ pre[class*="language-"] {
     content: "";
     left: -20px;
     top: 15px;
-    width: 20px;
+    width: 25px;
     border-top: 1px dotted black; }
   .leaf:after {
     position: absolute;
@@ -456,6 +460,9 @@ pre[class*="language-"] {
     left: -20px;
     border-left: 1px dotted black; }
 
+.single-child:after {
+  height: 35px; }
+
 .node-el {
   height: 35px;
   display: flex;
@@ -464,6 +471,10 @@ pre[class*="language-"] {
     cursor: pointer; }
     .node-el .change-fold.is-unfold {
       transform: rotate(90deg); }
+    .node-el .change-fold .b-icon-right:before {
+      position: relative;
+      bottom: 1px;
+      left: -3px; }
 
 .b-toast {
   position: fixed;
@@ -707,7 +718,7 @@ blockquote {
   border-radius: 3px;
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12); }
   .card h1:first-child {
-    margin-top: 0.5em; }
+    margin-top: .5em; }
 
 .tabs-light,
 .tabs {
@@ -829,9 +840,10 @@ button {
     padding: 0 10px;
     height: 24px; }
 
-input[type='text'], input[type='password'], input[type='number'], input[type='tel'], input[type='email'] {
+input[type="text"], input[type="password"], input[type="number"], input[type="tel"], input[type="email"] {
   width: 256px;
   height: 30px;
+  line-height: 30px;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -842,14 +854,14 @@ input[type='text'], input[type='password'], input[type='number'], input[type='te
   border-radius: 0;
   outline: none;
   transition: .3s; }
-  input[type='text']:active, input[type='password']:active, input[type='number']:active, input[type='tel']:active, input[type='email']:active {
+  input[type="text"]:active, input[type="password"]:active, input[type="number"]:active, input[type="tel"]:active, input[type="email"]:active {
     border-color: #9fa8da; }
-  input[type='text']:focus, input[type='password']:focus, input[type='number']:focus, input[type='tel']:focus, input[type='email']:focus {
+  input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="tel"]:focus, input[type="email"]:focus {
     border-color: #304ffe; }
-  input[type='text']:disabled, input[type='password']:disabled, input[type='number']:disabled, input[type='tel']:disabled, input[type='email']:disabled {
+  input[type="text"]:disabled, input[type="password"]:disabled, input[type="number"]:disabled, input[type="tel"]:disabled, input[type="email"]:disabled {
     cursor: not-allowed;
     border-color: #bdbdbd; }
-    input[type='text']:disabled:active, input[type='password']:disabled:active, input[type='number']:disabled:active, input[type='tel']:disabled:active, input[type='email']:disabled:active {
+    input[type="text"]:disabled:active, input[type="password"]:disabled:active, input[type="number"]:disabled:active, input[type="tel"]:disabled:active, input[type="email"]:disabled:active {
       border-color: #bdbdbd; }
 
 textarea {

@@ -1,56 +1,58 @@
 <template>
     <div class="b-input">
         <div v-if="$slots.left">
-            <slot name="leftIcon"></slot>
+            <slot name="left"/>
         </div>
 
         <div class="content">
-            <input v-if="!multiLine"
-                   :name="name"
-                   :type="type"
-                   :placeholder="placeholder"
-                   :disabled="disabled"
-                   :value="value"
-                   :pattern="pattern"
-                   :readonly="disabled"
-                   :required="required"
-                   @keyup="handleKeyUp"
-                   @keydown="handleKeyDwon"
-                   @change="handleChange"
-                   @input="handleInput"
-                   @focus="handleFocus"
-                   @blur="handleBlur">
+            <input
+                v-if="!multiLine"
+                :name="name"
+                :type="type"
+                :placeholder="placeholder"
+                :disabled="disabled"
+                :value="value"
+                :pattern="pattern"
+                :readonly="disabled"
+                :required="required"
+                @keyup="handleKeyUp"
+                @keydown="handleKeyDwon"
+                @change="handleChange"
+                @input="handleInput"
+                @focus="handleFocus"
+                @blur="handleBlur">
 
-            <b-textarea v-else
-                        ref="b-textarea"
-                        :placeholder="placeholder"
-                        :disabled="disabled"
-                        :value="value"
-                        :pattern="pattern"
-                        :required="required"
-                        :rows="rows"
-                        :rows-max="rowsMax"
-                        :multi-line-height="multiLineHeight"
-                        :multi-padding-top="multiPaddingTop"
-                        :multi-padding-bottom="multiPaddingBottom"
-                        @change="handleChange"
-                        @input="handleInput"
-                        @focus="handleFocus"
-                        @blur="handleBlur"></b-textarea>
+            <b-textarea
+                v-else
+                ref="b-textarea"
+                :placeholder="placeholder"
+                :disabled="disabled"
+                :value="value"
+                :pattern="pattern"
+                :required="required"
+                :rows="rows"
+                :rows-max="rowsMax"
+                :multi-line-height="multiLineHeight"
+                :multi-padding-top="multiPaddingTop"
+                :multi-padding-bottom="multiPaddingBottom"
+                @change="handleChange"
+                @input="handleInput"
+                @focus="handleFocus"
+                @blur="handleBlur"/>
         </div>
 
         <div v-if="$slots.right">
-            <slot name="right"></slot>
+            <slot name="right"/>
         </div>
     </div>
 </template>
 
 <script>
 
-import BTextarea from './b-textarea.vue'
+import BTextarea from './b-textarea.vue';
 
 export default {
-    name: 'b-input',
+    name: 'BInput',
 
     components: {
         BTextarea
@@ -63,31 +65,38 @@ export default {
         },
 
         name: {
-            type: String
+            type: String,
+            default: null
         },
 
         value: {
-            type: [String, Number]
+            type: [String, Number],
+            default: null
         },
 
         placeholder: {
-            type: String
+            type: String,
+            default: null
         },
 
         disabled: {
-            type: Boolean
+            type: Boolean,
+            default: false
         },
 
         pattern: {
-            type: String
+            type: String,
+            default: null
         },
 
         required: {
-            type: Boolean
+            type: Boolean,
+            default: false
         },
 
         multiLine: {
-            type: Boolean
+            type: Boolean,
+            default: false
         },
 
         rows: {
@@ -96,60 +105,64 @@ export default {
         },
 
         rowsMax: {
-            type: Number
+            type: Number,
+            default: null
         },
 
         multiLineHeight: {
-            type: Number
+            type: Number,
+            default: null
         },
 
         multiPaddingTop: {
-            type: Number
+            type: Number,
+            default: null
         },
 
         multiPaddingBottom: {
-            type: Number
+            type: Number,
+            default: null
         }
     },
 
     data() {
         return {
             isFocus: false
-        }
+        };
     },
 
     methods: {
-        handleFocus (e) {
+        handleFocus(event) {
             const vm = this;
             vm.isFocus = true;
-            vm.$emit('focus', e.target.value, e);
+            vm.$emit('focus', event.target.value, event);
         },
 
-        handleBlur (e) {
+        handleBlur(event) {
             const vm = this;
             vm.isFocus = false;
-            vm.$emit('blur', e.target.value, e);
+            vm.$emit('blur', event.target.value, event);
         },
 
-        handleInput (e) {
+        handleInput(event) {
             const vm = this;
-            const value = e.target ? e.target.value : e;
-            vm.$emit('input', value, e);
+            const value = event.target ? event.target.value : event;
+            vm.$emit('input', value, event);
         },
 
-        handleChange (e) {
+        handleChange(event) {
             const vm = this;
-            vm.$emit('change', e.target.value, e);
+            vm.$emit('change', event.target.value, event);
         },
 
-        handleKeyUp(e) {
+        handleKeyUp(event) {
             const vm = this;
-            vm.$emit('keyup', e.target.value, e);
+            vm.$emit('keyup', event.target.value, event);
         },
 
-        handleKeyDwon(e) {
+        handleKeyDwon(event) {
             const vm = this;
-            vm.$emit('keydown', e.target.value, e);
+            vm.$emit('keydown', event.target.value, event);
         }
     }
 };
