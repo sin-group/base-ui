@@ -460,7 +460,7 @@ pre[class*="language-"]::-moz-selection {
     left: -20px;
     border-left: 1px dotted black; }
 
-.single-child:after {
+.is-last-child:after {
   height: 35px; }
 
 .node-el {

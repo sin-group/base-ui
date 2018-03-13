@@ -4,7 +4,7 @@
             <p>{{ message }}</p>
         </div>
 
-        <button slot="actions" class="simple lg" @click="close">{{ confirmText }}</button>
+        <button slot="actions" class="simple lg" @click="confirm">{{ confirmText }}</button>
     </b-dialog>
 </template>
 
@@ -41,6 +41,12 @@
 
         methods: {
             close() {
+                const vm = this;
+                vm.visible = false;
+                vm.reject();
+            },
+
+            confirm() {
                 const vm = this;
                 vm.visible = false;
                 vm.resolve();

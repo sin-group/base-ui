@@ -2,7 +2,7 @@
     <div
         :class="{
             'leaf': parent,
-            'single-child': isSingleChild
+            'is-last-child': isLastChild
         }"
         class="b-tree-node">
         <div class="node-el">
@@ -48,9 +48,11 @@
         },
 
         computed: {
-            isSingleChild() {
+            isLastChild() {
                 const vm = this;
-                return vm.parent && vm.parent.children.length === 1;
+                const {parent, node} = vm;
+
+                return parent && parent.children[parent.children.length - 1] === node;
             }
         },
 
@@ -93,7 +95,7 @@
         }
     }
 
-    .single-child {
+    .is-last-child {
         &:after {
             height: 35px;
         }
