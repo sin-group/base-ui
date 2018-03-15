@@ -11,13 +11,24 @@
 
 <script type="text/babel">
     export default {
-        name: 'view-record-modal',
+        name: 'ViewRecordModal',
+
+        props: {
+            record: {
+                type: Object,
+                default: () => {}
+            }
+        },
 
         data() {
             return {
-                visible: false,
-                record: ''
-            }
+                visible: false
+            };
+        },
+
+        mounted() {
+            const vm = this;
+            vm.visible = true;
         },
 
         methods: {
@@ -32,11 +43,6 @@
                 vm.visible = false;
                 vm.resolve();
             }
-        },
-
-        mounted() {
-            const vm = this;
-            vm.visible = true;
         }
-    }
+    };
 </script>

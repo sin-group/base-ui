@@ -75,6 +75,15 @@ button {
         &:active {
             background-color: $gray;
         }
+
+        &.disabled {
+            color: $gray;
+            cursor: not-allowed;
+
+            &:hover {
+                background-color: transparent;
+            }
+        }
     }
 
     &.block {

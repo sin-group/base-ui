@@ -18,7 +18,7 @@
                                         v-if="options.enableClientSort"
                                         :class="{
                                             'sort-icon-up': isSortIconUp(colDef.field),
-                                            'sort-icon-down': isSortIconDown(colDef.colDef)
+                                            'sort-icon-down': isSortIconDown(colDef.field)
                                         }"
                                         class="sort-icon"
                                     />
@@ -49,6 +49,7 @@
 
         <div v-if="options.enableClientPagination && innerPagination" class="foot-area">
             <b-pagination
+                :size="options.size"
                 :pagination="innerPagination"
                 @on-change="onInnerPaginationChange"/>
         </div>
@@ -218,8 +219,6 @@
 
 <style lang="scss" rel="stylesheet/scss" scoped>
     .b-table {
-        box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
-
         .table-area {
             overflow-x: auto;
         }
