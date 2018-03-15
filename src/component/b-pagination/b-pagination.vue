@@ -1,20 +1,24 @@
 <template>
     <div class="b-pagination">
-        <button @click="previous"
-                :class="{disabled: pageInfo.previousDisabled}">上一页</button>
+        <button
+            :class="{disabled: pageInfo.previousDisabled}"
+            @click="previous">上一页</button>
 
-        <span v-for="{value, type} in pageNoList">
-            <button :class="{active: value === innerPagination.pageNo}"
-                    @click="changePageNo(value, type)">{{ value }}</button>
+        <span v-for="{value, type} in pageNoList" :key="value">
+            <button
+                :class="{active: value === innerPagination.pageNo}"
+                @click="changePageNo(value, type)">{{ value }}</button>
         </span>
 
-        <button @click="next"
-                :class="{disabled: pageInfo.nextDisabled}">下一页</button>
+        <button
+            :class="{disabled: pageInfo.nextDisabled}"
+            @click="next">下一页</button>
 
         <span class="page-size">
-            <b-select v-model="stringPageSize"
-                      :map="pageSizeMap"
-                      @change="onPageSizeChange(stringPageSize)"></b-select>
+            <b-select
+                v-model="stringPageSize"
+                :map="pageSizeMap"
+                @change="onPageSizeChange(stringPageSize)"/>
             行每页
         </span>
 
@@ -41,8 +45,8 @@ const genList = (start, end) => {
 };
 
 const PAGE_NO_OFFSET = 1;
-const MIN_BOUNDARY = 2 + 2 * PAGE_NO_OFFSET;
-const WHOLE_DISPLAY_NUM = 3 + 2 * PAGE_NO_OFFSET;
+const MIN_BOUNDARY = 2 + (2 * PAGE_NO_OFFSET);
+const WHOLE_DISPLAY_NUM = 3 + (2 * PAGE_NO_OFFSET);
 const SKIP_SYMBOL = '...';
 const DEFAULT_PAGE_SIZE_LIST = [10, 20, 50, 100, 200];
 const PAGE_TYPE = {
@@ -53,17 +57,10 @@ const PAGE_TYPE = {
 };
 
 export default {
-    name: 'b-pagination',
+    name: 'BPagination',
 
     components: {
         BSelect
-    },
-
-    data() {
-        return {
-            innerPagination: null,
-            stringPageSize: null
-        };
     },
 
     props: {
@@ -73,13 +70,21 @@ export default {
             validator: (value) => {
                 if (typeof value != typeof {}) return false;
 
-                return value.pageNo && value.pageSize && value.total;
+                return value.pageNo && value.pageSize && (value.total !== undefined);
             }
         },
 
         defaultPageSizeList: {
-            type: Array
+            type: Array,
+            default: () => []
         }
+    },
+
+    data() {
+        return {
+            innerPagination: null,
+            stringPageSize: null
+        };
     },
 
     computed: {
@@ -124,7 +129,7 @@ export default {
         totalPageNo() {
             const vm = this;
             const {innerPagination: {pageSize, total}} = vm;
-            return Math.ceil(total / pageSize) || 1
+            return Math.ceil(total / pageSize) || 1;
         },
 
         pageSizeMap() {
@@ -143,13 +148,24 @@ export default {
             const {innerPagination: {pageNo, pageSize, total}, totalPageNo} = vm;
 
             return {
-                start: (pageNo - 1) * pageSize + 1,
+                start: ((pageNo - 1) * pageSize) + 1,
                 end: Math.min(pageNo * pageSize, total),
                 total,
                 previousDisabled: pageNo <= 1,
                 nextDisabled: pageNo >= totalPageNo
             };
         }
+    },
+
+    created() {
+        const vm = this;
+
+        vm.updateInnerPagination(vm.pagination);
+        vm.$watch('pagination', (newPagination) => {
+            vm.updateInnerPagination(newPagination);
+        }, {
+            deep: true
+        });
     },
 
     methods: {
@@ -159,7 +175,7 @@ export default {
 
             if (pageNo <= 1) return;
 
-            vm.innerPagination.pageNo--;
+            vm.innerPagination.pageNo -= 1;
             vm.$emit(EventTypes.ON_CHANGE, vm.innerPagination);
         },
 
@@ -169,7 +185,7 @@ export default {
 
             if (pageNo >= totalPageNo) return;
 
-            vm.innerPagination.pageNo++;
+            vm.innerPagination.pageNo += 1;
             vm.$emit(EventTypes.ON_CHANGE, vm.innerPagination);
         },
 
@@ -206,17 +222,6 @@ export default {
             vm.innerPagination = {...pagination};
             vm.stringPageSize = `${pagination.pageSize}`;
         }
-    },
-
-    created() {
-        const vm = this;
-
-        vm.updateInnerPagination(vm.pagination);
-        vm.$watch('pagination', (newPagination) => {
-            vm.updateInnerPagination(newPagination);
-        }, {
-            deep: true
-        });
     }
 };
 
@@ -233,23 +238,23 @@ export default {
         border-color: transparent;
         transition: none;
 
-        &:hover {
-             color: $white;
-             background-color: $blue-light;
+        &.disabled {
+            color: $gray;
+        }
 
-             &.disabled {
-                  color: $white;
-                  background-color: $blue-lighter;
-             }
+        &:hover {
+            color: $white;
+            background-color: $blue-light;
+
+            &.disabled {
+                color: $white;
+                background-color: $blue-lighter;
+            }
         }
 
         &.active {
-             color: $white;
-             background-color: $blue;
-        }
-
-        &.disabled {
-            color: $gray;
+            color: $white;
+            background-color: $blue;
         }
     }
 

@@ -143,6 +143,7 @@ textarea {
   margin: 0 0 20px; }
 
 .b-dialog-body {
+  padding-bottom: 30px;
   color: rgba(0, 0, 0, 0.6); }
 
 .b-dialog-actions {
@@ -332,6 +333,8 @@ pre[class*="language-"]::-moz-selection {
   background-color: transparent;
   border-color: transparent;
   transition: none; }
+  .b-pagination button.disabled {
+    color: #bdbdbd; }
   .b-pagination button:hover {
     color: #fff;
     background-color: #9fa8da; }
@@ -341,8 +344,6 @@ pre[class*="language-"]::-moz-selection {
   .b-pagination button.active {
     color: #fff;
     background-color: #304ffe; }
-  .b-pagination button.disabled {
-    color: #bdbdbd; }
 
 .b-pagination .page-info,
 .b-pagination .page-size {

@@ -3,49 +3,54 @@
         <div class="table-area">
             <table class="table">
                 <thead>
-                <tr>
-                    <th v-for="colDef in options.colDefs">
-                        <div class="filter-area"></div>
+                    <tr>
+                        <th v-for="colDef in options.colDefs" :key="colDef.field">
+                            <div class="filter-area"/>
 
-                        <span class="sort-click-area"
-                              :class="{'enabled-click': options.enableClientSort}"
-                              @click="toggleSort(colDef.field)">
-                            {{ colDef.name }}
+                            <span
+                                :class="{'enabled-click': options.enableClientSort}"
+                                class="sort-click-area"
+                                @click="toggleSort(colDef.field)">
+                                {{ colDef.name }}
 
-                            <div class="sort-area">
-                                <div v-if="options.enableClientSort"
-                                     class="sort-icon"
-                                     :class="{
-                                        'sort-icon-up': sortInfo.field === colDef.field && sortInfo.order === OrderType.ASC,
-                                        'sort-icon-down': sortInfo.field === colDef.field && sortInfo.order === OrderType.DESC
-                                     }"></div>
-                            </div>
-                        </span>
-                    </th>
-                </tr>
+                                <div class="sort-area">
+                                    <div
+                                        v-if="options.enableClientSort"
+                                        :class="{
+                                            'sort-icon-up': isSortIconUp(colDef.field),
+                                            'sort-icon-down': isSortIconDown(colDef.colDef)
+                                        }"
+                                        class="sort-icon"
+                                    />
+                                </div>
+                            </span>
+                        </th>
+                    </tr>
                 </thead>
 
                 <tbody>
-                <tr v-for="record in renderedRecords">
-                    <td v-for="colDef in options.colDefs">
-                        <span>
-                            <slot :name="colDef.field"
-                                  :field="colDef.field"
-                                  :colDef="colDef"
-                                  :record="record"
-                                  :value="getCellValue(record, colDef)">
-                                {{ getCellValue(record, colDef) }}
-                            </slot>
-                        </span>
-                    </td>
-                </tr>
+                    <tr v-for="(record, index) in renderedRecords" :key="index">
+                        <td v-for="colDef in options.colDefs" :key="colDef.field">
+                            <span>
+                                <slot
+                                    :name="colDef.field"
+                                    :field="colDef.field"
+                                    :colDef="colDef"
+                                    :record="record"
+                                    :value="getCellValue(record, colDef)">
+                                    {{ getCellValue(record, colDef) }}
+                                </slot>
+                            </span>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="foot-area" v-if="options.enableClientPagination">
-            <b-pagination :pagination="innerPagination"
-                          @on-change="onInnerPaginationChange"></b-pagination>
+        <div v-if="options.enableClientPagination && innerPagination" class="foot-area">
+            <b-pagination
+                :pagination="innerPagination"
+                @on-change="onInnerPaginationChange"/>
         </div>
     </div>
 </template>
@@ -59,7 +64,7 @@
     import {genSortedRecords} from './helper/helper';
 
     export default {
-        name: 'b-table',
+        name: 'BTable',
 
         components: {
             BPagination
@@ -75,7 +80,8 @@
                 default: () => []
             },
             pagination: {
-                type: Object
+                type: Object,
+                default: () => {}
             }
         },
 
@@ -93,7 +99,7 @@
                     pageSize: 10,
                     total: 10
                 }
-            }
+            };
         },
 
         computed: {
@@ -130,16 +136,38 @@
             }
         },
 
+        watch: {
+            records() {
+                const vm = this;
+                vm.updateInnerState();
+            }
+        },
+
+        mounted() {
+            const vm = this;
+            vm.updateInnerState();
+        },
+
         methods: {
             getCellValue(record, {field, filter: filterName, map = {}}) {
                 const filterFunc = filterFuncMap[filterName];
 
                 const valueRaw = record[field];
                 const valueMapped = map[valueRaw] || valueRaw;
-                const valueFiltered = !!filterFunc ? filterFunc(valueMapped) : valueMapped;
+                const valueFiltered = filterFunc ? filterFunc(valueMapped) : valueMapped;
                 const value = valueFiltered;
 
                 return value;
+            },
+
+            isSortIconUp(field) {
+                const {sortInfo} = this;
+                return sortInfo.field === field && sortInfo.order === OrderType.ASC;
+            },
+
+            isSortIconDown(field) {
+                const {sortInfo} = this;
+                return sortInfo.field === field && sortInfo.order === OrderType.DESC;
             },
 
             toggleSort(field) {
@@ -155,33 +183,33 @@
             onInnerPaginationChange(pagination) {
                 const vm = this;
                 Object.assign(vm.innerPagination, {...pagination});
-            }
-        },
+            },
 
-        mounted() {
-            const vm = this;
-            const {
-                options: {
-                    enableClientSort = false,
-                    enableClientPagination = false,
+            updateInnerState() {
+                const vm = this;
+                const {
+                    options: {
+                        enableClientSort = false,
+                        enableClientPagination = false,
 
-                    sortInfo
-                },
-                records = [],
-                pagination = {}
-            } = vm;
-
-            if (enableClientSort && sortInfo) vm.sortInfo = sortInfo;
-            if (enableClientPagination) {
-                Object.assign(
-                    vm.innerPagination,
-                    {
-                        pageNo: 1,
-                        pageSize: 10,
-                        total: records.length
+                        sortInfo
                     },
-                    pagination
-                );
+                    records = [],
+                    pagination = {}
+                } = vm;
+
+                if (enableClientSort && sortInfo) vm.sortInfo = sortInfo;
+                if (enableClientPagination) {
+                    Object.assign(
+                        vm.innerPagination,
+                        {
+                            pageNo: 1,
+                            pageSize: 10,
+                            total: records.length
+                        },
+                        pagination
+                    );
+                }
             }
         }
     };
@@ -200,7 +228,6 @@
             .b-pagination {
                 padding: 10px;
             }
-
         }
     }
 </style>
