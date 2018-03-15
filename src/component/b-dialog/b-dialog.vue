@@ -91,7 +91,9 @@
     }
 
     .b-dialog-body {
+        max-height: 75vh;
         padding-bottom: 30px;
+        overflow-y: auto;
         color: rgba(0, 0, 0, .6);
     }
 

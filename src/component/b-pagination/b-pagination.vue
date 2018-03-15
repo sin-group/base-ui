@@ -135,7 +135,7 @@ export default {
         pageSizeMap() {
             const vm = this;
             const {defaultPageSizeList} = vm;
-            const pageSizeList = defaultPageSizeList || DEFAULT_PAGE_SIZE_LIST;
+            const pageSizeList = defaultPageSizeList.length ? defaultPageSizeList : DEFAULT_PAGE_SIZE_LIST;
 
             return pageSizeList.reduce((acc, cur) => {
                 acc[cur] = cur.toString();
