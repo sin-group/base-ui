@@ -1149,7 +1149,7 @@ form .btn-group {
     border-bottom: 1px solid gray; }
     .table thead tr th {
       min-width: 120px;
-      padding: 0 24px;
+      padding: 0 15px;
       color: rgba(0, 0, 0, 0.54);
       user-select: none; }
       .table thead tr th .sort-click-area.enabled-click {
@@ -1199,6 +1199,15 @@ form .btn-group {
     .table tbody tr td {
       padding: 10px;
       line-height: normal; }
+  .table .select-area {
+    min-width: 15px; }
+    .table .select-area label {
+      margin: -20px;
+      padding: 20px;
+      cursor: pointer; }
+      .table .select-area label input[type=checkbox] {
+        outline: none;
+        cursor: pointer; }
 
 @font-face {
   font-family: 'base-ui-font';

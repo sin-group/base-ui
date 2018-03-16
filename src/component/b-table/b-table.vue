@@ -1,9 +1,18 @@
 <template>
     <div class="b-table">
-        <div class="table-area">
+        <div v-if="records.length" class="table-area">
             <table class="table">
                 <thead>
                     <tr>
+                        <th v-if="options.enableSelection" class="select-area">
+                            <label>
+                                <input
+                                    v-model="isAllSelected"
+                                    type="checkbox"
+                                    @change="onSelectAllChange">
+                            </label>
+                        </th>
+
                         <th v-for="colDef in options.colDefs" :key="colDef.field">
                             <div class="filter-area"/>
 
@@ -30,6 +39,15 @@
 
                 <tbody>
                     <tr v-for="(record, index) in renderedRecords" :key="index">
+                        <td v-if="options.enableSelection" class="select-area">
+                            <label>
+                                <input
+                                    v-model="record.$$selected"
+                                    type="checkbox"
+                                    @change="onSelectChange(record)">
+                            </label>
+                        </td>
+
                         <td v-for="colDef in options.colDefs" :key="colDef.field">
                             <span>
                                 <slot
@@ -63,6 +81,10 @@
     import {OrderType, NextOrderType} from '../../constant/OrderConf';
     import {filterFuncMap} from '../../filter/filter';
     import {genSortedRecords} from './helper/helper';
+
+    const EventTypes = {
+        ON_SELECT: 'on-select'
+    };
 
     export default {
         name: 'BTable',
@@ -99,7 +121,9 @@
                     pageNo: 1,
                     pageSize: 10,
                     total: 10
-                }
+                },
+
+                isAllSelected: false
             };
         },
 
@@ -131,16 +155,10 @@
 
             renderedRecords() {
                 const vm = this;
-                const {paginatedRecords} = vm;
+                const {paginatedRecords: renderedRecords} = vm;
 
-                return paginatedRecords;
-            }
-        },
-
-        watch: {
-            records() {
-                const vm = this;
-                vm.updateInnerState();
+                vm.isAllSelected = renderedRecords.every(record => !!record.$$selected);
+                return renderedRecords;
             }
         },
 
@@ -183,7 +201,33 @@
 
             onInnerPaginationChange(pagination) {
                 const vm = this;
+
                 Object.assign(vm.innerPagination, {...pagination});
+            },
+
+            onSelectAllChange() {
+                const vm = this;
+                const {isAllSelected, renderedRecords, records} = vm;
+
+                renderedRecords.forEach((record) => {
+                    record.$$selected = isAllSelected;
+                });
+
+                vm.$emit(EventTypes.ON_SELECT, {
+                    selectedRecords: records.filter(record => !!record.$$selected),
+                    selectedRecord: null
+                });
+            },
+
+            onSelectChange(selectRecord) {
+                const vm = this;
+                const {renderedRecords, records} = this;
+
+                vm.isAllSelected = renderedRecords.every(record => !!record.$$selected);
+                vm.$emit(EventTypes.ON_SELECT, {
+                    selectedRecords: records.filter(record => !!record.$$selected),
+                    selectedRecord: selectRecord
+                });
             },
 
             updateInnerState() {

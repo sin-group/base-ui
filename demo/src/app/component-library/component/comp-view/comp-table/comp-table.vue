@@ -7,11 +7,18 @@
         <div class="card">
             <b-table
                 :options="options"
-                :records="records">
+                :records="records"
+                @on-select="onSelect">
                 <div slot="op" slot-scope="scope">
                     <button @click="viewRecord(scope.record)">View</button>
                 </div>
             </b-table>
+        </div>
+
+        <div>
+            <div class="demo-wrap">
+                <pre class="json-preview">{{ $j(selectedInfo) }}</pre>
+            </div>
         </div>
     </div>
 </template>
@@ -30,6 +37,7 @@
     };
 
     const options = {
+        enableSelection: true,
         enableClientSort: true,
         enableClientPagination: true,
         sortInfo: {
@@ -42,7 +50,6 @@
             {field: 'name', name: 'Name'},
             {field: 'loanCreditsStatus', name: 'Status', map: LoanCreditsStatusMap},
             {field: 'timeCompletedAuthFlow', name: 'Time', filter: 'b-date-time'},
-            {field: 'manualReviewReason', name: 'Review Reason'},
             {field: 'op', name: 'Operation', template: true}
         ]
     };
@@ -65,7 +72,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515983214549,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -90,7 +96,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515983009260,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -115,7 +120,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515982577580,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -140,7 +144,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515982547030,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -165,7 +168,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515982471955,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -190,7 +192,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515982460802,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -215,7 +216,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515982429233,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -240,7 +240,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515981973746,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -265,7 +264,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515981778995,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -290,7 +288,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515981657299,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -315,7 +312,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515981243454,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -340,7 +336,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515981212455,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -365,7 +360,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515980846293,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -390,7 +384,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515980565452,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -415,7 +408,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515980448345,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -440,7 +432,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515980447806,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -465,7 +456,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515980251342,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -490,7 +480,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515980145490,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -515,7 +504,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515980103874,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -540,7 +528,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515979932076,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -565,7 +552,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515979844273,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -590,7 +576,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515978902574,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -615,7 +600,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515978875136,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -640,7 +624,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515978843023,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -665,7 +648,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515978818868,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -690,7 +672,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515978787986,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -715,7 +696,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID_1',
         timeCompletedAuthFlow: 1515978630081,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -740,7 +720,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515978584061,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -765,7 +744,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515978221310,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -790,7 +768,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515976437574,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -815,7 +792,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515975990769,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -840,7 +816,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515975318668,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -865,7 +840,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515974680079,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -890,7 +864,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515971183407,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -915,7 +888,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515971155899,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -940,7 +912,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515969788120,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -965,7 +936,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515964992516,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -990,7 +960,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515964655344,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -1015,7 +984,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515964409068,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -1040,7 +1008,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515958255512,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -1065,7 +1032,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515958246956,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -1090,7 +1056,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515958168129,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -1115,7 +1080,6 @@
         },
         channel: null,
         timeCompletedAuthFlow: 1515957888884,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -1140,7 +1104,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID_1',
         timeCompletedAuthFlow: 1515957799269,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -1165,7 +1128,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_ID',
         timeCompletedAuthFlow: 1515957062272,
-        manualReviewReason: '自动审核通过率不在指定区间内',
         riskFlowId: 38,
         authSDKType: '印尼现金借款APP',
         reloanStatus: null,
@@ -1186,7 +1148,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_TH',
         timeCompletedAuthFlow: 1506315988580,
-        manualReviewReason: '自动审核正常结束，结果为人工审核',
         riskFlowId: 31,
         authSDKType: '泰国现金借款APP',
         reloanStatus: null,
@@ -1207,7 +1168,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_TH',
         timeCompletedAuthFlow: 1506241488800,
-        manualReviewReason: '自动审核正常结束，结果为人工审核',
         riskFlowId: 31,
         authSDKType: '泰国现金借款APP',
         reloanStatus: null,
@@ -1228,7 +1188,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_TH',
         timeCompletedAuthFlow: 1505051563064,
-        manualReviewReason: '自动审核正常结束，结果为人工审核',
         riskFlowId: 31,
         authSDKType: '泰国现金借款APP',
         reloanStatus: null,
@@ -1249,7 +1208,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_TH',
         timeCompletedAuthFlow: 1505038290990,
-        manualReviewReason: '自动审核正常结束，结果为人工审核',
         riskFlowId: 31,
         authSDKType: '泰国现金借款APP',
         reloanStatus: null,
@@ -1270,7 +1228,6 @@
         },
         channel: 'EASYCASH_GOOGLEPLAY_TH',
         timeCompletedAuthFlow: 1504516320390,
-        manualReviewReason: '自动审核正常结束，结果为人工审核',
         riskFlowId: 31,
         authSDKType: '泰国现金借款APP',
         reloanStatus: null,
@@ -1285,7 +1242,9 @@
         data() {
             return {
                 options,
-                records
+                records,
+
+                selectedInfo: {}
             };
         },
 
@@ -1297,6 +1256,13 @@
                         record
                     })
                     .catch(x => x);
+            },
+
+            onSelect({selectedRecords}) {
+                const vm = this;
+                vm.selectedInfo = {
+                    selectedAccountIds: selectedRecords.map(({loanAccountId}) => loanAccountId)
+                };
             }
         }
     };
