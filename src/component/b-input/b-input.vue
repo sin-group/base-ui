@@ -109,19 +109,20 @@ export default {
             default: null
         },
 
+        // font-size: 15px line-height: 1.5, so we got 22.5 by default
         multiLineHeight: {
             type: Number,
-            default: null
+            default: 22.5
         },
 
         multiPaddingTop: {
             type: Number,
-            default: null
+            default: 4
         },
 
         multiPaddingBottom: {
             type: Number,
-            default: null
+            default: 4
         }
     },
 

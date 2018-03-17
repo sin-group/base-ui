@@ -1,7 +1,9 @@
 <template>
     <transition name="b-dialog-slide">
-        <div v-if="open" class="b-dialog-wrapper" @click="close">
-            <div :class="dialogClass" class="b-dialog" @click.stop.prevent.self>
+        <div v-if="open" class="b-dialog-wrapper">
+            <div class="b-dialog-mask" @click="close"/>
+
+            <div :class="dialogClass" class="b-dialog">
                 <h3 v-if="showTitle" class="b-dialog-title">
                     <slot name="title">{{ title }}</slot>
                 </h3>
@@ -70,7 +72,14 @@
         height: 100vh;
         width: 100vw;
         background-color: rgba(0, 0, 0, .4);
-        z-index: $z-index-wrapper;
+        z-index: $z-index-dialog-wrapper;
+    }
+
+    .b-dialog-mask {
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(0, 0, 0, .4);
     }
 
     .b-dialog {

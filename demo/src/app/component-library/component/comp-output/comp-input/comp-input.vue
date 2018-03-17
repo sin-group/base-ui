@@ -35,7 +35,7 @@
                 <b-form-group label="Multi-line">
                     <b-input
                         v-model="editing.multiLineText"
-                        :rows="1"
+                        :rows="3"
                         :rows-max="6"
                         required
                         multi-line/>

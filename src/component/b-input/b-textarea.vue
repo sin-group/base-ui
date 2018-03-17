@@ -1,43 +1,49 @@
 <template>
     <div class="b-textarea">
-        <textarea ref="shadowTextarea"
-                  rows="1"
-                  :value="value"
-                  class="b-input-shadow-textarea"></textarea>
+        <textarea
+            ref="shadowTextarea"
+            :rows="rows"
+            :value="value"
+            class="b-input-shadow-textarea"/>
 
-        <textarea ref="textarea"
-                  class="b-input-textarea"
-                  :name="name"
-                  :value="value"
-                  :placeholder="placeholder"
-                  :disabled="disabled"
-                  :required="required"
-                  @change="handleChange"
-                  @input="handleInput"
-                  @focus="handleFocus"
-                  @blur="handleBlur"></textarea>
+        <textarea
+            ref="textarea"
+            :name="name"
+            :value="value"
+            :placeholder="placeholder"
+            :disabled="disabled"
+            :required="required"
+            class="b-input-textarea"
+            @change="handleChange"
+            @input="handleInput"
+            @focus="handleFocus"
+            @blur="handleBlur"/>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'b-textarea',
+        name: 'BTextarea',
 
         props: {
             name: {
-                type: String
+                type: String,
+                default: null
             },
 
             value: {
-                type: String
+                type: String,
+                default: null
             },
 
             placeholder: {
-                type: String
+                type: String,
+                default: null
             },
 
             required: {
-                type: Boolean
+                type: Boolean,
+                default: false
             },
 
             rows: {
@@ -51,16 +57,18 @@
             },
 
             disabled: {
-                type: Boolean
+                type: Boolean,
+                default: false
             },
 
             autofocus: {
-                type: Boolean
+                type: Boolean,
+                default: false
             },
 
+            // font-size: 15px line-height: 1.5, so we got 22.5 by default
             multiLineHeight: {
                 type: Number,
-                // font-size: 15px line-height: 1.5, so we got 22.5 by default
                 default: 22.5
             },
 
@@ -76,14 +84,23 @@
         },
 
         watch: {
-            value (val, oldVal) {
+            value(val, oldVal) {
                 const vm = this;
 
                 if (val === oldVal) return;
                 vm.$nextTick(() => {
-                    vm.resetMultiHeight()
-                })
+                    vm.resetMultiHeight();
+                });
             }
+        },
+
+        mounted() {
+            const vm = this;
+            const {$refs: {textarea}} = vm;
+            const currentWidth = window.getComputedStyle(textarea, null).getPropertyValue('width');
+
+            textarea.style.cssText = `min-width: ${currentWidth}; max-width: ${currentWidth};`;
+            vm.resetMultiHeight();
         },
 
         methods: {
@@ -99,49 +116,57 @@
                 } = vm;
 
                 if (!textarea) return;
-                let minHeight = pb + pt + lh * rows;
-                let maxHeight = pb + pt + lh * rowsMax;
-                let height = shadowTextarea.scrollHeight;
-                textarea.style.height = (height < minHeight ? minHeight : height > maxHeight && maxHeight > 0 ? maxHeight : height) + 'px';
+                const minHeight = pb + pt + (lh * rows);
+                const maxHeight = pb + pt + (lh * rowsMax);
+                const height = shadowTextarea.scrollHeight;
+
+                let styleHeight;
+
+                if (height < minHeight) {
+                    styleHeight = minHeight;
+                } else if (height > maxHeight && maxHeight > 0) {
+                    styleHeight = maxHeight;
+                } else {
+                    styleHeight = height;
+                }
+
+                textarea.style.height = `${styleHeight}px`;
             },
 
-            handleInput (e) {
-                this.$emit('input', e);
+            handleInput(event) {
+                this.$emit('input', event);
             },
-            handleChange (e) {
-                this.$emit('change', e);
+            handleChange(event) {
+                this.$emit('change', event);
             },
-            handleFocus (e) {
-                this.$emit('focus', e);
+            handleFocus(event) {
+                this.$emit('focus', event);
             },
-            handleBlur (e) {
-                this.$emit('blur', e);
+            handleBlur(event) {
+                this.$emit('blur', event);
             }
-        },
-
-        mounted() {
-            const vm = this;
-            const {$refs: {textarea}} = vm;
-            const currentWidth = window.getComputedStyle(textarea, null).getPropertyValue('width');
-            textarea.style.cssText = `min-width: ${currentWidth}; max-width: ${currentWidth};`;
-            vm.resetMultiHeight();
         }
-    }
+
+    };
 </script>
 
 <style lang="scss" scoped>
-    textarea {
-        line-height: 1.5;
-        overflow: auto;
-        background-color: transparent;
-    }
 
-    .b-input-shadow-textarea {
-        overflow: hidden;
-        position: absolute;
-        width: 100px !important;
-        height: initial;
-        visibility: hidden;
+    .b-textarea {
+        position: relative;
+
+        textarea {
+            line-height: 22.5px;
+            overflow: auto;
+            background-color: transparent;
+        }
+
+        .b-input-shadow-textarea {
+            overflow: hidden;
+            position: absolute;
+            height: initial;
+            visibility: hidden;
+        }
     }
 
 </style>

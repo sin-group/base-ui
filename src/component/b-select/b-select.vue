@@ -1,20 +1,24 @@
 <template>
-    <div class="b-select" :class="{disabled: disabled}">
-        <b-input type="text"
-                 :name="name"
-                 :value="searchText"
-                 :disabled="disabled"
-                 @input="input"
-                 @focus="openMenu"
-                 @keydown="handleKeyDown"></b-input>
+    <div :class="{disabled: disabled}" class="b-select">
+        <b-input
+            :name="name"
+            :value="searchText"
+            :disabled="disabled"
+            type="text"
+            @input="input"
+            @focus="openMenu"
+            @keydown="handleKeyDown"/>
 
-        <b-popper v-if="visible"
-                  v-b-click-outside="closeMenu">
-            <b-select-menu ref="menu"
-                           :map="map"
-                           :value="value"
-                           :searchText="searchText"
-                           @choose="choose"></b-select-menu>
+        <b-popper
+            v-b-click-outside="closeMenu"
+            v-if="visible"
+        >
+            <b-select-menu
+                ref="menu"
+                :map="map"
+                :value="value"
+                :search-text="searchText"
+                @choose="choose"/>
         </b-popper>
     </div>
 </template>
@@ -27,7 +31,7 @@
     import BSelectMenu from './b-select-menu.vue';
 
     export default {
-        name: 'b-select',
+        name: 'BSelect',
 
         components: {
             BInput,
@@ -40,14 +44,23 @@
         },
 
         props: {
-            name: String,
-            value: String,
+            name: {
+                type: String,
+                default: null
+            },
+            value: {
+                type: String,
+                default: null
+            },
             map: {
                 type: Object,
                 default: () => {},
                 required: true
             },
-            disabled: Boolean
+            disabled: {
+                type: Boolean,
+                default: false
+            }
         },
 
         data() {
@@ -56,6 +69,15 @@
             return {
                 visible: false,
                 searchText: map[value]
+            };
+        },
+
+        watch: {
+            value(val) {
+                const vm = this;
+                if (vm.map[val]) {
+                    vm.searchText = vm.map[val];
+                }
             }
         },
 
@@ -100,7 +122,10 @@
                         }
                         break;
                     }
+                    default: // ignore
                 }
+
+                return null;
             },
 
             closeMenu() {
@@ -115,15 +140,6 @@
                 vm.searchText = vm.map[value];
                 vm.$emit('change', value);
                 vm.visible = false;
-            }
-        },
-
-        watch: {
-            value(val) {
-                const vm = this;
-                if (vm.map[val]) {
-                    vm.searchText = vm.map[val];
-                }
             }
         }
     };
@@ -140,7 +156,7 @@
         }
 
         &:disabled {
-            b-input {
+            .b-input {
                 input {
                     cursor: not-allowed;
                 }

@@ -5,16 +5,21 @@
  */
 /* eslint-disable */
 
+import BDialog from '../b-dialog';
+
 import {initPosition} from './position';
 
 import {on, off} from '../../util/dom';
+
+// b-dialog's z-index: 9999
+const Z_INDEX_POPPER_IN_DIALOG = 10000;
 
 export default {
     name: 'b-popper',
 
     render(createElement) {
         const vm = this;
-        const {$slots} = vm;
+        const {$slots, isInBDialog} = vm;
 
         return createElement(
             'div',
@@ -23,7 +28,8 @@ export default {
                 style: {
                     display: 'inline-block',
                     position: 'absolute',
-                    top: 0
+                    top: 0,
+                    zIndex: isInBDialog ? Z_INDEX_POPPER_IN_DIALOG : 'auto'
                 }
             },
             $slots.default
@@ -41,6 +47,28 @@ export default {
         return {
             refEl: null
         };
+    },
+
+    computed: {
+        isInBDialog() {
+            const vm = this;
+
+            let isInDialog = false;
+            const rec = ({$parent}) => {
+                if (!$parent) return;
+
+                if ($parent.$options.name === BDialog.name) {
+                    isInDialog = true;
+                    return;
+                }
+
+                rec($parent);
+            };
+
+            rec(vm);
+
+            return isInDialog;
+        }
     },
 
     methods: {
