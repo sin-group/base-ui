@@ -90,7 +90,7 @@
         width: 75%;
         max-width: 768px;
         padding: 20px 20px 10px;
-        border-radius: 2px;
+        border-radius: 5px;
         background-color: #fff;
         box-shadow: 0 19px 60px rgba(0, 0, 0, .298039), 0 15px 20px rgba(0, 0, 0, .219608);
     }

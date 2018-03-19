@@ -1,6 +1,6 @@
 <template>
     <transition name="b-toast-fade">
-        <div class="b-toast" v-if="visible" :class="type">{{ message }}</div>
+        <div v-if="visible" :class="type" class="b-toast">{{ message }}</div>
     </transition>
 </template>
 
@@ -22,6 +22,8 @@
 <style lang="scss" scoped>
     @import "../../../../style/variables.scss";
 
+    $TOAST_ALPHA: .9;
+
     .b-toast {
         position: fixed;
         left: 50%;
@@ -33,16 +35,17 @@
         line-height: 1.2em;
         text-align: center;
         border-radius: 4px;
-        background-color: $gray-dark;
+        background-color: rgba($gray-dark, $TOAST_ALPHA);
+        box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
         color: white;
     }
 
     .SUCCESS {
-        background-color: $green;
+        background-color: rgba($green, $TOAST_ALPHA);
     }
 
     .ERROR {
-        background-color: $red-light;
+        background-color: rgba($red-light, $TOAST_ALPHA);
     }
 
     .b-toast-fade-enter-active,
@@ -57,12 +60,14 @@
 
     @media only screen and (min-width: 500px) {
         .b-toast {
-            position: absolute;
-            top: 10vh;
-            right: -3vw;
+            position: fixed;
+            top: 5vh;
+            right: 3vw;
             left: auto;
             bottom: auto;
-            min-width: 10%;
+            transform: none;
+            min-width: 10vw;
+            max-width: 20vw;
             text-align: center;
         }
     }

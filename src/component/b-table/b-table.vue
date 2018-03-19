@@ -265,6 +265,7 @@
     .b-table {
         .table-area {
             overflow-x: auto;
+            overflow-y: hidden;
         }
 
         .foot-area {

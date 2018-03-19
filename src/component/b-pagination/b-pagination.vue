@@ -6,7 +6,7 @@
                 @click="previous">上一页
             </button>
 
-            <span v-for="{value, type} in pageNoList" :key="value">
+            <span v-for="({value, type}, index) in pageNoList" :key="index">
                 <button
                     :class="{active: value === innerPagination.pageNo}"
                     @click="changePageNo(value, type)">{{ value }}</button>
