@@ -1135,6 +1135,8 @@
         currentLoanTime: 1515957062272,
         reloanTraceId: null
     }, {
+        $$selected: true,
+        $$disableSelect: true,
         mobileNumber: '0647571735',
         loanAccountId: 25,
         userId: 25,

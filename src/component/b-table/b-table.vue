@@ -43,6 +43,7 @@
                             <label>
                                 <input
                                     v-model="record.$$selected"
+                                    :disabled="record.$$disableSelect"
                                     type="checkbox"
                                     @change="onSelectChange(record)">
                             </label>
@@ -210,6 +211,7 @@
                 const {isAllSelected, renderedRecords, records} = vm;
 
                 renderedRecords.forEach((record) => {
+                    if (record.$$disableSelect) return;
                     record.$$selected = isAllSelected;
                 });
 
