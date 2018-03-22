@@ -1,0 +1,60 @@
+@import "../variables.scss";
+
+.action-card {
+    display: block;
+    margin-bottom: 10px;
+    padding: 6px 0;
+    border-radius: 2px;
+    background-color: $white;
+    box-shadow: $standard-box-shadow;
+
+    .action-group {
+        margin-bottom: 15px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px 15px;
+            border-bottom: 1px solid #ddd;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            width: 100%;
+            height: auto;
+            margin: 0;
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 13px;
+            line-height: 13px;
+            background-color: white;
+            border: none;
+            border-radius: 0;
+            color: #666;
+            transition: .2s;
+
+            &:hover {
+                color: black;
+                background-color: #dedede;
+            }
+
+            &:active {
+                background-color: #ccc;
+            }
+
+            i {
+                margin-top: 1px;
+            }
+        }
+    }
+}

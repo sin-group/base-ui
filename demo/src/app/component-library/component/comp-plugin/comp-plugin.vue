@@ -62,7 +62,7 @@
 
             messageModal() {
                 const vm = this;
-                vm.$modal.openMessageModal('You are reading the message', 'Confirm').catch(x => x);
+                vm.$modal.openMessageModal('You are reading the message', 'Notice').catch(x => x);
             }
         }
     };

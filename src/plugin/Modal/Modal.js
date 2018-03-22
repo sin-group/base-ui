@@ -37,9 +37,9 @@ export default {
                 });
             },
 
-            openMessageModal(message, confirmText, options = {}) {
+            openMessageModal(message, title) {
                 const self = this;
-                return self.open(MessageModal, {message, confirmText, options});
+                return self.open(MessageModal, {message, title});
             }
         };
 
