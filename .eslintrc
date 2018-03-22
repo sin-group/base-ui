@@ -1,3 +1,11 @@
 {
-    "extends": "@yqg/eslint-config/vue"
+    "extends": "@yqg/eslint-config/vue",
+    "rules": {
+        "vue/html-self-closing": ["error", {
+            "html": {
+                "void": "never",
+                "normal": "never"
+            }
+        }]
+    }
 }

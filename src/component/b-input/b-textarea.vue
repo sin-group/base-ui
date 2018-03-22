@@ -4,7 +4,7 @@
             ref="shadowTextarea"
             :rows="rows"
             :value="value"
-            class="b-input-shadow-textarea"/>
+            class="b-input-shadow-textarea"></textarea>
 
         <textarea
             ref="textarea"
@@ -17,7 +17,7 @@
             @change="handleChange"
             @input="handleInput"
             @focus="handleFocus"
-            @blur="handleBlur"/>
+            @blur="handleBlur"></textarea>
     </div>
 </template>
 

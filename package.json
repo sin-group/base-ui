@@ -1,6 +1,6 @@
 {
   "name": "base-ui",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "description": "A component library for Vue developmemt",
   "main": "./dist/base-ui.min.js",
   "repository": {
@@ -44,7 +44,7 @@
     "eslint-config-airbnb": "16.1.0",
     "eslint-loader": "2.0.0",
     "eslint-plugin-import": "2.9.0",
-    "eslint-plugin-vue": "4.3.0",
+    "eslint-plugin-vue": "4.4.0",
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.10",
     "html-loader": "0.5.5",

@@ -790,11 +790,19 @@ blockquote {
       .action-card .action-group .action-bar i {
         margin-top: 1px; }
 
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #666;
+  font-size: 0.8em;
+  color: white;
+  border-radius: 10px; }
+
 .card {
   padding: 20px;
   margin: 10px 0;
   background-color: #fff;
-  border-radius: 3px;
+  border-radius: 2px;
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12); }
   .card h1:first-child {
     margin-top: .5em; }
