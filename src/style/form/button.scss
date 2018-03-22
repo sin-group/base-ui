@@ -48,7 +48,7 @@ button {
     &.danger {
         color: $red;
         background-color: $gray-lighter;
-        border-color: $gray;
+        border-color: $gray-light;
 
         &:hover {
             color: $white;

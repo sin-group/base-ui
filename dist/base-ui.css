@@ -794,7 +794,7 @@ blockquote {
   display: inline-block;
   padding: 5px 10px;
   background-color: #666;
-  font-size: 0.8em;
+  font-size: .8em;
   color: white;
   border-radius: 10px; }
 
@@ -894,17 +894,17 @@ button {
     background-color: #f3f3f3;
     border: 1px dashed #bdbdbd; }
   button.danger {
-    color: #f44336;
+    color: #f5222d;
     background-color: #f3f3f3;
-    border-color: #bdbdbd; }
+    border-color: #e0e0e0; }
     button.danger:hover {
       color: #fff;
-      background-color: #f44336;
-      border-color: #f44336; }
+      background-color: #f5222d;
+      border-color: #f5222d; }
     button.danger:active {
       color: #fff;
       background-color: #b71c1c;
-      border-color: #f44336; }
+      border-color: #f5222d; }
   button.simple {
     color: #304ffe;
     background-color: #fff;
