@@ -11,7 +11,7 @@
 
             <div class="action-card">
                 <div class="action-group">
-                    <div class="action-header">Collection <a href="#">管理</a></div>
+                    <div class="action-header">Collection <button>管理</button></div>
 
                     <button class="action-bar">Mock (3) <i class="b-icon-right"/></button>
                     <a href="#" class="action-bar">Mayuri (10) <i class="b-icon-right"/></a>
@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="action-group">
-                    <div class="action-header">Api <a href="#">管理</a></div>
+                    <div class="action-header">Api <button>管理</button></div>
 
                     <button class="action-bar">Subscribe <i class="b-icon-love"/></button>
                     <button class="action-bar">Add to collection<i class="b-icon-create"/></button>

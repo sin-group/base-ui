@@ -740,6 +740,56 @@ blockquote {
   blockquote p {
     margin: 0; }
 
+.action-card {
+  display: block;
+  margin-bottom: 10px;
+  padding: 6px 0;
+  border-radius: 2px;
+  background-color: #fff;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12); }
+  .action-card .action-group {
+    margin-bottom: 15px; }
+    .action-card .action-group:last-child {
+      margin-bottom: 0; }
+    .action-card .action-group .action-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px 15px;
+      border-bottom: 1px solid #ddd;
+      font-size: 12px;
+      color: #999; }
+      .action-card .action-group .action-header button {
+        margin: 0;
+        padding: 0;
+        background: none;
+        border: none;
+        color: #304ffe; }
+    .action-card .action-group .action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      padding: 12px 15px;
+      text-align: left;
+      font-size: 13px;
+      line-height: 13px;
+      background-color: white;
+      border: none;
+      border-radius: 0;
+      color: #666;
+      transition: .2s; }
+      .action-card .action-group .action-bar:hover {
+        color: black;
+        background-color: #dedede; }
+      .action-card .action-group .action-bar:active {
+        background-color: #ccc; }
+      .action-card .action-group .action-bar i {
+        margin-top: 1px; }
+
 .card {
   padding: 20px;
   margin: 10px 0;
