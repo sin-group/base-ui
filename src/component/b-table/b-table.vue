@@ -14,7 +14,7 @@
                         </th>
 
                         <th v-for="colDef in options.colDefs" :key="colDef.field">
-                            <div class="filter-area"/>
+                            <div class="filter-area"></div>
 
                             <span
                                 :class="{'enabled-click': options.enableClientSort}"
@@ -30,7 +30,7 @@
                                             'sort-icon-down': isSortIconDown(colDef.field)
                                         }"
                                         class="sort-icon"
-                                    />
+                                    ></div>
                                 </div>
                             </span>
                         </th>
@@ -160,6 +160,13 @@
 
                 vm.isAllSelected = renderedRecords.every(record => !!record.$$selected);
                 return renderedRecords;
+            }
+        },
+
+        watch: {
+            records() {
+                const vm = this;
+                vm.updateInnerState();
             }
         },
 
