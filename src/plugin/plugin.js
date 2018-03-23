@@ -6,9 +6,9 @@ import plugValid from './Valid/Valid';
 
 export default {
     install(Vue, options) {
-        Vue.use(plugToast);
-        Vue.use(plugAlert);
-        Vue.use(plugModal);
+        Vue.use(plugToast, options);
+        Vue.use(plugAlert, options);
+        Vue.use(plugModal, options);
         Vue.use(plugValid, options);
     }
 };
