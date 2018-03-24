@@ -11,15 +11,16 @@
                 :class="{'is-unfold': !isFold}"
                 class="change-fold"
                 @click="changeFold">
-                <i class="b-icon-right"/>
+                <i class="b-icon-right"></i>
             </span>
-            <span>
-                <slot name="content"/>
-            </span>
+
+            <div class="content-wrap">
+                <slot name="content"></slot>
+            </div>
         </div>
 
         <div v-if="!isFold" class="child-tree-wrap">
-            <slot name="children"/>
+            <slot name="children"></slot>
         </div>
     </div>
 </template>
@@ -80,7 +81,7 @@
             position: absolute;
             content: "";
             left: -20px;
-            top: 15px;
+            top: 20px;
             width: 25px;
             border-top: 1px dotted black;
         }
@@ -89,7 +90,7 @@
             position: absolute;
             content: "";
             height: 100%;
-            top: -20px;
+            top: -15px;
             left: -20px;
             border-left: 1px dotted black;
         }
@@ -101,22 +102,35 @@
         }
     }
 
-    .node-el {
-        height: 35px;
-        display: flex;
-        align-items: center;
+    .b-tree-node {
+        .node-el {
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
 
-        .change-fold {
-            cursor: pointer;
-
-            &.is-unfold {
-                transform: rotate(90deg);
+            .content-wrap {
+                margin: 0;
+                height: 30px;
+                line-height: 30px;
             }
 
-            .b-icon-right:before {
-                position: relative;
-                bottom: 1px;
-                left: -3px;
+            .change-fold {
+                cursor: pointer;
+
+                .b-icon-right:before {
+                    position: relative;
+                    bottom: -3px;
+                    font-weight: 800;
+                }
+
+                &.is-unfold {
+                    transform: rotate(90deg);
+
+                    .b-icon-right:before {
+                        bottom: 2px;
+                        left: 3px;
+                    }
+                }
             }
         }
     }

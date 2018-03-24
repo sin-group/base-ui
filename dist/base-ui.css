@@ -475,32 +475,39 @@ pre[class*="language-"]::-moz-selection {
     position: absolute;
     content: "";
     left: -20px;
-    top: 15px;
+    top: 20px;
     width: 25px;
     border-top: 1px dotted black; }
   .leaf:after {
     position: absolute;
     content: "";
     height: 100%;
-    top: -20px;
+    top: -15px;
     left: -20px;
     border-left: 1px dotted black; }
 
 .is-last-child:after {
   height: 35px; }
 
-.node-el {
-  height: 35px;
+.b-tree-node .node-el {
+  padding: 4px 0;
   display: flex;
   align-items: center; }
-  .node-el .change-fold {
+  .b-tree-node .node-el .content-wrap {
+    margin: 0;
+    height: 30px;
+    line-height: 30px; }
+  .b-tree-node .node-el .change-fold {
     cursor: pointer; }
-    .node-el .change-fold.is-unfold {
-      transform: rotate(90deg); }
-    .node-el .change-fold .b-icon-right:before {
+    .b-tree-node .node-el .change-fold .b-icon-right:before {
       position: relative;
-      bottom: 1px;
-      left: -3px; }
+      bottom: -3px;
+      font-weight: 800; }
+    .b-tree-node .node-el .change-fold.is-unfold {
+      transform: rotate(90deg); }
+      .b-tree-node .node-el .change-fold.is-unfold .b-icon-right:before {
+        bottom: 2px;
+        left: 3px; }
 
 .b-toast {
   position: fixed;
@@ -1183,7 +1190,7 @@ form .btn-group {
   background-color: #304ffe;
   align-items: center; }
   .mat-sm {
-    height: 60px; }
+    height: 50px; }
 
 .space-left {
   margin-left: 8px; }
@@ -1278,160 +1285,160 @@ form .btn-group {
         cursor: pointer; }
 
 @font-face {
-  font-family: 'base-ui-font';
+  font-family: "base-ui-font";
   src: url("./base-ui.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
-[class^='b-icon-']:before,
-[class*=' b-icon-']:before {
-  font-family: 'base-ui-font', sans-serif !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
+[class^="b-icon-"]:before,
+[class*=" b-icon-"]:before {
+  font-family: "base-ui-font", sans-serif !important;
   speak: none;
   line-height: 1;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.b-icon-bold:before {
-  content: '\61'; }
-
-.b-icon-italic:before {
-  content: '\62'; }
-
-.b-icon-header:before {
-  content: '\63'; }
-
-.b-icon-code:before {
-  content: '\64'; }
-
-.b-icon-more:before {
-  content: '\65'; }
-
-.b-icon-compress:before {
-  content: '\68'; }
-
-.b-icon-setting:before {
-  content: '\69'; }
-
-.b-icon-expand:before {
-  content: '\6a'; }
-
-.b-icon-link:before {
-  content: '\6b'; }
-
-.b-icon-info:before {
-  content: '\6c'; }
-
-.b-icon-underline:before {
-  content: '\6e'; }
-
-.b-icon-ordered-list:before {
-  content: '\6f'; }
-
-.b-icon-unordered-list:before {
-  content: '\70'; }
-
-.b-icon-image:before {
-  content: '\71'; }
-
-.b-icon-left:before {
-  content: '\72'; }
-
-.b-icon-right:before {
-  content: '\73'; }
-
-.b-icon-refresh:before {
-  content: '\75'; }
-
-.b-icon-quote:before {
-  content: '\6d'; }
-
 .b-icon-download:before {
-  content: '\77'; }
+  content: "\e600"; }
 
 .b-icon-upload:before {
-  content: '\78'; }
+  content: "\e601"; }
 
-.b-icon-copy:before {
-  content: '\74'; }
-
-.b-icon-user:before {
-  content: '\7a'; }
-
-.b-icon-trash:before {
-  content: '\41'; }
+.b-icon-refresh:before {
+  content: "\e851"; }
 
 .b-icon-adjust:before {
-  content: '\42'; }
-
-.b-icon-send:before {
-  content: '\43'; }
-
-.b-icon-love:before {
-  content: '\67'; }
-
-.b-icon-filter:before {
-  content: '\45'; }
-
-.b-icon-emotion:before {
-  content: '\66'; }
-
-.b-icon-equation:before {
-  content: '\46'; }
-
-.b-icon-bell:before {
-  content: '\47'; }
-
-.b-icon-power:before {
-  content: '\48'; }
-
-.b-icon-create:before {
-  content: '\76'; }
-
-.b-icon-phone:before {
-  content: '\49'; }
-
-.b-icon-qr-code:before {
-  content: '\4a'; }
-
-.b-icon-split:before {
-  content: '\4b'; }
-
-.b-icon-camera:before {
-  content: '\79'; }
-
-.b-icon-detail:before {
-  content: '\4c'; }
-
-.b-icon-edit:before {
-  content: '\4d'; }
-
-.b-icon-github:before {
-  content: '\4e'; }
-
-.b-icon-globe:before {
-  content: '\4f'; }
+  content: "\e67c"; }
 
 .b-icon-not-love:before {
-  content: '\50'; }
+  content: "\e69c"; }
+
+.b-icon-love:before {
+  content: "\e69d"; }
 
 .b-icon-chart:before {
-  content: '\51'; }
+  content: "\e60e"; }
 
-.b-icon-book:before {
-  content: '\44'; }
+.b-icon-header:before {
+  content: "\e673"; }
+
+.b-icon-trash:before {
+  content: "\e652"; }
+
+.b-icon-code:before {
+  content: "\ea77"; }
+
+.b-icon-edit:before {
+  content: "\eaa7"; }
+
+.b-icon-filter:before {
+  content: "\e669"; }
+
+.b-icon-github:before {
+  content: "\e709"; }
+
+.b-icon-phone:before {
+  content: "\e66f"; }
+
+.b-icon-underline:before {
+  content: "\e734"; }
+
+.b-icon-setting:before {
+  content: "\e608"; }
+
+.b-icon-equation:before {
+  content: "\e810"; }
+
+.b-icon-more:before {
+  content: "\e60b"; }
 
 .b-icon-package:before {
-  content: '\52'; }
+  content: "\e9c5"; }
 
-.b-icon-pagelines:before {
-  content: '\53'; }
+.b-icon-info:before {
+  content: "\e67d"; }
+
+.b-icon-emotion:before {
+  content: "\e6ae"; }
 
 .b-icon-language:before {
-  content: '\54'; }
+  content: "\e756"; }
+
+.b-icon-camera:before {
+  content: "\e6b3"; }
+
+.b-icon-book:before {
+  content: "\e64f"; }
+
+.b-icon-user:before {
+  content: "\e602"; }
 
 .b-icon-share:before {
-  content: '\55'; }
+  content: "\e633"; }
+
+.b-icon-link:before {
+  content: "\e624"; }
+
+.b-icon-italic:before {
+  content: "\e6f8"; }
+
+.b-icon-detail:before {
+  content: "\e609"; }
+
+.b-icon-split:before {
+  content: "\e639"; }
+
+.b-icon-qr-code:before {
+  content: "\e60d"; }
+
+.b-icon-compress:before {
+  content: "\e626"; }
+
+.b-icon-expand:before {
+  content: "\e62a"; }
+
+.b-icon-bell:before {
+  content: "\e650"; }
+
+.b-icon-unordered-list:before {
+  content: "\e764"; }
+
+.b-icon-power:before {
+  content: "\e85d"; }
+
+.b-icon-copy:before {
+  content: "\e687"; }
+
+.b-icon-image:before {
+  content: "\e627"; }
+
+.b-icon-ordered-list:before {
+  content: "\e9ca"; }
+
+.b-icon-quote:before {
+  content: "\e9cc"; }
+
+.b-icon-bold:before {
+  content: "\e6fe"; }
+
+.b-icon-create:before {
+  content: "\e603"; }
+
+.b-icon-pagelines:before {
+  content: "\e6eb"; }
+
+.b-icon-globe:before {
+  content: "\e668"; }
+
+.b-icon-send:before {
+  content: "\e905"; }
+
+.b-icon-left:before {
+  content: "\e6af"; }
+
+.b-icon-right:before {
+  content: "\e6e7"; }

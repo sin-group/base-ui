@@ -3,11 +3,13 @@
         <div class="container">
             <div class="card">
                 <div class="icon-wrap">
-                    <div class="icon-box"
-                         v-b-clipboard="'b-icon-' + icon"
-                         @v-b-clipboard-success="copySuccess"
-                         v-for="icon in IconList">
-                        <i class="icon" :class="'b-icon-' + icon"></i>
+                    <div
+                        v-b-clipboard="'b-icon-' + icon"
+                        v-for="icon in IconList"
+                        :key="icon"
+                        class="icon-box"
+                        @v-b-clipboard-success="copySuccess">
+                        <i :class="'b-icon-' + icon" class="icon"></i>
                         <div class="icon-name">{{ icon }}</div>
                     </div>
                 </div>
@@ -68,7 +70,7 @@
     ];
 
     export default {
-        name: 'css-icon',
+        name: 'CssIcon',
 
         data() {
             return {
@@ -105,6 +107,17 @@
                 transition: .1s;
                 cursor: pointer;
 
+                .icon {
+                    display: inline-block;
+                    margin: 10px;
+                    font-size: 20px;
+                }
+
+                .icon-name {
+                    font-size: 12px;
+                    color: #999;
+                }
+
                 &:hover {
                     background-color: #eee;
 
@@ -115,17 +128,6 @@
                     .icon-name {
                         color: #666;
                     }
-                }
-
-                .icon {
-                    display: inline-block;
-                    margin: 10px;
-                    font-size: 20px;
-                }
-
-                .icon-name {
-                    font-size: 12px;
-                    color: #999;
                 }
             }
         }
