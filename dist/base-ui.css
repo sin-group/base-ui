@@ -436,6 +436,28 @@ blockquote {
   .tabs-light li.active a:active {
     background-color: #3f51b5; }
 
+.b-tooltip {
+  position: absolute;
+  display: none;
+  padding: 4px 6px;
+  background-color: #3f51b5;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 12px;
+  z-index: 10001; }
+  .b-tooltip:after {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid rgba(0, 0, 0, 0.8);
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    margin: auto; }
+
 button {
   height: 30px;
   padding: 0 15px;
@@ -1199,49 +1221,51 @@ form .btn-group {
     visibility: hidden; }
 
 .b-tree {
-  margin-left: 30px; }
+  margin-left: 40px; }
   .b-tree.root {
     margin-left: 0; }
 
-.leaf {
+.b-tree-node.leaf {
   position: relative; }
-  .leaf:before {
+  .b-tree-node.leaf:before {
     position: absolute;
     content: "";
-    left: -20px;
-    top: 20px;
-    width: 25px;
-    border-top: 1px dotted black; }
-  .leaf:after {
+    left: -40px;
+    top: 25px;
+    width: 40px;
+    border-top: 1px solid #e0e0e0; }
+  .b-tree-node.leaf:after {
     position: absolute;
     content: "";
     height: 100%;
-    top: -15px;
-    left: -20px;
-    border-left: 1px dotted black; }
+    top: -20px;
+    left: -40px;
+    border-left: 1px solid #e0e0e0; }
 
-.is-last-child:after {
-  height: 35px; }
+.b-tree-node.is-last-child:after {
+  height: 45px; }
 
 .b-tree-node .node-el {
-  padding: 4px 0;
   display: flex;
   align-items: center; }
-  .b-tree-node .node-el .content-wrap {
-    margin: 0;
-    height: 30px;
-    line-height: 30px; }
   .b-tree-node .node-el .change-fold {
+    position: relative;
     cursor: pointer; }
     .b-tree-node .node-el .change-fold .b-icon-right:before {
       position: relative;
-      bottom: -3px;
-      font-weight: 800; }
+      font-weight: 800;
+      transform-origin: center center;
+      left: -8px;
+      top: 2px; }
     .b-tree-node .node-el .change-fold.is-unfold {
       transform: rotate(90deg); }
       .b-tree-node .node-el .change-fold.is-unfold .b-icon-right:before {
-        bottom: 2px;
-        left: 3px; }
+        left: -2px;
+        top: 8px; }
+  .b-tree-node .node-el .content-wrap {
+    margin: 0;
+    height: 45px;
+    line-height: 45px; }
 
 .b-toast {
   position: fixed;
