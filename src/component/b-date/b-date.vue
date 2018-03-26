@@ -1,15 +1,18 @@
 <template>
-    <div class="b-date" :class="{disabled: disabled}">
-        <b-input type="text"
-                 :name="name"
-                 :value="displayTime"
-                 :disabled="disabled"
-                 @focus="openDatePicker"></b-input>
+    <div :class="{disabled: disabled}" class="b-date">
+        <b-input
+            :name="name"
+            :value="displayTime"
+            :disabled="disabled"
+            type="text"
+            @focus="openDatePicker"/>
 
-        <b-popper v-if="visible"
-                  v-b-click-outside="closeDatePicker">
-            <b-date-picker v-model="innerValue"
-                           @choose="choose"></b-date-picker>
+        <b-popper
+            v-b-click-outside="closeDatePicker"
+            v-if="visible">
+            <b-date-picker
+                v-model="innerValue"
+                @choose="choose"/>
         </b-popper>
     </div>
 </template>
@@ -23,7 +26,7 @@ import BPopover from '../b-popper';
 import BDatePicker from './b-date-picker.vue';
 
 export default {
-    name: 'b-date',
+    name: 'BDate',
 
     components: {
         BInput,
@@ -38,10 +41,12 @@ export default {
 
     props: {
         value: {
+            type: Number,
             required: true
         },
         name: {
-            type: String
+            type: String,
+            default: ''
         },
         disabled: {
             type: Boolean,
@@ -53,7 +58,7 @@ export default {
         return {
             innerValue: null,
             visible: false
-        }
+        };
     },
 
     computed: {
@@ -65,6 +70,12 @@ export default {
 
             return getDate(innerValue);
         }
+    },
+
+    mounted() {
+        const vm = this;
+        const {value} = vm;
+        if (value) vm.innerValue = value;
     },
 
     methods: {
@@ -88,31 +99,7 @@ export default {
             vm.$emit('change', timeStamp);
             vm.closeDatePicker();
         }
-    },
-
-    mounted() {
-        const vm = this;
-        const {value} = vm;
-        if (value) vm.innerValue = value;
     }
 };
 
 </script>
-
-<style lang="scss" rel="stylesheet/scss" scoped>
-.b-date {
-    display: inline-block;
-
-    .b-input {
-        input {
-            cursor: pointer;
-        }
-
-        &.disabled {
-            input {
-                cursor: not-allowed;
-            }
-        }
-    }
-}
-</style>

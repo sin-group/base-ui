@@ -1,0 +1,72 @@
+@import "../../style/variables.scss";
+
+.b-pagination {
+    .size-mini {
+        @media screen and (min-width: $ultra-book-min) {
+            display: none;
+        }
+
+        &.active {
+            display: block;
+        }
+
+        .page-info {
+            margin: 0 10px;
+            color: $gray;
+
+            .page-current {
+                color: $gray-dark;
+            }
+        }
+    }
+
+    .size-normal {
+        @media screen and (max-width: $ultra-book-min - 1px) {
+            display: none;
+        }
+
+        button {
+            padding: 0 10px;
+            color: black;
+            background-color: transparent;
+            border-color: transparent;
+            transition: none;
+
+            &.disabled {
+                color: $gray;
+            }
+
+            &:hover {
+                color: $white;
+                background-color: $primary-light;
+
+                &.disabled {
+                    color: $white;
+                    background-color: $primary-lighter;
+                }
+            }
+
+            &.active {
+                color: $white;
+                background-color: $primary;
+            }
+        }
+
+        .page-info,
+        .page-size {
+            margin-left: 15px;
+            font-size: 11px;
+            color: $gray-dark;
+
+            .b-select {
+                display: inline;
+
+                input {
+                    width: 60px;
+                    font-size: 11px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+.b-input {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .content {
+        flex: 1;
+    }
+}
+
+.form-block,
+.form-block-horizontal {
+    .b-input {
+        display: flex;
+    }
+}

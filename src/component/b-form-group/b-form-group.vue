@@ -1,15 +1,17 @@
 <template>
-    <div :class="{
-        'b-form-group-block': block,
-        'b-form-group-label-horizontal': labelHorizontal
-    }" class="b-form-group form-group">
-        <div class="b-form-group-label-wrap" :class="labelWrapClass">
+    <div
+        :class="{
+            'b-form-group-block': block,
+            'b-form-group-label-horizontal': labelHorizontal
+        }"
+        class="b-form-group form-group">
+        <div :class="labelWrapClass" class="b-form-group-label-wrap">
             <slot name="labelLeft"></slot>
             <label>{{ label }}</label>
             <slot name="labelRight"></slot>
         </div>
 
-        <div class="b-form-group-input-wrap" :class="inputWrapClass">
+        <div :class="inputWrapClass" class="b-form-group-input-wrap">
             <slot></slot>
         </div>
     </div>
@@ -17,7 +19,7 @@
 
 <script>
     export default {
-        name: 'b-form-group',
+        name: 'BFormGroup',
 
         props: {
             label: {
@@ -25,62 +27,24 @@
                 required: true
             },
             block: {
-                type: Boolean
+                type: Boolean,
+                default: false
             },
 
             labelHorizontal: {
-                type: Boolean
+                type: Boolean,
+                default: false
             },
 
             labelWrapClass: {
                 type: [String, Array, Object],
+                default: ''
             },
 
             inputWrapClass: {
-                type: [String, Array, Object]
-            },
+                type: [String, Array, Object],
+                default: ''
+            }
         }
-    }
+    };
 </script>
-
-<style lang="scss">
-    @import '../../style/variables.scss';
-
-    .b-form-group {
-        &.b-form-group-block {
-            display: block;
-
-            input,
-            textarea {
-                width: 100%;
-            }
-        }
-
-        &.b-form-group-label-horizontal {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-
-            label {
-                padding-top: 8px;
-            }
-
-            input,
-            textarea {
-                width: 100%;
-            }
-
-            .b-form-group-label-wrap {
-                flex: 1;
-            }
-
-            .b-form-group-input-wrap {
-                flex: 4;
-            }
-
-            @media screen and (max-width: $tablet-min) {
-                display: block;
-            }
-        }
-    }
-</style>

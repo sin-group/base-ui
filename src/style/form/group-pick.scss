@@ -1,4 +1,4 @@
-@import '../variables.scss';
+@import "../variables.scss";
 
 .group-pick {
     display: flex;
@@ -32,24 +32,24 @@
         }
 
         &:hover {
-            color: $blue;
+            color: $primary;
         }
 
         &:active {
-            border-color: $blue;
+            border-color: $primary;
 
             & + * {
-                border-left-color: $blue;
+                border-left-color: $primary;
             }
         }
 
         &.active {
             color: $white;
-            background-color: $blue;
-            border-color: $blue;
+            background-color: $primary;
+            border-color: $primary;
 
             & + * {
-                border-left-color: $blue;
+                border-left-color: $primary;
             }
         }
 

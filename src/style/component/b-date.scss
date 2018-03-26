@@ -1,0 +1,15 @@
+.b-date {
+    display: inline-block;
+
+    .b-input {
+        input {
+            cursor: pointer;
+        }
+
+        &.disabled {
+            input {
+                cursor: not-allowed;
+            }
+        }
+    }
+}

@@ -269,18 +269,3 @@
     };
 
 </script>
-
-<style lang="scss" rel="stylesheet/scss" scoped>
-    .b-table {
-        .table-area {
-            overflow-x: auto;
-            overflow-y: hidden;
-        }
-
-        .foot-area {
-            .b-pagination {
-                padding: 10px;
-            }
-        }
-    }
-</style>

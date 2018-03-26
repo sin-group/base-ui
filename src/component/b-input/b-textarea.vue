@@ -149,24 +149,3 @@
 
     };
 </script>
-
-<style lang="scss" scoped>
-
-    .b-textarea {
-        position: relative;
-
-        textarea {
-            line-height: 22.5px;
-            overflow: auto;
-            background-color: transparent;
-        }
-
-        .b-input-shadow-textarea {
-            overflow: hidden;
-            position: absolute;
-            height: initial;
-            visibility: hidden;
-        }
-    }
-
-</style>

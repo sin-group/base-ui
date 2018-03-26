@@ -1,58 +1,64 @@
 // Color
-$white: #fff;
-$black: #000;
+$white: #fff !default;
+$black: #000 !default;
 
-$gray-lighter: #f3f3f3;
-$gray-light: #e0e0e0;
-$gray: #bdbdbd;
-$gray-dark: #616161;
-$gray-darker: #212121;
+$gray-lighter: #f3f3f3 !default;
+$gray-light: #e0e0e0 !default;
+$gray: #bdbdbd !default;
+$gray-dark: #616161 !default;
+$gray-darker: #212121 !default;
 
-$blue-lighter: #c5cae9;
-$blue-light: #9fa8da;
-$blue: #304ffe;
-$blue-dark: #3f51b5;
-$blue-darker: #3949ab;
+$blue-lighter: #c5cae9 !default;
+$blue-light: #9fa8da !default;
+$blue: #304ffe !default;
+$blue-dark: #3f51b5 !default;
+$blue-darker: #3949ab !default;
 
-$red-light: #ff1744;
-$red: #f5222d;
-$red-dark: #b71c1c;
+$red-light: #ff1744 !default;
+$red: #f5222d !default;
+$red-dark: #b71c1c !default;
 
-$green-light: #81c784;
-$green: #4caf50;
-$green-dark: #2e7d32;
+$green-light: #81c784 !default;
+$green: #4caf50 !default;
+$green-dark: #2e7d32 !default;
 
 // Dimension
 // Screen
-$large-desktop-min: 1400px;
-$desktop-min: 1200px;
-$small-desktop-min: 960px;
-$ultra-book-min: 700px;
-$tablet-min: 480px;
+$large-desktop-min: 1400px !default;
+$desktop-min: 1200px !default;
+$small-desktop-min: 960px !default;
+$ultra-book-min: 700px !default;
+$tablet-min: 480px !default;
 
 // Element
-$mat-height: 50px;
+$mat-height: 48px !default;
 
 // Font
-$heading1: 40px;
-$heading2: 30px;
-$heading3: 25px;
-$heading4: 20px;
-$heading5: 18px;
-$heading6: 16px;
+$heading1: 40px !default;
+$heading2: 30px !default;
+$heading3: 25px !default;
+$heading4: 20px !default;
+$heading5: 18px !default;
+$heading6: 16px !default;
 
 // Date Picker
-$date-picker-btn-width: 28px;
+$date-picker-btn-width: 28px !default;
 
 // Transition
-$all-transition: all .36s cubic-bezier(.78, .14, .15, .86);
-$z-index-toast: 9999;
-$z-index-dialog: 9998;
-$z-index-dialog-wrapper: 9997;
-$z-index-popper-in-dialog: 10000;
+$all-transition: all .36s cubic-bezier(.78, .14, .15, .86) !default;
+
+// Z-Index
+$z-index-dialog-wrapper: 9997 !default;
+$z-index-dialog: 9998 !default;
+$z-index-toast: 9999 !default;
+$z-index-popper-in-dialog: 10000 !default;
 
 // Theme
-$primary: #3f51b5;
+$primary-lighter: $blue-lighter !default;
+$primary-light: $blue-light !default;
+$primary: $blue !default;
+$primary-dark: $blue-dark !default;
+$primary-darker: $blue-darker !default;
 
 // Shadow
-$standard-box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+$standard-box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12) !default;

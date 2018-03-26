@@ -1,6 +1,8 @@
 <template>
-    <ul ref="list" class="b-select-menu" :style="{maxHeight: listHeight}">
-        <li v-for="(item, index) in menuList"
+    <ul ref="list" :style="{maxHeight: listHeight}" class="b-select-menu">
+        <li
+            v-for="(item, index) in menuList"
+            :key="index"
             :class="{'b-select-menu-selected': index === highlightIndex}"
             @click="handleChoose(item)">{{ map[item] }}</li>
 
@@ -13,12 +15,21 @@
     import keyCodeMap from '../../util/keyCodeMap';
 
     export default {
-        name: 'b-select-menu',
+        name: 'BSelectMenu',
 
         props: {
-            map: Object,
-            value: String,
-            searchText: String,
+            map: {
+                type: Object,
+                default: () => ({})
+            },
+            value: {
+                type: String,
+                default: ''
+            },
+            searchText: {
+                type: String,
+                default: ''
+            },
             itemHeight: {
                 type: Number,
                 default: 30
@@ -36,7 +47,7 @@
         data() {
             return {
                 highlightIndex: null
-            }
+            };
         },
 
         computed: {
@@ -45,22 +56,39 @@
                 const {map, searchText} = vm;
                 const searchTexter = new RegExp(searchText, 'i');
 
-                return Object.keys(map).filter(value => map[value].match(searchTexter))
+                return Object.keys(map).filter(value => map[value].match(searchTexter));
             },
             listHeight() {
                 const vm = this;
                 const {itemHeight, padding} = vm;
-                return vm.renderCount * itemHeight + padding + 'px';
+                return `${(vm.renderCount * itemHeight) + padding}px`;
             },
             reservedCount() {
                 const vm = this;
                 return Math.floor(vm.renderCount / 2);
             },
-            maxScrollTop () {
+            maxScrollTop() {
                 const vm = this;
                 const {renderCount, menuList, itemHeight, padding} = vm;
-                return (menuList.length - renderCount) * itemHeight + padding;
+                return ((menuList.length - renderCount) * itemHeight) + padding;
             }
+        },
+
+        watch: {
+            searchText(text) {
+                const vm = this;
+                const {menuList, map, value} = vm;
+                if (menuList.indexOf(map[text]) > -1) {
+                    vm.initHighlight(map[text]);
+                } else {
+                    vm.initHighlight(value);
+                }
+            }
+        },
+
+        mounted() {
+            const vm = this;
+            vm.initHighlight(vm.value);
         },
 
         methods: {
@@ -74,10 +102,10 @@
                 if (highlightIndex > -1) {
                     if (highlightIndex < reservedCount) {
                         initScrollTop = 0;
-                    } else if (highlightIndex > menuList.length - renderCount + reservedCount - 1) {
+                    } else if (highlightIndex > ((menuList.length - renderCount) + reservedCount) - 1) {
                         initScrollTop = vm.maxScrollTop;
                     } else {
-                        initScrollTop = (highlightIndex - reservedCount) * itemHeight + padding;
+                        initScrollTop = ((highlightIndex - reservedCount) * itemHeight) + padding;
                     }
                 }
 
@@ -85,16 +113,16 @@
 
                 vm.$nextTick(() => {
                     vm.$refs.list.scrollTop = initScrollTop;
-                })
+                });
             },
 
             changeHighlight(direction) {
                 const vm = this;
                 const {$refs: {list}, highlightIndex, itemHeight, menuList, renderCount, maxScrollTop} = vm;
 
-                const scrollTop = list.scrollTop;
+                const {scrollTop} = list;
                 const contentMin = Math.floor(scrollTop / itemHeight);
-                const contentMax = contentMin + renderCount - 1;
+                const contentMax = (contentMin + renderCount) - 1;
 
                 const isOutOfContent = Boolean(highlightIndex < contentMin || highlightIndex > contentMax);
                 let nextScrollTop = scrollTop;
@@ -108,7 +136,7 @@
                         nextScrollTop = nextHighlightIndex === 0 ? 0 : nextScrollTop;
                     }
                     if (isOutOfContent) {
-                        nextScrollTop = (nextHighlightIndex - renderCount + 1) * itemHeight;
+                        nextScrollTop = ((nextHighlightIndex - renderCount) + 1) * itemHeight;
                         nextScrollTop = nextScrollTop > maxScrollTop ? maxScrollTop : nextScrollTop;
                     }
                 }
@@ -118,7 +146,7 @@
 
                     if (highlightIndex === contentMax) {
                         nextScrollTop = scrollTop + itemHeight;
-                        nextScrollTop = nextHighlightIndex ===  menuList.length ? maxScrollTop : nextScrollTop;
+                        nextScrollTop = nextHighlightIndex === menuList.length ? maxScrollTop : nextScrollTop;
                     }
                     if (isOutOfContent) {
                         nextScrollTop = nextHighlightIndex * itemHeight;
@@ -129,11 +157,11 @@
                 vm.highlightIndex = nextHighlightIndex;
                 vm.$nextTick(() => {
                     vm.$refs.list.scrollTop = nextScrollTop;
-                })
+                });
             },
 
             handleChoose(value) {
-                this.$emit('choose', value)
+                this.$emit('choose', value);
             },
 
             handleKeyDown(keyCode) {
@@ -156,63 +184,12 @@
                         }
                         break;
                     }
-                }
-            }
-        },
-
-        mounted() {
-            const vm = this;
-            vm.initHighlight(vm.value);
-        },
-
-        watch: {
-            searchText(text) {
-                const vm = this;
-                const {menuList, map, value} = vm;
-                if (menuList.indexOf(map[text]) > -1) {
-                    vm.initHighlight(map[text])
-                } else {
-                    vm.initHighlight(value)
+                    default: {
+                        break;
+                    }
                 }
             }
         }
-    }
+    };
 
 </script>
-
-<style lang="scss" rel="stylesheet/scss">
-    @import '../../style/variables.scss';
-
-    .b-select-menu {
-        padding: 10px 0;
-        background-color: $white;
-        border-radius: 3px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2);
-        box-sizing: border-box;
-        overflow-y: auto;
-
-        li {
-            display: flex;
-            align-items: center;
-            box-sizing: border-box;
-            height: 30px;
-            min-width: 256px;
-            background-color: $white;
-            padding: 0 10px;
-            cursor: pointer;
-
-            &:hover {
-                 background-color: $blue-light;
-            }
-
-            &.b-select-menu-selected {
-                background-color: $blue-lighter;
-            }
-        }
-
-        .empty-list-item {
-            justify-content: center;
-            color: #666;
-        }
-    }
-</style>

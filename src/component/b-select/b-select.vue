@@ -145,23 +145,3 @@
     };
 
 </script>
-
-<style lang="scss" rel="stylesheet/scss">
-
-    .b-select {
-        .b-input {
-            input {
-                cursor: pointer;
-            }
-        }
-
-        &:disabled {
-            .b-input {
-                input {
-                    cursor: not-allowed;
-                }
-            }
-        }
-    }
-
-</style>

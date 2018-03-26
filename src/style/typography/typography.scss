@@ -1,4 +1,4 @@
-@import '../variables.scss';
+@import "../variables.scss";
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
@@ -16,7 +16,7 @@ h6 {
     font-family: inherit;
     line-height: 1.5em;
     font-weight: 500;
-    margin-bottom: 0.7em;
+    margin-bottom: .7em;
     margin-top: 1em;
     color: $gray-darker;
 }
@@ -48,7 +48,7 @@ h6 {
 a,
 a:visited {
     text-decoration: none;
-    color: $blue-darker;
+    color: $primary-darker;
 }
 
 hr {
@@ -56,14 +56,14 @@ hr {
 }
 
 p {
-    margin-top: 0.7em;
+    margin-top: .7em;
     margin-bottom: 1.2em;
     line-height: 1.5em;
 }
 
 pre,
 code {
-    font-family: 'Latin Modern Mono Light', 'Latin Modern Mono', monospace !important;
+    font-family: "Latin Modern Mono Light", "Latin Modern Mono", monospace !important;
 }
 
 pre {

@@ -15,19 +15,20 @@
         </div>
 
         <div class="date-day-type-wrap">
-            <span class="date-day-type" v-for="dayType in DayTypeList">{{ dayType }}</span>
+            <span v-for="(dayType, index) in DayTypeList" :key="index" class="date-day-type">{{ dayType }}</span>
         </div>
 
         <div class="date-row-wrap">
-            <div class="date-row" v-for="dateRow in dateRowList">
-                <span class="date-btn-wrap" v-for="dateItem in dateRow">
-                    <button class="date-btn"
-                            :class="{
-                                'view-month': dateItem.viewMonthFlag,
-                                'selected-date': dateItem.selectedDateFlag,
-                                'current-date': dateItem.currentDateFlag
-                            }"
-                            @click="choose(dateItem)">{{ dateItem.date }}</button>
+            <div v-for="(dateRow, rowIndex) in dateRowList" :key="rowIndex" class="date-row">
+                <span v-for="(dateItem, itemIndex) in dateRow" :key="itemIndex" class="date-btn-wrap">
+                    <button
+                        :class="{
+                            'view-month': dateItem.viewMonthFlag,
+                            'selected-date': dateItem.selectedDateFlag,
+                            'current-date': dateItem.currentDateFlag
+                        }"
+                        class="date-btn"
+                        @click="choose(dateItem)">{{ dateItem.date }}</button>
                 </span>
             </div>
         </div>
@@ -51,7 +52,7 @@
     };
 
     export default {
-        name: 'b-date-picker',
+        name: 'BDatePicker',
 
         model: {
             prop: 'timeStamp',
@@ -59,7 +60,10 @@
         },
 
         props: {
-            timeStamp: {}
+            timeStamp: {
+                type: Number,
+                default: Date.now()
+            }
         },
 
         data() {
@@ -103,15 +107,19 @@
 
                 return [...Array(MonthDatesNum).keys()]
                     .map((i) => { // get a panel date object array
-                        const timeStamp = firstDateTime + i * DailyMillisecond;
+                        const timeStamp = firstDateTime + (i * DailyMillisecond);
                         const {
                             year,
                             month,
                             date,
                             day
                         } = getTimeDigitalComponent(timeStamp);
+
                         const viewMonthFlag = month === viewMonth;
-                        const selectedDateFlag = year === selectedYear && month === selectedMonth && date === selectedDate;
+                        const selectedDateFlag
+                                = year === selectedYear
+                                && month === selectedMonth
+                                && date === selectedDate;
                         const currentDateFlag = year === curYear && month === curMonth && date === curDate;
 
                         return {
@@ -145,21 +153,21 @@
 
                 if (jumpType === JumpMonthType.PREVIOUS) {
                     if (viewMonth !== 1) {
-                        vm.viewMonth--;
+                        vm.viewMonth -= 1;
                         return;
                     }
 
-                    vm.viewYear--;
+                    vm.viewYear -= 1;
                     vm.viewMonth = 12;
                 }
 
                 if (jumpType === JumpMonthType.NEXT) {
                     if (viewMonth !== 12) {
-                        vm.viewMonth++;
+                        vm.viewMonth += 1;
                         return;
                     }
 
-                    vm.viewYear++;
+                    vm.viewYear += 1;
                     vm.viewMonth = 1;
                 }
             },
@@ -171,123 +179,3 @@
     };
 
 </script>
-
-<style lang="scss" rel="stylesheet/scss" scoped>
-    @import '../../style/variables.scss';
-    @import '../../style/mixin/arrow.scss';
-
-    .b-date-picker {
-        width: 256px;
-        box-sizing: border-box;
-        padding: 15px;
-        background-color: $white;
-        border-radius: 3px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2);
-        overflow-y: auto;
-
-        .date-title {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 5px;
-            padding: 0 10px;
-            text-align: center;
-            color: $blue-dark;
-
-            .month-btn-wrap {
-                position: relative;
-                box-sizing: border-box;
-                top: -5px;
-                width: 25px;
-                height: 25px;
-                padding: 10px;
-                border-radius: 50%;
-                cursor: pointer;
-                transition: .3s;
-
-                &:hover {
-                    background-color: $blue-light;
-
-                    .previous-month-btn {
-                        @include genArrow('left', 4px, $white);
-                    }
-
-                    .next-month-btn {
-                        @include genArrow('right', 4px, $white);
-                    }
-
-                }
-            }
-
-            .previous-month-btn,
-            .next-month-btn {
-                position: relative;
-                top: -1px;
-            }
-
-            .previous-month-btn {
-                left: -1px;
-                @include genArrow('left', 4px, $blue);
-            }
-
-            .next-month-btn {
-                left: 1px;
-                @include genArrow('right', 4px, $blue);
-            }
-
-        }
-
-        .date-day-type,
-        .date-btn-wrap {
-            display: inline-block;
-            width: 32px;
-            height: 20px;
-            line-height: 20px;
-            text-align: center;
-        }
-
-        .date-day-type {
-            font-size: 13px;
-            color: $gray;
-        }
-
-        .date-row-wrap {
-            margin-top: 10px;
-
-            .date-row {
-                margin-bottom: 8px;
-
-                .date-btn-wrap {
-                    .date-btn {
-                        height: $date-picker-btn-width;
-                        width: $date-picker-btn-width;
-                        padding: 0;
-                        line-height: $date-picker-btn-width;
-                        border: none;
-                        border-radius: 50%;
-                        color: $gray;
-                        background-color: transparent;
-
-                        &.view-month {
-                            color: $gray-darker;
-                        }
-
-                        &.current-date {
-                            color: $blue;
-                        }
-
-                        &.selected-date {
-                            color: $white;
-                            background-color: $blue;
-                        }
-
-                        &:hover {
-                            color: $white;
-                            background-color: $blue-light;
-                        }
-
-                    }
-                }
-            }
-        }
-    }
-</style>

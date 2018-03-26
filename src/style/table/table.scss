@@ -44,7 +44,7 @@
                         @include genArrow("right", 6px, $gray);
 
                         &-up {
-                            @include genArrow("up", 6px, $blue);
+                            @include genArrow("up", 6px, $primary);
 
                             position: relative;
                             top: -3px;
@@ -52,7 +52,7 @@
                         }
 
                         &-down {
-                            @include genArrow("down", 6px, $blue);
+                            @include genArrow("down", 6px, $primary);
 
                             position: relative;
                             top: 3px;

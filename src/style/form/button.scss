@@ -7,19 +7,19 @@ button {
     color: $white;
     text-align: center;
     cursor: pointer;
-    background-color: $blue-dark;
-    border: 1px solid $blue-dark;
+    background-color: $primary-dark;
+    border: 1px solid $primary-dark;
     border-radius: 3px;
     outline: none;
     box-shadow: none;
     transition: background-color .3s;
 
     &:hover {
-        background-color: $blue;
+        background-color: $primary;
     }
 
     &:active {
-        background-color: $blue-dark;
+        background-color: $primary-dark;
     }
 
     &.normal {
@@ -28,13 +28,13 @@ button {
         border-color: $gray;
 
         &:hover {
-            color: $blue;
+            color: $primary;
             border-color: $gray;
         }
 
         &:active {
-            color: $blue;
-            border-color: $blue;
+            color: $primary;
+            border-color: $primary;
         }
     }
 
@@ -64,7 +64,7 @@ button {
     }
 
     &.simple {
-        color: $blue;
+        color: $primary;
         background-color: $white;
         border: none;
 

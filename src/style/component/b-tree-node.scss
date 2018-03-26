@@ -1,0 +1,60 @@
+.leaf {
+    position: relative;
+
+    &:before {
+        position: absolute;
+        content: "";
+        left: -20px;
+        top: 20px;
+        width: 25px;
+        border-top: 1px dotted black;
+    }
+
+    &:after {
+        position: absolute;
+        content: "";
+        height: 100%;
+        top: -15px;
+        left: -20px;
+        border-left: 1px dotted black;
+    }
+}
+
+.is-last-child {
+    &:after {
+        height: 35px;
+    }
+}
+
+.b-tree-node {
+    .node-el {
+        padding: 4px 0;
+        display: flex;
+        align-items: center;
+
+        .content-wrap {
+            margin: 0;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .change-fold {
+            cursor: pointer;
+
+            .b-icon-right:before {
+                position: relative;
+                bottom: -3px;
+                font-weight: 800;
+            }
+
+            &.is-unfold {
+                transform: rotate(90deg);
+
+                .b-icon-right:before {
+                    bottom: 2px;
+                    left: 3px;
+                }
+            }
+        }
+    }
+}

@@ -21,11 +21,11 @@ input {
         transition: .3s;
 
         &:active {
-            border-color: $blue-light;
+            border-color: $primary-light;
         }
 
         &:focus {
-            border-color: $blue;
+            border-color: $primary;
         }
 
         &:disabled {

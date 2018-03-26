@@ -3,7 +3,7 @@
         <li v-for="(item, index) in data" :key="index" class="tree-node">
             <b-tree-node :node="item" :parent="parent">
                 <template slot="content">
-                    <slot :node="item" :parent="parent"/>
+                    <slot :node="item" :parent="parent"></slot>
                 </template>
 
                 <renderChildTree slot="children" :parent="item" :data="item.children" :scoped-slots="$scopedSlots"/>
@@ -58,15 +58,3 @@
     };
 
 </script>
-
-<style lang="scss" scoped>
-
-    .b-tree {
-        margin-left: 30px;
-
-        &.root {
-            margin-left: 0;
-        }
-    }
-
-</style>

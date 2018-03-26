@@ -1,0 +1,39 @@
+@import "../../style/variables.scss";
+
+.b-form-group {
+    &.b-form-group-block {
+        display: block;
+
+        input,
+        textarea {
+            width: 100%;
+        }
+    }
+
+    &.b-form-group-label-horizontal {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        label {
+            padding-top: 8px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+        }
+
+        .b-form-group-label-wrap {
+            flex: 1;
+        }
+
+        .b-form-group-input-wrap {
+            flex: 4;
+        }
+
+        @media screen and (max-width: $tablet-min) {
+            display: block;
+        }
+    }
+}

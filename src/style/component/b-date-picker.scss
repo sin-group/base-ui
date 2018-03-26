@@ -1,0 +1,116 @@
+@import "../../style/variables.scss";
+@import "../../style/mixin/arrow.scss";
+
+.b-date-picker {
+    width: 256px;
+    box-sizing: border-box;
+    padding: 15px;
+    background-color: $white;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2);
+    overflow-y: auto;
+
+    .date-title {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 5px;
+        padding: 0 10px;
+        text-align: center;
+        color: $primary-dark;
+
+        .month-btn-wrap {
+            position: relative;
+            box-sizing: border-box;
+            top: -5px;
+            width: 25px;
+            height: 25px;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: .3s;
+
+            &:hover {
+                background-color: $primary-light;
+
+                .previous-month-btn {
+                    @include genArrow("left", 4px, $white);
+                }
+
+                .next-month-btn {
+                    @include genArrow("right", 4px, $white);
+                }
+            }
+        }
+
+        .previous-month-btn,
+        .next-month-btn {
+            position: relative;
+            top: -1px;
+        }
+
+        .previous-month-btn {
+            left: -1px;
+
+            @include genArrow("left", 4px, $primary);
+        }
+
+        .next-month-btn {
+            left: 1px;
+
+            @include genArrow("right", 4px, $primary);
+        }
+    }
+
+    .date-day-type,
+    .date-btn-wrap {
+        display: inline-block;
+        width: 32px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+    }
+
+    .date-day-type {
+        font-size: 13px;
+        color: $gray;
+    }
+
+    .date-row-wrap {
+        margin-top: 10px;
+
+        .date-row {
+            margin-bottom: 8px;
+
+            .date-btn-wrap {
+                .date-btn {
+                    height: $date-picker-btn-width;
+                    width: $date-picker-btn-width;
+                    padding: 0;
+                    line-height: $date-picker-btn-width;
+                    border: none;
+                    border-radius: 50%;
+                    color: $gray;
+                    background-color: transparent;
+
+                    &.view-month {
+                        color: $gray-darker;
+                    }
+
+                    &.current-date {
+                        color: $primary;
+                    }
+
+                    &.selected-date {
+                        color: $white;
+                        background-color: $primary;
+                    }
+
+                    &:hover {
+                        color: $white;
+                        background-color: $primary-light;
+                    }
+                }
+            }
+        }
+    }
+}

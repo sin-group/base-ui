@@ -1,0 +1,34 @@
+@import "../../style/variables.scss";
+
+.b-select-menu {
+    padding: 10px 0;
+    background-color: $white;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2);
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    li {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        height: 30px;
+        min-width: 256px;
+        background-color: $white;
+        padding: 0 10px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $primary-light;
+        }
+
+        &.b-select-menu-selected {
+            background-color: $primary-lighter;
+        }
+    }
+
+    .empty-list-item {
+        justify-content: center;
+        color: #666;
+    }
+}

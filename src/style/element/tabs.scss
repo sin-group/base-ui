@@ -1,4 +1,4 @@
-@import '../variables.scss';
+@import "../variables.scss";
 $default-color: $gray-dark !default;
 
 .tabs-light,
@@ -25,8 +25,8 @@ $default-color: $gray-dark !default;
         }
 
         &:active {
-            color: $blue;
-            border-bottom-color: $blue;
+            color: $primary;
+            border-bottom-color: $primary;
         }
     }
 
@@ -34,8 +34,8 @@ $default-color: $gray-dark !default;
         display: block;
 
         &.active a {
-            color: $blue;
-            border-bottom-color: $blue;
+            color: $primary;
+            border-bottom-color: $primary;
         }
     }
 
@@ -62,16 +62,16 @@ $default-color: $gray-dark !default;
 
     li.active {
         a {
-            border: 1px solid $blue;
+            border: 1px solid $primary;
             border-bottom: none;
 
             &:hover {
                 color: $white;
-                background-color: $blue;
+                background-color: $primary;
             }
 
             &:active {
-                background-color: $blue-dark;
+                background-color: $primary-dark;
             }
         }
     }

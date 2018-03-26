@@ -1,7 +1,7 @@
 <template>
     <div class="b-input">
         <div v-if="$slots.left">
-            <slot name="left"/>
+            <slot name="left"></slot>
         </div>
 
         <div class="content">
@@ -42,7 +42,7 @@
         </div>
 
         <div v-if="$slots.right">
-            <slot name="right"/>
+            <slot name="right"></slot>
         </div>
     </div>
 </template>
@@ -169,24 +169,3 @@ export default {
 };
 
 </script>
-
-<style lang="scss">
-
-    .b-input {
-        display: inline-flex;
-        align-items: center;
-        justify-content: space-between;
-
-        .content {
-            flex: 1;
-        }
-    }
-
-    .form-block,
-    .form-block-horizontal {
-        .b-input {
-            display: flex;
-        }
-    }
-
-</style>
