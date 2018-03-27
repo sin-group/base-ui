@@ -2,21 +2,21 @@
     <div
         :class="{
             'leaf': parent,
-            'is-last-child': isLastChild
-        }"
+            'siblings-has-children': !siblingsNotHasChildren,
+            'has-children': hasChildren,
+            'is-last-child': isLastChild}"
         class="b-tree-node">
-        <div class="node-el">
-            <span
-                v-if="node.children.length > 0"
-                :class="{'is-unfold': !isFold}"
-                class="change-fold"
-                @click="changeFold">
-                <i class="b-icon-right"></i>
-            </span>
+        <span
+            v-if="hasChildren"
+            class="change-fold"
+            @click="changeFold">
+            <i :class="{'is-unfold': !isFold}" class="b-icon-arrow-right"></i>
+        </span>
 
-            <div class="content-wrap">
-                <slot name="content"></slot>
-            </div>
+        <div
+            :class="{'siblings-not-has-children': siblingsNotHasChildren}"
+            class="node-el">
+            <slot name="content"></slot>
         </div>
 
         <div v-if="!isFold" class="child-tree-wrap">
@@ -54,6 +54,19 @@
                 const {parent, node} = vm;
 
                 return parent && parent.children[parent.children.length - 1] === node;
+            },
+
+            hasChildren() {
+                const vm = this;
+
+                return vm.node.children.length > 0;
+            },
+
+            siblingsNotHasChildren() {
+                const vm = this;
+                const {parent} = vm;
+
+                return parent && parent.children.every(node => node.children.length === 0);
             }
         },
 

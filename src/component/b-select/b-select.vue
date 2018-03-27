@@ -7,7 +7,12 @@
             type="text"
             @input="input"
             @focus="openMenu"
-            @keydown="handleKeyDown"/>
+            @keydown="handleKeyDown">
+            <i
+                slot="right"
+                :class="{'b-select-icon-active': visible}"
+                class="b-select-icon b-icon-arrow-bottom"></i>
+        </b-input>
 
         <b-popper
             v-b-click-outside="closeMenu"

@@ -5,7 +5,12 @@
             :value="displayTime"
             :disabled="disabled"
             type="text"
-            @focus="openDatePicker"/>
+            @focus="openDatePicker">
+            <i
+                slot="right"
+                :class="{'b-date-icon-active': visible}"
+                class="b-date-icon b-icon-arrow-bottom"></i>
+        </b-input>
 
         <b-popper
             v-b-click-outside="closeDatePicker"

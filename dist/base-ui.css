@@ -876,10 +876,20 @@ form .btn-group {
 
 .b-date {
   display: inline-block; }
-  .b-date .b-input input {
-    cursor: pointer; }
-  .b-date .b-input.disabled input {
-    cursor: not-allowed; }
+  .b-date .b-input {
+    position: relative; }
+    .b-date .b-input input {
+      padding-right: 15px;
+      cursor: pointer; }
+    .b-date .b-input .b-date-icon {
+      position: absolute;
+      right: 0;
+      bottom: 8px;
+      color: #616161; }
+      .b-date .b-input .b-date-icon.b-date-icon-active {
+        color: #304ffe; }
+    .b-date .b-input.disabled input {
+      cursor: not-allowed; }
 
 .b-date-picker {
   width: 256px;
@@ -1128,8 +1138,18 @@ form .btn-group {
       font-size: 11px;
       text-align: center; }
 
-.b-select .b-input input {
-  cursor: pointer; }
+.b-select .b-input {
+  position: relative; }
+  .b-select .b-input input {
+    padding-right: 15px;
+    cursor: pointer; }
+  .b-select .b-input .b-select-icon {
+    position: absolute;
+    right: 0;
+    bottom: 8px;
+    color: #616161; }
+    .b-select .b-input .b-select-icon.b-select-icon-active {
+      color: #304ffe; }
 
 .b-select:disabled .b-input input {
   cursor: not-allowed; }
@@ -1225,8 +1245,10 @@ form .btn-group {
   .b-tree.root {
     margin-left: 0; }
 
-.b-tree-node.leaf {
+.b-tree-node {
   position: relative; }
+  .b-tree-node.leaf.siblings-has-children:before {
+    width: 55px; }
   .b-tree-node.leaf:before {
     position: absolute;
     content: "";
@@ -1238,34 +1260,42 @@ form .btn-group {
     position: absolute;
     content: "";
     height: 100%;
-    top: -20px;
+    top: -12px;
     left: -40px;
     border-left: 1px solid #e0e0e0; }
-
-.b-tree-node.is-last-child:after {
-  height: 45px; }
-
-.b-tree-node .node-el {
-  display: flex;
-  align-items: center; }
-  .b-tree-node .node-el .change-fold {
-    position: relative;
-    cursor: pointer; }
-    .b-tree-node .node-el .change-fold .b-icon-right:before {
-      position: relative;
-      font-weight: 800;
-      transform-origin: center center;
-      left: -8px;
-      top: 2px; }
-    .b-tree-node .node-el .change-fold.is-unfold {
+  .b-tree-node.leaf.has-children:before {
+    width: 32px; }
+  .b-tree-node.is-last-child:after {
+    height: 38px; }
+  .b-tree-node .change-fold {
+    position: absolute;
+    cursor: pointer;
+    top: 15px;
+    left: -8px;
+    width: 18px;
+    height: 18px;
+    border-radius: 3px; }
+    .b-tree-node .change-fold i {
+      color: #616161;
+      font-size: 18px; }
+    .b-tree-node .change-fold:hover {
+      background-color: #e0e0e0; }
+      .b-tree-node .change-fold:hover i {
+        color: #304ffe; }
+    .b-tree-node .change-fold .b-icon-arrow-right:before {
+      position: absolute;
+      transform-origin: center center; }
+    .b-tree-node .change-fold .is-unfold:before {
       transform: rotate(90deg); }
-      .b-tree-node .node-el .change-fold.is-unfold .b-icon-right:before {
-        left: -2px;
-        top: 8px; }
-  .b-tree-node .node-el .content-wrap {
+  .b-tree-node .node-el {
+    display: flex;
+    align-items: center;
     margin: 0;
     height: 45px;
-    line-height: 45px; }
+    line-height: 45px;
+    padding-left: 15px; }
+    .b-tree-node .node-el.siblings-not-has-children {
+      padding-left: 0; }
 
 .b-toast {
   position: fixed;
@@ -1368,14 +1398,17 @@ form .btn-group {
 .b-icon-phone:before {
   content: "\e66f"; }
 
+.b-icon-arrow-bottom:before {
+  content: "\e6a2"; }
+
 .b-icon-underline:before {
   content: "\e734"; }
 
-.b-icon-setting:before {
-  content: "\e608"; }
-
 .b-icon-equation:before {
   content: "\e810"; }
+
+.b-icon-setting:before {
+  content: "\e608"; }
 
 .b-icon-more:before {
   content: "\e60b"; }
@@ -1391,6 +1424,9 @@ form .btn-group {
 
 .b-icon-language:before {
   content: "\e756"; }
+
+.b-icon-ban:before {
+  content: "\e6ad"; }
 
 .b-icon-camera:before {
   content: "\e6b3"; }
@@ -1466,3 +1502,12 @@ form .btn-group {
 
 .b-icon-right:before {
   content: "\e6e7"; }
+
+.b-icon-arrow-right:before {
+  content: "\eaa8"; }
+
+.b-icon-arrow-top:before {
+  content: "\eaa9"; }
+
+.b-icon-arrow-left:before {
+  content: "\eaaa"; }
