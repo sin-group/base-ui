@@ -118,47 +118,6 @@ pre[class*="language-"]::-moz-selection {
 .token.entity {
   cursor: help; }
 
-.b-toast {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  padding: 10px 20px;
-  max-width: 568px;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  line-height: 1.2em;
-  text-align: center;
-  border-radius: 4px;
-  background-color: rgba(97, 97, 97, 0.9);
-  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
-  color: white; }
-
-.SUCCESS {
-  background-color: rgba(76, 175, 80, 0.9); }
-
-.ERROR {
-  background-color: rgba(255, 23, 68, 0.9); }
-
-.b-toast-fade-enter-active,
-.b-toast-fade-leave-active {
-  transition: opacity 0.36s cubic-bezier(0.78, 0.14, 0.15, 0.86); }
-
-.b-toast-fade-enter,
-.b-toast-fade-leave-to {
-  opacity: 0; }
-
-@media only screen and (min-width: 500px) {
-  .b-toast {
-    position: fixed;
-    top: 5vh;
-    right: 3vw;
-    left: auto;
-    bottom: auto;
-    transform: none;
-    min-width: 10vw;
-    max-width: 20vw;
-    text-align: center; } }
-
 /**
  * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
  * http://cssreset.com
@@ -1283,6 +1242,47 @@ form .btn-group {
       .b-tree-node .node-el .change-fold.is-unfold .b-icon-right:before {
         bottom: 2px;
         left: 3px; }
+
+.b-toast {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  padding: 10px 20px;
+  max-width: 568px;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  line-height: 1.2em;
+  text-align: center;
+  border-radius: 4px;
+  background-color: rgba(97, 97, 97, 0.9);
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  color: white; }
+
+.SUCCESS {
+  background-color: rgba(76, 175, 80, 0.9); }
+
+.ERROR {
+  background-color: rgba(255, 23, 68, 0.9); }
+
+.b-toast-fade-enter-active,
+.b-toast-fade-leave-active {
+  transition: opacity 0.36s cubic-bezier(0.78, 0.14, 0.15, 0.86); }
+
+.b-toast-fade-enter,
+.b-toast-fade-leave-to {
+  opacity: 0; }
+
+@media only screen and (min-width: 500px) {
+  .b-toast {
+    position: fixed;
+    top: 5vh;
+    right: 3vw;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    min-width: 10vw;
+    max-width: 20vw;
+    text-align: center; } }
 
 @font-face {
   font-family: "base-ui-font";
