@@ -78,6 +78,11 @@
         NORMAL: 'normal',
         SMALL: 'sm'
     };
+    const genPaginationWithOffset = ({pageNo, pageSize}) => ({
+        pageNo,
+        pageSize,
+        offset: (pageNo - 1) * pageSize
+    });
 
     export default {
         name: 'BPagination',
@@ -206,7 +211,7 @@
                 if (pageNo <= 1) return;
 
                 vm.innerPagination.pageNo -= 1;
-                vm.$emit(EventTypes.ON_CHANGE, vm.innerPagination);
+                vm.$emit(EventTypes.ON_CHANGE, genPaginationWithOffset(vm.innerPagination));
             },
 
             next() {
@@ -216,7 +221,7 @@
                 if (pageNo >= totalPageNo) return;
 
                 vm.innerPagination.pageNo += 1;
-                vm.$emit(EventTypes.ON_CHANGE, vm.innerPagination);
+                vm.$emit(EventTypes.ON_CHANGE, genPaginationWithOffset(vm.innerPagination));
             },
 
             onPageSizeChange(pageSize) {
@@ -225,7 +230,7 @@
 
                 vm.innerPagination.pageSize = +pageSize;
                 vm.innerPagination.pageNo = 1; // When pageSize change, reset pageNo
-                vm.$emit(EventTypes.ON_CHANGE, vm.innerPagination);
+                vm.$emit(EventTypes.ON_CHANGE, genPaginationWithOffset(vm.innerPagination));
             },
 
             changePageNo(targetPageNo, type) {

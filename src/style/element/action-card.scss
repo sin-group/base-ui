@@ -52,8 +52,12 @@
             transition: .2s;
 
             &:hover {
-                color: black;
+                color: $black;
                 background-color: #dedede;
+
+                i {
+                    color: $primary;
+                }
             }
 
             &:active {

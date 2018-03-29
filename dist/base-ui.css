@@ -358,8 +358,10 @@ blockquote {
       color: #666;
       transition: .2s; }
       .action-card .action-group .action-bar:hover {
-        color: black;
+        color: #000;
         background-color: #dedede; }
+        .action-card .action-group .action-bar:hover i {
+          color: #304ffe; }
       .action-card .action-group .action-bar:active {
         background-color: #ccc; }
       .action-card .action-group .action-bar i {
