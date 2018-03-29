@@ -1,7 +1,7 @@
 <template>
     <div
         :class="{
-            'leaf': parent,
+            'leaf': node.$$parent,
             'siblings-has-children': !siblingsNotHasChildren,
             'has-children': hasChildren,
             'is-last-child': isLastChild}"
@@ -36,9 +36,9 @@
                 required: true
             },
 
-            parent: {
+            options: {
                 type: Object,
-                default: null
+                default: () => {}
             }
         },
 
@@ -51,9 +51,9 @@
         computed: {
             isLastChild() {
                 const vm = this;
-                const {parent, node} = vm;
+                const {node: {$$parent}, node} = vm;
 
-                return parent && parent.children[parent.children.length - 1] === node;
+                return $$parent && $$parent.children[$$parent.children.length - 1] === node;
             },
 
             hasChildren() {
@@ -64,15 +64,19 @@
 
             siblingsNotHasChildren() {
                 const vm = this;
-                const {parent} = vm;
+                const {$$parent} = vm;
 
-                return parent && parent.children.every(node => node.children.length === 0);
+                return $$parent && $$parent.children.every(node => node.children.length === 0);
             }
         },
 
         created() {
             const vm = this;
-            vm.node.parent = vm.parent;
+            const {node, options: {foldDeep}} = vm;
+
+            if (foldDeep) {
+                vm.isFold = Boolean(node.$$deep >= foldDeep);
+            }
         },
 
         methods: {

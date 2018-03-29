@@ -15,6 +15,18 @@ export default {
 
             toolTipEle.classList.add('b-tooltip');
 
+            toolTipEle.addEventListener('mouseover', () => {
+                Object.assign(toolTipEle.style, {
+                    display: 'block'
+                });
+            });
+
+            toolTipEle.addEventListener('mouseout', () => {
+                Object.assign(toolTipEle.style, {
+                    display: 'none'
+                });
+            });
+
             document.body.appendChild(toolTipEle);
         }
     },

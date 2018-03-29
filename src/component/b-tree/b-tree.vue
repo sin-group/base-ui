@@ -1,12 +1,16 @@
 <template>
-    <ul :class="{'root': !parent}" class="b-tree">
-        <li v-for="(item, index) in data" :key="index" class="tree-node">
-            <b-tree-node :node="item" :parent="parent">
+    <ul :class="{'root': isRoot}" class="b-tree">
+        <li v-for="(item, index) in renderData" :key="index" class="tree-node">
+            <b-tree-node :node="item" :options="options">
                 <template slot="content">
-                    <slot :node="item" :parent="parent"></slot>
+                    <slot :node="item" :parent="item.$$parent"></slot>
                 </template>
 
-                <renderChildTree slot="children" :parent="item" :data="item.children" :scoped-slots="$scopedSlots"/>
+                <renderChildTree
+                    slot="children"
+                    :scoped-slots="$scopedSlots"
+                    :data="item.children"
+                    :options="options"/>
             </b-tree-node>
         </li>
     </ul>
@@ -18,18 +22,18 @@
 
     const renderChildTree = {
         props: {
-            parent: Object,
             data: Array,
+            options: Object,
             scopedSlots: Object
         },
 
         render(createEle) {
-            const {parent, data, scopedSlots} = this;
+            const {data, options, scopedSlots} = this;
 
             return createEle('b-tree', {
                 props: {
-                    parent,
-                    data
+                    data,
+                    options
                 },
                 scopedSlots
             });
@@ -50,9 +54,39 @@
                 default: () => []
             },
 
-            parent: {
+            options: {
                 type: Object,
-                default: null
+                default: () => ({
+                    foldDeep: null
+                })
+            }
+        },
+
+        computed: {
+            isRoot() {
+                const vm = this;
+
+                return vm.data.every(node => !node.$$parent);
+            },
+
+            renderData() {
+                const vm = this;
+                const {isRoot, data = []} = vm;
+
+                if (isRoot) {
+                    const rec = (node, deep, parent) => {
+                        vm.$set(node, '$$deep', deep);
+                        vm.$set(node, '$$parent', parent);
+
+                        if (node.children.length === 0) return;
+
+                        node.children.forEach(child => rec(child, deep + 1, node));
+                    };
+
+                    data.forEach(node => rec(node, 1, null));
+                }
+
+                return data;
             }
         }
     };
