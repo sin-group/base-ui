@@ -6,12 +6,21 @@
 
 const DatePresentationReg = /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).(\d{3})/;
 const DateFormat = 'YYYY-MM-DD';
+const DateMinuteFormat = 'YYYY-MM-DD HH:mm';
 const DateTimeFormat = 'YYYY-MM-DD HH:mm:ss';
 const MillisecondInMinute = 60 * 1e3;
 export const DailyMillisecond = 24 * 60 * MillisecondInMinute;
 
-export const getTimeComponent = (timeStamp) => {
-    if (typeof timeStamp !== typeof 0) return {};
+const getTimestamp = (time) => {
+    if (typeof time === typeof 0) return time;
+
+    return (new Date(time)).getTime();
+};
+
+export const getTimeComponent = (time) => {
+    const timeStamp = getTimestamp(time);
+
+    if (Number.isNaN(timeStamp)) return {};
 
     const offset = (new Date()).getTimezoneOffset() * MillisecondInMinute;
     const day = (new Date(timeStamp - offset)).getDay();
@@ -76,14 +85,23 @@ export const genDateStringWithFormat = (timeStamp, format) => {
         .replace(/SSS/g, () => millisecond); // TODO: 增加 format 支持
 };
 
-export const getDate = (timeStamp) => {
-    if (typeof timeStamp !== typeof 0) return timeStamp;
+export const getDate = (time) => {
+    const timeStamp = getTimestamp(time);
+    if (Number.isNaN(timeStamp)) return time;
 
     return genDateStringWithFormat(timeStamp, DateFormat);
 };
 
-export const getDateTime = (timeStamp) => {
-    if (typeof timeStamp !== typeof 0) return timeStamp;
+export const getDateMinute = (time) => {
+    const timeStamp = getTimestamp(time);
+    if (Number.isNaN(timeStamp)) return time;
+
+    return genDateStringWithFormat(timeStamp, DateMinuteFormat);
+};
+
+export const getDateTime = (time) => {
+    const timeStamp = getTimestamp(time);
+    if (Number.isNaN(timeStamp)) return time;
 
     return genDateStringWithFormat(timeStamp, DateTimeFormat);
 };

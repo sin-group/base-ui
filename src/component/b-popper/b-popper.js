@@ -29,7 +29,7 @@ export default {
                     display: 'inline-block',
                     position: 'absolute',
                     top: 0,
-                    zIndex: isInBDialog ? Z_INDEX_POPPER_IN_DIALOG : 'auto'
+                    zIndex: isInBDialog ? Z_INDEX_POPPER_IN_DIALOG : 10
                 }
             },
             $slots.default

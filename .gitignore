@@ -2,6 +2,9 @@
 .idea
 *.iml
 
+# VS Code
+.vscode
+
 # OS X
 .DS_Store*
 ._*
