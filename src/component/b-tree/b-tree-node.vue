@@ -42,12 +42,6 @@
             }
         },
 
-        data() {
-            return {
-                isFold: false
-            };
-        },
-
         computed: {
             isLastChild() {
                 const vm = this;
@@ -67,22 +61,19 @@
                 const {$$parent} = vm;
 
                 return $$parent && $$parent.children.every(node => node.children.length === 0);
-            }
-        },
+            },
 
-        created() {
-            const vm = this;
-            const {node, options: {foldDeep}} = vm;
+            isFold() {
+                const vm = this;
 
-            if (foldDeep) {
-                vm.isFold = Boolean(node.$$deep >= foldDeep);
+                return vm.node.$$isFold;
             }
         },
 
         methods: {
             changeFold() {
                 const vm = this;
-                vm.isFold = !vm.isFold;
+                vm.node.$$isFold = !vm.node.$$isFold;
             }
         }
     };

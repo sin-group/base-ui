@@ -284,7 +284,8 @@ h6 {
 a,
 a:visited {
   text-decoration: none;
-  color: #3949ab; }
+  color: #3f51b5;
+  cursor: pointer; }
 
 hr {
   border-color: #eee; }

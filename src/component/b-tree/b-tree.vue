@@ -71,12 +71,13 @@
 
             renderData() {
                 const vm = this;
-                const {isRoot, data = []} = vm;
+                const {isRoot, data = [], options: {foldDeep}} = vm;
 
                 if (isRoot) {
                     const rec = (node, deep, parent) => {
                         vm.$set(node, '$$deep', deep);
                         vm.$set(node, '$$parent', parent);
+                        vm.$set(node, '$$isFold', foldDeep ? Boolean(node.$$deep >= foldDeep) : false);
 
                         if (node.children.length === 0) return;
 
