@@ -1187,7 +1187,8 @@ form .btn-group {
   margin-top: 5px;
   height: 30px;
   line-height: 30px;
-  vertical-align: sub; }
+  vertical-align: sub;
+  cursor: pointer; }
   .b-switch .b-switch-wrap {
     display: inline-block;
     width: 40px;
@@ -1213,7 +1214,7 @@ form .btn-group {
       right: 1px;
       transition: all 0.36s cubic-bezier(0.78, 0.14, 0.15, 0.86); }
   .b-switch.b-switch-checked .b-switch-wrap {
-    background-color: #304ffe; }
+    background-color: #3f51b5; }
     .b-switch.b-switch-checked .b-switch-wrap:active .b-switch-inner {
       width: 22px;
       margin-left: -23px; }
