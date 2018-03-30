@@ -667,7 +667,7 @@ textarea {
   .form-block-horizontal > .form-group > *:first-child {
     flex: 1; }
     .form-block-horizontal > .form-group > *:first-child label {
-      padding-top: 8px; }
+      padding-top: 15px; }
   .form-block-horizontal > .form-group > *:last-child {
     flex: 4; }
   @media screen and (max-width: 480px) {
@@ -1009,6 +1009,8 @@ form .btn-group {
   border-radius: 5px;
   background-color: #fff;
   box-shadow: 0 19px 60px rgba(0, 0, 0, 0.298039), 0 15px 20px rgba(0, 0, 0, 0.219608); }
+  .b-dialog.sm {
+    max-width: 400px; }
 
 .b-dialog-title {
   margin: 0 0 20px; }
