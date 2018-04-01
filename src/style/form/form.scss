@@ -13,7 +13,7 @@
 
     label {
         display: block;
-        font-size: 15px;
+        font-size: 13px;
         color: $gray-dark;
     }
 
@@ -79,7 +79,8 @@
     }
 }
 
-form {
+form,
+.form-inline {
     .btn-group {
         margin-top: 20px;
         display: inline-block;

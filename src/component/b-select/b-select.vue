@@ -80,9 +80,7 @@
         watch: {
             value(val) {
                 const vm = this;
-                if (vm.map[val]) {
-                    vm.searchText = vm.map[val];
-                }
+                vm.searchText = vm.map[val] || '';
             }
         },
 

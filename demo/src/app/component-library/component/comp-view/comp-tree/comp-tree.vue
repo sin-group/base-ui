@@ -5,7 +5,7 @@
         </h4>
 
         <div class="card">
-            <b-tree :data="treeData">
+            <b-tree :data="treeData" :options="options">
                 <div slot-scope="scope">
                     <span class="node-name">{{ scope.node.name }}</span>
                     <button class="sm" @click="viewNode(scope.node)">view node</button>
@@ -58,7 +58,22 @@
 
         data() {
             return {
-                treeData
+                treeData,
+
+                options: {
+                    filterDefs: [
+                        {name: '名称', field: 'name'},
+                        {
+                            name: 'id',
+                            field: 'id',
+                            map: {
+                                3: '帅气的 ID = 3',
+                                7: '帅气的 ID = 7'
+                            },
+                            filterMethod: (value, node) => (node.id.toString() === value)
+                        }
+                    ]
+                }
             };
         },
 

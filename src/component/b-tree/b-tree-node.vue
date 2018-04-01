@@ -13,9 +13,7 @@
             <i :class="{'is-unfold': !isFold}" class="b-icon-arrow-right"></i>
         </span>
 
-        <div
-            :class="{'siblings-not-has-children': siblingsNotHasChildren}"
-            class="node-el">
+        <div :class="{'siblings-not-has-children': siblingsNotHasChildren}" class="node-el">
             <slot name="content"></slot>
         </div>
 

@@ -636,7 +636,7 @@ textarea {
   vertical-align: top; }
   .form-group label {
     display: block;
-    font-size: 15px;
+    font-size: 13px;
     color: #616161; }
   .form-group input,
   .form-group textarea {
@@ -674,7 +674,8 @@ textarea {
     .form-block-horizontal > .form-group {
       display: block; } }
 
-form .btn-group {
+form .btn-group,
+.form-inline .btn-group {
   margin-top: 20px;
   display: inline-block; }
 
