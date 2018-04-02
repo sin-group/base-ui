@@ -69,7 +69,7 @@
         <div v-if="options.enableClientPagination && innerPagination" class="foot-area">
             <b-pagination
                 :size="options.size"
-                :pagination="innerPagination"
+                v-model="innerPagination"
                 @on-change="onInnerPaginationChange"/>
         </div>
     </div>

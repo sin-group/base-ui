@@ -8,7 +8,7 @@
 
             <span v-for="({value, type}, index) in pageNoList" :key="index">
                 <button
-                    :class="{active: value === innerPagination.pageNo}"
+                    :class="{active: value === pagination.pageNo}"
                     @click="changePageNo(value, type)">{{ value }}</button>
             </span>
 
@@ -19,9 +19,9 @@
 
             <span class="page-size">
                 <b-select
-                    v-model="stringPageSize"
+                    :value="stringPageSize"
                     :map="pageSizeMap"
-                    @change="onPageSizeChange(stringPageSize)"/>
+                    @change="onPageSizeChange"/>
                 行每页
             </span>
 
@@ -37,7 +37,7 @@
             </button>
 
             <span class="page-info">
-                <span class="page-current">{{ innerPagination.pageNo }}</span>
+                <span class="page-current">{{ pagination.pageNo }}</span>
                 / {{ totalPageNo }}
             </span>
 
@@ -78,9 +78,10 @@
         NORMAL: 'normal',
         SMALL: 'sm'
     };
-    const genPaginationWithOffset = ({pageNo, pageSize}) => ({
+    const genPaginationWithOffset = ({pageNo, pageSize, total}) => ({
         pageNo,
         pageSize,
+        total,
         offset: (pageNo - 1) * pageSize
     });
 
@@ -89,6 +90,11 @@
 
         components: {
             BSelect
+        },
+
+        model: {
+            prop: 'pagination',
+            event: EventTypes.ON_CHANGE
         },
 
         props: {
@@ -115,17 +121,14 @@
 
         data() {
             return {
-                SIZE_TYPE,
-
-                innerPagination: null,
-                stringPageSize: null
+                SIZE_TYPE
             };
         },
 
         computed: {
             pageNoList() {
                 const vm = this;
-                const {innerPagination: {pageNo}, totalPageNo} = vm;
+                const {pagination: {pageNo}, totalPageNo} = vm;
 
                 // When total page num is not greater than whole display boundary
                 if (totalPageNo <= WHOLE_DISPLAY_NUM + 1) {
@@ -163,7 +166,7 @@
 
             totalPageNo() {
                 const vm = this;
-                const {innerPagination: {pageSize, total}} = vm;
+                const {pagination: {pageSize, total}} = vm;
                 return Math.ceil(total / pageSize) || 1;
             },
 
@@ -180,7 +183,7 @@
 
             pageInfo() {
                 const vm = this;
-                const {innerPagination: {pageNo, pageSize, total}, totalPageNo} = vm;
+                const {pagination: {pageNo, pageSize, total}, totalPageNo} = vm;
 
                 return {
                     start: ((pageNo - 1) * pageSize) + 1,
@@ -189,53 +192,53 @@
                     previousDisabled: pageNo <= 1,
                     nextDisabled: pageNo >= totalPageNo
                 };
+            },
+
+            stringPageSize() {
+                return `${this.pagination.pageSize}`;
             }
-        },
-
-        created() {
-            const vm = this;
-
-            vm.updateInnerPagination(vm.pagination);
-            vm.$watch('pagination', (newPagination) => {
-                vm.updateInnerPagination(newPagination);
-            }, {
-                deep: true
-            });
         },
 
         methods: {
             previous() {
                 const vm = this;
-                const {innerPagination: {pageNo}} = vm;
+                const {pagination: {pageNo}} = vm;
 
                 if (pageNo <= 1) return;
 
-                vm.innerPagination.pageNo -= 1;
-                vm.$emit(EventTypes.ON_CHANGE, genPaginationWithOffset(vm.innerPagination));
+                vm.$emit(EventTypes.ON_CHANGE, genPaginationWithOffset({
+                    ...vm.pagination,
+                    pageNo: pageNo - 1
+                }));
             },
 
             next() {
                 const vm = this;
-                const {innerPagination: {pageNo}, totalPageNo} = vm;
+                const {pagination: {pageNo}, totalPageNo} = vm;
 
                 if (pageNo >= totalPageNo) return;
 
-                vm.innerPagination.pageNo += 1;
-                vm.$emit(EventTypes.ON_CHANGE, genPaginationWithOffset(vm.innerPagination));
+                vm.$emit(EventTypes.ON_CHANGE, genPaginationWithOffset({
+                    ...vm.pagination,
+                    pageNo: pageNo + 1
+                }));
             },
 
             onPageSizeChange(pageSize) {
                 const vm = this;
-                if (vm.innerPagination.pageSize === +pageSize) return;
+                const {pagination} = vm;
+                if (pagination.pageSize === +pageSize) return;
 
-                vm.innerPagination.pageSize = +pageSize;
-                vm.innerPagination.pageNo = 1; // When pageSize change, reset pageNo
-                vm.$emit(EventTypes.ON_CHANGE, genPaginationWithOffset(vm.innerPagination));
+                vm.$emit(EventTypes.ON_CHANGE, genPaginationWithOffset({
+                    ...vm.pagination,
+                    pageNo: 1,
+                    pageSize: +pageSize
+                }));
             },
 
             changePageNo(targetPageNo, type) {
                 const vm = this;
-                const {innerPagination: {pageNo}, totalPageNo} = vm;
+                const {pagination: {pageNo}, totalPageNo} = vm;
 
                 if (targetPageNo === pageNo) return;
 
@@ -246,16 +249,11 @@
                     [PAGE_TYPE.LEFT]: pageNo - PAGE_NO_OFFSET - 1,
                     [PAGE_TYPE.RIGHT]: pageNo + PAGE_NO_OFFSET + 1
                 };
-                vm.innerPagination.pageNo = targetPageNo === SKIP_SYMBOL ? SKIP_SYMBOL_JUMP_MAP[type] : targetPageNo;
 
-                vm.$emit(EventTypes.ON_CHANGE, vm.innerPagination);
-            },
-
-            updateInnerPagination(pagination) {
-                const vm = this;
-
-                vm.innerPagination = {...pagination};
-                vm.stringPageSize = `${pagination.pageSize}`;
+                vm.$emit(EventTypes.ON_CHANGE, genPaginationWithOffset({
+                    ...vm.pagination,
+                    pageNo: targetPageNo === SKIP_SYMBOL ? SKIP_SYMBOL_JUMP_MAP[type] : targetPageNo
+                }));
             }
         }
     };

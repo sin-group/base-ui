@@ -4,7 +4,7 @@
 
         <div class="card">
             <b-pagination
-                :pagination="pagination"
+                v-model="pagination"
                 @on-change="onChange"/>
         </div>
     </div>
