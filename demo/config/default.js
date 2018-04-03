@@ -4,24 +4,34 @@
  * @date 2017-12-28 16:28:40.980
  */
 
+const path = require('path');
+
+const PWD = process.cwd();
+const resolvePwd = (...args) => path.resolve(PWD, ...args);
+
 module.exports = {
-    name: 'default',
     appName: 'BaseUiDemo',
 
     build: {
-        debug: true
+        framework: 'vue',
+        packageJsonPath: '../package.json',
+
+        copy: {
+            'src/public': 'build/public'
+        },
+
+        htmlPlugin: {
+            template: resolvePwd('./src/app/index.html'),
+            favicon: resolvePwd('./src/app/favicon.ico')
+        },
+
+        clientEntry: './src/app/main.js',
+        serverEntry: './src/start.js'
     },
 
     run: {
         debug: true,
         port: 62690,
         webHost: 'http://local.yangqianguan.com:62690'
-    },
-
-    BrowserSync: {
-        port: 62691,
-        ui: {
-            port: 62692
-        }
     }
 };

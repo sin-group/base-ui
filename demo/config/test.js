@@ -5,12 +5,6 @@
  */
 
 module.exports = {
-    name: 'test',
-
-    build: {
-        debug: false
-    },
-
     run: {
         webHost: 'https://base-ui.yangqianguan.com'
     }
