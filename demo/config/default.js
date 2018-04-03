@@ -17,7 +17,9 @@ module.exports = {
         packageJsonPath: '../package.json',
 
         copy: {
-            'src/public': 'build/public'
+            paths: {
+                'src/public': 'build/public'
+            }
         },
 
         htmlPlugin: {
