@@ -28,6 +28,10 @@ input {
             border-color: $primary;
         }
 
+        &::placeholder {
+            color: #aaa;
+        }
+
         &:disabled {
             cursor: not-allowed;
             border-color: $gray;

@@ -38,19 +38,19 @@ class Valid {
 
                     // check required
                     if (required && !checkNotNull(fieldData)) {
-                        $toast.info(`${selectable ? '请选择' : '请输入'}${name}`);
+                        $toast.error(`${selectable ? '请选择' : '请输入'}${name}`);
                         return false;
                     }
 
                     // check rule
                     if (rule && !ruleMap[rule](fieldData)) {
-                        $toast.info(message);
+                        $toast.error(message);
                         return false;
                     }
 
                     // check customized rule
                     if (validate && !validate(fieldData, field, data)) {
-                        $toast.info(message);
+                        $toast.error(message);
                         return false;
                     }
 
