@@ -31,8 +31,8 @@ export default {
         }
     },
 
-    inserted(el, {value}) {
-        el.addEventListener('mouseover', () => {
+    inserted(el, {value}, vnode) {
+        vnode.$$tooltipMouseover = () => {
             toolTipEle.innerText = value;
             Object.assign(toolTipEle.style, {
                 display: 'block'
@@ -43,12 +43,22 @@ export default {
                 $el: toolTipEle,
                 place: 'top-center'
             });
-        });
+        };
 
-        el.addEventListener('mouseout', () => {
+        vnode.$$tooltipMouseout = () => {
             Object.assign(toolTipEle.style, {
                 display: 'none'
             });
-        });
+        };
+
+        el.addEventListener('mouseover', vnode.$$tooltipMouseover);
+        el.addEventListener('mouseout', vnode.$$tooltipMouseout);
+    },
+
+    unbind(el, binding, vnode) {
+        if (vnode.$$tooltipMouseout) vnode.$$tooltipMouseout();
+
+        el.removeEventListener('mouseover', vnode.$$tooltipMouseover);
+        el.removeEventListener('mouseout', vnode.$$tooltipMouseout);
     }
 };

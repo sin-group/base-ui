@@ -453,7 +453,7 @@ blockquote {
     height: 0;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-top: 6px solid rgba(0, 0, 0, 0.8);
+    border-top: 6px solid #3f51b5;
     content: "";
     position: absolute;
     bottom: -3px;
