@@ -59,6 +59,13 @@
 
             @include genArrow("right", 4px, $primary);
         }
+
+        .month-year {
+            position: relative;
+            height: 20px;
+            top: -2px;
+            font-size: 14px;
+        }
     }
 
     .date-day-type,
@@ -112,5 +119,15 @@
                 }
             }
         }
+    }
+
+    .b-select-menu {
+        box-shadow: none;
+    }
+
+    .choose-year-action {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 5px;
     }
 }

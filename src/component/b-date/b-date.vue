@@ -16,7 +16,7 @@
             v-b-click-outside="closeDatePicker"
             v-if="visible">
             <b-date-picker
-                v-model="innerValue"
+                :time-stamp="value"
                 @choose="choose"/>
         </b-popper>
     </div>
@@ -47,7 +47,7 @@ export default {
     props: {
         value: {
             type: Number,
-            required: true
+            default: Date.now()
         },
         name: {
             type: String,
@@ -61,7 +61,6 @@ export default {
 
     data() {
         return {
-            innerValue: null,
             visible: false
         };
     },
@@ -69,18 +68,12 @@ export default {
     computed: {
         displayTime() {
             const vm = this;
-            const {innerValue} = vm;
+            const {value} = vm;
 
-            if (!innerValue && typeof innerValue !== typeof 0) return '';
+            if (!value && typeof value !== typeof 0) return '';
 
-            return getDate(innerValue);
+            return getDate(value);
         }
-    },
-
-    mounted() {
-        const vm = this;
-        const {value} = vm;
-        if (value) vm.innerValue = value;
     },
 
     methods: {
@@ -100,7 +93,6 @@ export default {
 
         choose(timeStamp) {
             const vm = this;
-            vm.innerValue = timeStamp;
             vm.$emit('change', timeStamp);
             vm.closeDatePicker();
         }

@@ -1,35 +1,50 @@
 <template>
     <div class="b-date-picker">
-        <div class="date-title">
-            <div class="month-btn-wrap" @click="jumpMonth(JumpMonthType.PREVIOUS, $event)">
-                <div class="previous-month-btn"></div>
+        <div v-if="chooseType === ChooseType.MONTH_AND_DATE">
+            <div class="date-title">
+                <div class="month-btn-wrap" @click="jumpMonth(JumpMonthType.PREVIOUS, $event)">
+                    <div class="previous-month-btn"></div>
+                </div>
+
+                <button class="month-year simple" @click="switchChooseMode(ChooseType.YEAR)">
+                    {{ viewYear }}-{{ viewMonth }}
+                </button>
+
+                <div class="month-btn-wrap" @click="jumpMonth(JumpMonthType.NEXT, $event)">
+                    <div class="next-month-btn"></div>
+                </div>
             </div>
 
-            <div>
-                {{ viewYear }}-{{ viewMonth }}
+            <div class="date-day-type-wrap">
+                <span v-for="(dayType, index) in DayTypeList" :key="index" class="date-day-type">{{ dayType }}</span>
             </div>
 
-            <div class="month-btn-wrap" @click="jumpMonth(JumpMonthType.NEXT, $event)">
-                <div class="next-month-btn"></div>
+            <div class="date-row-wrap">
+                <div v-for="(dateRow, rowIndex) in dateRowList" :key="rowIndex" class="date-row">
+                    <span v-for="(dateItem, itemIndex) in dateRow" :key="itemIndex" class="date-btn-wrap">
+                        <button
+                            :class="{
+                                'view-month': dateItem.viewMonthFlag,
+                                'selected-date': dateItem.selectedDateFlag,
+                                'current-date': dateItem.currentDateFlag
+                            }"
+                            class="date-btn"
+                            @click="choose(dateItem)">{{ dateItem.date }}</button>
+                    </span>
+                </div>
             </div>
         </div>
 
-        <div class="date-day-type-wrap">
-            <span v-for="(dayType, index) in DayTypeList" :key="index" class="date-day-type">{{ dayType }}</span>
-        </div>
+        <div v-if="chooseType === ChooseType.YEAR">
+            <b-select-menu
+                :map="YearMap"
+                :value="'' + year"
+                @choose="chooseYear"/>
 
-        <div class="date-row-wrap">
-            <div v-for="(dateRow, rowIndex) in dateRowList" :key="rowIndex" class="date-row">
-                <span v-for="(dateItem, itemIndex) in dateRow" :key="itemIndex" class="date-btn-wrap">
-                    <button
-                        :class="{
-                            'view-month': dateItem.viewMonthFlag,
-                            'selected-date': dateItem.selectedDateFlag,
-                            'current-date': dateItem.currentDateFlag
-                        }"
-                        class="date-btn"
-                        @click="choose(dateItem)">{{ dateItem.date }}</button>
-                </span>
+            <div class="choose-year-action">
+                <button class="simple" @click="switchChooseMode(ChooseType.MONTH_AND_DATE)">
+                    返回
+                </button>
             </div>
         </div>
     </div>
@@ -42,17 +57,33 @@
         getTimeDigitalComponent
     } from '../../util/time';
 
+    import BSelectMenu from '../b-select/b-select-menu.vue';
+
+    const startYear = 1900;
+
     const DayTypeList = ['日', '一', '二', '三', '四', '五', '六'];
     const MonthDatesNum = 6 * 7; // Default 6 rows to cover all cases of date distribution in one month
     const {year: curYear, month: curMonth, date: curDate} = getTimeDigitalComponent(Date.now());
+    const YearMap = [...Array(200).keys()]
+            .map(num => `${startYear + num}`)
+            .reduce((acc, cur) => Object.assign(acc, {[cur]: cur}), {});
 
     const JumpMonthType = {
         PREVIOUS: 'PREVIOUS',
         NEXT: 'NEXT'
     };
 
+    const ChooseType = {
+        MONTH_AND_DATE: 'MONTH_AND_DATE',
+        YEAR: 'YEAR'
+    };
+
     export default {
         name: 'BDatePicker',
+
+        components: {
+            BSelectMenu
+        },
 
         model: {
             prop: 'timeStamp',
@@ -69,11 +100,15 @@
         data() {
             const vm = this;
             const {timeStamp} = vm;
-            const {year, month, date} = getTimeDigitalComponent(timeStamp);
+            const initTimestamp = (timeStamp || timeStamp === 0) ? timeStamp : Date.now();
+            const {year, month, date} = getTimeDigitalComponent(initTimestamp);
 
             return {
                 DayTypeList,
                 JumpMonthType,
+                YearMap,
+                ChooseType,
+                chooseType: ChooseType.MONTH_AND_DATE,
 
                 year: year || curYear,
                 month: month || curMonth,
@@ -172,8 +207,19 @@
                 }
             },
 
+            switchChooseMode(chooseType) {
+                const vm = this;
+                vm.chooseType = chooseType;
+            },
+
             choose(date) {
                 this.$emit('choose', date.timeStamp);
+            },
+
+            chooseYear(year) {
+                const vm = this;
+                vm.viewYear = +year;
+                vm.switchChooseMode(ChooseType.MONTH_AND_DATE);
             }
         }
     };
