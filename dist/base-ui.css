@@ -442,6 +442,7 @@ blockquote {
 .b-tooltip {
   position: absolute;
   display: none;
+  margin-top: -5px;
   padding: 4px 6px;
   background-color: #3f51b5;
   color: #fff;
@@ -953,6 +954,11 @@ form .btn-group,
       border-top: 4px solid transparent;
       border-bottom: 4px solid transparent;
       border-left: 4px solid #304ffe; }
+    .b-date-picker .date-title .month-year {
+      position: relative;
+      height: 20px;
+      top: -2px;
+      font-size: 14px; }
   .b-date-picker .date-day-type,
   .b-date-picker .date-btn-wrap {
     display: inline-block;
@@ -986,6 +992,12 @@ form .btn-group,
         .b-date-picker .date-row-wrap .date-row .date-btn-wrap .date-btn:hover {
           color: #fff;
           background-color: #9fa8da; }
+  .b-date-picker .b-select-menu {
+    box-shadow: none; }
+  .b-date-picker .choose-year-action {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px; }
 
 .b-dialog-wrapper {
   position: fixed;

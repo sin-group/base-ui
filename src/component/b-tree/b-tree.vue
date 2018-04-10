@@ -151,6 +151,8 @@
 
                 const filterMap = {};
                 preOrderTreeList(data, (node) => {
+                    if (!node[field]) return;
+
                     const value = node[field];
 
                     filterMap[value] = value;

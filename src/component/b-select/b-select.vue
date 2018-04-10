@@ -73,14 +73,15 @@
             const {map, value} = vm;
             return {
                 visible: false,
-                searchText: map[value]
+                searchText: (value && map[value]) ? map[value] : ''
             };
         },
 
         watch: {
             value(val) {
                 const vm = this;
-                vm.searchText = vm.map[val] || '';
+
+                vm.searchText = (val && vm.map[val]) ? vm.map[val] : '';
             }
         },
 
@@ -134,7 +135,7 @@
             closeMenu() {
                 const vm = this;
                 const {map, value} = vm;
-                vm.searchText = map[value];
+                vm.searchText = (value && vm.map[value]) ? map[value] : '';
                 vm.visible = false;
             },
 
