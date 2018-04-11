@@ -522,6 +522,25 @@ button {
   button.block {
     display: block;
     width: 100%; }
+  button.link {
+    display: inline;
+    height: unset;
+    font-size: inherit;
+    font-weight: inherit;
+    color: #3f51b5;
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 0;
+    padding: 0; }
+    button.link:hover {
+      color: #304ffe;
+      background-color: transparent; }
+    button.link:active {
+      color: #3f51b5;
+      background-color: transparent;
+      border-bottom-color: transparent; }
+    button.link:disabled {
+      background-color: transparent; }
   button.lg {
     font-size: 15px;
     font-weight: 400;
@@ -643,6 +662,7 @@ textarea {
     color: #616161; }
   .form-group input,
   .form-group textarea {
+    font-size: 14px;
     display: inline-block; }
   .form-group input {
     margin-top: 5px; }
@@ -667,10 +687,10 @@ textarea {
   .form-block-horizontal > .form-group input,
   .form-block-horizontal > .form-group textarea {
     width: 100%; }
+  .form-block-horizontal > .form-group label {
+    padding-top: 15px; }
   .form-block-horizontal > .form-group > *:first-child {
     flex: 1; }
-    .form-block-horizontal > .form-group > *:first-child label {
-      padding-top: 15px; }
   .form-block-horizontal > .form-group > *:last-child {
     flex: 4; }
   @media screen and (max-width: 480px) {

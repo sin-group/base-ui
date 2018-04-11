@@ -27,7 +27,7 @@
 
         <h4 class="heading">Paragraph</h4>
         <div class="card">
-            <p>Our vision has always been to create an iPhone that is entirely screen. One so immersive the device
+            <p>Our vision has been to create an iPhone that is entirely screen. One so immersive the device
             itself disappears into the experience. And so intelligent it can respond to a tap, your voice, and
             even a glance. With iPhone X, that vision is now a reality. Say hello to the future.</p>
         </div>
@@ -45,6 +45,3 @@
     };
 </script>
 
-<style>
-
-</style>

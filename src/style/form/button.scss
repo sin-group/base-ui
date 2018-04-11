@@ -91,6 +91,33 @@ button {
         width: 100%;
     }
 
+    &.link {
+        display: inline;
+        height: unset;
+        font-size: inherit;
+        font-weight: inherit;
+        color: $primary-dark;
+        background-color: transparent;
+        border-color: transparent;
+        border-radius: 0;
+        padding: 0;
+
+        &:hover {
+            color: $primary;
+            background-color: transparent;
+        }
+
+        &:active {
+            color: $primary-dark;
+            background-color: transparent;
+            border-bottom-color: transparent;
+        }
+
+        &:disabled {
+            background-color: transparent;
+        }
+    }
+
     &.lg {
         font-size: 15px;
         font-weight: 400;

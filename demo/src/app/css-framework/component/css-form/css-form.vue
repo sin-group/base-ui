@@ -8,6 +8,7 @@
             <button class="disabled">Disabled</button>
             <button class="danger">Danger</button>
             <button class="simple">Simple</button>
+            <button class="link sm">Link</button>
 
             <h4 class="heading">Button Block</h4>
             <button class="block">Block</button>
@@ -213,5 +214,7 @@
 </script>
 
 <style>
-
+    button.link {
+        font-weight: 500;
+    }
 </style>

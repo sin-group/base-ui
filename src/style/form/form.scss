@@ -19,6 +19,7 @@
 
     input,
     textarea {
+        font-size: 14px;
         display: inline-block;
     }
 
@@ -59,13 +60,13 @@
             width: 100%;
         }
 
+        label {
+            padding-top: 15px;
+        }
+
         > * {
             &:first-child {
                 flex: 1;
-
-                label {
-                    padding-top: 15px;
-                }
             }
 
             &:last-child {
