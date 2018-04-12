@@ -35,6 +35,7 @@
 
         .action-bar {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             box-sizing: border-box;
@@ -55,8 +56,8 @@
                 color: $black;
                 background-color: #dedede;
 
-                i {
-                    color: $primary;
+                .action-detail {
+                    color: #999;
                 }
             }
 
@@ -66,6 +67,13 @@
 
             i {
                 margin-top: 1px;
+            }
+
+            .action-detail {
+                margin-top: 6px;
+                width: 100%;
+                font-size: .8em;
+                color: $gray;
             }
         }
     }

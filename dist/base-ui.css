@@ -343,6 +343,7 @@ blockquote {
         color: #304ffe; }
     .action-card .action-group .action-bar {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       box-sizing: border-box;
@@ -361,12 +362,17 @@ blockquote {
       .action-card .action-group .action-bar:hover {
         color: #000;
         background-color: #dedede; }
-        .action-card .action-group .action-bar:hover i {
-          color: #304ffe; }
+        .action-card .action-group .action-bar:hover .action-detail {
+          color: #999; }
       .action-card .action-group .action-bar:active {
         background-color: #ccc; }
       .action-card .action-group .action-bar i {
         margin-top: 1px; }
+      .action-card .action-group .action-bar .action-detail {
+        margin-top: 6px;
+        width: 100%;
+        font-size: .8em;
+        color: #bdbdbd; }
 
 .badge {
   display: inline-block;
@@ -677,7 +683,8 @@ textarea {
   display: block;
   margin-right: 0; }
   .form-block .form-group input,
-  .form-block .form-group textarea {
+  .form-block .form-group textarea,
+  .form-block .form-group button {
     width: 100%; }
 
 .form-block-horizontal > .form-group {
