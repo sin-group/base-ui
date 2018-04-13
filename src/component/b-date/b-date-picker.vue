@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <div v-if="chooseType === ChooseType.YEAR">
+        <div v-if="chooseType === ChooseType.YEAR" class="year-picker-wrapper">
             <b-select-menu
                 :map="YearMap"
                 :value="'' + year"

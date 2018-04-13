@@ -38,7 +38,10 @@
                 </thead>
 
                 <tbody>
-                    <tr v-for="(record, index) in renderedRecords" :key="index">
+                    <tr
+                        v-for="(record, index) in renderedRecords"
+                        :key="index"
+                        :class="{selected: record.$$selected}">
                         <td v-if="options.enableSelection" class="select-area">
                             <label>
                                 <input
@@ -66,7 +69,7 @@
             </table>
         </div>
 
-        <div v-if="options.enableClientPagination && innerPagination" class="foot-area">
+        <div v-if="options.enableClientPagination && showPagination" class="foot-area">
             <b-pagination
                 :size="options.size"
                 v-model="innerPagination"
@@ -160,11 +163,20 @@
 
                 vm.isAllSelected = renderedRecords.every(record => !!record.$$selected);
                 return renderedRecords;
+            },
+
+            showPagination() {
+                const vm = this;
+                const {innerPagination: {pageSize, total}} = vm;
+
+                return total > pageSize;
             }
         },
 
         watch: {
-            records() {
+            records(newVal, oldVal) {
+                if (newVal === oldVal) return;
+
                 const vm = this;
                 vm.updateInnerState();
             }

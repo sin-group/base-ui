@@ -125,9 +125,13 @@
         box-shadow: none;
     }
 
-    .choose-year-action {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 5px;
+    .year-picker-wrapper {
+        margin: 0 -15px -10px;
+
+        .choose-year-action {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 5px;
+        }
     }
 }

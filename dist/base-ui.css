@@ -844,7 +844,7 @@ form .btn-group,
     height: 56px;
     line-height: 56px;
     vertical-align: middle;
-    border-bottom: 1px solid gray; }
+    border-bottom: 1px solid #bdbdbd; }
     .table thead tr th {
       min-width: 120px;
       padding: 0 15px;
@@ -894,6 +894,10 @@ form .btn-group,
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     transition: background 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
     will-change: backgaound; }
+    .table tbody tr:hover {
+      background-color: #f3f3f3; }
+    .table tbody tr.selected {
+      background-color: #eaecf7; }
     .table tbody tr td {
       padding: 10px;
       line-height: normal; }
@@ -1021,10 +1025,12 @@ form .btn-group,
           background-color: #9fa8da; }
   .b-date-picker .b-select-menu {
     box-shadow: none; }
-  .b-date-picker .choose-year-action {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 5px; }
+  .b-date-picker .year-picker-wrapper {
+    margin: 0 -15px -10px; }
+    .b-date-picker .year-picker-wrapper .choose-year-action {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 5px; }
 
 .b-dialog-wrapper {
   position: fixed;
@@ -1053,6 +1059,8 @@ form .btn-group,
   box-shadow: 0 19px 60px rgba(0, 0, 0, 0.298039), 0 15px 20px rgba(0, 0, 0, 0.219608); }
   .b-dialog.sm {
     max-width: 400px; }
+  .b-dialog.lg {
+    max-width: 90vw; }
 
 .b-dialog-title {
   margin: 0 0 20px; }
