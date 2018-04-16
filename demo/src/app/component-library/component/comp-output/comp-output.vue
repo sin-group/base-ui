@@ -1,8 +1,9 @@
 <template>
     <div class="comp-output">
-        <comp-input></comp-input>
-        <comp-date></comp-date>
-        <comp-switch></comp-switch>
+        <comp-input/>
+        <comp-date/>
+        <comp-switch/>
+        <comp-form/>
     </div>
 </template>
 
@@ -10,17 +11,17 @@
 import CompDate from './comp-date';
 import CompInput from './comp-input';
 import CompSwitch from './comp-switch';
+import CompForm from './comp-form';
 
 export default {
-    name: 'comp-output',
+    name: 'CompOutput',
 
     components: {
         CompDate,
         CompInput,
-        CompSwitch
+        CompSwitch,
+        CompForm
     }
 };
 
 </script>
-
-<style lang="scss" rel="stylesheet/scss" scoped></style>

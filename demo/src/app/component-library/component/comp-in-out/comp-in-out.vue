@@ -1,6 +1,6 @@
 <template>
     <div class="comp-in-out">
-        <comp-select></comp-select>
+        <comp-select/>
     </div>
 </template>
 
@@ -8,7 +8,7 @@
 import CompSelect from './comp-select';
 
 export default {
-    name: 'comp-in-out',
+    name: 'CompInOut',
 
     components: {
         CompSelect
@@ -16,8 +16,3 @@ export default {
 };
 
 </script>
-
-<style lang="scss" rel="stylesheet/scss" scoped>
-.comp-in-out {
-}
-</style>

@@ -15,6 +15,7 @@ import BSelect from './b-select';
 import BSwitch from './b-switch';
 import BTable from './b-table';
 import BTree from './b-tree';
+import BForm from './b-form';
 
 export default {
 
@@ -30,6 +31,7 @@ export default {
         Vue.component('b-switch', BSwitch);
         Vue.component('b-table', BTable);
         Vue.component('b-tree', BTree);
+        Vue.component('b-form', BForm);
     }
 
 };
