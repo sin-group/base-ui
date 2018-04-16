@@ -71,7 +71,11 @@
         'package',
         'pagelines',
         'language',
-        'share'
+        'share',
+        'eye',
+        'user-manage',
+        'user-search',
+        'user-edit'
     ];
 
     export default {
