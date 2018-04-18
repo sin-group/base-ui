@@ -708,6 +708,9 @@ form .btn-group,
 .form-inline .btn-group {
   margin-top: 20px;
   display: inline-block; }
+  form .btn-group > button,
+  .form-inline .btn-group > button {
+    margin-right: 10px; }
 
 .tiles,
 .tiles .t-col,
@@ -1282,6 +1285,10 @@ form .btn-group,
 
 .b-table .foot-area .b-pagination {
   padding: 10px; }
+
+.b-table .no-record-remind {
+  margin-top: 20px;
+  color: #616161; }
 
 .b-textarea {
   position: relative; }

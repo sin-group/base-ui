@@ -5,7 +5,7 @@
 
 <template>
 
-    <form class="b-form" @submit.prevent="submit">
+    <form class="b-form" @submit.prevent="emitEvent('submit')">
         <slot
             v-for="fieldDef in options.fieldDefs"
             :name="fieldDef.field"
@@ -15,10 +15,19 @@
                     :value="data[fieldDef.field]"
                     :is="is(fieldDef.type)"
                     v-bind="fieldDef.props"
-                    @input="emit(arguments, fieldDef)"
-                    @change="emit(arguments, fieldDef)"/>
+                    @input="emitChange(arguments, fieldDef)"
+                    @change="emitChange(arguments, fieldDef)"/>
             </b-form-group>
         </slot>
+
+        <div v-if="hasBtns" class="btn-group">
+            <button
+                v-for="btnDef in options.btnDefs"
+                :key="btnKey(btnDef)"
+                v-bind="btnDef.props"
+                :type="btnType(btnDef.props)"
+                @click="emitEvent(btnDef.event)">{{ btnDef.text }}</button>
+        </div>
     </form>
 
 </template>
@@ -47,16 +56,36 @@
             }
         },
 
+        computed: {
+            hasBtns() {
+                const vm = this;
+
+                return vm.options.btnDefs && vm.options.btnDefs.length > 0;
+            }
+        },
+
         methods: {
             is(type) {
                 return FieldMap[type] || FieldMap.text;
             },
 
-            emit(data, {field}) {
+            btnType(props = {}) {
+                return props.type || 'button';
+            },
+
+            btnKey({text, event}) {
+                return text + event;
+            },
+
+            emitChange(data, {field}) {
                 this.$emit('change', {
                     ...this.data,
                     [field]: data[0]
                 });
+            },
+
+            emitEvent(event) {
+                this.$emit(event);
             }
         }
     };

@@ -86,6 +86,10 @@ form,
     .btn-group {
         margin-top: 20px;
         display: inline-block;
+
+        > button {
+            margin-right: 10px;
+        }
     }
 }
 

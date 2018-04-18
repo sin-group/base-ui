@@ -69,12 +69,15 @@
             </table>
         </div>
 
-        <div v-if="options.enableClientPagination && showPagination" class="foot-area">
+        <p v-else-if="records" class="no-record-remind">暂无数据 (..•˘_˘•..)</p>
+
+        <div v-if="records.length && options.enableClientPagination && showPagination" class="foot-area">
             <b-pagination
                 :size="options.size"
                 v-model="innerPagination"
                 @on-change="onInnerPaginationChange"/>
         </div>
+
     </div>
 </template>
 

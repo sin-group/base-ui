@@ -4,6 +4,7 @@
             :name="name"
             :value="displayTime"
             :disabled="disabled"
+            :placeholder="placeholder"
             type="text"
             @focus="openDatePicker">
             <i
@@ -56,6 +57,10 @@ export default {
         disabled: {
             type: Boolean,
             default: false
+        },
+        placeholder: {
+            type: String,
+            default: ''
         }
     },
 
