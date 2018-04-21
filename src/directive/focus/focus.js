@@ -7,21 +7,7 @@
 const getInputEl = el => el.getElementsByTagName('input')[0] || el;
 
 export default {
-    inserted(el, binding) {
-        const {value = true} = binding;
-        if (!value) return;
-
-        getInputEl(el).focus();
-    },
-
-    update(el, binding) {
-        const {value = true, oldValue} = binding;
-        if (value === oldValue) return;
-        if (!value) {
-            getInputEl(el).blur();
-            return;
-        }
-
+    inserted(el) {
         getInputEl(el).focus();
     },
 

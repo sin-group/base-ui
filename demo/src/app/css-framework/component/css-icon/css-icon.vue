@@ -20,6 +20,9 @@
 
 <script type="text/babel">
     const IconList = [
+        'chat',
+        'search',
+        'folder',
         'bold',
         'italic',
         'header',
