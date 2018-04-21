@@ -9,7 +9,7 @@
 ## Install
 
 ```bash
-npm install base-ui -save
+npm install base-ui --save
 ```
 
 ## Get Started

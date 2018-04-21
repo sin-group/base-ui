@@ -1064,6 +1064,8 @@ form .btn-group,
     max-width: 400px; }
   .b-dialog.lg {
     max-width: 90vw; }
+  .b-dialog.gray {
+    background-color: #f1f1f1; }
 
 .b-dialog-title {
   margin: 0 0 20px; }
