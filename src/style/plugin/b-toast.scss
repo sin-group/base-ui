@@ -13,33 +13,36 @@ $TOAST_ALPHA: .9;
     line-height: 1.2em;
     text-align: center;
     border-radius: 4px;
-    background-color: rgba($gray-dark, $TOAST_ALPHA);
+    background-color: rgba($info, $TOAST_ALPHA);
     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
     color: white;
+    animation: .36s cubic-bezier(.78, .14, .15, .86) toast-fade-in;
 }
 
 .SUCCESS {
-    background-color: rgba($green, $TOAST_ALPHA);
+    background-color: rgba($success, $TOAST_ALPHA);
 }
 
 .ERROR {
-    background-color: rgba($red-light, $TOAST_ALPHA);
+    background-color: rgba($error, $TOAST_ALPHA);
 }
 
 .b-toast-fade-enter-active,
 .b-toast-fade-leave-active {
-    transition: opacity .36s cubic-bezier(.78, .14, .15, .86);
+    margin-top: 0;
+    transition: .36s ease-out;
 }
 
 .b-toast-fade-enter,
 .b-toast-fade-leave-to {
+    margin-top: 10px;
     opacity: 0;
 }
 
 @media only screen and (min-width: 500px) {
     .b-toast {
         position: fixed;
-        top: 5vh;
+        top: 4vh;
         right: 3vw;
         left: auto;
         bottom: auto;

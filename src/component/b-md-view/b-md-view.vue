@@ -5,7 +5,6 @@
 <script type="text/babel">
     import Prism from '../../util/prism';
     import marked from '../../util/marked';
-    import '../../style/highlight/prism.css';
 
     marked.setOptions({
         highlight: (code, lang) => {

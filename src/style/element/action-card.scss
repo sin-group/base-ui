@@ -65,6 +65,15 @@
                 background-color: #ccc;
             }
 
+            &.primary {
+                background-color: $primary-dark;
+                color: $white;
+
+                &:hover {
+                    background-color: $primary;
+                }
+            }
+
             i {
                 margin-top: 1px;
             }

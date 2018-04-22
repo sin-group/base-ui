@@ -19,8 +19,8 @@ $red: #f5222d !default;
 $red-dark: #b71c1c !default;
 
 $green-light: #81c784 !default;
-$green: #4caf50 !default;
-$green-dark: #2e7d32 !default;
+$green: #8bc34a !default;
+$green-dark: #4caf50 !default;
 
 // Dimension
 // Screen
@@ -60,6 +60,9 @@ $primary-light: $blue-light !default;
 $primary: $blue !default;
 $primary-dark: $blue-dark !default;
 $primary-darker: $blue-darker !default;
+$info: $gray-dark !default;
+$success: $green !default;
+$error: $red-light !default;
 
 // Shadow
 $standard-box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12) !default;
