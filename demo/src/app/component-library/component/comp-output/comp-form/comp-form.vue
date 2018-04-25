@@ -9,12 +9,14 @@
         <h4 class="heading">Form</h4>
 
         <div class="card">
-            <b-form v-model="data" :options="options">
+            <b-form v-model="data" :options="options" @reset="reset">
                 <b-form-group slot="custom" label="自定义 field">
                     <b-input v-model="data.custom"/>
                 </b-form-group>
             </b-form>
         </div>
+
+        <button @click="reset">reset</button>
 
         <pre class="json-preview">{{ $j(data) }}</pre>
     </div>
@@ -28,6 +30,9 @@
             {field: 'custom'},
             {label: '科目', field: 'type', type: 'select', props: {map: {a: 'a', b: 'b'}}},
             {label: '时间', field: 'time', type: 'date'}
+        ],
+        btnDefs: [
+            {text: 'reset', event: 'reset'}
         ]
     };
 
@@ -40,10 +45,15 @@
 
                 data: {
                     name: '123',
-                    custom: '',
-                    type: ''
+                    custom: ''
                 }
             };
+        },
+
+        methods: {
+            reset() {
+                this.data = {};
+            }
         }
     };
 

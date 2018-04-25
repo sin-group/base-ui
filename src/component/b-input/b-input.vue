@@ -1,8 +1,6 @@
 <template>
     <div class="b-input">
-        <div v-if="$slots.left">
-            <slot name="left"></slot>
-        </div>
+        <slot v-if="$slots.left" name="left"></slot>
 
         <div class="content">
             <input
@@ -41,9 +39,7 @@
                 @blur="handleBlur"/>
         </div>
 
-        <div v-if="$slots.right">
-            <slot name="right"></slot>
-        </div>
+        <slot v-if="$slots.right" name="right"></slot>
     </div>
 </template>
 
@@ -126,28 +122,26 @@ export default {
         }
     },
 
-    data() {
-        return {
-            isFocus: false
-        };
-    },
-
     methods: {
         handleFocus(event) {
             const vm = this;
-            vm.isFocus = true;
             vm.$emit('focus', event.target.value, event);
         },
 
         handleBlur(event) {
             const vm = this;
-            vm.isFocus = false;
             vm.$emit('blur', event.target.value, event);
         },
 
         handleInput(event) {
             const vm = this;
             const value = event.target ? event.target.value : event;
+
+            if (vm.type === 'number') {
+                vm.$emit('input', Number(value), event);
+                return;
+            }
+
             vm.$emit('input', value, event);
         },
 

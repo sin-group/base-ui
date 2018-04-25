@@ -82,6 +82,13 @@
                 const vm = this;
 
                 vm.searchText = (val && vm.map[val]) ? vm.map[val] : '';
+            },
+
+            map(val) {
+                const vm = this;
+                const {value} = vm;
+
+                vm.searchText = (value && val[value]) ? val[value] : '';
             }
         },
 

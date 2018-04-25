@@ -7,15 +7,18 @@
 import BInput from '../../b-input';
 import BSelect from '../../b-select';
 import BDate from '../../b-date';
+import BSwitch from '../../b-switch';
 
 export const FieldTypes = {
     text: 'text', // default field type
     select: 'select',
-    date: 'date'
+    date: 'date',
+    switch: 'switch'
 };
 
 export const FieldMap = {
     [FieldTypes.text]: BInput,
     [FieldTypes.select]: BSelect,
-    [FieldTypes.date]: BDate
+    [FieldTypes.date]: BDate,
+    [FieldTypes.switch]: BSwitch
 };

@@ -34,7 +34,7 @@
 
 <script type="text/babel">
 
-    import {FieldMap} from './constant/filed';
+    import {FieldMap} from './constant/field';
 
     export default {
         name: 'BForm',

@@ -53,16 +53,15 @@
                         </td>
 
                         <td v-for="colDef in options.colDefs" :key="colDef.field">
-                            <span>
-                                <slot
-                                    :name="colDef.field"
-                                    :field="colDef.field"
-                                    :colDef="colDef"
-                                    :record="record"
-                                    :value="getCellValue(record, colDef)">
-                                    {{ getCellValue(record, colDef) }}
-                                </slot>
-                            </span>
+                            <slot
+                                :name="colDef.field"
+                                :field="colDef.field"
+                                :colDef="colDef"
+                                :record="record"
+                                :line-index="index"
+                                :value="getCellValue(record, colDef)">
+                                {{ getCellValue(record, colDef) }}
+                            </slot>
                         </td>
                     </tr>
                 </tbody>
