@@ -20,7 +20,7 @@
                                 :class="{'enabled-click': options.enableClientSort}"
                                 class="sort-click-area"
                                 @click="toggleSort(colDef.field)">
-                                {{ colDef.name }}
+                                {{ colDef.label || colDef.name }}
 
                                 <div class="sort-area">
                                     <div
@@ -70,7 +70,7 @@
 
         <p v-else-if="records" class="no-record-remind">暂无数据 (..•˘_˘•..)</p>
 
-        <div v-if="records.length && options.enableClientPagination && showPagination" class="foot-area">
+        <div v-if="records.length && options.enableClientPagination" class="foot-area">
             <b-pagination
                 :size="options.size"
                 v-model="innerPagination"
@@ -165,13 +165,6 @@
 
                 vm.isAllSelected = renderedRecords.every(record => !!record.$$selected);
                 return renderedRecords;
-            },
-
-            showPagination() {
-                const vm = this;
-                const {innerPagination: {pageSize, total}} = vm;
-
-                return total > pageSize;
             }
         },
 

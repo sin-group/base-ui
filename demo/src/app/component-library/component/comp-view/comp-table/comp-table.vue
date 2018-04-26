@@ -45,12 +45,12 @@
             order: 'DESC'
         },
         colDefs: [
-            {field: 'loanAccountId', name: 'Account Id'},
-            {field: 'mobileNumber', name: 'Mobile'},
-            {field: 'name', name: 'Name'},
-            {field: 'loanCreditsStatus', name: 'Status', map: LoanCreditsStatusMap},
-            {field: 'timeCompletedAuthFlow', name: 'Time', filter: 'b-date-time'},
-            {field: 'op', name: 'Operation', template: true}
+            {field: 'loanAccountId', label: 'Account Id'},
+            {field: 'mobileNumber', label: 'Mobile'},
+            {field: 'name', label: 'Name'},
+            {field: 'loanCreditsStatus', label: 'Status', map: LoanCreditsStatusMap},
+            {field: 'timeCompletedAuthFlow', label: 'Time', filter: 'b-date-time'},
+            {field: 'op', label: 'Operation', template: true}
         ]
     };
 
