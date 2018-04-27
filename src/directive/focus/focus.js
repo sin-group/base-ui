@@ -11,6 +11,12 @@ export default {
         getInputEl(el).focus();
     },
 
+    update(el, binding) {
+        if (binding.modifiers.stay) {
+            getInputEl(el).focus();
+        }
+    },
+
     unbind(el) {
         getInputEl(el).blur();
     }

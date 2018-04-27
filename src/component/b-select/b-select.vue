@@ -1,5 +1,5 @@
 <template>
-    <div :class="{disabled: disabled}" class="b-select">
+    <div v-b-click-outside="closeMenu" :class="{disabled: disabled}" class="b-select">
         <b-input
             :name="name"
             :value="searchText"
@@ -15,7 +15,6 @@
         </b-input>
 
         <b-popper
-            v-b-click-outside="closeMenu"
             v-if="visible"
         >
             <b-select-menu

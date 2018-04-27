@@ -443,6 +443,9 @@ button {
     font-weight: 100;
     padding: 0 10px;
     height: 24px; }
+  button i {
+    font-size: 14px;
+    font-weight: bold; }
 
 input[type="text"], input[type="password"], input[type="number"], input[type="tel"], input[type="email"] {
   width: 256px;

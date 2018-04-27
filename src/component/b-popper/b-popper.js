@@ -83,7 +83,7 @@ export default {
 
     mounted() {
         const vm = this;
-        vm.refEl = vm.$parent.$el;
+        vm.refEl = vm.$el.parentNode;
 
         vm.makePosition();
         on(window, 'resize', vm.makePosition);

@@ -18,12 +18,9 @@ const isBindingFunction = (binding) => {
 
 const genDocumentHandler = (el, hook, vnode) => (e) => {
     const {target} = e;
-    const {context: {$el: refEl}} = vnode;
 
     if (el === target
-        || isChildrenDOM(el, target)
-        || refEl === target
-        || isChildrenDOM(refEl, target)) return;
+        || isChildrenDOM(el, target)) return;
 
     hook();
 };
