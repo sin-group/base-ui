@@ -28,6 +28,7 @@
         fieldDefs: [
             {label: '名称', field: 'name'},
             {field: 'custom'},
+            {type: 'br'},
             {label: '科目', field: 'type', type: 'select', props: {map: {a: 'a', b: 'b'}}},
             {label: '时间', field: 'time', type: 'date'}
         ],

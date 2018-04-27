@@ -68,7 +68,7 @@
             </table>
         </div>
 
-        <p v-else-if="records" class="no-record-remind">暂无数据 (..•˘_˘•..)</p>
+        <p v-else-if="records" class="no-record-remind">暂无数据</p>
 
         <div v-if="records.length && options.enableClientPagination" class="foot-area">
             <b-pagination

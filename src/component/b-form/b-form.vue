@@ -6,19 +6,23 @@
 <template>
 
     <form class="b-form" @submit.prevent="emitEvent('submit')">
-        <slot
-            v-for="fieldDef in options.fieldDefs"
-            :name="fieldDef.field"
-            :fieldDef="fieldDef">
-            <b-form-group :label="fieldDef.label">
-                <component
-                    :value="data[fieldDef.field]"
-                    :is="is(fieldDef.type)"
-                    v-bind="fieldDef.props"
-                    @input="emitChange(arguments, fieldDef)"
-                    @change="emitChange(arguments, fieldDef)"/>
-            </b-form-group>
-        </slot>
+        <template v-for="(fieldDef, index) in options.fieldDefs">
+            <slot
+                v-if="fieldDef.field"
+                :name="fieldDef.field"
+                :fieldDef="fieldDef">
+                <b-form-group :label="fieldDef.label">
+                    <component
+                        :value="data[fieldDef.field]"
+                        :is="is(fieldDef.type)"
+                        v-bind="fieldDef.props"
+                        @input="emitChange(arguments, fieldDef)"
+                        @change="emitChange(arguments, fieldDef)"/>
+                </b-form-group>
+            </slot>
+
+            <br v-else-if="fieldDef.type === 'br'" :key="index">
+        </template>
 
         <div v-if="hasBtns" class="btn-group">
             <button
