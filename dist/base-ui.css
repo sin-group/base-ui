@@ -129,6 +129,8 @@ body {
   font-size: 15px;
   color: #212121;
   background-color: #f1f1f1; }
+  body.b-modal-open {
+    overflow: hidden; }
 
 h1,
 h2,
@@ -964,6 +966,9 @@ form .btn-group,
   padding-bottom: 30px;
   overflow-y: auto;
   color: rgba(0, 0, 0, 0.6); }
+  @media screen and (max-width: 480px) {
+    .b-dialog-body {
+      max-height: 70vh; } }
 
 .b-dialog-actions {
   min-height: 40px;

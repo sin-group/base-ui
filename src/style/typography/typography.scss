@@ -5,6 +5,10 @@ body {
     font-size: 15px;
     color: $gray-darker;
     background-color: #f1f1f1;
+
+    &.b-modal-open {
+        overflow: hidden;
+    }
 }
 
 h1,

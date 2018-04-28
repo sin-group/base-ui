@@ -50,6 +50,10 @@
     padding-bottom: 30px;
     overflow-y: auto;
     color: rgba(0, 0, 0, .6);
+
+    @media screen and (max-width: $tablet-min) {
+        max-height: 70vh;
+    }
 }
 
 .b-dialog-actions {

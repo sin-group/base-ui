@@ -1,6 +1,6 @@
 <template>
     <transition name="b-dialog-slide">
-        <div v-if="open" class="b-dialog-wrapper">
+        <div v-b-prevent-scroll v-if="open" class="b-dialog-wrapper">
             <div class="b-dialog-mask" @click="close"></div>
 
             <div :class="dialogClass" class="b-dialog">
