@@ -955,6 +955,18 @@ form .btn-group,
     max-width: 400px; }
   .b-dialog.lg {
     max-width: 90vw; }
+  .b-dialog.fs {
+    left: 0;
+    top: 0;
+    transform: none;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    border-radius: 0; }
+    .b-dialog.fs .b-dialog-body {
+      max-height: calc(100vh - 100px); }
   .b-dialog.gray {
     background-color: #f1f1f1; }
 
@@ -978,10 +990,14 @@ form .btn-group,
 
 .b-dialog-slide-enter-active,
 .b-dialog-slide-leave-active {
-  transition: opacity 0.36s cubic-bezier(0.78, 0.14, 0.15, 0.86); }
+  transition: 0.36s cubic-bezier(0.78, 0.14, 0.15, 0.86); }
   .b-dialog-slide-enter-active .b-dialog,
   .b-dialog-slide-leave-active .b-dialog {
     transition: transform 0.36s cubic-bezier(0.78, 0.14, 0.15, 0.86); }
+    .b-dialog-slide-enter-active .b-dialog.fs,
+    .b-dialog-slide-leave-active .b-dialog.fs {
+      transition: transform .5s ease;
+      transform: translate(0, 0); }
 
 .b-dialog-slide-enter,
 .b-dialog-slide-leave-to {
@@ -989,6 +1005,9 @@ form .btn-group,
   .b-dialog-slide-enter .b-dialog,
   .b-dialog-slide-leave-to .b-dialog {
     transform: translate(-50%, -40%); }
+    .b-dialog-slide-enter .b-dialog.fs,
+    .b-dialog-slide-leave-to .b-dialog.fs {
+      transform: translate(0, 5%); }
 
 .b-form-group.b-form-group-block {
   display: block; }

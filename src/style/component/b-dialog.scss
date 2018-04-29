@@ -36,6 +36,22 @@
         max-width: 90vw;
     }
 
+    &.fs { // full-screen
+        left: 0;
+        top: 0;
+        transform: none;
+        box-sizing: border-box;
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        border-radius: 0;
+
+        .b-dialog-body {
+            max-height: calc(100vh - 100px);
+        }
+    }
+
     &.gray {
         background-color: #f1f1f1;
     }
@@ -65,10 +81,15 @@
 
 .b-dialog-slide-enter-active,
 .b-dialog-slide-leave-active {
-    transition: opacity .36s cubic-bezier(.78, .14, .15, .86);
+    transition: .36s cubic-bezier(.78, .14, .15, .86);
 
     .b-dialog {
         transition: transform .36s cubic-bezier(.78, .14, .15, .86);
+
+        &.fs {
+            transition: transform .5s ease;
+            transform: translate(0, 0);
+        }
     }
 }
 
@@ -78,5 +99,9 @@
 
     .b-dialog {
         transform: translate(-50%, -40%);
+
+        &.fs {
+            transform: translate(0, 5%);
+        }
     }
 }

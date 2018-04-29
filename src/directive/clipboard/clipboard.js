@@ -47,6 +47,16 @@ const clipboard = {
         }
     },
 
+    update(el, binding, vnode) {
+        const self = this;
+        self.removeEle();
+        self.init();
+        const message = binding.value;
+        on(el, 'click', () => {
+            clipboard.select(message, vnode);
+        });
+    },
+
     select(message, vnode) {
         const self = this;
 
@@ -60,7 +70,7 @@ const clipboard = {
         }
     },
 
-    destroy() {
+    removeEle() {
         const self = this;
         if (self.fakeElem) {
             document.body.removeChild(self.fakeElem);
@@ -71,16 +81,15 @@ const clipboard = {
 
 export default {
     params: Object.values(EventType),
-    bind(el, binding, vnode) {
-        clipboard.init();
-        const message = binding.value;
+    bind(...args) {
+        clipboard.update(...args);
+    },
 
-        on(el, 'click', () => {
-            clipboard.select(message, vnode);
-        });
+    update(...args) {
+        clipboard.update(...args);
     },
 
     unbind() {
-        clipboard.destroy();
+        clipboard.removeEle();
     }
 };

@@ -5,12 +5,22 @@
  */
 /* global document */
 
+let modalNum = 0;
+
 export default {
     inserted() {
-        document.body.classList.add('b-modal-open');
+        if (modalNum <= 0) { // only happens from 0 to 1
+            document.body.classList.add('b-modal-open');
+        }
+
+        modalNum += 1;
     },
 
     unbind() {
-        document.body.classList.remove('b-modal-open');
+        modalNum -= 1;
+
+        if (modalNum <= 0) { // only happens from 1 to 0
+            document.body.classList.remove('b-modal-open');
+        }
     }
 };
