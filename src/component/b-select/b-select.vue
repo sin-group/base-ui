@@ -14,9 +14,7 @@
                 class="b-select-icon b-icon-arrow-bottom"></i>
         </b-input>
 
-        <b-popper
-            v-if="visible"
-        >
+        <b-popper :visible="visible">
             <b-select-menu
                 ref="menu"
                 :map="map"

@@ -48,6 +48,7 @@ $date-picker-btn-width: 28px !default;
 $all-transition: all .36s cubic-bezier(.78, .14, .15, .86) !default;
 
 // Z-Index
+$z-index-popper: 9996 !default;
 $z-index-dialog-wrapper: 9997 !default;
 $z-index-dialog: 9998 !default;
 $z-index-toast: 9999 !default;

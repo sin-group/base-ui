@@ -17,6 +17,11 @@
             <button @click="modal">Customized Modal</button>
             <button @click="messageModal">Message Modal</button>
         </div>
+
+        <h4 class="heading">Tooltip</h4>
+        <div class="card">
+            <button v-b-tooltip="'i`m tooltip!'">HOVER ME</button>
+        </div>
     </div>
 </template>
 

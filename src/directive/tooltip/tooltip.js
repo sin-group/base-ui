@@ -4,7 +4,7 @@
  * @file tooltip.js
  */
 
-import {initPosition} from '../../component/b-popper/position';
+import {initPosition} from './position';
 
 let toolTipEle;
 

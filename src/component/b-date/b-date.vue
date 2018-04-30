@@ -1,5 +1,5 @@
 <template>
-    <div :class="{disabled: disabled}" class="b-date">
+    <div v-b-click-outside="closeDatePicker" :class="{disabled: disabled}" class="b-date">
         <b-input
             :name="name"
             :value="displayTime"
@@ -13,9 +13,7 @@
                 class="b-date-icon b-icon-arrow-bottom"></i>
         </b-input>
 
-        <b-popper
-            v-b-click-outside="closeDatePicker"
-            v-if="visible">
+        <b-popper :visible="visible">
             <b-date-picker
                 :time-stamp="value"
                 @choose="choose"/>

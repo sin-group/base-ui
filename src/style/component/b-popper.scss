@@ -1,0 +1,16 @@
+@import "../../style/variables";
+
+.b-popper-wrap {
+    position: absolute;
+    height: 0;
+    width: 0;
+    z-index: $z-index-popper;
+
+    &.in-dialog {
+        z-index: $z-index-popper-in-dialog;
+    }
+
+    .b-popper {
+        position: absolute;
+    }
+}

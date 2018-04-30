@@ -35,3 +35,15 @@ export const off = (el, event, handler) => {
         el.removeEventListener(event, handler, false);
     }
 };
+
+export const getWindowRect = () => {
+    const {innerHeight, innerWidth, pageXOffset, pageYOffset} = window;
+    return {
+        innerHeight,
+        innerWidth,
+        top: pageYOffset,
+        left: pageXOffset,
+        bottom: pageYOffset + innerHeight,
+        right: pageXOffset + innerWidth
+    };
+};

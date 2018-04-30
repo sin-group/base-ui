@@ -1103,12 +1103,22 @@ form .btn-group,
   color: #616161; }
   .b-pagination .size-normal .page-info .b-select,
   .b-pagination .size-normal .page-size .b-select {
-    display: inline; }
+    display: inline-block; }
     .b-pagination .size-normal .page-info .b-select input,
     .b-pagination .size-normal .page-size .b-select input {
       width: 60px;
       font-size: 11px;
       text-align: center; }
+
+.b-popper-wrap {
+  position: absolute;
+  height: 0;
+  width: 0;
+  z-index: 9996; }
+  .b-popper-wrap.in-dialog {
+    z-index: 10000; }
+  .b-popper-wrap .b-popper {
+    position: absolute; }
 
 .b-select .b-input {
   position: relative; }
