@@ -70,13 +70,14 @@
 
         <p v-else-if="records" class="no-record-remind">暂无数据</p>
 
-        <div v-if="records.length && options.enableClientPagination" class="foot-area">
+        <div
+            v-if="records.length && (options.enableClientPagination || options.enableServerPagination)"
+            class="foot-area">
             <b-pagination
                 :size="options.size"
                 v-model="innerPagination"
                 @on-change="onInnerPaginationChange"/>
         </div>
-
     </div>
 </template>
 
@@ -89,7 +90,8 @@
     import {genSortedRecords} from './helper/helper';
 
     const EventTypes = {
-        ON_SELECT: 'on-select'
+        ON_SELECT: 'on-select',
+        ON_PAGINATE: 'on-paginate'
     };
 
     export default {
@@ -174,6 +176,15 @@
 
                 const vm = this;
                 vm.updateInnerState();
+            },
+
+            pagination(newVal) {
+                const vm = this;
+
+                Object.assign(
+                    vm.innerPagination,
+                    newVal
+                );
             }
         },
 
@@ -218,6 +229,7 @@
                 const vm = this;
 
                 Object.assign(vm.innerPagination, {...pagination});
+                vm.$emit(EventTypes.ON_PAGINATE, {...vm.innerPagination});
             },
 
             onSelectAllChange() {
@@ -252,6 +264,7 @@
                     options: {
                         enableClientSort = false,
                         enableClientPagination = false,
+                        enableServerPagination = false,
 
                         sortInfo
                     },
@@ -260,7 +273,7 @@
                 } = vm;
 
                 if (enableClientSort && sortInfo) vm.sortInfo = sortInfo;
-                if (enableClientPagination) {
+                if (enableClientPagination || enableServerPagination) {
                     Object.assign(
                         vm.innerPagination,
                         {

@@ -1,6 +1,10 @@
 @import "../../style/variables.scss";
 
 .b-form-group {
+    .required-star {
+        color: $primary;
+    }
+
     &.b-form-group-block {
         display: block;
 

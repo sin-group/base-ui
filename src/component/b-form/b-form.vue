@@ -11,7 +11,9 @@
                 v-if="fieldDef.field"
                 :name="fieldDef.field"
                 :fieldDef="fieldDef">
-                <b-form-group :label="fieldDef.label">
+                <b-form-group
+                    :label="fieldDef.label"
+                    :has-star="fieldDef.hasStar">
                     <component
                         :value="data[fieldDef.field]"
                         :is="is(fieldDef.type)"
@@ -24,14 +26,19 @@
             <br v-else-if="fieldDef.type === 'br'" :key="index">
         </template>
 
-        <div v-if="hasBtns" class="btn-group">
-            <button
-                v-for="btnDef in options.btnDefs"
-                :key="btnKey(btnDef)"
-                v-bind="btnDef.props"
-                :type="btnType(btnDef.props)"
-                @click="emitEvent(btnDef.event)">{{ btnDef.text }}</button>
-        </div>
+        <template v-if="hasBtns">
+            <template v-for="(btnDef, index) in options.btnDefs">
+                <button
+                    v-if="btnDef.event"
+                    :key="btnKey(btnDef)"
+                    v-bind="btnDef.props"
+                    :type="btnType(btnDef.props)"
+                    class="form-button"
+                    @click="emitEvent(btnDef.event)">{{ btnDef.text }}</button>
+
+                <br v-else-if="btnDef.type === 'br'" :key="index">
+            </template>
+        </template>
     </form>
 
 </template>

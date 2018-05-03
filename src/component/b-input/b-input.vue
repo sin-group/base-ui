@@ -97,12 +97,12 @@ export default {
 
         rows: {
             type: Number,
-            default: 1
+            default: 6
         },
 
         rowsMax: {
             type: Number,
-            default: null
+            default: 10
         },
 
         // font-size: 15px line-height: 1.5, so we got 22.5 by default

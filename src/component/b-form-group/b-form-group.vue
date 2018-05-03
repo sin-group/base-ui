@@ -7,7 +7,10 @@
         class="b-form-group form-group">
         <div :class="labelWrapClass" class="b-form-group-label-wrap">
             <slot name="labelLeft"></slot>
-            <label>{{ label }}</label>
+            <label>
+                {{ label }}
+                <span v-if="hasStar" class="required-star">*</span>
+            </label>
             <slot name="labelRight"></slot>
         </div>
 
@@ -44,6 +47,11 @@
             inputWrapClass: {
                 type: [String, Array, Object],
                 default: ''
+            },
+
+            hasStar: {
+                type: Boolean,
+                default: false
             }
         }
     };
