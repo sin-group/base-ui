@@ -1,4 +1,11 @@
 .b-table {
+    &.b-table-with-extra-th {
+        td,
+        th {
+            border: 1px solid $gray-light;
+        }
+    }
+
     .table-area {
         overflow-x: auto;
         overflow-y: hidden;

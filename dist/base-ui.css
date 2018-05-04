@@ -1231,6 +1231,10 @@ table,
     .b-switch.b-switch-disabled .b-switch-wrap .b-switch-inner {
       background-color: #616161; }
 
+.b-table.b-table-with-extra-th td,
+.b-table.b-table-with-extra-th th {
+  border: 1px solid #e0e0e0; }
+
 .b-table .table-area {
   overflow-x: auto;
   overflow-y: hidden; }

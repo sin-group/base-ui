@@ -1,8 +1,17 @@
 <template>
-    <div class="b-table">
+    <div :class="{'b-table-with-extra-th': options.extraThDefsList}" class="b-table">
         <div v-if="records.length" class="table-area">
             <table class="table">
                 <thead>
+                    <template v-if="options.extraThDefsList">
+                        <tr v-for="(extraThDefs, index) in options.extraThDefsList" :key="index">
+                            <th
+                                v-for="(extraTh, index) in extraThDefs"
+                                :key="index"
+                                :colspan="extraTh.colspan">{{ extraTh.label }}</th>
+                        </tr>
+                    </template>
+
                     <tr>
                         <th v-if="options.enableSelection" class="select-area">
                             <label>

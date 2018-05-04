@@ -51,6 +51,17 @@
             {field: 'loanCreditsStatus', label: 'Status', map: LoanCreditsStatusMap},
             {field: 'timeCompletedAuthFlow', label: 'Time', filter: 'b-date-time'},
             {field: 'op', label: 'Operation', template: true}
+        ],
+
+        extraThDefsList: [
+            [
+                {label: 'SUPER TH', colspan: 7}
+            ],
+            [
+                {label: 'INFO', colspan: 4},
+                {label: 'OTHERS', colspan: 2},
+                {label: 'OP', colspan: 1}
+            ]
         ]
     };
 
