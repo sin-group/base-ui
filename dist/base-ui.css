@@ -729,7 +729,6 @@ form .form-button,
 .heading-dark {
   border-color: #bdbdbd; }
 
-table,
 .table {
   width: 100%;
   max-width: 100%;
@@ -740,23 +739,18 @@ table,
   border-collapse: collapse;
   background-color: #fff;
   border-radius: 2px; }
-  table thead tr,
   .table thead tr {
     height: 56px;
     line-height: 56px;
     vertical-align: middle;
     border-bottom: 1px solid #bdbdbd; }
-    table thead tr th,
     .table thead tr th {
       min-width: 120px;
       padding: 0 15px;
       color: rgba(0, 0, 0, 0.54);
       user-select: none; }
-      table thead tr th .sort-click-area.enabled-click,
       .table thead tr th .sort-click-area.enabled-click {
         cursor: pointer; }
-      table thead tr th .filter-area,
-      table thead tr th .sort-area,
       .table thead tr th .filter-area,
       .table thead tr th .sort-area {
         display: inline-block;
@@ -765,8 +759,6 @@ table,
         left: 2px;
         width: 12px;
         height: 12px; }
-        table thead tr th .filter-area .sort-icon,
-        table thead tr th .sort-area .sort-icon,
         .table thead tr th .filter-area .sort-icon,
         .table thead tr th .sort-area .sort-icon {
           width: 0;
@@ -774,8 +766,6 @@ table,
           border-top: 6px solid transparent;
           border-bottom: 6px solid transparent;
           border-left: 6px solid #bdbdbd; }
-          table thead tr th .filter-area .sort-icon-up,
-          table thead tr th .sort-area .sort-icon-up,
           .table thead tr th .filter-area .sort-icon-up,
           .table thead tr th .sort-area .sort-icon-up {
             width: 0;
@@ -786,8 +776,6 @@ table,
             position: relative;
             top: -3px;
             left: -3px; }
-          table thead tr th .filter-area .sort-icon-down,
-          table thead tr th .sort-area .sort-icon-down,
           .table thead tr th .filter-area .sort-icon-down,
           .table thead tr th .sort-area .sort-icon-down {
             width: 0;
@@ -798,7 +786,6 @@ table,
             position: relative;
             top: 3px;
             left: -3px; }
-  table tbody tr,
   .table tbody tr {
     height: 40px;
     line-height: 40px;
@@ -806,25 +793,19 @@ table,
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     transition: background 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
     will-change: backgaound; }
-    table tbody tr:hover,
     .table tbody tr:hover {
       background-color: #f3f3f3; }
-    table tbody tr.selected,
     .table tbody tr.selected {
       background-color: #eaecf7; }
-    table tbody tr td,
     .table tbody tr td {
       padding: 10px;
       line-height: normal; }
-  table .select-area,
   .table .select-area {
     min-width: 15px; }
-    table .select-area label,
     .table .select-area label {
       margin: -20px;
       padding: 20px;
       cursor: pointer; }
-      table .select-area label input[type=checkbox],
       .table .select-area label input[type=checkbox] {
         outline: none;
         cursor: pointer; }
@@ -1087,6 +1068,36 @@ table,
       margin-bottom: 5px; }
   .b-md-view hr {
     margin-bottom: 20px; }
+  .b-md-view table {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.9);
+    text-align: center;
+    border-spacing: 0;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 2px; }
+    .b-md-view table thead tr {
+      height: 56px;
+      line-height: 56px;
+      vertical-align: middle;
+      border-bottom: 1px solid #bdbdbd; }
+      .b-md-view table thead tr th {
+        min-width: 120px;
+        padding: 0 15px;
+        color: rgba(0, 0, 0, 0.54);
+        user-select: none; }
+    .b-md-view table tbody tr {
+      height: 40px;
+      line-height: 40px;
+      vertical-align: middle;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      transition: background 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+      will-change: backgaound; }
+      .b-md-view table tbody tr:hover {
+        background-color: #f3f3f3; }
+      .b-md-view table tbody tr td {
+        padding: 10px;
+        line-height: normal; }
 
 @media screen and (min-width: 700px) {
   .b-pagination .size-mini {
@@ -1178,7 +1189,8 @@ table,
     min-width: 256px;
     background-color: #fff;
     padding: 0 10px;
-    cursor: pointer; }
+    cursor: pointer;
+    white-space: pre; }
     .b-select-menu li:hover {
       background-color: #9fa8da; }
     .b-select-menu li.b-select-menu-selected {

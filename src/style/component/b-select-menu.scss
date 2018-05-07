@@ -17,6 +17,7 @@
         background-color: $white;
         padding: 0 10px;
         cursor: pointer;
+        white-space: pre;
 
         &:hover {
             background-color: $primary-light;

@@ -3,7 +3,7 @@
         <h4 class="heading">Date</h4>
 
         <div class="card">
-            <form class="form-inline">
+            <form class="form-inline" @submit.prevent>
                 <b-form-group label="Basic">
                     <b-date v-model="editing.basic"/>
                 </b-form-group>

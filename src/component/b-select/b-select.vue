@@ -78,14 +78,14 @@
             value(val) {
                 const vm = this;
 
-                vm.searchText = (val && vm.map[val]) ? vm.map[val] : '';
+                vm.updateSearchText(vm.map, val);
             },
 
             map(val) {
                 const vm = this;
                 const {value} = vm;
 
-                vm.searchText = (value && val[value]) ? val[value] : '';
+                vm.updateSearchText(val, value);
             }
         },
 
@@ -95,6 +95,16 @@
                 if (!vm.disabled) {
                     vm.searchText = '';
                     vm.visible = true;
+                }
+            },
+
+            updateSearchText(map, value) {
+                const vm = this;
+
+                if (value && map[value]) {
+                    vm.searchText = map[value].trim();
+                } else {
+                    vm.searchText = '';
                 }
             },
 
@@ -138,14 +148,13 @@
 
             closeMenu() {
                 const vm = this;
-                const {map, value} = vm;
-                vm.searchText = (value && vm.map[value]) ? map[value] : '';
+                vm.updateSearchText(vm.map, vm.value);
                 vm.visible = false;
             },
 
             choose(value) {
                 const vm = this;
-                vm.searchText = vm.map[value];
+                vm.updateSearchText(vm.map, value);
                 vm.$emit('change', value);
                 vm.visible = false;
             }
