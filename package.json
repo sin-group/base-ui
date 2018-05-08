@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@yqg/arcanist": "0.0.2",
-    "@yqg/cli": "0.1.6",
+    "@yqg/cli": "0.1.8",
     "@yqg/eslint-config": "0.0.4",
     "@yqg/stylelint-config": "0.0.2",
     "babel-cli": "6.26.0",
@@ -46,7 +46,7 @@
     "eslint-plugin-vue": "4.5.0",
     "husky": "1.0.0-rc.2",
     "json3": "3.3.2",
-    "lint-staged": "7.0.5",
+    "lint-staged": "7.1.0",
     "replace": "0.3.0",
     "rollup": "0.58.2",
     "rollup-plugin-babel": "3.0.4",
@@ -64,7 +64,7 @@
     "vue-resource": "1.5.0",
     "vue-router": "3.0.1",
     "vuex": "3.0.1",
-    "webpack": "4.7.0"
+    "webpack": "4.8.1"
   },
   "scripts": {
     "arc:eslint": "eslint",

@@ -4,11 +4,6 @@
  * @date 2017-12-28 16:28:40.980
  */
 
-const path = require('path');
-
-const PWD = process.cwd();
-const resolvePwd = (...args) => path.resolve(PWD, ...args);
-
 module.exports = {
     appName: 'BaseUiDemo',
 
@@ -23,8 +18,8 @@ module.exports = {
         },
 
         htmlPlugin: {
-            template: resolvePwd('./src/app/index.html'),
-            favicon: resolvePwd('./src/app/favicon.ico')
+            template: './src/app/index.html',
+            favicon: './src/app/favicon.ico'
         },
 
         clientEntry: './src/app/main.js',
