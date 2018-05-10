@@ -15,7 +15,7 @@
 
         <b-popper :visible="visible">
             <b-date-picker
-                :time-stamp="value"
+                :time-stamp="timeStamp"
                 @choose="choose"/>
         </b-popper>
     </div>
@@ -24,10 +24,15 @@
 <script type="text/babel">
 
 import {getDate} from '../../util/time';
+import {isFunc} from '../../util/check';
 
 import BInput from '../b-input';
 import BPopover from '../b-popper';
 import BDatePicker from './b-date-picker.vue';
+
+const FORMAT_MAP = {
+    ISO: timeStamp => new Date(timeStamp).toISOString()
+};
 
 export default {
     name: 'BDate',
@@ -45,8 +50,9 @@ export default {
 
     props: {
         value: {
-            type: Number,
-            default: Date.now()
+            type: [Number, String],
+            validator: value => isFinite(new Date(value)),
+            default: null
         },
         name: {
             type: String,
@@ -59,6 +65,10 @@ export default {
         placeholder: {
             type: String,
             default: ''
+        },
+        format: {
+            type: [String, Function],
+            default: null
         }
     },
 
@@ -76,6 +86,13 @@ export default {
             if (!value && typeof value !== typeof 0) return '';
 
             return getDate(value);
+        },
+
+        timeStamp() {
+            const vm = this;
+            const {value} = vm;
+
+            return value ? new Date(value).getTime() : null;
         }
     },
 
@@ -96,7 +113,16 @@ export default {
 
         choose(timeStamp) {
             const vm = this;
-            vm.$emit('change', timeStamp);
+            const {format} = vm;
+
+            let value = timeStamp;
+            if (isFunc(format)) {
+                value = format(timeStamp);
+            } else if (isFunc(FORMAT_MAP[format])) {
+                value = FORMAT_MAP[format](timeStamp);
+            }
+
+            vm.$emit('change', value);
             vm.closeDatePicker();
         }
     }
