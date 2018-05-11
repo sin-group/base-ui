@@ -14,3 +14,35 @@
         display: flex;
     }
 }
+
+.b-date,
+.b-image,
+.b-select {
+    .b-input {
+        position: relative;
+
+        input {
+            padding-right: 15px;
+            cursor: pointer;
+        }
+
+        .b-right-icon {
+            position: absolute;
+            right: 0;
+            bottom: 8px;
+            color: $gray-dark;
+
+            &.b-select-icon-active {
+                color: $primary;
+            }
+        }
+    }
+
+    &:disabled {
+        .b-input {
+            input {
+                cursor: not-allowed;
+            }
+        }
+    }
+}

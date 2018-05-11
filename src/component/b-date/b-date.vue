@@ -10,7 +10,7 @@
             <i
                 slot="right"
                 :class="{'b-date-icon-active': visible}"
-                class="b-date-icon b-icon-arrow-bottom"></i>
+                class="b-right-icon b-icon-arrow-bottom"></i>
         </b-input>
 
         <b-popper :visible="visible">

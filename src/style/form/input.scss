@@ -5,7 +5,8 @@ input {
     &[type="password"],
     &[type="number"],
     &[type="tel"],
-    &[type="email"] {
+    &[type="email"],
+    &[type="file"] {
         width: 256px;
         height: 30px;
         line-height: 20px;

@@ -6,7 +6,7 @@
 
 .form-group {
     display: inline-block;
-    min-width: 256px;
+    min-width: $form-inline-width;
     margin-right: 8px;
     margin-bottom: 15px;
     vertical-align: top;
@@ -83,6 +83,24 @@
 
 form,
 .form-inline {
+    .form-group {
+        @media screen and (max-width: $tablet-min) {
+            display: block;
+            margin-right: 0;
+
+            input,
+            textarea,
+            button,
+            .b-input {
+                width: 100%;
+            }
+
+            .image-preview {
+                max-width: 100%;
+            }
+        }
+    }
+
     .btn-group {
         margin-top: 20px;
         display: inline-block;

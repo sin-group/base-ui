@@ -11,7 +11,7 @@
             <i
                 slot="right"
                 :class="{'b-select-icon-active': visible}"
-                class="b-select-icon b-icon-arrow-bottom"></i>
+                class="b-right-icon b-icon-arrow-bottom"></i>
         </b-input>
 
         <b-popper :visible="visible">

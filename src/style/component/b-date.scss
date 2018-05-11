@@ -1,29 +1,9 @@
+@import "../variables.scss";
+
 .b-date {
     display: inline-block;
 
-    .b-input {
-        position: relative;
-
-        input {
-            padding-right: 15px;
-            cursor: pointer;
-        }
-
-        .b-date-icon {
-            position: absolute;
-            right: 0;
-            bottom: 8px;
-            color: $gray-dark;
-
-            &.b-date-icon-active {
-                color: $primary;
-            }
-        }
-
-        &.disabled {
-            input {
-                cursor: not-allowed;
-            }
-        }
+    @media screen and (max-width: $tablet-min) {
+        display: block;
     }
 }

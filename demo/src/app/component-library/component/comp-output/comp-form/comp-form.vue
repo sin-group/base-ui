@@ -16,8 +16,6 @@
             </b-form>
         </div>
 
-        <button @click="reset">reset</button>
-
         <pre class="json-preview">{{ $j(data) }}</pre>
     </div>
 

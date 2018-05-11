@@ -7,6 +7,7 @@
 import BDate from './b-date';
 import BDialog from './b-dialog';
 import BFormGroup from './b-form-group';
+import BImage from './b-image';
 import BInput from './b-input';
 import BMdView from './b-md-view';
 import BPagination from './b-pagination';
@@ -23,6 +24,7 @@ export default {
         Vue.component('b-date', BDate);
         Vue.component('b-dialog', BDialog);
         Vue.component('b-form-group', BFormGroup);
+        Vue.component('b-image', BImage);
         Vue.component('b-input', BInput);
         Vue.component('b-md-view', BMdView);
         Vue.component('b-pagination', BPagination);
