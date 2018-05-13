@@ -13,18 +13,22 @@
 
     label {
         display: block;
-        font-size: 13px;
+        font-size: $form-label-font-size;
         color: $gray-dark;
     }
 
     input,
     textarea {
-        font-size: 14px;
+        font-size: $form-font-size;
         display: inline-block;
     }
 
     input {
         margin-top: 5px;
+
+        &::placeholder {
+            font-size: $form-font-size;
+        }
     }
 
     textarea {

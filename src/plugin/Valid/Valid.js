@@ -50,7 +50,8 @@ class Valid {
 
                     // check customized rule
                     if (validate && !validate(fieldData, field, data)) {
-                        $toast.error(message);
+                        if (message) $toast.error(message);
+
                         return false;
                     }
 

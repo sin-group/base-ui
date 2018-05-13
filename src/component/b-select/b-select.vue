@@ -4,7 +4,7 @@
             :name="name"
             :value="searchText"
             :disabled="disabled"
-            type="text"
+            :type="type"
             @input="input"
             @focus="openMenu"
             @keydown="handleKeyDown">
@@ -51,8 +51,12 @@
                 default: null
             },
             value: {
-                type: String,
+                type: [String, Number],
                 default: null
+            },
+            type: {
+                type: String,
+                default: 'text'
             },
             map: {
                 type: Object,
@@ -155,7 +159,13 @@
             choose(value) {
                 const vm = this;
                 vm.updateSearchText(vm.map, value);
-                vm.$emit('change', value);
+
+                let changeValue = value;
+                if (vm.type === 'number') {
+                    changeValue = Number(value);
+                }
+
+                vm.$emit('change', changeValue);
                 vm.visible = false;
             }
         }

@@ -30,7 +30,7 @@ input {
         }
 
         &::placeholder {
-            color: #aaa;
+            color: $gray;
         }
 
         &:disabled {

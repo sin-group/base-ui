@@ -468,7 +468,7 @@ input[type="text"], input[type="password"], input[type="number"], input[type="te
   input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="tel"]:focus, input[type="email"]:focus, input[type="file"]:focus {
     border-color: #304ffe; }
   input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="number"]::placeholder, input[type="tel"]::placeholder, input[type="email"]::placeholder, input[type="file"]::placeholder {
-    color: #aaa; }
+    color: #bdbdbd; }
   input[type="text"]:disabled, input[type="password"]:disabled, input[type="number"]:disabled, input[type="tel"]:disabled, input[type="email"]:disabled, input[type="file"]:disabled {
     cursor: not-allowed;
     border-color: #bdbdbd; }
@@ -563,6 +563,8 @@ textarea {
     display: inline-block; }
   .form-group input {
     margin-top: 5px; }
+    .form-group input::placeholder {
+      font-size: 14px; }
   .form-group textarea {
     padding: 4px 0;
     margin-top: 5px; }
@@ -966,7 +968,8 @@ form .form-button,
   .b-dialog.sm {
     max-width: 400px; }
   .b-dialog.lg {
-    max-width: 90vw; }
+    width: 90%;
+    max-width: 1200px; }
   .b-dialog.fs {
     left: 0;
     top: 0;

@@ -23,8 +23,8 @@
                 default: () => ({})
             },
             value: {
-                type: String,
-                default: ''
+                type: [String, Number],
+                default: null
             },
             searchText: {
                 type: String,
