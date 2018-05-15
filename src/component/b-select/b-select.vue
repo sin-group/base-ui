@@ -5,6 +5,7 @@
             :value="searchText"
             :disabled="disabled"
             :type="type"
+            :placeholder="placeholder"
             @input="input"
             @focus="openMenu"
             @keydown="handleKeyDown">
@@ -48,7 +49,7 @@
         props: {
             name: {
                 type: String,
-                default: null
+                default: ''
             },
             value: {
                 type: [String, Number],
@@ -66,6 +67,10 @@
             disabled: {
                 type: Boolean,
                 default: false
+            },
+            placeholder: {
+                type: String,
+                default: ''
             }
         },
 

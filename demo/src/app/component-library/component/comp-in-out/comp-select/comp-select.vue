@@ -5,7 +5,7 @@
         <div class="card">
             <form class="form-inline">
                 <b-form-group label="Basic">
-                    <b-select v-model="editing.basic" :map="SelectMap"/>
+                    <b-select v-model="editing.basic" :map="SelectMap" placeholder="请选择"/>
                 </b-form-group>
 
                 <b-form-group label="Selected">
@@ -87,5 +87,3 @@
     };
 
 </script>
-
-<style lang="scss" rel="stylesheet/scss" scoped></style>
