@@ -1250,6 +1250,9 @@ form .form-button,
   .b-popper-wrap .b-popper {
     position: absolute; }
 
+.b-select {
+  position: relative; }
+
 .b-select-menu {
   padding: 10px 0;
   background-color: #fff;

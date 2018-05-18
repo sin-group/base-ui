@@ -79,7 +79,7 @@
             const {map, value} = vm;
             return {
                 visible: false,
-                searchText: (value && map[value]) ? map[value] : ''
+                searchText: (value && map[value]) ? map[value].trim() : ''
             };
         },
 
