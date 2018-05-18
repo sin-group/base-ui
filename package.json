@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@yqg/arcanist": "0.0.2",
-    "@yqg/cli": "0.1.8",
+    "@yqg/cli": "0.1.11",
     "@yqg/eslint-config": "0.0.4",
     "@yqg/stylelint-config": "0.0.2",
     "babel-cli": "6.26.0",
@@ -34,7 +34,7 @@
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-decorators-legacy": "1.3.4",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
-    "babel-preset-env": "1.6.1",
+    "babel-preset-env": "1.7.0",
     "babel-preset-es2015": "6.24.1",
     "babel-preset-stage-3": "6.24.1",
     "config": "1.30.0",
@@ -42,7 +42,7 @@
     "eslint": "4.19.1",
     "eslint-config-airbnb": "16.1.0",
     "eslint-loader": "2.0.0",
-    "eslint-plugin-import": "2.11.0",
+    "eslint-plugin-import": "2.12.0",
     "eslint-plugin-vue": "4.5.0",
     "husky": "1.0.0-rc.2",
     "json3": "3.3.2",
@@ -57,14 +57,14 @@
     "rollup-plugin-scss": "0.4.0",
     "rollup-plugin-uglify": "3.0.0",
     "rollup-plugin-vue": "3.0.0",
-    "stylelint": "9.2.0",
+    "stylelint": "9.2.1",
     "stylelint-config-standard": "18.2.0",
     "vue": "2.5.16",
     "vue-eslint-parser": "2.0.3",
     "vue-resource": "1.5.0",
     "vue-router": "3.0.1",
     "vuex": "3.0.1",
-    "webpack": "4.8.1"
+    "webpack": "4.8.3"
   },
   "scripts": {
     "arc:eslint": "eslint",
