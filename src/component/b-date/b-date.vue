@@ -1,5 +1,8 @@
 <template>
-    <div v-b-click-outside="closeDatePicker" :class="{disabled: disabled}" class="b-date">
+    <div
+        v-b-click-outside="closeDatePicker"
+        :class="{disabled: disabled, 'b-has-value': displayTime && !disabled}"
+        class="b-date">
         <b-input
             :name="name"
             :value="displayTime"
@@ -10,7 +13,8 @@
             <i
                 slot="right"
                 :class="{'b-date-icon-active': visible}"
-                class="b-right-icon b-icon-arrow-bottom"></i>
+                class="b-right-icon b-icon-arrow-bottom"
+                @click="reset"></i>
         </b-input>
 
         <b-popper :visible="visible">
@@ -124,6 +128,16 @@ export default {
 
             vm.$emit('change', value);
             vm.closeDatePicker();
+        },
+
+        reset() {
+            const vm = this;
+            const {displayTime, disabled} = vm;
+
+            if (displayTime && !disabled) {
+                vm.$emit('change', null);
+                vm.closeDatePicker();
+            }
         }
     }
 };

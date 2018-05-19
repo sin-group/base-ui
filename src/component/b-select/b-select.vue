@@ -1,5 +1,8 @@
 <template>
-    <div v-b-click-outside="closeMenu" :class="{disabled: disabled}" class="b-select">
+    <div
+        v-b-click-outside="closeMenu"
+        :class="{'disabled': disabled, 'b-has-value': searchText && !disabled}"
+        class="b-select">
         <b-input
             :name="name"
             :value="searchText"
@@ -12,7 +15,8 @@
             <i
                 slot="right"
                 :class="{'b-select-icon-active': visible}"
-                class="b-right-icon b-icon-arrow-bottom"></i>
+                class="b-right-icon b-icon-arrow-bottom"
+                @click="reset"></i>
         </b-input>
 
         <b-popper :visible="visible">
@@ -172,6 +176,14 @@
 
                 vm.$emit('change', changeValue);
                 vm.visible = false;
+            },
+
+            reset() {
+                const vm = this;
+                const {searchText, disabled} = vm;
+                if (searchText && !disabled) {
+                    vm.choose(null);
+                }
             }
         }
     };

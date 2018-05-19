@@ -20,6 +20,7 @@
 
 <script type="text/babel">
     const IconList = [
+        'reset',
         'chat',
         'search',
         'folder',

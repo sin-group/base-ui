@@ -1138,9 +1138,22 @@ form .form-button,
     .b-select .b-input .b-right-icon.b-select-icon-active {
       color: #304ffe; }
 
-.b-date:disabled .b-input input,
-.b-image:disabled .b-input input,
-.b-select:disabled .b-input input {
+.b-date:hover.b-has-value i,
+.b-image:hover.b-has-value i,
+.b-select:hover.b-has-value i {
+  cursor: pointer; }
+  .b-date:hover.b-has-value i:hover,
+  .b-image:hover.b-has-value i:hover,
+  .b-select:hover.b-has-value i:hover {
+    color: #3f51b5; }
+  .b-date:hover.b-has-value i:before,
+  .b-image:hover.b-has-value i:before,
+  .b-select:hover.b-has-value i:before {
+    content: "\e60c"; }
+
+.b-date.disabled .b-input input,
+.b-image.disabled .b-input input,
+.b-select.disabled .b-input input {
   cursor: not-allowed; }
 
 .b-md-view {
@@ -1579,6 +1592,9 @@ pre[class*="language-"]::-moz-selection {
   text-transform: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
+
+.b-icon-reset:before {
+  content: "\e60c"; }
 
 .b-icon-user-search:before {
   content: "\e64e"; }

@@ -19,6 +19,8 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.b-icon-reset:before { content: "\e60c"; }
+
 .b-icon-user-search:before { content: "\e64e"; }
 
 .b-icon-download:before { content: "\e600"; }

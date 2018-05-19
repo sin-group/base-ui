@@ -38,7 +38,23 @@
         }
     }
 
-    &:disabled {
+    &:hover {
+        &.b-has-value {
+            i {
+                cursor: pointer;
+
+                &:hover {
+                    color: $primary-dark;
+                }
+
+                &:before {
+                    content: "\e60c";
+                }
+            }
+        }
+    }
+
+    &.disabled {
         .b-input {
             input {
                 cursor: not-allowed;
