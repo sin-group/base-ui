@@ -105,3 +105,10 @@ export const getDateTime = (time) => {
 
     return genDateStringWithFormat(timeStamp, DateTimeFormat);
 };
+
+export const isValidDateString = (dateStr) => {
+    if (!/\d+-\d{2}-\d{2}/.test(dateStr)) return false;
+    const date = new Date(dateStr);
+    if (!date.getTime() && date.getTime() !== 0) return false;
+    return date.toISOString().slice(0, 10) === dateStr;
+};

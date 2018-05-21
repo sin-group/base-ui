@@ -2,6 +2,7 @@
     <div class="comp-output">
         <comp-input/>
         <comp-date/>
+        <comp-date-string/>
         <comp-image/>
         <comp-switch/>
         <comp-form/>
@@ -10,6 +11,7 @@
 
 <script type="text/babel">
 import CompDate from './comp-date';
+import CompDateString from './comp-date-string';
 import CompInput from './comp-input';
 import CompImage from './comp-image';
 import CompSwitch from './comp-switch';
@@ -20,6 +22,7 @@ export default {
 
     components: {
         CompDate,
+        CompDateString,
         CompInput,
         CompImage,
         CompSwitch,

@@ -28,7 +28,8 @@
             {field: 'custom'},
             {type: 'br'},
             {label: '科目', field: 'type', type: 'select', props: {map: {a: 'a', b: 'b'}}},
-            {label: '时间', field: 'time', type: 'date'}
+            {label: '时间', field: 'time', type: 'date'},
+            {label: '生日', field: 'timeString', type: 'dateString'}
         ],
         btnDefs: [
             {text: 'reset', event: 'reset'}

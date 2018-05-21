@@ -5,6 +5,7 @@
  */
 
 import BDate from './b-date';
+import BDateString from './b-date-string';
 import BDialog from './b-dialog';
 import BFormGroup from './b-form-group';
 import BImage from './b-image';
@@ -22,6 +23,7 @@ export default {
 
     install(Vue) {
         Vue.component('b-date', BDate);
+        Vue.component('b-date-string', BDateString);
         Vue.component('b-dialog', BDialog);
         Vue.component('b-form-group', BFormGroup);
         Vue.component('b-image', BImage);
