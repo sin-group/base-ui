@@ -89,10 +89,16 @@
             },
 
             emitChange(data, {field}) {
-                this.$emit('change', {
+                const emitData = {
                     ...this.data,
                     [field]: data[0]
-                });
+                };
+
+                if (data[0] === null) {
+                    delete emitData[field];
+                }
+
+                this.$emit('change', emitData);
             },
 
             emitEvent(event) {
