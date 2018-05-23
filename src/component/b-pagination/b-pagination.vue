@@ -21,6 +21,7 @@
                 <b-select
                     :value="stringPageSize"
                     :map="pageSizeMap"
+                    :enable-reset="false"
                     @change="onPageSizeChange"/>
                 行每页
             </span>

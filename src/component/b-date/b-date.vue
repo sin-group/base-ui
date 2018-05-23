@@ -1,7 +1,7 @@
 <template>
     <div
         v-b-click-outside="closeDatePicker"
-        :class="{disabled: disabled, 'b-has-value': displayTime && !disabled}"
+        :class="{disabled: disabled, 'b-resettable': canBeReset}"
         class="b-date">
         <b-input
             :name="name"
@@ -73,6 +73,10 @@ export default {
         format: {
             type: [String, Function],
             default: null
+        },
+        enableReset: {
+            type: Boolean,
+            default: true
         }
     },
 
@@ -97,6 +101,13 @@ export default {
             const {value} = vm;
 
             return value ? new Date(value).getTime() : null;
+        },
+
+        canBeReset() {
+            const vm = this;
+            const {displayTime, disabled, enableReset} = vm;
+
+            return enableReset && displayTime && !disabled;
         }
     },
 
@@ -132,9 +143,8 @@ export default {
 
         reset() {
             const vm = this;
-            const {displayTime, disabled} = vm;
 
-            if (displayTime && !disabled) {
+            if (vm.canBeReset) {
                 vm.$emit('change', null);
                 vm.closeDatePicker();
             }

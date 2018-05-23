@@ -1,7 +1,7 @@
 <template>
     <div
         v-b-click-outside="closeMenu"
-        :class="{'disabled': disabled, 'b-has-value': searchText && !disabled}"
+        :class="{'disabled': disabled, 'b-resettable': canBeReset}"
         class="b-select">
         <b-input
             :name="name"
@@ -75,6 +75,10 @@
             placeholder: {
                 type: String,
                 default: ''
+            },
+            enableReset: {
+                type: Boolean,
+                default: true
             }
         },
 
@@ -85,6 +89,15 @@
                 visible: false,
                 searchText: (value && map[value]) ? map[value].trim() : ''
             };
+        },
+
+        computed: {
+            canBeReset() {
+                const vm = this;
+                const {searchText, disabled, enableReset} = vm;
+
+                return enableReset && searchText && !disabled;
+            }
         },
 
         watch: {
@@ -180,8 +193,7 @@
 
             reset() {
                 const vm = this;
-                const {searchText, disabled} = vm;
-                if (searchText && !disabled) {
+                if (vm.canBeReset) {
                     vm.choose(null);
                 }
             }

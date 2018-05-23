@@ -1138,17 +1138,17 @@ form .form-button,
     .b-select .b-input .b-right-icon.b-select-icon-active {
       color: #304ffe; }
 
-.b-date:hover.b-has-value i,
-.b-image:hover.b-has-value i,
-.b-select:hover.b-has-value i {
+.b-date:hover.b-resettable i,
+.b-image:hover.b-resettable i,
+.b-select:hover.b-resettable i {
   cursor: pointer; }
-  .b-date:hover.b-has-value i:hover,
-  .b-image:hover.b-has-value i:hover,
-  .b-select:hover.b-has-value i:hover {
+  .b-date:hover.b-resettable i:hover,
+  .b-image:hover.b-resettable i:hover,
+  .b-select:hover.b-resettable i:hover {
     color: #3f51b5; }
-  .b-date:hover.b-has-value i:before,
-  .b-image:hover.b-has-value i:before,
-  .b-select:hover.b-has-value i:before {
+  .b-date:hover.b-resettable i:before,
+  .b-image:hover.b-resettable i:before,
+  .b-select:hover.b-resettable i:before {
     content: "\e60c"; }
 
 .b-date.disabled .b-input input,
