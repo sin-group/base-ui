@@ -1,9 +1,0 @@
-@import "../variables.scss";
-
-.b-date {
-    display: inline-block;
-
-    @media screen and (max-width: $tablet-min) {
-        display: block;
-    }
-}

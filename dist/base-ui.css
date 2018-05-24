@@ -830,12 +830,6 @@ form .form-button,
         outline: none;
         cursor: pointer; }
 
-.b-date {
-  display: inline-block; }
-  @media screen and (max-width: 480px) {
-    .b-date {
-      display: block; } }
-
 .b-date-picker {
   width: 256px;
   box-sizing: border-box;
