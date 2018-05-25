@@ -1,4 +1,5 @@
 @import "../variables.scss";
+@import "./grid.scss";
 @import "./tiles.scss";
 @import "./level.scss";
 
@@ -6,24 +7,35 @@
     margin: 0;
 }
 
+$break-point-buffer: 60px;
+
 .container {
     width: auto;
     box-sizing: border-box;
     padding: 20px 0;
     margin: 0 10px;
 
-    @media screen and (min-width: $desktop-min) {
+    @media only screen and (min-width: $small-desktop-min + $break-point-buffer) {
         width: $small-desktop-min;
         margin: 0 auto;
     }
 
-    @media screen and (min-width: $large-desktop-min) {
+    @media only screen and (min-width: $desktop-min + $break-point-buffer) {
         width: $desktop-min;
         margin: 0 auto;
     }
 
-    @media screen and (max-width: $desktop-min) {
+    @media only screen and (min-width: $large-desktop-min + $break-point-buffer) {
+        width: $large-desktop-min;
+        margin: 0 auto;
+    }
+
+    @media only screen and (max-width: $desktop-min) {
         flex: 1;
+    }
+
+    @media only screen and (max-width: $small-desktop-min + $break-point-buffer) {
+        margin: 0 20px;
     }
 
     &-wide {
@@ -64,4 +76,14 @@
 
 .heading-dark {
     border-color: $gray;
+}
+
+.img {
+    &-lg {
+        width: 200px;
+    }
+
+    &-sm {
+        width: 15px;
+    }
 }

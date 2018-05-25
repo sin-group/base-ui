@@ -1,0 +1,70 @@
+.before-enter {
+    opacity: 0;
+}
+
+.elegant-in {
+    position: relative;
+    animation: 1.5s ease slide-up;
+}
+
+.one,
+.two,
+.three,
+.four {
+    opacity: 0;
+    animation: fade-in ease-in 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+}
+
+.one {
+    animation-delay: .5s;
+
+    &.fast {
+        animation-delay: .2s;
+    }
+}
+
+.two {
+    animation-delay: 1s;
+
+    &.fast {
+        animation-delay: .4s;
+    }
+}
+
+.three {
+    animation-delay: 1.5s;
+
+    &.fast {
+        animation-delay: .6s;
+    }
+}
+
+.four {
+    animation-delay: 2s;
+
+    &.fast {
+        animation-delay: .8s;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slide-up {
+    from {
+        top: 50px;
+    }
+
+    to {
+        top: 0;
+    }
+}

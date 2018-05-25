@@ -24,7 +24,8 @@ export default {
             styleToImports: true
         }),
         scss({
-            output: 'dist/base-ui.css'
+            output: 'dist/base-ui.css',
+            outputStyle: 'compressed'
         }),
         babel({
             presets: [['env', {modules: false}], 'stage-3'],

@@ -1,0 +1,220 @@
+@import "../variables.scss";
+
+$col-num: 60;
+
+$routh-col-num: 12; // 5/60, 35/60 ~ 60/60
+$fine-col-num: 30; // 1/60, 0 ~ 30/60
+$large-rough-text-num: 20; // 10px, 50px ~ 200px
+$rough-text-num: 10; // 5px, 35px ~ 50px
+$fine-text-num: 32; // 1px, 12px ~ 32px
+$dimension-rough-num: 20; // 10px, 70 ~ 200px
+$dimension-fine-num: 12; // 5px, 0 ~ 60px
+$vertical-num: 20; // 50px, 0 ~ 1000px
+
+.section-block {
+    margin-bottom: 68px;
+}
+
+.section-bottom-margin {
+    margin-bottom: 165px;
+}
+
+.row {
+    position: relative;
+    z-index: 1;
+
+    &:after {
+        content: " ";
+        clear: both;
+        display: table;
+    }
+}
+
+@mixin genCol {
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    float: left;
+}
+
+@mixin genGrid ($size) {
+    // generate dimension from 0 to 60 through each 5px
+    @for $i from 0 through $dimension-fine-num {
+        .#{$size}-top-#{$i * 5} {
+            margin-top: $i * 5px;
+        }
+
+        .#{$size}-bottom-#{$i * 5} {
+            margin-bottom: $i * 5px;
+        }
+
+        .#{$size}-max-width-#{$i * 5} {
+            max-width: $i * 5px;
+        }
+
+        .#{$size}-min-width-#{$i * 5} {
+            min-width: $i * 5px;
+        }
+
+        .#{$size}-max-height-#{$i * 5} {
+            max-height: $i * 5px;
+        }
+
+        .#{$size}-min-height-#{$i * 5} {
+            min-height: $i * 5px;
+        }
+    }
+
+    // generate dimension from 70 to 200 through each 10px
+    @for $i from 7 through $dimension-rough-num {
+        .#{$size}-top-#{$i * 10} {
+            margin-top: $i * 10px;
+        }
+
+        .#{$size}-bottom-#{$i * 10} {
+            margin-bottom: $i * 10px;
+        }
+
+        .#{$size}-max-width-#{$i * 10} {
+            max-width: $i * 10px;
+        }
+
+        .#{$size}-min-width-#{$i * 10} {
+            min-width: $i * 10px;
+        }
+
+        .#{$size}-max-height-#{$i * 10} {
+            max-height: $i * 10px;
+        }
+
+        .#{$size}-min-height-#{$i * 10} {
+            min-height: $i * 10px;
+        }
+    }
+
+    // generate font-size from 12 to 32 through each px
+    @for $i from 12 through $fine-text-num {
+        .#{$size}-text-#{$i} {
+            font-size: $i * 1px;
+        }
+    }
+
+    // generate font-size from 35 to 50 through each px
+    @for $i from 7 through $rough-text-num {
+        .#{$size}-text-#{$i * 5} {
+            font-size: $i * 5px;
+        }
+    }
+
+    // generate font-size from 50 to 200 through each 10 px
+    @for $i from 6 through $large-rough-text-num {
+        .#{$size}-text-#{$i * 10} {
+            font-size: $i * 10px;
+        }
+    }
+
+    // generate grid from 0 to 30/60 through each 1/60 of 100%
+    @for $i from 0 through $fine-col-num {
+        .#{$size}-#{$i} {
+            width: percentage($i / $col-num);
+
+            @include genCol();
+        }
+
+        .#{$size}-left-#{$i} {
+            margin-left: percentage($i / $col-num);
+        }
+
+        .#{$size}-right-#{$i} {
+            margin-right: percentage($i / $col-num);
+        }
+    }
+
+    // generate grid from 35/60 to 60/60 through each 5/60 of 100%
+    @for $i from 7 through $routh-col-num {
+        .#{$size}-#{$i * 5} {
+            width: percentage($i * 5 / $col-num);
+
+            @include genCol();
+        }
+
+        .#{$size}-left-#{$i * 5} {
+            margin-left: percentage($i * 5 / $col-num);
+        }
+
+        .#{$size}-right-#{$i * 5} {
+            margin-right: percentage($i * 5 / $col-num);
+        }
+    }
+
+    // text-align
+    .#{$size}-text {
+        &-left {
+            text-align: left;
+        }
+
+        &-center {
+            text-align: center;
+        }
+
+        &-right {
+            text-align: right;
+        }
+    }
+
+    // short-hand
+    .#{$size}-show {
+        display: inherit;
+    }
+
+    .#{$size}-hide {
+        display: none;
+    }
+
+    .#{$size}-all {
+        width: 100%;
+    }
+
+    .#{$size}-half {
+        width: 50%;
+    }
+
+    .#{$size}-last {
+        float: right;
+    }
+
+    .#{$size}-v-center {
+        display: flex;
+        align-items: center;
+    }
+
+    .#{$size}-height-center {
+        display: table;
+        position: relative;
+        height: 100%;
+    }
+
+    .#{$size}-height-center-item {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .#{$size}-free {
+        display: block;
+    }
+
+    // generate fixed height box from 0 to 1000px through each 50px
+    @for $i from 0 through $vertical-num {
+        .#{$size}-height-#{$i * 50} {
+            height: $i * 50px;
+        }
+    }
+}
+
+// large screen
+@include genGrid("lg");
+
+// small screen
+@media only screen and (max-width: $ultra-book-min) {
+    @include genGrid("sm");
+}
