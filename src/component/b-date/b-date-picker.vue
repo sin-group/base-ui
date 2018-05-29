@@ -6,7 +6,7 @@
                     <div class="previous-month-btn"></div>
                 </div>
 
-                <button class="month-year simple" @click="switchChooseMode(ChooseType.YEAR)">
+                <button type="button" class="month-year simple" @click="switchChooseMode(ChooseType.YEAR)">
                     {{ viewYear }}-{{ viewMonth }}
                 </button>
 
@@ -28,6 +28,7 @@
                                 'selected-date': dateItem.selectedDateFlag,
                                 'current-date': dateItem.currentDateFlag
                             }"
+                            type="button"
                             class="date-btn"
                             @click="choose(dateItem)">{{ dateItem.date }}</button>
                     </span>
@@ -42,9 +43,20 @@
                 @choose="chooseYear"/>
 
             <div class="choose-year-action">
-                <button class="simple" @click="switchChooseMode(ChooseType.MONTH_AND_DATE)">
+                <button type="button" class="simple back" @click="switchChooseMode(ChooseType.MONTH_AND_DATE)">
                     返回
                 </button>
+            </div>
+        </div>
+
+        <div v-if="chooseType === ChooseType.MONTH" class="month-picker-wrapper">
+            <div
+                v-for="(monthType, index) in MonthTypeList"
+                :key="index"
+                :class="{'selected-month': (index + 1) === viewMonth}"
+                class="normal month-block"
+                @click="chooseMonth(index + 1)">
+                {{ monthType }}
             </div>
         </div>
     </div>
@@ -52,6 +64,8 @@
 
 <script type="text/babel">
     import {
+        DayTypeList,
+        MonthTypeList,
         DailyMillisecond,
 
         getTimeDigitalComponent
@@ -60,8 +74,6 @@
     import BSelectMenu from '../b-select/b-select-menu.vue';
 
     const startYear = 1900;
-
-    const DayTypeList = ['日', '一', '二', '三', '四', '五', '六'];
     const MonthDatesNum = 6 * 7; // Default 6 rows to cover all cases of date distribution in one month
     const {year: curYear, month: curMonth, date: curDate} = getTimeDigitalComponent(Date.now());
     const YearMap = [...Array(200).keys()]
@@ -75,7 +87,8 @@
 
     const ChooseType = {
         MONTH_AND_DATE: 'MONTH_AND_DATE',
-        YEAR: 'YEAR'
+        YEAR: 'YEAR',
+        MONTH: 'MONTH'
     };
 
     export default {
@@ -105,6 +118,7 @@
 
             return {
                 DayTypeList,
+                MonthTypeList,
                 JumpMonthType,
                 YearMap,
                 ChooseType,
@@ -219,6 +233,12 @@
             chooseYear(year) {
                 const vm = this;
                 vm.viewYear = +year;
+                vm.switchChooseMode(ChooseType.MONTH);
+            },
+
+            chooseMonth(month) {
+                const vm = this;
+                vm.viewMonth = +month;
                 vm.switchChooseMode(ChooseType.MONTH_AND_DATE);
             }
         }

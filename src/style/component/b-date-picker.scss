@@ -132,6 +132,41 @@
             display: flex;
             justify-content: flex-end;
             margin-top: 5px;
+
+            .back {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .month-picker-wrapper {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: -5px -5px;
+
+        .month-block {
+            box-sizing: border-box;
+            width: 32%;
+            padding: 15px 10px;
+            margin: 5px 0;
+            text-align: center;
+            font-size: 13px;
+            color: $gray-dark;
+            border-radius: 3px;
+            box-shadow: $standard-box-shadow;
+            cursor: pointer;
+            user-select: none;
+
+            &.selected-month {
+                background-color: $primary;
+                color: $white;
+            }
+
+            &:hover {
+                background-color: $primary-light;
+                color: $white;
+            }
         }
     }
 }

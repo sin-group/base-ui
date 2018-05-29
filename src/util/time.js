@@ -9,13 +9,16 @@ const DateFormat = 'YYYY-MM-DD';
 const DateMinuteFormat = 'YYYY-MM-DD HH:mm';
 const DateTimeFormat = 'YYYY-MM-DD HH:mm:ss';
 const MillisecondInMinute = 60 * 1e3;
-export const DailyMillisecond = 24 * 60 * MillisecondInMinute;
 
 const getTimestamp = (time) => {
     if (typeof time === typeof 0) return time;
 
     return (new Date(time)).getTime();
 };
+
+export const DayTypeList = ['日', '一', '二', '三', '四', '五', '六'];
+export const MonthTypeList = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+export const DailyMillisecond = 24 * 60 * MillisecondInMinute;
 
 export const getTimeComponent = (time) => {
     const timeStamp = getTimestamp(time);
