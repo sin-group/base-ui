@@ -4,6 +4,7 @@
         :class="{'disabled': disabled, 'b-resettable': canBeReset}"
         class="b-select">
         <b-input
+            ref="input"
             :name="name"
             :value="searchText"
             :disabled="disabled"
@@ -189,6 +190,7 @@
 
                 vm.$emit('change', changeValue);
                 vm.visible = false;
+                vm.$refs.input.blur();
             },
 
             reset() {

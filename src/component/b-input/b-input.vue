@@ -5,6 +5,7 @@
         <div class="content">
             <input
                 v-if="!multiLine"
+                ref="b-input"
                 :name="name"
                 :type="type"
                 :placeholder="placeholder"
@@ -158,6 +159,13 @@ export default {
         handleKeyDwon(event) {
             const vm = this;
             vm.$emit('keydown', event.target.value, event);
+        },
+
+        blur() {
+            const vm = this;
+            const {multiLine, $refs} = vm;
+            const input = multiLine ? $refs['b-textarea'] : $refs['b-input'];
+            input.blur();
         }
     }
 };

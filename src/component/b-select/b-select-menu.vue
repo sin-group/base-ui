@@ -109,7 +109,7 @@
                     }
                 }
 
-                vm.highlightIndex = highlightIndex;
+                vm.highlightIndex = highlightIndex > -1 ? highlightIndex : 0;
 
                 vm.$nextTick(() => {
                     vm.$refs.list.scrollTop = initScrollTop;
