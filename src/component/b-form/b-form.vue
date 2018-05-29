@@ -98,7 +98,7 @@
                     delete emitData[field];
                 }
 
-                this.$emit('change', emitData);
+                this.$emit('change', emitData, field);
             },
 
             emitEvent(event) {

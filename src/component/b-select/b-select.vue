@@ -66,8 +66,7 @@
             },
             map: {
                 type: Object,
-                default: () => {},
-                required: true
+                default: () => ({})
             },
             disabled: {
                 type: Boolean,
@@ -86,6 +85,7 @@
         data() {
             const vm = this;
             const {map, value} = vm;
+
             return {
                 visible: false,
                 searchText: (value && map[value]) ? map[value].trim() : ''

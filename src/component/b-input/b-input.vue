@@ -46,128 +46,152 @@
 
 <script>
 
-import BTextarea from './b-textarea.vue';
+    import {isString} from '../../util/check';
 
-export default {
-    name: 'BInput',
+    import BTextarea from './b-textarea.vue';
 
-    components: {
-        BTextarea
-    },
+    export default {
+        name: 'BInput',
 
-    props: {
-        type: {
-            type: String,
-            default: 'text'
+        components: {
+            BTextarea
         },
 
-        name: {
-            type: String,
-            default: null
-        },
+        props: {
+            type: {
+                type: String,
+                default: 'text'
+            },
 
-        value: {
-            type: [String, Number],
-            default: null
-        },
+            name: {
+                type: String,
+                default: null
+            },
 
-        placeholder: {
-            type: String,
-            default: null
-        },
+            value: {
+                type: [String, Number],
+                default: null
+            },
 
-        disabled: {
-            type: Boolean,
-            default: false
-        },
+            placeholder: {
+                type: String,
+                default: null
+            },
 
-        pattern: {
-            type: String,
-            default: null
-        },
+            disabled: {
+                type: Boolean,
+                default: false
+            },
 
-        required: {
-            type: Boolean,
-            default: false
-        },
+            pattern: {
+                type: String,
+                default: null
+            },
 
-        multiLine: {
-            type: Boolean,
-            default: false
-        },
+            required: {
+                type: Boolean,
+                default: false
+            },
 
-        rows: {
-            type: Number,
-            default: 6
-        },
+            multiLine: {
+                type: Boolean,
+                default: false
+            },
 
-        rowsMax: {
-            type: Number,
-            default: 10
-        },
+            rows: {
+                type: Number,
+                default: 6
+            },
 
-        // font-size: 15px line-height: 1.5, so we got 22.5 by default
-        multiLineHeight: {
-            type: Number,
-            default: 22.5
-        },
+            rowsMax: {
+                type: Number,
+                default: 10
+            },
 
-        multiPaddingTop: {
-            type: Number,
-            default: 4
-        },
+            // font-size: 15px line-height: 1.5, so we got 22.5 by default
+            multiLineHeight: {
+                type: Number,
+                default: 22.5
+            },
 
-        multiPaddingBottom: {
-            type: Number,
-            default: 4
-        }
-    },
+            multiPaddingTop: {
+                type: Number,
+                default: 4
+            },
 
-    methods: {
-        handleFocus(event) {
-            const vm = this;
-            vm.$emit('focus', event.target.value, event);
-        },
+            multiPaddingBottom: {
+                type: Number,
+                default: 4
+            },
 
-        handleBlur(event) {
-            const vm = this;
-            vm.$emit('blur', event.target.value, event);
-        },
-
-        handleInput(event) {
-            const vm = this;
-            const value = event.target ? event.target.value : event;
-
-            if (vm.type === 'number') {
-                vm.$emit('input', Number(value), event);
-                return;
+            trim: {
+                type: Boolean,
+                default: false
             }
-
-            vm.$emit('input', value, event);
         },
 
-        handleChange(event) {
-            const vm = this;
-            vm.$emit('change', event.target.value, event);
-        },
+        methods: {
+            handleFocus(event) {
+                const vm = this;
+                const {trimValue} = vm;
 
-        handleKeyUp(event) {
-            const vm = this;
-            vm.$emit('keyup', event.target.value, event);
-        },
+                vm.$emit('focus', trimValue(event.target.value), event);
+            },
 
-        handleKeyDwon(event) {
-            const vm = this;
-            vm.$emit('keydown', event.target.value, event);
-        },
+            handleBlur(event) {
+                const vm = this;
+                const {trimValue} = vm;
 
-        blur() {
-            const vm = this;
-            const {multiLine, $refs} = vm;
-            const input = multiLine ? $refs['b-textarea'] : $refs['b-input'];
-            input.blur();
+                vm.$emit('blur', trimValue(event.target.value), event);
+            },
+
+            handleInput(event) {
+                const vm = this;
+                const value = event.target ? event.target.value : event;
+
+                if (vm.type === 'number') {
+                    vm.$emit('input', Number(value), event);
+                    return;
+                }
+
+                vm.$emit('input', value, event);
+            },
+
+            handleChange(event) {
+                const vm = this;
+                const {trimValue} = vm;
+
+                vm.$emit('change', trimValue(event.target.value), event);
+            },
+
+            handleKeyUp(event) {
+                const vm = this;
+                const {trimValue} = vm;
+
+                vm.$emit('keyup', trimValue(event.target.value), event);
+            },
+
+            handleKeyDwon(event) {
+                const vm = this;
+                const {trimValue} = vm;
+
+                vm.$emit('keydown', trimValue(event.target.value), event);
+            },
+
+            trimValue(value) {
+                const vm = this;
+                const {trim} = vm;
+
+                return trim && isString(value) ? value.trim() : value;
+            },
+
+            blur() {
+                const vm = this;
+                const {multiLine, $refs} = vm;
+                const input = multiLine ? $refs['b-textarea'] : $refs['b-input'];
+                input.blur();
+            }
         }
-    }
-};
+    };
 
 </script>

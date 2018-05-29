@@ -61,7 +61,7 @@
                             </label>
                         </td>
 
-                        <td v-for="colDef in options.colDefs" :key="colDef.field">
+                        <td v-for="colDef in options.colDefs" :key="getCellKey(colDef)">
                             <slot
                                 :name="colDef.field"
                                 :field="colDef.field"
@@ -102,6 +102,8 @@
         ON_SELECT: 'on-select',
         ON_PAGINATE: 'on-paginate'
     };
+
+    let uniqueCellKey = 1;
 
     export default {
         name: 'BTable',
@@ -293,6 +295,11 @@
                         pagination
                     );
                 }
+            },
+
+            getCellKey({field, enforceUpdateCell = false}) {
+                uniqueCellKey += 1;
+                return enforceUpdateCell ? `${field}${uniqueCellKey}` : field;
             }
         }
     };

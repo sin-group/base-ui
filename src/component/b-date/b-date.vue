@@ -54,7 +54,7 @@ export default {
 
     props: {
         value: {
-            type: [Number, String],
+            type: Number,
             validator: value => isFinite(new Date(value)),
             default: null
         },
