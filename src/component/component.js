@@ -10,6 +10,8 @@ import BDialog from './b-dialog';
 import BFormGroup from './b-form-group';
 import BImage from './b-image';
 import BInput from './b-input';
+import BLayout from './b-layout';
+import BNavSide from './b-nav-side';
 import BMdView from './b-md-view';
 import BPagination from './b-pagination';
 import BPopper from './b-popper';
@@ -28,6 +30,8 @@ export default {
         Vue.component('b-form-group', BFormGroup);
         Vue.component('b-image', BImage);
         Vue.component('b-input', BInput);
+        Vue.component('b-layout', BLayout);
+        Vue.component('b-nav-side', BNavSide);
         Vue.component('b-md-view', BMdView);
         Vue.component('b-pagination', BPagination);
         Vue.component('b-popper', BPopper);

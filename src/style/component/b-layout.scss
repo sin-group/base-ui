@@ -1,0 +1,229 @@
+@import "../../style/variables.scss";
+
+$header-front-color: $primary-dark;
+$header-front-hover-color: $primary-dark;
+$header-background-coor: $white;
+$nav-front-color: $white;
+$nav-front-link-color: $white;
+$nav-background-color: $primary-dark;
+$nav-background-active-color: lighten($gray-light, 10);
+$nav-background-hover-color: lighten($gray-light, 1);
+$nav-border-color: darken($primary-dark, 3);
+
+.b-layout {
+    .header-buffer {
+        height: $mat-height;
+    }
+
+    .icon-toggle {
+        position: relative;
+        top: 2px;
+        width: 16px;
+        height: 16px;
+        margin-right: 20px;
+        transition: .5s ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+            span {
+                background-color: $gray;
+            }
+        }
+
+        span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background-color: $header-front-color;
+            border-radius: 2px;
+            opacity: 1;
+            left: 0;
+            transition: .3s;
+
+            &:nth-child(1) {
+                top: 0;
+            }
+
+            &:nth-child(2) {
+                top: 6px;
+            }
+
+            &:nth-child(3) {
+                top: 12px;
+            }
+        }
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        height: $mat-height;
+        padding: 0 20px;
+        background-color: $header-background-coor;
+        z-index: $z-index-nav-top;
+        color: $header-front-color;
+        box-shadow: $standard-box-shadow;
+
+        @media only screen and (max-width: $ultra-book-min + $break-point-buffer) {
+            padding: 0 10px;
+        }
+
+        a {
+            color: $header-front-color;
+            transition: color .4s;
+
+            &:hover {
+                color: $header-front-hover-color;
+            }
+        }
+
+        .left {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .nav {
+        position: fixed;
+        top: 0;
+        width: $nav-left-width;
+        z-index: $z-index-nav-left;
+        animation: .3s ease-out left-slide-in;
+
+        @media only screen and (max-width: $ultra-book-min + $break-point-buffer) {
+            top: 0;
+
+            .container {
+                margin: 0 10px;
+                padding: 0;
+            }
+        }
+
+        .nav-buffer {
+            box-sizing: border-box;
+            height: $mat-height;
+            margin-bottom: 0;
+            padding: 5px 0;
+            background-color: $nav-background-color;
+        }
+
+        .nav-header {
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            height: $mat-height;
+            padding: 10px 20px;
+            border-bottom: 1px solid $nav-border-color;
+            color: $nav-front-link-color;
+
+            a {
+                color: $nav-front-link-color;
+            }
+
+            .icon-toggle {
+                span {
+                    background-color: $nav-front-link-color;
+                }
+            }
+        }
+
+        .action-card {
+            height: 100vh;
+            overflow-y: auto;
+            padding: 0;
+            border-radius: 0;
+            background-color: $nav-background-color;
+
+            .nav-wrap {
+                margin-bottom: 20px;
+            }
+
+            .action-header {
+                padding: 20px 20px 15px;
+                background-color: $nav-background-color;
+                color: $nav-front-color;
+                border-color: $nav-border-color;
+
+                a {
+                    color: $nav-front-color;
+                }
+            }
+
+            .action-bar {
+                padding: 12px 20px;
+                background-color: $nav-background-color;
+                color: $nav-front-color;
+
+                &:hover {
+                    background-color: $nav-background-hover-color;
+                    color: $primary-dark;
+                }
+
+                &.active {
+                    background-color: $nav-background-active-color;
+                    color: $primary-dark;
+                }
+            }
+        }
+    }
+
+    .content {
+        &.menu-opened {
+            margin-left: $nav-left-width;
+
+            @media only screen and (max-width: $ultra-book-min + $break-point-buffer) {
+                margin-left: 0;
+            }
+
+            .container {
+                @media only screen and (min-width: $small-desktop-min + $break-point-buffer) {
+                    width: $small-desktop-min - $nav-left-width;
+                    margin: 0 auto;
+                }
+
+                @media only screen and (min-width: $desktop-min + $break-point-buffer) {
+                    width: $desktop-min - $nav-left-width;
+                    margin: 0 auto;
+                }
+
+                @media only screen and (min-width: $large-desktop-min + $break-point-buffer) {
+                    width: $large-desktop-min - $nav-left-width;
+                    margin: 0 auto;
+                }
+
+                @media only screen and (min-width: $large-desktop-min + $break-point-buffer + $nav-left-width) {
+                    width: $large-desktop-min;
+                }
+            }
+        }
+    }
+
+    .nav-mask {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba($black, .8);
+        z-index: $z-index-nav-left-mask;
+        animation: .3s ease-in-out fade-in;
+    }
+
+    @keyframes left-slide-in {
+        0% {
+            transform: translate(-10px, 0);
+            opacity: .5;
+        }
+
+        100% {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+    }
+}

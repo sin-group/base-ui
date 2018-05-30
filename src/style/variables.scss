@@ -35,6 +35,7 @@ $form-inline-width: 256px;
 
 // Element
 $mat-height: 48px !default;
+$nav-left-width: 240px !default;
 
 // Font
 $heading1: 40px !default;
@@ -54,6 +55,9 @@ $date-picker-btn-width: 28px !default;
 $all-transition: all .36s cubic-bezier(.78, .14, .15, .86) !default;
 
 // Z-Index
+$z-index-nav-left: 9990 !default;
+$z-index-nav-left-mask: 9989 !default;
+$z-index-nav-top: 9988 !default;
 $z-index-popper: 9996 !default;
 $z-index-dialog-wrapper: 9997 !default;
 $z-index-dialog: 9998 !default;

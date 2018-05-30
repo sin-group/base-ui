@@ -1,15 +1,15 @@
 <template>
     <div>
-        <div class="level-center">
+        <div class="level-center one">
             <h2>B</h2>
         </div>
 
-        <div class="level-center">
-            <p>Say hello to the future.</p>
+        <div class="level-center two">
+            <p>Say hello to BaseUI</p>
         </div>
 
-        <div class="level-center get-started">
-            <router-link :to="$RouterMap.intro">
+        <div class="level-center get-started three">
+            <router-link to="Intro">
                 <button class="btn-get-started lg">Get Started!</button>
             </router-link>
         </div>
@@ -23,7 +23,7 @@
     p {
         margin: 0;
         padding: 0;
-        line-height: 500px;
+        line-height: 400px;
         font-size: 400px;
         color: transparent;
         user-select: none;

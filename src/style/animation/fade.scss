@@ -1,3 +1,15 @@
+.fade-enter-active,
+.fade-leave-active {
+    transition: all .5s;
+    height: 24px;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+    height: 0;
+}
+
 @keyframes fade-in {
     0% {
         opacity: 0;
@@ -7,3 +19,4 @@
         opacity: 1;
     }
 }
+

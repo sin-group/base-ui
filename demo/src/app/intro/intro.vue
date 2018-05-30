@@ -6,7 +6,9 @@
 <template>
 
     <div class="intro">
-        <router-view class="view"/>
+        <transition name="slide-fade" mode="out-in">
+            <router-view class="view"/>
+        </transition>
     </div>
 
 </template>
@@ -19,4 +21,3 @@
 
 </script>
 
-<style lang="scss" rel="stylesheet/scss" scoped></style>

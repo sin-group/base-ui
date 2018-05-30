@@ -23,101 +23,141 @@ import CompView from '../../app/component-library/component/comp-view';
 
 import Index from '../../app/index';
 
-export default {
-    notFound: {
+export default [
+    {
+        name: 'NotFound',
         path: '*',
         redirect: Index
     },
-
-    root: {
+    {
+        name: 'Root',
         path: '/',
-        redirect: '/index'
+        component: Index
     },
-
-    index: {
+    {
+        name: 'Index',
         path: '/index',
         component: Index
     },
-
-    intro: {
+    {
         name: 'Intro',
         path: '/intro',
         component: Intro,
+        meta: {
+            navTitle: 'Intro'
+        },
         redirect: '/intro/overview',
         children: [
             {
                 name: 'Overview',
                 path: '/intro/overview',
-                component: IntroOverview
+                component: IntroOverview,
+                meta: {
+                    navTitle: 'Overview'
+                }
             },
             {
                 name: 'Concepts',
                 path: '/intro/concepts',
-                component: IntroConcepts
+                component: IntroConcepts,
+                meta: {
+                    navTitle: 'Concepts'
+                }
             }
         ]
     },
-
-    cssFramework: {
+    {
         name: 'Style',
         path: '/css-framework',
         component: CSSFramework,
         redirect: '/css-framework/typography',
+        meta: {
+            navTitle: 'Style'
+        },
         children: [
             {
                 name: 'Typography',
                 path: '/css-framework/typography',
-                component: CssTypography
+                component: CssTypography,
+                meta: {
+                    navTitle: 'Typography'
+                }
             },
             {
                 name: 'Form',
                 path: '/css-framework/form',
-                component: CssForm
+                component: CssForm,
+                meta: {
+                    navTitle: 'Form'
+                }
             },
             {
                 name: 'Layout',
                 path: '/css-framework/layout',
-                component: CssLayout
+                component: CssLayout,
+                meta: {
+                    navTitle: 'Layout'
+                }
             },
             {
                 name: 'Element',
                 path: '/css-framework/element',
-                component: CssElement
+                component: CssElement,
+                meta: {
+                    navTitle: 'Element'
+                }
             },
             {
                 name: 'Icon',
                 path: '/css-framework/icon',
-                component: CssIcon
+                component: CssIcon,
+                meta: {
+                    navTitle: 'Icon'
+                }
             }
         ]
     },
-
-    componentLibrary: {
+    {
         name: 'Component',
         path: '/component-library',
         component: componentLibrary,
         redirect: '/component-library/output',
+        meta: {
+            navTitle: 'Component'
+        },
         children: [
             {
                 name: 'Out',
                 path: '/component-library/output',
-                component: CompOutput
+                component: CompOutput,
+                meta: {
+                    navTitle: 'Output'
+                }
             },
             {
-                name: 'In-View',
+                name: 'InView',
                 path: '/component-library/view',
-                component: CompView
+                component: CompView,
+                meta: {
+                    navTitle: 'Input to View'
+                }
             },
             {
-                name: 'In-Out',
+                name: 'InOut',
                 path: '/component-library/in-out',
-                component: CompInOut
+                component: CompInOut,
+                meta: {
+                    navTitle: 'Input to Output'
+                }
             },
             {
                 name: 'Plugin',
                 path: '/component-library/plugin',
-                component: CompPlugin
+                component: CompPlugin,
+                meta: {
+                    navTitle: 'Plugin'
+                }
             }
         ]
     }
-};
+];

@@ -1,26 +1,61 @@
 <template>
     <div class="app">
-        <yqg-nav-menu :routerMap="$RouterMap">
-            <div slot="project">
-                <router-link :to="$RouterMap.index">BaseUI</router-link>
+        <b-layout
+            :default-open="true"
+            :is-nav-open="isNavOpen"
+            @nav-open-change="navOpenChange">
+            <div slot="header">
+                <div class="header-buffer"></div>
+
+                <header class="header">
+                    <div class="left">
+                        <slot name="toggle">
+                            <div class="icon-toggle" @click="toggleNav">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </slot>
+
+                        <router-link :to="{name: 'Index'}" class="logo">BaseUI</router-link>
+                    </div>
+
+                    <div class="right">
+                        <a class="github-icon" href="https://github.com/sin-group/base-ui" target="_blank">
+                            <i class="b-icon-github"></i>
+                        </a>
+                    </div>
+                </header>
             </div>
 
-            <div slot="action">
-                <a class="github-icon" href="https://github.com/sin-group/base-ui" target="_blank">
-                    <i class="b-icon-github"></i>
-                </a>
+            <div slot="side-left">
+                <div v-if="isNavOpen">
+                    <b-nav-side :routes="routes" @toggle="toggleNav">
+                        <div slot="nav-top">
+                            <router-link :to="{name: 'Index'}" class="logo">BaseUI</router-link>
+                        </div>
+                    </b-nav-side>
+                </div>
             </div>
-        </yqg-nav-menu>
 
-        <router-view></router-view>
+            <div slot="content">
+                <transition name="slide-fade" mode="out-in">
+                    <router-view/>
+                </transition>
+            </div>
 
-        <footer>
-            <p>
-                <a href="/">BaseUI Site</a> is based on <a href="https://github.com/sin-group/base-ui" target="_blank">BaseUI</a>,
-                released under the <a href="https://opensource.org/licenses/MIT">MIT License</a>
-            </p>
-            <p>Copyright © 2018 <a href="https://github.com/sin-group" target="_blank">Sin Group</a></p>
-        </footer>
+            <div slot="footer">
+                <footer class="three">
+                    <p>
+                        <a href="/">BaseUI Site</a>
+                        is based on
+                        <a href="https://github.com/sin-group/base-ui" target="_blank">BaseUI</a>,
+                        released under the <a href="https://opensource.org/licenses/MIT">MIT License</a>
+                    </p>
+                    <p>Copyright © 2018 <a href="https://github.com/sin-group" target="_blank">Sin Group</a></p>
+                </footer>
+            </div>
+        </b-layout>
     </div>
 </template>
 
@@ -29,24 +64,46 @@
     import BaseUI from '../../../src/base-ui';
     import Vue from '../../common/vue';
     import router from '../common/router';
+    import routes from '../common/router/routes';
     import BaseUIOptions from '../common/constant/BaseUIOptions';
 
     Vue.use(BaseUI, BaseUIOptions);
 
     // assign function on Vue instance
     Object.assign(Vue.prototype, {
-        $j: (data) => JSON.stringify(data, null, 4)
+        $j: data => JSON.stringify(data, null, 4)
     });
 
     export default {
-        name: 'app',
+        name: 'App',
 
-        router
+        router,
+
+        data() {
+            return {
+                routes,
+                isNavOpen: true
+            };
+        },
+
+        methods: {
+            navOpenChange(isNavOpen) {
+                this.isNavOpen = isNavOpen;
+            },
+
+            toggleNav() {
+                this.isNavOpen = !this.isNavOpen;
+            }
+        }
     };
 
 </script>
 
 <style lang="scss">
+    .logo {
+        font-weight: 500;
+    }
+
     .github-icon {
         margin-top: 5px;
         font-size: 20px;

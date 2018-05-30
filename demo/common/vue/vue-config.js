@@ -6,8 +6,4 @@
 
 import Vue from 'vue';
 
-import component from './component';
-
-Vue.use(component);
-
 export default Vue;

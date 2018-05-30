@@ -3,7 +3,14 @@
  * @date 2017/11/21-下午7:13
  * @file dom
  */
-/* global document */
+/* global document, window */
+
+const ultraBookMin = 760;
+
+export const isMobile = () => {
+    const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    return width < ultraBookMin;
+};
 
 export const getRect = (el) => {
     const rect = el.getBoundingClientRect();

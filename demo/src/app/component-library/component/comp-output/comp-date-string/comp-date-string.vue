@@ -32,7 +32,7 @@
 <script type="text/babel">
 
     export default {
-        name: 'CompDate',
+        name: 'CompDateString',
 
         data() {
             return {

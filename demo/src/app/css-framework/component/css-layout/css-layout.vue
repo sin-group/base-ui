@@ -5,8 +5,10 @@
             <h4 class="heading">Container</h4>
         </div>
 
-        <div class="container demo-container">
-            <p>The default <strong>.container</strong> is a simple container to center your content horizontally.</p>
+        <div class="lg-bottom-10">
+            <div class="container demo-container">
+                <p>The default <strong>.container</strong> is a simple container to center your content horizontally.</p>
+            </div>
         </div>
 
         <div class="container-wide demo-container-wide">

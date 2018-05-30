@@ -13,7 +13,7 @@ $break-point-buffer: 60px;
     width: auto;
     box-sizing: border-box;
     padding: 20px 0;
-    margin: 0 10px;
+    margin: 10px;
 
     @media only screen and (min-width: $small-desktop-min + $break-point-buffer) {
         width: $small-desktop-min;
@@ -35,7 +35,8 @@ $break-point-buffer: 60px;
     }
 
     @media only screen and (max-width: $small-desktop-min + $break-point-buffer) {
-        margin: 0 20px;
+        margin: 10px;
+        padding: 0;
     }
 
     &-wide {

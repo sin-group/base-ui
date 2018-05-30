@@ -7,16 +7,15 @@
 import Router from 'vue-router';
 
 import Vue from '../../../common/vue';
-import RouterMap from './RouterMap';
+import routes from './routes';
 
 Vue.use(Router);
-Vue.prototype.$RouterMap = RouterMap;
 
 const router = new Router({
     mode: 'history',
     fallback: false,
     scrollBehavior: () => ({y: 0}),
-    routes: Object.values(RouterMap)
+    routes
 });
 
 export default router;

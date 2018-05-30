@@ -1,13 +1,15 @@
 <template>
     <div class="container">
-        <router-view></router-view>
+        <transition name="slide-fade" mode="out-in">
+            <router-view/>
+        </transition>
     </div>
 </template>
 
 <script>
 
 export default {
-    name: 'component-library'
+    name: 'ComponentLibrary'
 };
 
 </script>
