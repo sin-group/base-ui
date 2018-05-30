@@ -27,7 +27,7 @@
 
 <script type="text/babel">
 
-import {getDate} from '../../util/time';
+import {getDate, roundTimestamp} from '../../util/time';
 import {isFunc} from '../../util/check';
 
 import BInput from '../b-input';
@@ -54,7 +54,7 @@ export default {
 
     props: {
         value: {
-            type: Number,
+            type: [Number, String],
             validator: value => isFinite(new Date(value)),
             default: null
         },
@@ -77,6 +77,10 @@ export default {
         enableReset: {
             type: Boolean,
             default: true
+        },
+        dayEnd: {
+            type: Boolean,
+            default: false
         }
     },
 
@@ -111,6 +115,16 @@ export default {
         }
     },
 
+
+    mounted() {
+        const vm = this;
+        const {timeStamp} = vm;
+
+        if (timeStamp) {
+            vm.choose(timeStamp);
+        }
+    },
+
     methods: {
         openDatePicker() {
             const vm = this;
@@ -128,13 +142,19 @@ export default {
 
         choose(timeStamp) {
             const vm = this;
-            const {format} = vm;
-
             let value = timeStamp;
+            const {format, dayEnd} = vm;
+
+            if (dayEnd) {
+                value = roundTimestamp(value, 'dayEnd');
+            } else {
+                value = roundTimestamp(value, 'dayStart');
+            }
+
             if (isFunc(format)) {
-                value = format(timeStamp);
+                value = format(value);
             } else if (isFunc(FORMAT_MAP[format])) {
-                value = FORMAT_MAP[format](timeStamp);
+                value = FORMAT_MAP[format](value);
             }
 
             vm.$emit('change', value);

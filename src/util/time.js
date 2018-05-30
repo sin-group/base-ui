@@ -9,6 +9,7 @@ const DateFormat = 'YYYY-MM-DD';
 const DateMinuteFormat = 'YYYY-MM-DD HH:mm';
 const DateTimeFormat = 'YYYY-MM-DD HH:mm:ss';
 const MillisecondInMinute = 60 * 1e3;
+const MillisecondInDay = MillisecondInMinute * 60 * 24;
 
 const getTimestamp = (time) => {
     if (typeof time === typeof 0) return time;
@@ -114,4 +115,25 @@ export const isValidDateString = (dateStr) => {
     const date = new Date(dateStr);
     if (!date.getTime() && date.getTime() !== 0) return false;
     return date.toISOString().slice(0, 10) === dateStr;
+};
+
+export const roundTimestamp = (timestamp, type) => { // eslint-disable-line
+    const time = new Date(timestamp);
+    const year = time.getFullYear();
+    const month = time.getMonth();
+    const date = time.getDate();
+
+    switch (type) {
+        case 'dayEnd': {
+            const roundMilliseconds = MillisecondInDay - 1;
+            return timestamp && new Date(year, month, date).getTime() + roundMilliseconds;
+        }
+        case 'dayStart': {
+            return timestamp && new Date(year, month, date).getTime();
+        }
+        default: {
+            return timestamp;
+        }
+    }
+
 };

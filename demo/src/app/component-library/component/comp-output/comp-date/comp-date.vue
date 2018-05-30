@@ -15,6 +15,10 @@
                 <b-form-group label="Disabled">
                     <b-date v-model="editing.disabled" :disabled="true"/>
                 </b-form-group>
+
+                <b-form-group label="format round to dayEnd">
+                    <b-date v-model="editing.dayEnd" :day-end="true" format="ISO"/>
+                </b-form-group>
             </form>
         </div>
 
@@ -31,8 +35,9 @@
             return {
                 editing: {
                     basic: null,
-                    default: 1325347200000,
-                    disabled: 1516284344350
+                    default: 1325347208888, // default time will be round to dayStart
+                    disabled: 1516284344350,
+                    dayEnd: null
                 }
             };
         }
