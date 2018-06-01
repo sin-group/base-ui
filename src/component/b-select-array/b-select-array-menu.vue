@@ -7,7 +7,7 @@
                 'b-select-menu-highlight': index === highlightIndex,
                 'b-select-menu-selected': index === valueIndex
             }"
-            @click="handleChoose(item)">{{ map[item] }}</li>
+            @click="handleChoose(item)">{{ item[textField] }}</li>
 
         <li v-if="menuList.length === 0" class="empty-list-item">无匹配选项</li>
     </ul>
@@ -18,12 +18,24 @@
     import KeyCodeMap from '../../util/keyCodeMap';
 
     export default {
-        name: 'BSelectMenu',
+        name: 'BSelectArrayMenu',
 
         props: {
             map: {
                 type: Object,
                 default: () => ({})
+            },
+            list: {
+                type: Array,
+                default: () => ([])
+            },
+            valueField: {
+                type: String,
+                required: true
+            },
+            textField: {
+                type: String,
+                required: true
             },
             value: {
                 type: [String, Number],
@@ -56,10 +68,14 @@
         computed: {
             menuList() {
                 const vm = this;
-                const {map, searchText} = vm;
+                const {list, map, searchText, valueField} = vm;
                 const searchTexter = new RegExp(searchText, 'i');
 
-                return Object.keys(map).filter(value => map[value].match(searchTexter));
+                return list.filter((item) => {
+                    const key = item[valueField];
+
+                    return map[key].match(searchTexter);
+                });
             },
             listHeight() {
                 const vm = this;
@@ -77,9 +93,9 @@
             },
             valueIndex() {
                 const vm = this;
-                const {menuList, value} = vm;
+                const {menuList, valueField, value} = vm;
 
-                return menuList.findIndex(item => item === value);
+                return menuList.findIndex(item => item[valueField] === value);
             }
         },
 
@@ -103,9 +119,9 @@
         methods: {
             initHighlight(value) {
                 const vm = this;
-                const {reservedCount, renderCount, menuList, padding, itemHeight} = vm;
+                const {reservedCount, renderCount, menuList, padding, itemHeight, valueField} = vm;
 
-                const highlightIndex = menuList.indexOf(value);
+                const highlightIndex = menuList.findIndex(item => item[valueField] === value);
 
                 let initScrollTop = 0;
                 if (highlightIndex > -1) {
@@ -169,13 +185,17 @@
                 });
             },
 
-            handleChoose(value) {
-                this.$emit('choose', value);
+            handleChoose(item) {
+                const vm = this;
+                const {valueField} = vm;
+
+                this.$emit('choose', item[valueField]);
             },
 
             handleKeyDown(keyCode) {
                 const vm = this;
                 const {highlightIndex, menuList, value} = vm;
+
                 switch (keyCode) {
                     case KeyCodeMap.up: {
                         vm.changeHighlight('up');

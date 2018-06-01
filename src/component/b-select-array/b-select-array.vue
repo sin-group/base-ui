@@ -21,8 +21,11 @@
         </b-input>
 
         <b-popper :visible="menuOpen">
-            <b-select-menu
+            <b-select-array-menu
                 ref="menu"
+                :list="list"
+                :text-field="textField"
+                :value-field="valueField"
                 :map="map"
                 :value="value"
                 :search-text="searchText"
@@ -36,14 +39,14 @@
     import KeyCodeMap from '../../util/keyCodeMap';
 
     import BInput from '../b-input';
-    import BSelectMenu from './b-select-menu.vue';
+    import BSelectArrayMenu from './b-select-array-menu.vue';
 
     export default {
-        name: 'BSelect',
+        name: 'BSelectArray',
 
         components: {
             BInput,
-            BSelectMenu
+            BSelectArrayMenu
         },
 
         model: {
@@ -64,9 +67,17 @@
                 type: String,
                 default: 'text'
             },
-            map: {
-                type: Object,
-                default: () => ({})
+            list: {
+                type: Array,
+                default: () => ([])
+            },
+            textField: {
+                type: String,
+                default: 'name'
+            },
+            valueField: {
+                type: String,
+                default: 'id'
             },
             disabled: {
                 type: Boolean,
@@ -93,6 +104,17 @@
         },
 
         computed: {
+            map() {
+                const vm = this;
+                const {list, textField, valueField} = vm;
+
+                return list.reduce((acc, item) => {
+                    const key = item[valueField];
+                    acc[key] = item[textField];
+                    return acc;
+                }, {});
+            },
+
             canBeReset() {
                 const vm = this;
                 const {searchText, disabled, enableReset} = vm;
@@ -155,8 +177,8 @@
                         menu.handleKeyDown(keyCode);
                         break;
                     }
-                    case KeyCodeMap.tab:
-                    case KeyCodeMap.esc: {
+                    case KeyCodeMap.esc:
+                    case KeyCodeMap.tab: {
                         vm.closeMenu();
                         break;
                     }

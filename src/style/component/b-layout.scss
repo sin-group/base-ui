@@ -3,7 +3,8 @@
 $header-front-color: $primary-dark;
 $header-front-hover-color: $primary-dark;
 $header-background-coor: $white;
-$nav-front-color: $white;
+$nav-font-size: 13px;
+$nav-font-color: $white;
 $nav-front-link-color: $white;
 $nav-background-color: $primary-dark;
 $nav-background-active-color: lighten($gray-light, 10);
@@ -147,18 +148,20 @@ $nav-border-color: darken($primary-dark, 3);
             .action-header {
                 padding: 20px 20px 15px;
                 background-color: $nav-background-color;
-                color: $nav-front-color;
+                color: $nav-font-color;
                 border-color: $nav-border-color;
 
                 a {
-                    color: $nav-front-color;
+                    font-size: $nav-font-size;
+                    color: $nav-font-color;
                 }
             }
 
             .action-bar {
                 padding: 12px 20px;
                 background-color: $nav-background-color;
-                color: $nav-front-color;
+                color: $nav-font-color;
+                font-size: $nav-font-size;
 
                 &:hover {
                     background-color: $nav-background-hover-color;
@@ -182,23 +185,12 @@ $nav-border-color: darken($primary-dark, 3);
             }
 
             .container {
-                @media only screen and (min-width: $small-desktop-min + $break-point-buffer) {
-                    width: $small-desktop-min - $nav-left-width;
-                    margin: 0 auto;
-                }
-
-                @media only screen and (min-width: $desktop-min + $break-point-buffer) {
-                    width: $desktop-min - $nav-left-width;
-                    margin: 0 auto;
-                }
-
-                @media only screen and (min-width: $large-desktop-min + $break-point-buffer) {
-                    width: $large-desktop-min - $nav-left-width;
-                    margin: 0 auto;
-                }
+                width: auto;
+                margin: 0 20px;
 
                 @media only screen and (min-width: $large-desktop-min + $break-point-buffer + $nav-left-width) {
-                    width: $large-desktop-min;
+                    width: $large-desktop-min - $break-point-buffer;
+                    margin: 0 auto;
                 }
             }
         }
