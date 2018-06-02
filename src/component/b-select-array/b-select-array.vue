@@ -95,11 +95,13 @@
 
         data() {
             const vm = this;
-            const {map, value} = vm;
+            const {list, value, valueField, textField} = vm;
+
+            const valueItem = list.find(item => item[valueField] === value) || {};
 
             return {
                 menuOpen: false,
-                searchText: (value && map[value]) ? map[value].trim() : ''
+                searchText: valueItem[textField] ? valueItem[textField].trim() : ''
             };
         },
 
@@ -130,11 +132,10 @@
                 vm.updateSearchText(vm.map, val);
             },
 
-            map(val) {
+            list() {
                 const vm = this;
-                const {value} = vm;
 
-                vm.updateSearchText(val, value);
+                vm.updateSearchText(vm.map, vm.value);
             }
         },
 
@@ -198,9 +199,12 @@
 
             closeMenu() {
                 const vm = this;
-                vm.updateSearchText(vm.map, vm.value);
-                vm.menuOpen = false;
-                vm.$refs.input.blur();
+
+                if (vm.menuOpen) {
+                    vm.updateSearchText(vm.map, vm.value);
+                    vm.$refs.input.blur();
+                    vm.menuOpen = false;
+                }
             },
 
             choose(value) {

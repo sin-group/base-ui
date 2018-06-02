@@ -97,6 +97,7 @@
     import {OrderType, NextOrderType} from '../../constant/OrderConf';
     import {filterFuncMap} from '../../filter/filter';
     import {genSortedRecords} from './helper/helper';
+    import {isFunc} from '../../util/check';
 
     const EventTypes = {
         ON_SELECT: 'on-select',
@@ -205,8 +206,8 @@
         },
 
         methods: {
-            getCellValue(record, {field, filter: filterName, map = {}}) {
-                const filterFunc = filterFuncMap[filterName];
+            getCellValue(record, {field, filter, map = {}}) {
+                const filterFunc = isFunc(filter) ? filter : filterFuncMap[filter];
 
                 const valueRaw = record[field];
                 const valueMapped = map[valueRaw] || valueRaw;

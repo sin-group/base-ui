@@ -3,7 +3,7 @@ import MessageModal from './component/message-modal';
 
 export default {
 
-    install(Vue, {router}) {
+    install(Vue, {router, store}) {
         const $modal = {
             open(component, resolved = {}) {
                 if (!component) {
@@ -15,6 +15,7 @@ export default {
                 const Comp = Vue.extend(component);
                 const modalInstance = new Comp({
                     router,
+                    store,
 
                     propsData: {
                         ...resolved

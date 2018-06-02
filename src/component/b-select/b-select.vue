@@ -176,9 +176,12 @@
 
             closeMenu() {
                 const vm = this;
-                vm.updateSearchText(vm.map, vm.value);
-                vm.menuOpen = false;
-                vm.$refs.input.blur();
+
+                if (vm.menuOpen) {
+                    vm.updateSearchText(vm.map, vm.value);
+                    vm.$refs.input.blur();
+                    vm.menuOpen = false;
+                }
             },
 
             choose(value) {
