@@ -129,13 +129,13 @@
             value(val) {
                 const vm = this;
 
-                vm.updateSearchText(vm.map, val);
+                vm.updateSearchText(val);
             },
 
             list() {
                 const vm = this;
 
-                vm.updateSearchText(vm.map, vm.value);
+                vm.updateSearchText(vm.value);
             }
         },
 
@@ -148,10 +148,14 @@
                 }
             },
 
-            updateSearchText(map, value) {
+            updateSearchText(value) {
                 const vm = this;
+                const {list, valueField, map} = vm;
+                const valueItem = list.find(item => item[valueField] === value) || {};
 
-                if (value && map[value]) {
+                if (valueItem.displayText) {
+                    vm.searchText = valueItem.displayText;
+                } else if (value && map[value]) {
                     vm.searchText = map[value].trim();
                 } else {
                     vm.searchText = '';
@@ -201,7 +205,7 @@
                 const vm = this;
 
                 if (vm.menuOpen) {
-                    vm.updateSearchText(vm.map, vm.value);
+                    vm.updateSearchText(vm.value);
                     vm.$refs.input.blur();
                     vm.menuOpen = false;
                 }
@@ -209,7 +213,7 @@
 
             choose(value) {
                 const vm = this;
-                vm.updateSearchText(vm.map, value);
+                vm.updateSearchText(value);
 
                 let changeValue = value;
                 if (vm.type === 'number') {
