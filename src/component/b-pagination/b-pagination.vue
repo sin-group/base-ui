@@ -79,6 +79,10 @@
         NORMAL: 'normal',
         SMALL: 'sm'
     };
+    const MODE_TYPE = {
+        INFINITE: 'infinite',
+        FINITE: 'finite'
+    };
     const genPaginationWithOffset = ({pageNo, pageSize, total}) => ({
         pageNo,
         pageSize,
@@ -117,6 +121,11 @@
             size: {
                 type: String,
                 default: SIZE_TYPE.NORMAL
+            },
+
+            mode: {
+                type: String,
+                default: MODE_TYPE.FINITE
             }
         },
 
@@ -129,7 +138,8 @@
         computed: {
             pageNoList() {
                 const vm = this;
-                const {pagination: {pageNo}, totalPageNo} = vm;
+                const {pagination: {pageNo}, totalPageNo, mode} = vm;
+                const isFinite = mode === MODE_TYPE.FINITE;
 
                 // When total page num is not greater than whole display boundary
                 if (totalPageNo <= WHOLE_DISPLAY_NUM + 1) {
@@ -142,7 +152,7 @@
                     return [
                         ...genList(1, MIN_BOUNDARY + 1),
                         {value: SKIP_SYMBOL, type: PAGE_TYPE.FRONT_RIGHT},
-                        {value: totalPageNo}
+                        ...(isFinite ? [{value: totalPageNo}] : [])
                     ];
                 }
 
@@ -161,7 +171,7 @@
                     {value: SKIP_SYMBOL, type: PAGE_TYPE.LEFT},
                     ...genList(pageNo - PAGE_NO_OFFSET, pageNo + PAGE_NO_OFFSET),
                     {value: SKIP_SYMBOL, type: PAGE_TYPE.RIGHT},
-                    {value: totalPageNo}
+                    ...(isFinite ? [{value: totalPageNo}] : [])
                 ];
             },
 

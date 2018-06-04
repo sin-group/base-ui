@@ -85,6 +85,7 @@
             <b-pagination
                 :size="options.size"
                 v-model="innerPagination"
+                v-bind="options.paginationProps"
                 @on-change="onInnerPaginationChange"/>
         </div>
     </div>
