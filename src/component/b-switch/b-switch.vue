@@ -1,7 +1,7 @@
 <template>
     <div
         :class="{
-            'b-switch-checked': checked,
+            'b-switch-checked': value,
             'b-switch-disabled': disabled
         }"
         class="b-switch">
@@ -17,8 +17,8 @@ export default {
     name: 'BSwitch',
 
     model: {
-        prop: 'checked',
-        event: 'change'
+      prop: 'value',
+      event: 'change'
     },
 
     props: {
@@ -27,7 +27,7 @@ export default {
             default: () => false
         },
 
-        checked: {
+        value: {
             type: Boolean,
             default: false
         }
@@ -38,7 +38,7 @@ export default {
             const vm = this;
 
             if (!vm.disabled) {
-                vm.$emit('change', !vm.checked, event);
+                vm.$emit('change', !vm.value, event);
             }
         }
     }
