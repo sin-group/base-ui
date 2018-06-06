@@ -39,6 +39,8 @@
                 <br v-else-if="btnDef.type === 'br'" :key="index">
             </template>
         </template>
+
+        <slot name="actions"></slot>
     </form>
 
 </template>
