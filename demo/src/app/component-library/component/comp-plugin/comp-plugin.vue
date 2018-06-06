@@ -20,7 +20,7 @@
 
         <h4 class="heading">Tooltip</h4>
         <div class="card">
-            <button v-b-tooltip="'i`m tooltip!'">HOVER ME</button>
+            <button v-b-tooltip="'i`m tooltip!'">Hover Me</button>
         </div>
     </div>
 </template>

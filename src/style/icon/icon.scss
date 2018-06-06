@@ -19,8 +19,6 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.b-icon-reset:before { content: "\e60c"; }
-
 .b-icon-user-search:before { content: "\e64e"; }
 
 .b-icon-download:before { content: "\e600"; }
@@ -39,17 +37,25 @@
 
 .b-icon-header:before { content: "\e673"; }
 
+.b-icon-linkedin:before { content: "\e653"; }
+
 .b-icon-trash:before { content: "\e652"; }
 
 .b-icon-code:before { content: "\ea77"; }
 
 .b-icon-edit:before { content: "\eaa7"; }
 
+.b-icon-wechat:before { content: "\ec7d"; }
+
+.b-icon-twitter:before { content: "\ecb3"; }
+
 .b-icon-folder:before { content: "\e64a"; }
 
 .b-icon-filter:before { content: "\e669"; }
 
 .b-icon-github:before { content: "\e709"; }
+
+.b-icon-qq:before { content: "\e80e"; }
 
 .b-icon-phone:before { content: "\e66f"; }
 
@@ -71,11 +77,21 @@
 
 .b-icon-info:before { content: "\e67d"; }
 
+.b-icon-google-plus:before { content: "\e721"; }
+
 .b-icon-emotion:before { content: "\e6ae"; }
+
+.b-icon-weibo:before { content: "\e720"; }
+
+.b-icon-google:before { content: "\e719"; }
 
 .b-icon-language:before { content: "\e756"; }
 
+.b-icon-reset:before { content: "\e60c"; }
+
 .b-icon-ban:before { content: "\e6ad"; }
+
+.b-icon-customer-service:before { content: "\e7bb"; }
 
 .b-icon-camera:before { content: "\e6b3"; }
 
@@ -89,11 +105,15 @@
 
 .b-icon-user:before { content: "\e620"; }
 
+.b-icon-apple:before { content: "\e602"; }
+
 .b-icon-italic:before { content: "\e6f8"; }
 
 .b-icon-detail:before { content: "\e609"; }
 
 .b-icon-split:before { content: "\e639"; }
+
+.b-icon-facebook:before { content: "\e635"; }
 
 .b-icon-qr-code:before { content: "\e60d"; }
 

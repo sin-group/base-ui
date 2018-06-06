@@ -67,7 +67,6 @@
         'camera',
         'detail',
         'edit',
-        'github',
         'globe',
         'not-love',
         'chart',
@@ -79,7 +78,18 @@
         'eye',
         'user-manage',
         'user-search',
-        'user-edit'
+        'user-edit',
+        'apple',
+        'google',
+        'google-plus',
+        'facebook',
+        'twitter',
+        'linkedin',
+        'github',
+        'wechat',
+        'qq',
+        'weibo',
+        'customer-service'
     ];
 
     export default {

@@ -19,11 +19,11 @@
         cursor: pointer;
         white-space: pre;
 
-        &:hover,
-        &.b-select-menu-highlight {
+        &:hover {
             background-color: $primary-light;
         }
 
+        &.b-select-menu-highlight,
         &.b-select-menu-selected {
             background-color: $gray-light;
         }
