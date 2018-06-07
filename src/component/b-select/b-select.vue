@@ -177,7 +177,7 @@
             closeMenu() {
                 const vm = this;
 
-                if (vm.menuOpen) {
+                if (vm.menuOpen && vm.$refs.input) {
                     vm.updateSearchText(vm.map, vm.value);
                     vm.$refs.input.blur();
                     vm.menuOpen = false;

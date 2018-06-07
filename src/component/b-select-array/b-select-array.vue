@@ -98,10 +98,11 @@
             const {list, value, valueField, textField} = vm;
 
             const valueItem = list.find(item => item[valueField] === value) || {};
+            const trimText = valueItem[textField] ? valueItem[textField].trim() : '';
 
             return {
                 menuOpen: false,
-                searchText: valueItem[textField] ? valueItem[textField].trim() : ''
+                searchText: valueItem.displayText ? valueItem.displayText : trimText
             };
         },
 
@@ -204,7 +205,7 @@
             closeMenu() {
                 const vm = this;
 
-                if (vm.menuOpen) {
+                if (vm.menuOpen && vm.$refs.input) {
                     vm.updateSearchText(vm.value);
                     vm.$refs.input.blur();
                     vm.menuOpen = false;

@@ -147,6 +147,7 @@
 
             handleInput(event) {
                 const vm = this;
+                const {trimValue} = vm;
                 const value = event.target ? event.target.value : event;
 
                 if (vm.type === 'number') {
@@ -154,7 +155,7 @@
                     return;
                 }
 
-                vm.$emit('input', value, event);
+                vm.$emit('input', trimValue(value), event);
             },
 
             handleChange(event) {

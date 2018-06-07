@@ -30,8 +30,9 @@
             position: absolute;
             right: 0;
             bottom: 8px;
-            color: $gray-dark;
+            color: $gray;
 
+            &.b-date-icon-active,
             &.b-select-icon-active {
                 color: $primary;
             }
