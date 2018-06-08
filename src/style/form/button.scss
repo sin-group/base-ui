@@ -127,9 +127,13 @@ button {
 
     &.sm {
         font-size: 12px;
-        font-weight: 100;
+        font-weight: 300;
         padding: 0 10px;
         height: 24px;
+
+        &.danger {
+            font-weight: 350;
+        }
     }
 
     i {
