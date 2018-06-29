@@ -90,13 +90,13 @@
                 return text + event;
             },
 
-            emitChange(data, {field}) {
+            emitChange(data, {field, type}) {
                 const emitData = {
                     ...this.data,
                     [field]: data[0]
                 };
 
-                if (data[0] === null) {
+                if (data[0] === null || (!type && data[0] === '')) {
                     delete emitData[field];
                 }
 
