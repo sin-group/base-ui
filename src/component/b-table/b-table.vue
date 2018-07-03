@@ -26,14 +26,14 @@
                             <div class="filter-area"></div>
 
                             <span
-                                :class="{'enabled-click': options.enableClientSort}"
+                                :class="{'enabled-click': enableSort}"
                                 class="sort-click-area"
                                 @click="toggleSort(colDef.field)">
                                 {{ colDef.label || colDef.name }}
 
                                 <div class="sort-area">
                                     <div
-                                        v-if="options.enableClientSort"
+                                        v-if="isShowSortIcon(colDef.field)"
                                         :class="{
                                             'sort-icon-up': isSortIconUp(colDef.field),
                                             'sort-icon-down': isSortIconDown(colDef.field)
@@ -102,7 +102,8 @@
 
     const EventTypes = {
         ON_SELECT: 'on-select',
-        ON_PAGINATE: 'on-paginate'
+        ON_PAGINATE: 'on-paginate',
+        ON_SORT: 'on-sort'
     };
 
     let uniqueCellKey = 1;
@@ -180,6 +181,11 @@
 
                 vm.isAllSelected = renderedRecords.every(record => !!record.$$selected);
                 return renderedRecords;
+            },
+
+            enableSort() {
+                const {options: {enableClientSort, enableServerSort}} = this;
+                return enableClientSort || enableServerSort;
             }
         },
 
@@ -228,14 +234,30 @@
                 return sortInfo.field === field && sortInfo.order === OrderType.DESC;
             },
 
+            isShowSortIcon(field) {
+                const {enableSort, sortInfo: {supportFields = []}} = this;
+                if (!enableSort) return false;
+                if (!supportFields.length) return true;
+
+                return supportFields.includes(field);
+            },
+
             toggleSort(field) {
                 const vm = this;
-                const {options: {enableClientSort}, sortInfo: {order, field: originFiled}} = vm;
+                const {
+                    options: {enableClientSort, enableServerSort},
+                    sortInfo: {order: originOrder, field: originFiled}
+                } = vm;
 
-                if (!enableClientSort) return;
+                if (enableClientSort || enableServerSort) {
+                    const order = originFiled === field ? NextOrderType[originOrder] : OrderType.DESC;
+                    vm.sortInfo.field = field;
+                    vm.sortInfo.order = order;
 
-                vm.sortInfo.field = field;
-                vm.sortInfo.order = originFiled === field ? NextOrderType[order] : OrderType.DESC;
+                    if (enableServerSort) {
+                        vm.$emit(EventTypes.ON_SORT, {field, order});
+                    }
+                }
             },
 
             onInnerPaginationChange(pagination) {
@@ -276,6 +298,7 @@
                 const {
                     options: {
                         enableClientSort = false,
+                        enableServerSort = false,
                         enableClientPagination = false,
                         enableServerPagination = false,
 
@@ -286,6 +309,11 @@
                 } = vm;
 
                 if (enableClientSort && sortInfo) vm.sortInfo = sortInfo;
+                if (enableServerSort && sortInfo) {
+                    const {field, order} = sortInfo;
+                    vm.sortInfo = sortInfo;
+                    vm.$emit(EventTypes.ON_SORT, {field, order});
+                }
                 if (enableClientPagination || enableServerPagination) {
                     Object.assign(
                         vm.innerPagination,
