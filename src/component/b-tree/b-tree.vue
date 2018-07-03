@@ -121,7 +121,13 @@
                     const rec = (node, deep, parent) => {
                         vm.$set(node, '$$deep', deep);
                         vm.$set(node, '$$parent', parent);
-                        vm.$set(node, '$$isFold', foldDeep ? Boolean(node.$$deep >= foldDeep) : false);
+                        if (typeof node.$$isFold === 'boolean') {
+                            const isFold = node.$$isFold;
+                            delete node.$$isFold;
+                            vm.$set(node, '$$isFold', isFold);
+                        } else {
+                            vm.$set(node, '$$isFold', foldDeep ? Boolean(node.$$deep >= foldDeep) : false);
+                        }
 
                         if (node.children.length === 0) return;
 

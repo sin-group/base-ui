@@ -1,7 +1,91 @@
-.b-tree {
-    margin-left: 40px;
 
-    &.root {
-        margin-left: 0;
+.b-tree {
+    &:not(.root) {
+        margin-left: 40px;
+    }
+
+    .b-tree-node {
+        position: relative;
+
+        &:not(.is-root) {
+            &:after { // vertical
+                position: absolute;
+                content: "";
+                height: 100%;
+                left: calc(-40px + 10px);
+                top: 0;
+                border-left: 1px solid $gray-light;
+            }
+
+            &.is-last-child:after {
+                display: none;
+            }
+        }
+
+        .node-el {
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            position: relative;
+
+            &:not(.is-root) {
+                &:before { // horizontal
+                    position: absolute;
+                    content: "";
+                    width: 30px;
+                    top: 50%;
+                    left: calc(-40px + 10px);
+                    border-top: 1px solid $gray-light;
+                }
+
+                &:after { // vertical
+                    position: absolute;
+                    content: "";
+                    height: 100%;
+                    left: calc(-40px + 10px);
+                    top: -50%;
+                    border-left: 1px solid $gray-light;
+                }
+
+                &.is-first-child:after {
+                    height: calc(100% - 8px);
+                    top: calc(-50% + 8px);
+                }
+
+                &.extended-horizontal {
+                    &:before {
+                        width: 50px;
+                    }
+                }
+            }
+
+            .change-fold {
+                width: 25px;
+
+                i.b-icon-arrow-right {
+                    display: inline-block;
+                    color: $gray-dark;
+                    font-size: 20px;
+                    cursor: pointer;
+                    border-radius: 3px;
+
+                    &:hover {
+                        background-color: $gray-light;
+
+                        i {
+                            color: $primary;
+                        }
+                    }
+
+                    &.is-unfold {
+                        &:before {
+                            display: inline-block;
+                            transform-origin: center center;
+                            transform: rotate(90deg);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

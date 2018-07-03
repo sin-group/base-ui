@@ -1,19 +1,25 @@
 <template>
     <div
         :class="{
-            'leaf': node.$$parent,
-            'siblings-has-children': !siblingsNotHasChildren,
-            'has-children': hasChildren,
-            'is-last-child': isLastChild}"
+            'is-root': !node.$$parent,
+            'is-last-child': isLastChild
+        }"
         class="b-tree-node">
-        <span
-            v-if="hasChildren"
-            class="change-fold"
-            @click="changeFold">
-            <i :class="{'is-unfold': !isFold}" class="b-icon-arrow-right"></i>
-        </span>
+        <div
+            :class="{
+                'is-root': !node.$$parent,
+                'is-first-child': isFirstChild,
+                'extended-horizontal': !hasChildren
+            }"
+            class="node-el">
+            <div class="change-fold">
+                <i
+                    v-if="hasChildren"
+                    :class="{'is-unfold': !isFold}"
+                    class="b-icon-arrow-right"
+                    @click="changeFold"></i>
+            </div>
 
-        <div :class="{'siblings-not-has-children': siblingsNotHasChildren}" class="node-el">
             <slot name="content"></slot>
         </div>
 
@@ -48,17 +54,17 @@
                 return $$parent && $$parent.children[$$parent.children.length - 1] === node;
             },
 
+            isFirstChild() {
+                const vm = this;
+                const {node: {$$parent}, node} = vm;
+
+                return $$parent && $$parent.children[0] === node;
+            },
+
             hasChildren() {
                 const vm = this;
 
                 return vm.node.children.length > 0;
-            },
-
-            siblingsNotHasChildren() {
-                const vm = this;
-                const {$$parent} = vm;
-
-                return $$parent && $$parent.children.every(node => node.children.length === 0);
             },
 
             isFold() {

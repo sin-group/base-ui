@@ -6,7 +6,7 @@
 
         <div class="card">
             <b-tree :data="treeData" :options="options">
-                <div slot-scope="scope">
+                <div slot-scope="scope" class="tree-node">
                     <span class="node-name">{{ scope.node.name }}</span>
                     <button class="sm" @click="viewNode(scope.node)">view node</button>
                 </div>
@@ -39,8 +39,23 @@
                             children: []
                         }
                     ]
+                },
+                {
+                    id: 4,
+                    name: 'node-1-1',
+                    children: [
+                        {
+                            id: 9,
+                            name: 'node-1-1-1',
+                            children: []
+                        },
+                        {
+                            id: 10,
+                            name: 'node-1-1-2',
+                            children: []
+                        }
+                    ]
                 }
-                // {id: 4, name: 'node-1-2', children: []}
             ]
         },
         {
@@ -93,9 +108,14 @@
 
 <style lang="scss" rel="stylesheet/scss" scoped>
 
-    .node-name {
-        font-size: 15px;
-        margin: 0 10px;
+    .tree-node {
+        height: 30px;
+        line-height: 30px;
+
+        .node-name {
+            font-size: 15px;
+            margin: 0 10px 0 5px;
+        }
     }
 
 </style>
