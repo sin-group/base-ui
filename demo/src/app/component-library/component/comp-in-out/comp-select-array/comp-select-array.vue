@@ -1,6 +1,6 @@
 <template>
     <div class="select">
-        <h4 class="heading">Select Array</h4>
+        <h4 class="heading">Array Select</h4>
 
         <div class="card">
             <form class="form-inline">

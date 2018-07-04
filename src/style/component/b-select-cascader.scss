@@ -1,0 +1,48 @@
+@import "../../style/variables.scss";
+
+.b-select-cascader-menu {
+    .select-wrap {
+        display: inline-flex;
+        justify-content: space-between;
+
+        .select-list {
+            display: inline-block;
+            margin: -10px 10px;
+
+            &:first-child {
+                margin-left: -10px;
+            }
+
+            &:last-child {
+                margin-right: -10px;
+            }
+
+            .select-item {
+                box-sizing: border-box;
+                padding: 8px 5px;
+                min-width: 100px;
+                border-radius: 2px;
+                text-align: center;
+                cursor: pointer;
+                user-select: none;
+                transition: background-color .3s;
+
+                &:hover {
+                    background-color: $gray-light;
+                }
+
+                &.selected {
+                    position: relative;
+                    background-color: lighten($primary-dark, 10);
+                    color: $white;
+
+                    .arrow {
+                        position: absolute;
+                        right: -15px;
+                        color: lighten($primary-dark, 10);
+                    }
+                }
+            }
+        }
+    }
+}

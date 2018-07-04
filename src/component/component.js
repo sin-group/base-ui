@@ -19,6 +19,7 @@ import BPagination from './b-pagination';
 import BPopper from './b-popper';
 import BSelect from './b-select';
 import BSelectArray from './b-select-array';
+import BSelectCascader from './b-select-cascader';
 import BSwitch from './b-switch';
 import BTable from './b-table';
 import BTree from './b-tree';
@@ -41,6 +42,7 @@ export default {
         Vue.component('b-popper', BPopper);
         Vue.component('b-select', BSelect);
         Vue.component('b-select-array', BSelectArray);
+        Vue.component('b-select-cascader', BSelectCascader);
         Vue.component('b-switch', BSwitch);
         Vue.component('b-table', BTable);
         Vue.component('b-tree', BTree);
