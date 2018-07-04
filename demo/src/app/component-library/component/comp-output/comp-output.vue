@@ -6,6 +6,7 @@
         <comp-image/>
         <comp-switch/>
         <comp-form/>
+        <comp-md-editor/>
     </div>
 </template>
 
@@ -16,6 +17,7 @@ import CompInput from './comp-input';
 import CompImage from './comp-image';
 import CompSwitch from './comp-switch';
 import CompForm from './comp-form';
+import CompMdEditor from './comp-md-editor';
 
 export default {
     name: 'CompOutput',
@@ -26,7 +28,8 @@ export default {
         CompInput,
         CompImage,
         CompSwitch,
-        CompForm
+        CompForm,
+        CompMdEditor
     }
 };
 
