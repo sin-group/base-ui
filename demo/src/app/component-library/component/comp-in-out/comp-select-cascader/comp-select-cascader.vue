@@ -34,6 +34,13 @@
                         :list="BasicForest"
                         :options="EmitListOptions"/>
                 </b-form-group>
+
+                <b-form-group label="Disabled">
+                    <b-select-cascader
+                        v-model="editing.disabled"
+                        :disabled="true"
+                        :list="BasicForest"/>
+                </b-form-group>
             </form>
         </div>
 
@@ -58,7 +65,8 @@
                     basic: null,
                     default: 3,
                     emitList: null,
-                    emitListWithDefault: [1, 2, 3]
+                    emitListWithDefault: [1, 2, 3],
+                    disabled: 30
                 }
             };
         }

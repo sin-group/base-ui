@@ -13,11 +13,13 @@
             <b-input
                 ref="input"
                 :name="name"
-                :value="searchText"
+                :value="hint"
                 :disabled="disabled"
                 :placeholder="placeholder"
                 type="text"
-                @focus="openMenu">
+                @input="onInput"
+                @focus="openMenu"
+                @keydown="handleKeyDown">
                 <i
                     slot="right"
                     :class="{'b-select-icon-active': menuOpen}"
@@ -27,11 +29,20 @@
 
             <b-popper :visible="menuOpen">
                 <b-select-cascader-menu
+                    v-if="showSelectMenu"
                     :list="list"
                     :value="selectedList"
-                    :search-text="searchText"
+                    :search-text="hint"
                     :enable-emit-list="options.enableEmitList"
                     @choose="choose"/>
+
+                <div v-else>
+                    <b-select-menu
+                        ref="filterMenu"
+                        :map="filterMap"
+                        :value="searchText"
+                        @choose="chooseFilter"/>
+                </div>
             </b-popper>
         </div>
     </div>
@@ -40,16 +51,20 @@
 
 <script type="text/babel">
 
+    import KeyCodeMap from '../../util/keyCodeMap';
+    import BSelectMenu from '../b-select/b-select-menu.vue';
+
     import {
         getSelectedListFromSingleValue,
-        getSelectedListFromListValue
+        getSelectedListFromListValue,
+        getValueFilterMap
     } from './helper/helper';
     import BSelectCascaderMenu from './b-select-cascader-menu.vue';
 
     export default {
         name: 'BSelectCascader',
 
-        components: {BSelectCascaderMenu},
+        components: {BSelectCascaderMenu, BSelectMenu},
 
         model: {
             prop: 'value',
@@ -90,20 +105,44 @@
         data() {
             return {
                 menuOpen: false,
-                selectedList: []
+                searchText: null,
+                selectedList: [],
+                originFilterMap: {}
             };
         },
 
         computed: {
-            canBeReset() {
-                const {enableReset, searchText} = this;
-                return enableReset && !!searchText;
+            filterMap() {
+                const {originFilterMap, searchText} = this;
+                if (!searchText) return originFilterMap;
+
+                const selectedReg = new RegExp(searchText, 'i');
+                return Object.entries(originFilterMap)
+                      .filter(pair => selectedReg.test(pair[1]))
+                      .reduce((acc, [key, value]) => {
+                          acc[key] = value;
+                          return acc;
+                      }, {});
             },
 
-            searchText() {
+            canBeReset() {
+                const {enableReset, selectedText, disabled} = this;
+                return !disabled && enableReset && !!selectedText;
+            },
+
+            selectedText() {
                 const {selectedList} = this;
 
                 return selectedList.map(({label}) => label).join('/');
+            },
+
+            hint() {
+                const {searchText, selectedText} = this;
+                return searchText === null ? selectedText : searchText;
+            },
+
+            showSelectMenu() {
+                return !this.searchText;
             }
         },
 
@@ -114,20 +153,33 @@
                 : getSelectedListFromSingleValue(list, value);
 
             this.selectedList = selectedList;
+            this.originFilterMap = getValueFilterMap(list);
         },
 
         methods: {
+            onInput(value) {
+                this.searchText = value;
+            },
+
             openMenu() {
                 this.menuOpen = true;
             },
 
             closeMenu() {
+                const {$refs: {input}} = this;
                 this.menuOpen = false;
+                this.searchText = null;
+
+                input.blur();
             },
 
             reset() {
+                const {disabled} = this;
+                if (disabled) return;
+
                 this.$emit('change', null);
                 this.selectedList = [];
+                this.closeMenu();
             },
 
             choose(selectedList) {
@@ -151,6 +203,42 @@
                 if (!leafItem.children || !leafItem.children.length) {
                     vm.$emit('change', leafItem.value);
                     vm.selectedList = selectedList;
+                }
+            },
+
+            chooseFilter(value) {
+                try {
+                    this.choose(JSON.parse(value));
+                } catch (err) {
+                    // ignore err
+                }
+
+                this.searchText = null;
+            },
+
+            handleKeyDown(TargetValue, {keyCode}) {
+                const vm = this;
+                const {$refs: {filterMenu}, showSelectMenu} = vm;
+
+                if (showSelectMenu) return;
+
+                switch (keyCode) {
+                    case KeyCodeMap.up:
+                    case KeyCodeMap.down: {
+                        filterMenu.handleKeyDown(keyCode);
+                        break;
+                    }
+                    case KeyCodeMap.tab:
+                    case KeyCodeMap.esc: {
+                        vm.closeMenu();
+                        break;
+                    }
+                    case KeyCodeMap.enter: {
+                        filterMenu.handleKeyDown(keyCode);
+                        vm.closeMenu();
+                        break;
+                    }
+                    default: // ignore
                 }
             }
         }

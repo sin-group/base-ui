@@ -61,6 +61,7 @@
         .b-input {
             input {
                 cursor: not-allowed;
+                user-select: none;
             }
         }
     }

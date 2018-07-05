@@ -1,4 +1,14 @@
 const isValueEqual = (left, right) => JSON.stringify(left) === JSON.stringify(right);
+const getNodeChain = (node) => {
+    const nodeChain = [];
+    let curNode = node;
+    while (curNode.$$parent) {
+        nodeChain.unshift(curNode);
+        curNode = curNode.$$parent;
+    }
+
+    return nodeChain;
+};
 
 export const getSelectedListFromSingleValue = (list, value) => {
     const addParent = (node) => {
@@ -55,5 +65,28 @@ export const getSelectedListFromListValue = (list, value) => {
     }
 
     return selectedList;
+};
+
+export const getValueFilterMap = (list = []) => {
+    const filterMap = {};
+    const rec = (node) => {
+        if (!node.children || !node.children.length) {
+            const nodeChain = getNodeChain(node);
+            const key = JSON.stringify(nodeChain.map(({label, value}) => ({label, value})));
+            const chainLabel = nodeChain.map(({label}) => label).join('/');
+            filterMap[key] = chainLabel;
+            return;
+        }
+
+        node.children.forEach((item) => {
+            rec(item);
+        });
+    };
+
+    list.forEach((item) => {
+        rec(item);
+    });
+
+    return filterMap;
 };
 
