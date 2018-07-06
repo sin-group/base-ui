@@ -2,12 +2,17 @@
 
 .b-select-cascader-menu {
     .select-wrap {
-        display: inline-flex;
+        display: flex;
         justify-content: space-between;
 
         .select-list {
             display: inline-block;
-            margin: -10px 10px;
+            margin: -10px 10px -10px 0;
+            max-height: 300px;
+            padding-right: 10px;
+            border-right: 1px solid $gray-light;
+            overflow-y: auto;
+            overflow-x: visible;
 
             &:first-child {
                 margin-left: -10px;
@@ -15,16 +20,21 @@
 
             &:last-child {
                 margin-right: -10px;
+                padding-right: 0;
+                border-right: none;
             }
 
             .select-item {
+                display: block;
                 box-sizing: border-box;
                 padding: 5px;
                 min-width: 100px;
+                max-width: 600px;
                 border-radius: 2px;
                 cursor: pointer;
                 user-select: none;
-                transition: background-color .3s;
+                white-space: nowrap;
+                word-break: break-all;
 
                 &:hover {
                     background-color: $gray-light;
@@ -34,12 +44,6 @@
                     position: relative;
                     background-color: lighten($primary-dark, 10);
                     color: $white;
-
-                    .arrow {
-                        position: absolute;
-                        right: -15px;
-                        color: lighten($primary-dark, 10);
-                    }
                 }
             }
         }

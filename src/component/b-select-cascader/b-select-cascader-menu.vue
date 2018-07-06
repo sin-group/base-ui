@@ -9,7 +9,6 @@
                     class="select-item"
                     @click="choose(selecting, level)">
                     {{ selecting.label }}
-                    <i v-if="isShowArrow(selecting, level)" class="b-icon-arrow-right arrow"></i>
                 </div>
             </div>
         </div>
@@ -54,7 +53,7 @@
                 let curList = list;
                 selectedList.forEach(({label}) => {
                     const next = curList.find(item => item.label === label);
-                    if (next && next.children) {
+                    if (next && next.children && next.children.length) {
                         curList = next.children;
                         selectingLists.push(curList);
                     }
@@ -86,11 +85,6 @@
                 if (!selectedList[level]) return false;
 
                 return selectedList[level].label === label;
-            },
-
-            isShowArrow(selecting, level) {
-                if (!selecting.children || !selecting.children.length) return false;
-                return this.isItemSelected(selecting, level);
             }
         }
     };

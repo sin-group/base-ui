@@ -73,11 +73,11 @@
             },
             textField: {
                 type: String,
-                default: 'name'
+                default: 'label'
             },
             valueField: {
                 type: String,
-                default: 'id'
+                default: 'value'
             },
             disabled: {
                 type: Boolean,

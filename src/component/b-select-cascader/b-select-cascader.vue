@@ -90,7 +90,7 @@
             },
             placeholder: {
                 type: String,
-                default: '请选择'
+                default: ''
             },
             disabled: {
                 type: Boolean,
