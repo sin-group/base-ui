@@ -55,7 +55,7 @@
             const {$el, $refs: {popper}, visible} = vm;
 
             if (visible) {
-                vm.makePosition($el.parentNode, popper);
+                vm.$nextTick(() => vm.makePosition($el.parentNode, popper));
             }
         },
 
@@ -65,10 +65,18 @@
                 const elRect = getRect(el);
                 const windowRect = getWindowRect();
 
-                let y = 0; // eslint-disable-line
-                if (elRect.bottom > windowRect.innerHeight) y = -(elRect.height + refRect.height);
+                let x = 0, y = 0; // eslint-disable-line
+                if ((elRect.right > windowRect.innerWidth && (windowRect.innerWidth - refRect.right) > elRect.width)
+                    || (elRect.left < refRect.left)) {
+                    x = -(elRect.width - refRect.width);
+                }
 
-                Object.assign(el.style, {top: `${y}px`});
+                if ((elRect.bottom > windowRect.innerHeight && refRect.top > refRect.height)
+                    || (elRect.bottom < refRect.bottom)) {
+                    y = -(elRect.height + refRect.height);
+                }
+
+                Object.assign(el.style, {left: `${x}px`, top: `${y}px`});
             }
         }
     };

@@ -167,10 +167,11 @@
 
             closeMenu() {
                 const {$refs: {input}} = this;
-                this.menuOpen = false;
-                this.searchText = null;
-
-                input.blur();
+                if (this.menuOpen && input) {
+                    this.menuOpen = false;
+                    this.searchText = null;
+                    input.blur();
+                }
             },
 
             reset() {
