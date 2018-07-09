@@ -65,7 +65,7 @@
 
         mounted() {
             const {value} = this;
-            this.selectedList = value;
+            this.selectedList = [...value];
         },
 
         methods: {

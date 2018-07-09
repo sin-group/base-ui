@@ -180,10 +180,9 @@
             },
 
             closeMenu() {
-                const {$refs: {input}, value} = this;
+                const {$refs: {input}} = this;
                 this.menuOpen = false;
                 this.searchText = null;
-                if (!value) this.selectedList = [];
 
                 if (this.menuOpen && input) {
                     input.blur();
@@ -195,7 +194,6 @@
                 if (disabled) return;
 
                 this.$emit('change', null);
-                this.selectedList = [];
                 this.closeMenu();
             },
 
@@ -212,14 +210,12 @@
 
                 if (enableEmitList) {
                     vm.$emit('change', selectedList.map(({value}) => (value)));
-                    vm.selectedList = selectedList;
                     return;
                 }
 
                 // when enableEmitList is false, emit change only if is leaf item
                 if (!leafItem.children || !leafItem.children.length) {
                     vm.$emit('change', leafItem.value);
-                    vm.selectedList = selectedList;
                 }
             },
 
