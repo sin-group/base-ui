@@ -45,6 +45,11 @@
                     background-color: lighten($primary-dark, 10);
                     color: $white;
                 }
+
+                &.disabled {
+                    color: $gray;
+                    cursor: not-allowed;
+                }
             }
         }
     }

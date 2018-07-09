@@ -146,17 +146,31 @@
             }
         },
 
-        mounted() {
-            const {options: {enableEmitList = false}, value, list} = this;
-            const selectedList = enableEmitList
-                ? getSelectedListFromListValue(list, value)
-                : getSelectedListFromSingleValue(list, value);
+        watch: {
+            value(val) {
+                this.updateInnerState(this.list, val);
+            },
 
-            this.selectedList = selectedList;
-            this.originFilterMap = getValueFilterMap(list);
+            list(val) {
+                this.updateInnerState(val, this.value);
+            }
+        },
+
+        mounted() {
+            this.updateInnerState(this.list, this.value);
         },
 
         methods: {
+            updateInnerState(list, value) {
+                const {options: {enableEmitList = false}} = this;
+                const selectedList = enableEmitList
+                    ? getSelectedListFromListValue(list, value)
+                    : getSelectedListFromSingleValue(list, value);
+
+                this.selectedList = selectedList;
+                this.originFilterMap = getValueFilterMap(list, enableEmitList);
+            },
+
             onInput(value) {
                 this.searchText = value;
             },
@@ -166,10 +180,11 @@
             },
 
             closeMenu() {
-                const {$refs: {input}} = this;
+                const {$refs: {input}, value} = this;
+                this.menuOpen = false;
+                if (!value) this.selectedList = [];
+
                 if (this.menuOpen && input) {
-                    this.menuOpen = false;
-                    this.searchText = null;
                     input.blur();
                 }
             },

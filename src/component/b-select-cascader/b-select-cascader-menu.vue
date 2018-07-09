@@ -5,7 +5,7 @@
                 <div
                     v-for="selecting in selectingList"
                     :key="selecting.label"
-                    :class="{selected: isItemSelected(selecting, level)}"
+                    :class="{selected: isItemSelected(selecting, level), disabled: selecting.disabled}"
                     class="select-item"
                     @click="choose(selecting, level)">
                     {{ selecting.label }}
@@ -71,6 +71,8 @@
         methods: {
             choose(selecting, level) {
                 const vm = this;
+
+                if (selecting.disabled) return;
 
                 const {selectedList} = vm;
                 const tailNum = selectedList.length - level;
