@@ -182,6 +182,7 @@
             closeMenu() {
                 const {$refs: {input}, value} = this;
                 this.menuOpen = false;
+                this.searchText = null;
                 if (!value) this.selectedList = [];
 
                 if (this.menuOpen && input) {
