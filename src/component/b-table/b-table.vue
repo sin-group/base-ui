@@ -308,12 +308,7 @@
                     pagination = {}
                 } = vm;
 
-                if (enableClientSort && sortInfo) vm.sortInfo = sortInfo;
-                if (enableServerSort && sortInfo) {
-                    const {field, order} = sortInfo;
-                    vm.sortInfo = sortInfo;
-                    vm.$emit(EventTypes.ON_SORT, {field, order});
-                }
+                if (sortInfo && (enableServerSort || enableClientSort)) vm.sortInfo = sortInfo;
                 if (enableClientPagination || enableServerPagination) {
                     Object.assign(
                         vm.innerPagination,

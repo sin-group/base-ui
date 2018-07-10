@@ -1,6 +1,6 @@
 {
   "name": "base-ui",
-  "version": "0.0.92",
+  "version": "0.0.93",
   "description": "A component library for Better Vue developmemt",
   "main": "./dist/base-ui.min.js",
   "repository": {
