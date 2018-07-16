@@ -13,6 +13,7 @@ export default {
         {field: 'loanAccountId', label: 'Account Id'},
         {field: 'mobileNumber', label: 'Mobile'},
         {field: 'name', label: 'Name'},
+        {field: 'ruleSetResult.Advance', label: '风控 Advance'},
         {field: 'loanCreditsStatus', label: 'Status', map: LoanCreditsStatusMap},
         {field: 'timeCompletedAuthFlow', label: 'Time', filter: 'b-date-time'},
         {field: 'op', label: 'Operation'}

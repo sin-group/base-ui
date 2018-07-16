@@ -93,7 +93,8 @@
 
 <script type="text/babel">
 
-    import BPagination from '../../component/b-pagination';
+    import BPagination from '../b-pagination';
+    import getValue from '../../util/get-value';
 
     import {OrderType, NextOrderType} from '../../constant/OrderConf';
     import {filterFuncMap} from '../../filter/filter';
@@ -216,7 +217,7 @@
             getCellValue(record, {field, filter, map = {}}) {
                 const filterFunc = isFunc(filter) ? filter : filterFuncMap[filter];
 
-                const valueRaw = record[field];
+                const valueRaw = getValue(record, field);
                 const valueMapped = map[valueRaw] || valueRaw;
                 const valueFiltered = filterFunc ? filterFunc(valueMapped) : valueMapped;
                 const value = valueFiltered;
