@@ -1,6 +1,8 @@
 /* globals document */
 
 export const createVueInstanceEle = (id) => {
+    if (typeof document === 'undefined') return;
+
     const ele = document.createElement('div');
     ele.id = id;
     document.body.appendChild(ele);
