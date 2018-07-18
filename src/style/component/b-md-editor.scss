@@ -1,7 +1,6 @@
 .b-md-editor {
     position: relative;
     margin: 0;
-    height: 100%;
     font-family: "Helvetica Neue", Arial, sans-serif;
 
     .app-bar {
@@ -11,10 +10,11 @@
     .container-content {
         display: flex;
         justify-content: space-between;
+        height: 550px;
 
         .textarea {
             width: 49%;
-            min-height: 800px;
+            height: 100%;
             padding: 20px;
             border: none;
             resize: none;
@@ -26,7 +26,7 @@
 }
 
 .md-view {
-    min-height: 800px;
+    height: 100%;
     width: 49%;
     box-sizing: border-box;
     overflow: auto;

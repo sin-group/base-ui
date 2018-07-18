@@ -91,7 +91,7 @@
                 options,
                 mdText: mdSampleText,
                 customizedStyle: {
-                    height: '1000px'
+                    height: '552px'
                 }
             };
         }
