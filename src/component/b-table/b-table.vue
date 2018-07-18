@@ -50,7 +50,7 @@
                     <tr
                         v-for="(record, index) in renderedRecords"
                         :key="index"
-                        :class="{selected: record.$$selected}">
+                        :class="getRowClass(record, index)">
                         <td v-if="options.enableSelection" class="select-area">
                             <label>
                                 <input
@@ -223,6 +223,14 @@
                 const value = valueFiltered;
 
                 return value;
+            },
+
+            getRowClass(record, index) {
+                const {records, options: {genRowClass}} = this;
+                return {
+                    selected: record.$$selected,
+                    ...(typeof genRowClass === 'function' ? genRowClass(record, index, records) : {})
+                };
             },
 
             isSortIconUp(field) {

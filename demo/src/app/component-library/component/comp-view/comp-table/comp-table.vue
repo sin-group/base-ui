@@ -9,7 +9,7 @@
                 :options="Options"
                 :records="Records"
                 @on-select="onSelect">
-                <div slot="op" slot-scope="scope">
+                <div slot-scope="scope" slot="op">
                     <button @click="viewRecord(scope.record)">View</button>
                 </div>
             </b-table>
@@ -60,3 +60,4 @@
     };
 
 </script>
+

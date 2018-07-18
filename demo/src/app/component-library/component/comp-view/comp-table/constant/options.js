@@ -21,10 +21,10 @@ export default {
 
     extraThDefsList: [
         [
-            {label: 'SUPER TH', colspan: 7}
+            {label: 'SUPER TH', colspan: 8}
         ],
         [
-            {label: 'INFO', colspan: 4},
+            {label: 'INFO', colspan: 5},
             {label: 'OTHERS', colspan: 2},
             {label: 'OP', colspan: 1}
         ]

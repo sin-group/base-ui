@@ -20,12 +20,13 @@
         white-space: pre;
 
         &:hover {
-            background-color: $primary-light;
+            background-color: $gray-light;
         }
 
         &.b-select-menu-highlight,
         &.b-select-menu-selected {
-            background-color: $gray-light;
+            background-color: $primary-dark;
+            color: $white;
         }
     }
 
