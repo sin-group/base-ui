@@ -189,7 +189,7 @@
                 const vm = this;
                 const {valueField} = vm;
 
-                this.$emit('choose', item[valueField]);
+                this.$emit('choose', item[valueField], item);
             },
 
             handleKeyDown(keyCode) {

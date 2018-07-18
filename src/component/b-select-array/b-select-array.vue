@@ -212,7 +212,7 @@
                 }
             },
 
-            choose(value) {
+            choose(value, item) {
                 const vm = this;
                 vm.updateSearchText(value);
 
@@ -221,7 +221,7 @@
                     changeValue = Number(value);
                 }
 
-                vm.$emit('change', changeValue);
+                vm.$emit('change', changeValue, item);
                 vm.menuOpen = false;
                 vm.$refs.input.blur();
             },
