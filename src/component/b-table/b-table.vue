@@ -8,7 +8,8 @@
                             <th
                                 v-for="(extraTh, index) in extraThDefs"
                                 :key="index"
-                                :colspan="extraTh.colspan">{{ extraTh.label }}</th>
+                                :colspan="extraTh.colspan">{{ extraTh.label }}
+                            </th>
                         </tr>
                     </template>
 
@@ -22,7 +23,10 @@
                             </label>
                         </th>
 
-                        <th v-for="colDef in options.colDefs" :key="colDef.field">
+                        <th
+                            v-for="colDef in options.colDefs"
+                            :key="colDef.field"
+                            :style="getThStyle(colDef)">
                             <div class="filter-area"></div>
 
                             <span
@@ -61,7 +65,10 @@
                             </label>
                         </td>
 
-                        <td v-for="colDef in options.colDefs" :key="getCellKey(colDef)">
+                        <td
+                            v-for="colDef in options.colDefs"
+                            :key="getCellKey(colDef)"
+                            :style="getTdStyle(colDef)">
                             <slot
                                 :name="colDef.field"
                                 :field="colDef.field"
@@ -230,6 +237,20 @@
                 return {
                     selected: record.$$selected,
                     ...(typeof genRowClass === 'function' ? genRowClass(record, index, records) : {})
+                };
+            },
+
+            getThStyle({minWidth, maxWidth}) {
+                return {
+                    ...(minWidth ? {minWidth: `${minWidth}px`} : {}),
+                    ...(maxWidth ? {maxWidth: `${maxWidth}px`} : {})
+                };
+            },
+
+            getTdStyle({minWidth, maxWidth}) {
+                return {
+                    ...(minWidth ? {minWidth: `${minWidth}px`} : {}),
+                    ...(maxWidth ? {maxWidth: `${maxWidth}px`} : {})
                 };
             },
 
