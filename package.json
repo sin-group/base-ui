@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@yqg/arcanist": "0.0.2",
-    "@yqg/cli": "0.2.10",
+    "@yqg/cli": "0.2.15",
     "@yqg/eslint-config": "0.0.4",
     "@yqg/stylelint-config": "0.0.2",
     "babel-cli": "6.26.0",

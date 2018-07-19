@@ -9,7 +9,7 @@ import path from 'path';
 import compression from 'compression';
 import express from 'express';
 
-const resolveIndex = () => path.resolve(__dirname, './public/index.html');
+const resolveIndex = () => path.resolve(__dirname, './public/static/index.html');
 const app = express();
 
 app.use(compression());

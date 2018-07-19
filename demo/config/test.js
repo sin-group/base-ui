@@ -5,6 +5,10 @@
  */
 
 module.exports = {
+    build: {
+        publicPath: 'https://public-test.yangqianguan.com/cdn/base-ui/static/'
+    },
+
     run: {
         webHost: 'https://base-ui.yangqianguan.com'
     }
