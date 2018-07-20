@@ -19,6 +19,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.b-icon-collapse-down:before { content: "\ecb4"; }
+
+.b-icon-collapse-up:before { content: "\e631"; }
+
 .b-icon-user-search:before { content: "\e64e"; }
 
 .b-icon-download:before { content: "\e600"; }

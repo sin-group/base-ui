@@ -6,7 +6,7 @@
 <template>
 
     <form class="b-form" @submit.prevent="emitEvent('submit')">
-        <template v-for="(fieldDef, index) in options.fieldDefs">
+        <template v-for="(fieldDef, index) in renderFieldDefs">
             <slot
                 v-if="fieldDef.field"
                 :name="fieldDef.field"
@@ -41,6 +41,13 @@
         </template>
 
         <slot name="actions"></slot>
+
+        <button
+            v-if="options.mainFieldCount"
+            class="link"
+            @click="changeFold">
+            Collapse <i :class="{'b-icon-collapse-up': !isFold, 'b-icon-collapse-down': isFold}"></i>
+        </button>
     </form>
 
 </template>
@@ -48,6 +55,7 @@
 <script type="text/babel">
 
     import {FieldMap} from './constant/field';
+    import {isNumber} from '../../util/check';
 
     export default {
         name: 'BForm',
@@ -69,7 +77,22 @@
             }
         },
 
+        data() {
+            return {
+                isFold: true
+            };
+        },
+
         computed: {
+            renderFieldDefs() {
+                const vm = this;
+                const {options: {fieldDefs, mainFieldCount}, isFold} = vm;
+
+                return isFold && isNumber(mainFieldCount)
+                    ? fieldDefs.slice(0, mainFieldCount - 1)
+                    : fieldDefs;
+            },
+
             hasBtns() {
                 const vm = this;
 
@@ -105,6 +128,10 @@
 
             emitEvent(event) {
                 this.$emit(event);
+            },
+
+            changeFold() {
+                this.isFold = !this.isFold;
             }
         }
     };

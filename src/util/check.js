@@ -9,3 +9,5 @@ export const isArray = value => (value ? Array.isArray(value) : false);
 export const isString = value => (value ? typeof value === 'string' : false);
 
 export const isFunc = value => (value ? typeof value === 'function' : false);
+
+export const isNumber = value => (typeof value === typeof 0);

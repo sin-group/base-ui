@@ -89,7 +89,9 @@
         'wechat',
         'qq',
         'weibo',
-        'customer-service'
+        'customer-service',
+        'collapse-down',
+        'collapse-up'
     ];
 
     export default {
