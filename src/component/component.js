@@ -9,6 +9,7 @@ import BDateString from './b-date-string';
 import BDialog from './b-dialog';
 import BForm from './b-form';
 import BFormGroup from './b-form-group';
+import BHeader from './b-header';
 import BImage from './b-image';
 import BInput from './b-input';
 import BLayout from './b-layout';
@@ -32,6 +33,7 @@ export default {
         Vue.component('b-dialog', BDialog);
         Vue.component('b-form', BForm);
         Vue.component('b-form-group', BFormGroup);
+        Vue.component('b-header', BHeader);
         Vue.component('b-image', BImage);
         Vue.component('b-input', BInput);
         Vue.component('b-layout', BLayout);

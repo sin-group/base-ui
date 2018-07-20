@@ -6,7 +6,9 @@
 <template>
 
     <div class="b-layout">
-        <slot name="header"></slot>
+        <div :class="{'menu-opened': isNavOpen}" class="top">
+            <slot name="header"></slot>
+        </div>
 
         <div>
             <div @click="onNavClick">

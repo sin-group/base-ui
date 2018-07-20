@@ -3,6 +3,7 @@
 $header-front-color: $primary-dark;
 $header-front-hover-color: $primary-dark;
 $header-background-coor: $white;
+$nav-side-width: 200px;
 $nav-font-size: 13px;
 $nav-font-color: $white;
 $nav-front-link-color: $white;
@@ -65,15 +66,10 @@ $nav-border-color: darken($primary-dark, 5);
         top: 0;
         width: 100vw;
         height: $mat-height;
-        padding: 0 20px;
         background-color: $header-background-coor;
         z-index: $z-index-nav-top;
         color: $header-front-color;
         box-shadow: $standard-box-shadow;
-
-        @media only screen and (max-width: $ultra-book-min + $break-point-buffer) {
-            padding: 0 10px;
-        }
 
         a {
             color: $header-front-color;
@@ -87,6 +83,45 @@ $nav-border-color: darken($primary-dark, 5);
         .left {
             display: flex;
             align-items: center;
+            box-sizing: border-box;
+            padding-left: 20px;
+        }
+
+        .center {
+            display: inline-flex;
+            justify-content: flex-start;
+            flex: 1;
+            margin: 0;
+            padding: 0 20px;
+            text-align: left;
+
+            h1,
+            h2,
+            h3,
+            h4 {
+                margin: 0;
+                font-size: 18px;
+                color: $gray-dark;
+            }
+        }
+
+        .right {
+            padding-right: 20px;
+        }
+
+        @media only screen and (max-width: $ultra-book-min + $break-point-buffer) {
+            .left {
+                width: initial;
+                padding-left: 10px;
+            }
+
+            .center {
+                padding: 0 10px;
+            }
+
+            .right {
+                padding-right: 10px;
+            }
         }
     }
 
@@ -171,6 +206,20 @@ $nav-border-color: darken($primary-dark, 5);
                 &.active {
                     background-color: $nav-background-active-color;
                     color: $primary-dark;
+                }
+            }
+        }
+    }
+
+    .top {
+        &.menu-opened {
+            .header {
+                .left {
+                    width: $nav-side-width;
+
+                    @media only screen and (max-width: $ultra-book-min + $break-point-buffer) {
+                        width: initial;
+                    }
                 }
             }
         }
