@@ -1,0 +1,113 @@
+
+.b-select {
+    .b-select-input-wrap {
+        margin-top: 5px;
+        min-height: 30px;
+        box-sizing: border-box;
+        border-bottom: 1px solid $gray;
+        padding-top: 5px;
+
+        &.b-select-input-area-focus {
+            border-bottom-color: $primary;
+        }
+
+        .b-select-input-area {
+            width: 256px;
+            display: flex;
+            justify-content: space-between;
+
+            .b-select-shadow-span {
+                top: -50px;
+                font-size: 14px;
+                position: fixed;
+            }
+
+            ul {
+                position: relative;
+                font-size: 14px;
+                line-height: 20px;
+                cursor: pointer;
+                flex: 1;
+                max-width: calc(100% - 20px);
+
+                li {
+                    display: inline-block;
+                    line-height: 20px;
+
+                    input {
+                        all: unset;
+                        display: inline-block;
+                        box-sizing: border-box;
+                        outline: none;
+                        width: 1px;
+                    }
+                }
+
+                .b-select-choice {
+                    border: 1px solid $gray-light;
+                    border-radius: 3px;
+                    background-color: $gray-lighter;
+                    padding: 0 3px;
+                    margin: 0 3px 2px 0;
+                    box-sizing: border-box;
+                    display: inline-flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    max-width: calc(100% - 15px);
+
+                    .b-select-badge {
+                        flex: 1;
+                        display: block;
+                        max-width: 100%;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        margin-right: 3px;
+                    }
+
+                    .b-select-icon-remove-choice {
+                        &:before {
+                            font-size: 10px;
+                            color: $gray;
+                        }
+
+                        &:hover:before {
+                            color: $primary-dark;
+                        }
+                    }
+                }
+
+                .b-select-selected-value {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+
+                    &.b-select-value-grey {
+                        color: $gray;
+                    }
+                }
+
+                .b-select-search {
+                    position: relative;
+
+                    .b-select-placeholder {
+                        position: absolute;
+                        width: 100px;
+                        left: 0;
+                        top: 0;
+                        color: $gray;
+                        user-select: none;
+                    }
+                }
+            }
+
+            .b-select-reset {
+                align-self: center;
+
+                .b-select-icon-disabled:before {
+                    color: $gray;
+                }
+            }
+        }
+    }
+}

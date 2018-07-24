@@ -41,17 +41,16 @@
 
     &:hover {
         &.b-resettable {
-            .b-input {
-                i {
-                    cursor: pointer;
+            .b-input i,
+            .b-select-reset i {
+                cursor: pointer;
 
-                    &:hover {
-                        color: $primary-dark;
-                    }
+                &:hover {
+                    color: $primary-dark;
+                }
 
-                    &:before {
-                        content: "\e60c";
-                    }
+                &:before {
+                    content: "\e60c";
                 }
             }
         }

@@ -4,10 +4,13 @@
             v-for="(item, index) in menuList"
             :key="index"
             :class="{
-                'b-select-menu-highlight': index === highlightIndex,
-                'b-select-menu-selected': index === valueIndex
+                'b-select-menu-selected': isSelected(index),
+                'b-select-menu-highlight': index === highlightIndex
             }"
-            @click="handleChoose(item)">{{ map[item] }}</li>
+            @click="handleChoose(item)">
+            <span>{{ map[item] }}</span>
+            <i v-if="multiple" class="b-icon-fit"></i>
+        </li>
 
         <li v-if="menuList.length === 0" class="empty-list-item">无匹配选项</li>
     </ul>
@@ -26,8 +29,12 @@
                 default: () => ({})
             },
             value: {
-                type: [String, Number],
+                type: [String, Number, Array],
                 default: null
+            },
+            multiple: {
+                type: Boolean,
+                default: false
             },
             searchText: {
                 type: String,
@@ -54,12 +61,18 @@
         },
 
         computed: {
+            valueList() {
+                const {multiple, value} = this;
+
+                return multiple ? (value || []) : (value ? [value] : []); // eslint-disable-line
+            },
             menuList() {
                 const vm = this;
                 const {map, searchText} = vm;
-                const searchTexter = new RegExp(searchText, 'i');
 
-                return Object.keys(map).filter(value => map[value].match(searchTexter));
+                return searchText
+                    ? Object.keys(map).filter(value => map[value].match(new RegExp(searchText, 'i')))
+                    : Object.keys(map);
             },
             listHeight() {
                 const vm = this;
@@ -75,37 +88,44 @@
                 const {renderCount, menuList, itemHeight, padding} = vm;
                 return ((menuList.length - renderCount) * itemHeight) + padding;
             },
-            valueIndex() {
+            valueIndexList() {
                 const vm = this;
-                const {menuList, value} = vm;
+                const {menuList, valueList} = vm;
 
-                return menuList.findIndex(item => item === value);
+                return menuList.reduce((acc, curValue, curIndex) => {
+                    if (valueList.includes(curValue)) acc.push(curIndex);
+                    return acc;
+                }, []);
             }
         },
 
         watch: {
             searchText(text) {
                 const vm = this;
-                const {menuList, map, value} = vm;
+                const {menuList, map, valueList} = vm;
+
                 if (menuList.indexOf(map[text]) > -1) {
-                    vm.initHighlight(map[text]);
+                    vm.initHighlight([map[text]]);
                 } else {
-                    vm.initHighlight(value);
+                    vm.initHighlight(valueList);
                 }
             }
         },
 
         mounted() {
             const vm = this;
-            vm.initHighlight(vm.value);
+            vm.initHighlight(vm.valueList);
         },
 
         methods: {
-            initHighlight(value) {
+            initHighlight(valueList) {
                 const vm = this;
                 const {reservedCount, renderCount, menuList, padding, itemHeight} = vm;
-
-                const highlightIndex = menuList.indexOf(value);
+                const curValueIndexList = menuList.reduce((acc, curValue, curIndex) => {
+                    if (valueList.includes(curValue)) acc.push(curIndex);
+                    return acc;
+                }, []);
+                const highlightIndex = curValueIndexList.sort()[0] > -1 ? curValueIndexList.sort()[0] : 0;
 
                 let initScrollTop = 0;
                 if (highlightIndex > -1) {
@@ -118,8 +138,7 @@
                     }
                 }
 
-                vm.highlightIndex = highlightIndex > -1 ? highlightIndex : 0;
-
+                vm.highlightIndex = highlightIndex;
                 vm.$nextTick(() => {
                     vm.$refs.list.scrollTop = initScrollTop;
                 });
@@ -170,12 +189,19 @@
             },
 
             handleChoose(value) {
-                this.$emit('choose', value);
+                const vm = this;
+                const {valueList} = vm;
+
+                if (valueList.includes(value)) {
+                    vm.$emit('choose-selected', value);
+                } else {
+                    vm.$emit('choose', value);
+                }
             },
 
             handleKeyDown(keyCode) {
                 const vm = this;
-                const {highlightIndex, menuList, value} = vm;
+                const {highlightIndex, menuList} = vm;
                 switch (keyCode) {
                     case KeyCodeMap.up: {
                         vm.changeHighlight('up');
@@ -189,7 +215,7 @@
                         if (highlightIndex > -1) {
                             vm.handleChoose(menuList[highlightIndex]);
                         } else {
-                            vm.handleChoose(value);
+                            vm.handleChoose();
                         }
                         break;
                     }
@@ -197,6 +223,11 @@
                         break;
                     }
                 }
+            },
+
+            isSelected(valueIndex) {
+                const {valueIndexList} = this;
+                return valueIndexList.includes(valueIndex);
             }
         }
     };

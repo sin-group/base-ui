@@ -10,6 +10,7 @@
 
     li {
         display: flex;
+        justify-content: space-between;
         align-items: center;
         box-sizing: border-box;
         height: 30px;
@@ -19,14 +20,38 @@
         cursor: pointer;
         white-space: pre;
 
+        .b-icon-fit {
+            color: $white;
+        }
+
         &:hover {
             background-color: $gray-light;
         }
 
-        &.b-select-menu-highlight,
         &.b-select-menu-selected {
+            background-color: $gray-light;
+            color: $black;
+
+            span {
+                font-weight: 800;
+            }
+
+            .b-icon-fit:before {
+                color: $primary-dark;
+            }
+        }
+
+        &.b-select-menu-highlight {
             background-color: $primary-dark;
             color: $white;
+
+            .b-icon-fit:before {
+                color: $primary-dark;
+            }
+
+            &.b-select-menu-selected .b-icon-fit:before {
+                color: $white;
+            }
         }
     }
 

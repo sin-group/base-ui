@@ -91,7 +91,9 @@
         'weibo',
         'customer-service',
         'collapse-down',
-        'collapse-up'
+        'collapse-up',
+        'cross',
+        'fit'
     ];
 
     export default {

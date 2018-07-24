@@ -65,13 +65,14 @@
                 const elRect = getRect(el);
                 const windowRect = getWindowRect();
 
-                let x = 0, y = 0; // eslint-disable-line
+                let x = 0, y = refRect.bottom - elRect.top; // eslint-disable-line
+
                 if ((elRect.right > windowRect.innerWidth && (windowRect.innerWidth - refRect.right) > elRect.width)
                     || (elRect.left < refRect.left)) {
                     x = -(elRect.width - refRect.width);
                 }
 
-                if ((elRect.bottom > windowRect.innerHeight && refRect.top > refRect.height)
+                if ((elRect.bottom > windowRect.innerHeight && (refRect.top > elRect.height))
                     || (elRect.bottom < refRect.bottom)) {
                     y = -(elRect.height + refRect.height);
                 }

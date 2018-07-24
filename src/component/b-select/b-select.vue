@@ -3,30 +3,53 @@
         v-b-click-outside="closeMenu"
         :class="{'disabled': disabled, 'b-resettable': canBeReset}"
         class="b-select">
-        <b-input
-            ref="input"
-            :name="name"
-            :value="searchText"
-            :disabled="disabled"
-            :type="type"
-            :placeholder="placeholder"
-            @input="input"
-            @focus="openMenu"
-            @keydown="handleKeyDown">
-            <i
-                slot="right"
-                :class="{'b-select-icon-active': menuOpen}"
-                class="b-right-icon b-icon-arrow-bottom"
-                @click="reset"></i>
-        </b-input>
+        <div :class="{'b-select-input-area-focus': menuOpen}" class="b-select-input-wrap">
+            <div class="b-select-input-area">
+                <span ref="shadowSpan" class="b-select-shadow-span"></span>
+
+                <ul ref="wrap" @click="changeOpen">
+                    <template v-if="multiple">
+                        <li v-for="choice in value" :key="choice" class="b-select-choice" @click="removeChoice(choice)">
+                            <span class="b-select-badge">{{ getValueText(choice) }}</span>
+                            <i class="b-icon-cross b-select-icon-remove-choice"></i>
+                        </li>
+                    </template>
+
+                    <li
+                        v-else-if="!searchText"
+                        :class="{'b-select-value-grey': menuOpen || disabled}"
+                        class="b-select-selected-value">{{ getValueText(value) }}</li>
+
+                    <li class="b-select-search">
+                        <span v-if="showPlaceholder" class="b-select-placeholder">请选择</span>
+                        <input
+                            ref="input"
+                            :value="searchText"
+                            type="text"
+                            class="b-select-search-input"
+                            @input="input"
+                            @keydown="handleKeyDown">
+                    </li>
+
+                </ul>
+                <div ref="reset" class="b-select-reset">
+                    <i
+                        :class="{ 'b-select-icon-active': menuOpen, 'b-select-icon-disabled': disabled}"
+                        class="b-right-icon b-icon-arrow-bottom"
+                        @click.stop="reset"></i>
+                </div>
+            </div>
+        </div>
 
         <b-popper :visible="menuOpen">
             <b-select-menu
                 ref="menu"
                 :map="map"
                 :value="value"
+                :multiple="multiple"
                 :search-text="searchText"
-                @choose="choose"/>
+                @choose="choose"
+                @choose-selected="removeChoice"/>
         </b-popper>
     </div>
 </template>
@@ -57,7 +80,7 @@
                 default: ''
             },
             value: {
-                type: [String, Number],
+                type: [String, Number, Array],
                 default: null
             },
             type: {
@@ -72,78 +95,72 @@
                 type: Boolean,
                 default: false
             },
-            placeholder: {
-                type: String,
-                default: ''
-            },
             enableReset: {
                 type: Boolean,
                 default: true
+            },
+            multiple: {
+                type: Boolean,
+                default: false
             }
         },
 
         data() {
-            const vm = this;
-            const {map, value} = vm;
-
             return {
                 menuOpen: false,
-                searchText: (value && map[value]) ? map[value].trim() : ''
+                searchText: null
             };
         },
 
         computed: {
             canBeReset() {
                 const vm = this;
-                const {searchText, disabled, enableReset} = vm;
+                const {disabled, enableReset} = vm;
 
-                return enableReset && searchText && !disabled;
-            }
-        },
-
-        watch: {
-            value(val) {
-                const vm = this;
-
-                vm.updateSearchText(vm.map, val);
+                return enableReset && !disabled;
             },
 
-            map(val) {
+            showPlaceholder() {
                 const vm = this;
-                const {value} = vm;
-
-                vm.updateSearchText(val, value);
+                return (!vm.value || !vm.value.length) && !vm.searchText;
             }
         },
 
         methods: {
+            getValueText(value) {
+                const vm = this;
+                const {map} = vm;
+
+                return value && map[value] ? map[value].trim() : value;
+            },
+
+            changeOpen() {
+                const vm = this;
+                return vm.menuOpen ? vm.closeMenu() : vm.openMenu();
+            },
+
             openMenu() {
                 const vm = this;
                 if (!vm.disabled) {
                     vm.searchText = '';
                     vm.menuOpen = true;
+                    vm.$nextTick(() => vm.$refs.input.focus());
                 }
             },
 
-            updateSearchText(map, value) {
+            closeMenu() {
                 const vm = this;
 
-                if (value && map[value]) {
-                    vm.searchText = map[value].trim();
-                } else {
-                    vm.searchText = '';
+                if (vm.menuOpen && vm.$refs.input) {
+                    vm.$refs.input.blur();
+                    vm.searchText = null;
+                    vm.menuOpen = false;
                 }
             },
 
-            input(value) {
+            handleKeyDown({keyCode}) {
                 const vm = this;
-                vm.searchText = value;
-                vm.menuOpen = true;
-            },
-
-            handleKeyDown(TargetValue, {keyCode}) {
-                const vm = this;
-                const {$refs: {menu}, menuOpen} = vm;
+                const {$refs: {menu}, menuOpen, value, multiple} = vm;
 
                 switch (keyCode) {
                     case KeyCodeMap.up:
@@ -168,25 +185,27 @@
                         }
                         break;
                     }
+                    case KeyCodeMap.backSpace: {
+                        if (multiple && !vm.searchText) vm.removeChoice(value[value.length - 1]);
+                        break;
+                    }
                     default: // ignore
                 }
 
                 return null;
             },
 
-            closeMenu() {
-                const vm = this;
-
-                if (vm.menuOpen && vm.$refs.input) {
-                    vm.updateSearchText(vm.map, vm.value);
-                    vm.$refs.input.blur();
-                    vm.menuOpen = false;
-                }
-            },
-
             choose(value) {
                 const vm = this;
-                vm.updateSearchText(vm.map, value);
+                const {multiple} = vm;
+
+                if (!value) return vm.closeMenu();
+
+                return multiple ? vm.chooseMultiple(value) : vm.chooseValue(value);
+            },
+
+            chooseValue(value) {
+                const vm = this;
 
                 let changeValue = value;
                 if (vm.type === 'number') {
@@ -198,11 +217,46 @@
                 vm.$refs.input.blur();
             },
 
+            chooseMultiple(choice) {
+                const vm = this;
+                const value = vm.value || [];
+
+                if (!value.includes(choice)) {
+                    vm.$emit('change', [...value, choice]);
+                }
+                vm.$nextTick(() => vm.$refs.input.focus());
+            },
+
             reset() {
                 const vm = this;
                 if (vm.canBeReset) {
-                    vm.choose(null);
+                    vm.$emit('change', vm.multiple ? [] : null);
                 }
+            },
+
+            removeChoice(choice) {
+                const vm = this;
+                const {menuOpen: menuOpenBefore} = vm;
+                const valueCopy = JSON.parse(JSON.stringify(vm.value));
+                valueCopy.splice(vm.value.indexOf(choice), 1);
+
+                vm.$emit('change', valueCopy);
+                vm.$nextTick(() => {
+                    vm.menuOpen = menuOpenBefore;
+                    vm.$refs.input.focus();
+                });
+            },
+
+            input(event) {
+                const vm = this;
+                vm.$refs.shadowSpan.innerHTML = event.target.value;
+                const shadowSpanWidth = vm.$refs.shadowSpan.clientWidth + 5;
+                const wrapWidth = vm.$refs.wrap.clientWidth;
+                const resetWidth = vm.$refs.reset.clientWidth;
+                const maxWidth = wrapWidth - resetWidth;
+                vm.$refs.input.style.width = `${shadowSpanWidth <= maxWidth ? (shadowSpanWidth || 1) : maxWidth}px`;
+                vm.searchText = event.target.value;
+                vm.menuOpen = true;
             }
         }
     };

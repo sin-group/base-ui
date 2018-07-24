@@ -19,6 +19,10 @@
                 <b-form-group label="Disabled">
                     <b-select v-model="editing.disabled" :map="UpDownMap" disabled/>
                 </b-form-group>
+
+                <b-form-group label="multiple">
+                    <b-select v-model="editing.multiple" :map="SelectMap" multiple/>
+                </b-form-group>
             </form>
         </div>
 
@@ -28,10 +32,10 @@
 
 <script type="text/babel">
     const SelectMap = {
-        'バカ': 'バカ',
-        '変態': '変態',
-        'うるさい': 'うるさい',
-        '但使龙城飞将在，八嘎变态无路赛！': 'バカ，変態，うるさい'
+        'バカ': '混蛋',
+        '変態': '变态',
+        'うるさい': '吵死了',
+        'バカ，変態，うるさい': '但使龙城飞将在，八嘎变态无路赛！'
     };
 
     const SelectedMap = {
@@ -80,7 +84,8 @@
                     basic: '',
                     selected: '青山美生',
                     upDown: '',
-                    disabled: '1'
+                    disabled: '1',
+                    multiple: null
                 }
             };
         }
