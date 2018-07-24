@@ -9,16 +9,13 @@ import path from 'path';
 import compression from 'compression';
 import express from 'express';
 
-const resolveIndex = () => path.resolve(__dirname, './public/static/index.html');
+import fallback from '@yqg/node/dist/middleware/history-api-fallback';
+
+const indexPath = path.resolve(__dirname, './public/static/index.html');
 const app = express();
 
 app.use(compression());
 app.use(express.static(path.resolve(__dirname, './public')));
-
-app.use((req, res) => {
-    const index = resolveIndex();
-
-    res.sendFile(index);
-});
+app.use(fallback({indexPath}).express());
 
 export default app;

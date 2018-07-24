@@ -7,8 +7,9 @@
 // node modules
 import config from 'config';
 
+import startServer from '@yqg/cli/dist/start-server';
+
 // our modules
-import startServer from '../common/core/startServer';
 import server from './server';
 
 const port = config.get('run.port');

@@ -9,7 +9,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import scss from 'rollup-plugin-scss';
 import vue from 'rollup-plugin-vue';
-import uglify from 'rollup-plugin-uglify';
+import {uglify} from 'rollup-plugin-uglify';
 
 export default {
     input: 'src/base-ui.js',
