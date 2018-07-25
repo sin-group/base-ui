@@ -120,12 +120,15 @@
         methods: {
             initHighlight(valueList) {
                 const vm = this;
-                const {reservedCount, renderCount, menuList, padding, itemHeight} = vm;
+                const {reservedCount, renderCount, menuList, padding, itemHeight, multiple, searchText} = vm;
                 const curValueIndexList = menuList.reduce((acc, curValue, curIndex) => {
                     if (valueList.includes(curValue)) acc.push(curIndex);
                     return acc;
                 }, []);
-                const highlightIndex = curValueIndexList.sort()[0] > -1 ? curValueIndexList.sort()[0] : 0;
+                const curFirstValueIndex = curValueIndexList.sort()[0];
+                const highlightIndex = curFirstValueIndex > -1 // eslint-disable-line
+                    ? curFirstValueIndex
+                    : (searchText || !multiple ? 0 : -1); // eslint-disable-line
 
                 let initScrollTop = 0;
                 if (highlightIndex > -1) {

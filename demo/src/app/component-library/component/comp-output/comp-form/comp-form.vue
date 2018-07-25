@@ -9,7 +9,7 @@
         <h4 class="heading">Form</h4>
 
         <div class="card">
-            <b-form v-model="data" :options="options" @reset="reset">
+            <b-form v-model="data" :options="options" class="form-block" @reset="reset">
                 <b-form-group slot="custom" label="自定义 field">
                     <b-input v-model="data.custom"/>
                 </b-form-group>
@@ -28,7 +28,15 @@
             {field: 'custom'},
             {type: 'br'},
             {label: '科目', field: 'type', type: 'select', props: {map: {a: 'a', b: 'b'}}},
-            {label: '省市区', field: 'area', type: 'select-cascader', props: {
+            {label: '科目层级', field: 'level', type: 'select', props: {
+                map: {
+                    one: '一级',
+                    two: '二级',
+                    three: '三级'
+                },
+                multiple: true
+            }},
+            {label: '省市', field: 'area', type: 'select-cascader', props: {
                 list: [
                     {label: '北京', value: 1, children: [{label: '北京', value: 2}]},
                     {label: '湖北', value: 3, children: [{label: '武汉', value: 4}, {label: '黄冈', value: 5}]},
@@ -39,7 +47,7 @@
             {label: '生日', field: 'timeString', type: 'dateString'}
         ],
         btnDefs: [
-            {text: 'reset', event: 'reset'}
+            {text: 'Reset', event: 'reset'}
         ]
     };
 

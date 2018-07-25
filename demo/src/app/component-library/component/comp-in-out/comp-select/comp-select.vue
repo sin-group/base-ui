@@ -16,12 +16,12 @@
                     <b-select v-model="editing.upDown" :map="UpDownMap"/>
                 </b-form-group>
 
-                <b-form-group label="Disabled">
-                    <b-select v-model="editing.disabled" :map="UpDownMap" disabled/>
+                <b-form-group label="Multiple">
+                    <b-select v-model="editing.multiple" :map="SelectMap" multiple/>
                 </b-form-group>
 
-                <b-form-group label="multiple">
-                    <b-select v-model="editing.multiple" :map="SelectMap" multiple/>
+                <b-form-group label="Disabled">
+                    <b-select v-model="editing.disabled" :map="UpDownMap" disabled/>
                 </b-form-group>
             </form>
         </div>

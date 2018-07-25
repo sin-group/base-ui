@@ -12,7 +12,6 @@
         }
 
         .b-select-input-area {
-            width: 256px;
             display: flex;
             justify-content: space-between;
 
@@ -103,9 +102,24 @@
 
             .b-select-reset {
                 align-self: center;
+                color: $gray;
 
                 .b-select-icon-disabled:before {
                     color: $gray;
+                }
+            }
+        }
+    }
+
+    &.disabled {
+        .b-select-input-wrap .b-select-input-area ul {
+            cursor: not-allowed;
+
+            .b-select-choice {
+                .b-select-icon-remove-choice {
+                    &:hover:before {
+                        color: $gray;
+                    }
                 }
             }
         }

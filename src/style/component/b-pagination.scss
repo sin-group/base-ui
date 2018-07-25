@@ -61,12 +61,27 @@
             .b-select {
                 display: inline-block;
 
-                input {
+                .b-select-input-wrap .b-select-input-area {
                     width: 60px;
+                }
+
+                .b-select-selected-value {
+                    margin-left: 15px;
+                    font-size: 12px;
+                }
+
+                .b-select-menu {
+                    width: 100px;
+                }
+
+                input {
+                    margin-left: 15px;
+                    width: 45px !important;
                     font-size: 11px;
-                    text-align: center;
+                    text-align: left;
                 }
             }
         }
     }
 }
+

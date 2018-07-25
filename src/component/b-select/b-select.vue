@@ -26,6 +26,7 @@
                             ref="input"
                             :value="searchText"
                             type="text"
+                            autocomplete="false"
                             class="b-select-search-input"
                             @input="input"
                             @keydown="handleKeyDown">
@@ -182,6 +183,7 @@
                             vm.openMenu();
                         } else {
                             menu.handleKeyDown(keyCode);
+                            vm.searchText = null;
                         }
                         break;
                     }
@@ -237,7 +239,9 @@
 
             removeChoice(choice) {
                 const vm = this;
-                const {menuOpen: menuOpenBefore} = vm;
+                const {menuOpen: menuOpenBefore, disabled} = vm;
+                if (disabled) return;
+
                 const valueCopy = JSON.parse(JSON.stringify(vm.value));
                 valueCopy.splice(vm.value.indexOf(choice), 1);
 
