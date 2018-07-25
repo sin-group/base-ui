@@ -75,7 +75,6 @@
                 const vm = this;
                 if (!vm.$valid.checkOptions(vm, ValidOptions)) return;
 
-                vm.visible = false;
                 vm.resolve('来自星星的青青');
             }
         }
