@@ -50,7 +50,7 @@
                 :multiple="multiple"
                 :search-text="searchText"
                 @choose="choose"
-                @choose-selected="removeChoice"/>
+                @choose-selected="handleSelectedChoice"/>
         </b-popper>
     </div>
 </template>
@@ -235,6 +235,18 @@
                 if (vm.canBeReset) {
                     vm.$emit('change', vm.multiple ? [] : null);
                 }
+            },
+
+            handleSelectedChoice(choice) {
+                const vm = this;
+                const {multiple} = vm;
+
+                if (multiple) {
+                    vm.removeChoice(choice);
+                    return;
+                }
+
+                vm.chooseValue(choice);
             },
 
             removeChoice(choice) {

@@ -39,6 +39,10 @@
 
 .form-inline .form-group {
     display: inline-block;
+
+    .b-select .b-select-input-wrap .b-select-input-area {
+        width: $form-inline-width;
+    }
 }
 
 .form-block {
