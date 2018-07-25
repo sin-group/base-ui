@@ -9,9 +9,9 @@
 
                 <ul ref="wrap" @click="changeOpen">
                     <template v-if="multiple">
-                        <li v-for="choice in value" :key="choice" class="b-select-choice" @click="removeChoice(choice)">
+                        <li v-for="choice in value" :key="choice" class="b-select-choice">
                             <span class="b-select-badge">{{ getValueText(choice) }}</span>
-                            <i class="b-icon-cross b-select-icon-remove-choice"></i>
+                            <i class="b-icon-cross b-select-icon-remove-choice" @click="removeChoice(choice)"></i>
                         </li>
                     </template>
 
@@ -152,9 +152,9 @@
                 const vm = this;
 
                 if (vm.menuOpen && vm.$refs.input) {
-                    vm.$refs.input.blur();
-                    vm.searchText = null;
                     vm.menuOpen = false;
+                    vm.$refs.input.blur();
+                    vm.updateInputElement();
                 }
             },
 
@@ -229,6 +229,7 @@
 
             reset() {
                 const vm = this;
+
                 if (vm.canBeReset) {
                     vm.$emit('change', vm.multiple ? [] : null);
                 }
@@ -249,14 +250,22 @@
 
             input(event) {
                 const vm = this;
-                vm.$refs.shadowSpan.innerHTML = event.target.value;
+
+                vm.updateInputElement(event.target.value);
+                vm.menuOpen = true;
+            },
+
+            updateInputElement(text = '') {
+                const vm = this;
+                vm.$refs.shadowSpan.innerHTML = text;
+
                 const shadowSpanWidth = vm.$refs.shadowSpan.clientWidth + 5;
                 const wrapWidth = vm.$refs.wrap.clientWidth;
                 const resetWidth = vm.$refs.reset.clientWidth;
                 const maxWidth = wrapWidth - resetWidth;
+
                 vm.$refs.input.style.width = `${shadowSpanWidth <= maxWidth ? (shadowSpanWidth || 1) : maxWidth}px`;
-                vm.searchText = event.target.value;
-                vm.menuOpen = true;
+                vm.searchText = text;
             }
         }
     };
