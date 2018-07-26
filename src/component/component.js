@@ -22,6 +22,7 @@ import BSelect from './b-select';
 import BSelectArray from './b-select-array';
 import BSelectCascader from './b-select-cascader';
 import BSwitch from './b-switch';
+import BTab from './b-tab';
 import BTable from './b-table';
 import BTree from './b-tree';
 
@@ -46,6 +47,7 @@ export default {
         Vue.component('b-select-array', BSelectArray);
         Vue.component('b-select-cascader', BSelectCascader);
         Vue.component('b-switch', BSwitch);
+        Vue.component('b-tab', BTab);
         Vue.component('b-table', BTable);
         Vue.component('b-tree', BTree);
     }

@@ -1,0 +1,40 @@
+@import "../../style/variables";
+
+.b-tab {
+    &.tab-inset {
+        margin: -20px -20px 20px -20px;
+    }
+
+    .b-tab-wrap {
+        display: flex;
+        justify-content: flex-start;
+        overflow: auto;
+        box-shadow: $standard-box-shadow;
+
+        .b-tab-item {
+            min-width: 115px;
+            box-sizing: border-box;
+            text-align: center;
+            padding: 18px 10px;
+            color: $gray-dark;
+            user-select: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            transition: background-color .6s;
+
+            @media only screen and (max-width: $ultra-book-min + $break-point-buffer) {
+                min-width: 100px;
+                padding: 15px 10px;
+            }
+
+            &:hover {
+                background-color: $gray-lighter;
+            }
+
+            &.active {
+                background-color: lighten($gray-light, 3);
+                border-bottom-color: lighten($primary-dark, 5);
+            }
+        }
+    }
+}
