@@ -86,17 +86,11 @@
                     }
                 }
 
-                .b-select-search {
+                .b-select-placeholder {
                     position: relative;
-
-                    .b-select-placeholder {
-                        position: absolute;
-                        width: 100px;
-                        left: 0;
-                        top: 0;
-                        color: $gray;
-                        user-select: none;
-                    }
+                    left: -5px;
+                    color: $gray;
+                    user-select: none;
                 }
             }
 

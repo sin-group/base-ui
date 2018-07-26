@@ -18,7 +18,6 @@
                         :value="data[fieldDef.field]"
                         :is="is(fieldDef.type)"
                         v-bind="fieldDef.props"
-                        @input="emitChange(arguments, fieldDef)"
                         @change="emitChange(arguments, fieldDef)"/>
                 </b-form-group>
             </slot>

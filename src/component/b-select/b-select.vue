@@ -16,12 +16,12 @@
                     </template>
 
                     <li
-                        v-else-if="!searchText"
+                        v-else-if="!searchText && isValueValid(value)"
                         :class="{'b-select-value-grey': menuOpen || disabled}"
                         class="b-select-selected-value">{{ getValueText(value) }}</li>
 
+
                     <li class="b-select-search">
-                        <span v-if="showPlaceholder" class="b-select-placeholder">请选择</span>
                         <input
                             ref="input"
                             :value="searchText"
@@ -32,6 +32,7 @@
                             @keydown="handleKeyDown">
                     </li>
 
+                    <li v-if="showPlaceholder" class="b-select-placeholder">请选择</li>
                 </ul>
                 <div ref="reset" class="b-select-reset">
                     <i
@@ -58,6 +59,7 @@
 <script type="text/babel">
 
     import KeyCodeMap from '../../util/keyCodeMap';
+    import {isString, isArray, isNumber} from '../../util/check';
 
     import BInput from '../b-input';
     import BSelectMenu from './b-select-menu.vue';
@@ -123,16 +125,24 @@
 
             showPlaceholder() {
                 const vm = this;
-                return (!vm.value || !vm.value.length) && !vm.searchText;
+                return !vm.isValueValid(vm.value) && !vm.searchText;
             }
         },
 
         methods: {
+            isValueValid(value) {
+                const {multiple} = this;
+
+                return multiple
+                    ? (isArray(value) && value.length)
+                    : (isString(value) || isNumber(value));
+            },
+
             getValueText(value) {
                 const vm = this;
                 const {map} = vm;
 
-                return value && map[value] ? map[value].trim() : value;
+                return map[value] ? map[value].trim() : value;
             },
 
             changeOpen() {
@@ -233,6 +243,7 @@
                 const vm = this;
 
                 if (vm.canBeReset) {
+                    vm.searchText = null;
                     vm.$emit('change', vm.multiple ? [] : null);
                 }
             },
@@ -275,7 +286,7 @@
                 const vm = this;
                 vm.$refs.shadowSpan.innerHTML = text;
 
-                const shadowSpanWidth = vm.$refs.shadowSpan.clientWidth + 5;
+                const shadowSpanWidth = vm.$refs.shadowSpan.clientWidth + 1;
                 const wrapWidth = vm.$refs.wrap.clientWidth;
                 const resetWidth = vm.$refs.reset.clientWidth;
                 const maxWidth = wrapWidth - resetWidth;

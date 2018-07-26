@@ -9,7 +9,7 @@
             }"
             @click="handleChoose(item)">
             <span>{{ map[item] }}</span>
-            <i v-if="multiple" class="b-icon-fit"></i>
+            <i v-if="multiple" class="b-icon-tick"></i>
         </li>
 
         <li v-if="menuList.length === 0" class="empty-list-item">无匹配选项</li>

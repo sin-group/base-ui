@@ -20,7 +20,7 @@
         cursor: pointer;
         white-space: pre;
 
-        .b-icon-fit {
+        .b-icon-tick {
             color: $white;
         }
 
@@ -36,7 +36,7 @@
                 font-weight: 800;
             }
 
-            .b-icon-fit:before {
+            .b-icon-tick:before {
                 color: $primary-dark;
             }
         }
@@ -45,11 +45,11 @@
             background-color: $primary-dark;
             color: $white;
 
-            .b-icon-fit:before {
+            .b-icon-tick:before {
                 color: $primary-dark;
             }
 
-            &.b-select-menu-selected .b-icon-fit:before {
+            &.b-select-menu-selected .b-icon-tick:before {
                 color: $white;
             }
         }
