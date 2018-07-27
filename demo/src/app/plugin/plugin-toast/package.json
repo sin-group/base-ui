@@ -1,0 +1,4 @@
+{
+    "name": "plugin-toast",
+    "main": "./plugin-toast.vue"
+}

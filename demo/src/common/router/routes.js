@@ -8,18 +8,34 @@ import Intro from '../../app/intro';
 import IntroOverview from '../../app/intro/overview';
 import IntroConcepts from '../../app/intro/concepts';
 
-import CSSFramework from '../../app/css-framework';
-import CssElement from '../../app/css-framework/component/css-element';
-import CssForm from '../../app/css-framework/component/css-form';
-import CssIcon from '../../app/css-framework/component/css-icon';
-import CssLayout from '../../app/css-framework/component/css-layout';
-import CssTypography from '../../app/css-framework/component/css-typography';
+import Style from '../../app/style';
+import StyleElement from '../../app/style/style-element';
+import StyleForm from '../../app/style/style-form';
+import StyleIcon from '../../app/style/style-icon';
+import StyleLayout from '../../app/style/style-layout';
+import StyleTypography from '../../app/style/style-typography';
 
-import componentLibrary from '../../app/component-library';
-import CompInOut from '../../app/component-library/component/comp-in-out';
-import CompOutput from '../../app/component-library/component/comp-output';
-import CompPlugin from '../../app/component-library/component/comp-plugin';
-import CompView from '../../app/component-library/component/comp-view';
+import Comp from '../../app/comp';
+import CompDate from '../../app/comp/comp-date';
+import CompDateString from '../../app/comp/comp-date-string';
+import CompForm from '../../app/comp/comp-form';
+import CompImage from '../../app/comp/comp-image';
+import CompInput from '../../app/comp/comp-input';
+import CompMdEditor from '../../app/comp/comp-md-editor';
+import CompMdView from '../../app/comp/comp-md-view';
+import CompPagination from '../../app/comp/comp-pagination';
+import CompSelect from '../../app/comp/comp-select';
+import CompSelectArray from '../../app/comp/comp-select-array';
+import CompSelectCascader from '../../app/comp/comp-select-cascader';
+import CompSwitch from '../../app/comp/comp-switch';
+import CompTab from '../../app/comp/comp-tab';
+import CompTable from '../../app/comp/comp-table';
+import CompTree from '../../app/comp/comp-tree';
+
+import Plugin from '../../app/plugin';
+import PluginToast from '../../app/plugin/plugin-toast';
+import PluginAlert from '../../app/plugin/plugin-alert';
+import PluginModal from '../../app/plugin/plugin-modal';
 
 import Index from '../../app/index';
 
@@ -27,16 +43,11 @@ export default [
     {
         name: 'NotFound',
         path: '*',
-        redirect: Index
-    },
-    {
-        name: 'Root',
-        path: '/',
-        component: Index
+        redirect: '/'
     },
     {
         name: 'Index',
-        path: '/index',
+        path: '/',
         component: Index
     },
     {
@@ -68,49 +79,49 @@ export default [
     },
     {
         name: 'Style',
-        path: '/css-framework',
-        component: CSSFramework,
-        redirect: '/css-framework/typography',
+        path: '/style',
+        component: Style,
+        redirect: '/style/typography',
         meta: {
             navTitle: 'Style'
         },
         children: [
             {
                 name: 'Typography',
-                path: '/css-framework/typography',
-                component: CssTypography,
+                path: '/style/typography',
+                component: StyleTypography,
                 meta: {
                     navTitle: 'Typography'
                 }
             },
             {
                 name: 'Form',
-                path: '/css-framework/form',
-                component: CssForm,
+                path: '/style/form',
+                component: StyleForm,
                 meta: {
                     navTitle: 'Form'
                 }
             },
             {
                 name: 'Layout',
-                path: '/css-framework/layout',
-                component: CssLayout,
+                path: '/style/layout',
+                component: StyleLayout,
                 meta: {
                     navTitle: 'Layout'
                 }
             },
             {
                 name: 'Element',
-                path: '/css-framework/element',
-                component: CssElement,
+                path: '/style/element',
+                component: StyleElement,
                 meta: {
                     navTitle: 'Element'
                 }
             },
             {
                 name: 'Icon',
-                path: '/css-framework/icon',
-                component: CssIcon,
+                path: '/style/icon',
+                component: StyleIcon,
                 meta: {
                     navTitle: 'Icon'
                 }
@@ -119,43 +130,166 @@ export default [
     },
     {
         name: 'Component',
-        path: '/component-library',
-        component: componentLibrary,
-        redirect: '/component-library/output',
+        path: '/component',
+        component: Comp,
+        redirect: '/component/output',
         meta: {
             navTitle: 'Component'
         },
         children: [
             {
-                name: 'Out',
-                path: '/component-library/output',
-                component: CompOutput,
+                name: 'CompDate',
+                path: '/component/date',
+                component: CompDate,
                 meta: {
-                    navTitle: 'Output'
+                    navTitle: 'Date'
                 }
             },
             {
-                name: 'InView',
-                path: '/component-library/view',
-                component: CompView,
+                name: 'CompDateString',
+                path: '/component/date-string',
+                component: CompDateString,
                 meta: {
-                    navTitle: 'Input to View'
+                    navTitle: 'Date String'
                 }
             },
             {
-                name: 'InOut',
-                path: '/component-library/in-out',
-                component: CompInOut,
+                name: 'CompForm',
+                path: '/component/form',
+                component: CompForm,
                 meta: {
-                    navTitle: 'Input to Output'
+                    navTitle: 'Form'
                 }
             },
             {
-                name: 'Plugin',
-                path: '/component-library/plugin',
-                component: CompPlugin,
+                name: 'CompImage',
+                path: '/component/image',
+                component: CompImage,
                 meta: {
-                    navTitle: 'Plugin'
+                    navTitle: 'Image'
+                }
+            },
+            {
+                name: 'CompInput',
+                path: '/component/input',
+                component: CompInput,
+                meta: {
+                    navTitle: 'Input'
+                }
+            },
+            {
+                name: 'CompMdEditor',
+                path: '/component/md-editor',
+                component: CompMdEditor,
+                meta: {
+                    navTitle: 'Markdown Editor'
+                }
+            },
+            {
+                name: 'CompMdView',
+                path: '/component/md-view',
+                component: CompMdView,
+                meta: {
+                    navTitle: 'Markdown View'
+                }
+            },
+            {
+                name: 'CompPagination',
+                path: '/component/pagination',
+                component: CompPagination,
+                meta: {
+                    navTitle: 'Pagination'
+                }
+            },
+            {
+                name: 'CompSelect',
+                path: '/component/select',
+                component: CompSelect,
+                meta: {
+                    navTitle: 'Select'
+                }
+            },
+            {
+                name: 'CompSelectArray',
+                path: '/component/select-array',
+                component: CompSelectArray,
+                meta: {
+                    navTitle: 'Array Select'
+                }
+            },
+            {
+                name: 'CompSelectCascader',
+                path: '/component/select-cascader',
+                component: CompSelectCascader,
+                meta: {
+                    navTitle: 'Cascader Select'
+                }
+            },
+            {
+                name: 'CompSwitch',
+                path: '/component/switch',
+                component: CompSwitch,
+                meta: {
+                    navTitle: 'Switch'
+                }
+            },
+            {
+                name: 'CompTab',
+                path: '/component/tab',
+                component: CompTab,
+                meta: {
+                    navTitle: 'Tab'
+                }
+            },
+            {
+                name: 'CompTable',
+                path: '/component/table',
+                component: CompTable,
+                meta: {
+                    navTitle: 'Table'
+                }
+            },
+            {
+                name: 'CompTree',
+                path: '/component/tree',
+                component: CompTree,
+                meta: {
+                    navTitle: 'Tree'
+                }
+            }
+        ]
+    },
+    {
+        name: 'Plugin',
+        path: '/plgin',
+        component: Plugin,
+        redirect: '/plugin/toast',
+        meta: {
+            navTitle: 'Plugin'
+        },
+        children: [
+            {
+                name: 'PluginToast',
+                path: '/plugin/toast',
+                component: PluginToast,
+                meta: {
+                    navTitle: 'Toast'
+                }
+            },
+            {
+                name: 'PluginAlert',
+                path: '/plugin/alert',
+                component: PluginAlert,
+                meta: {
+                    navTitle: 'Alert'
+                }
+            },
+            {
+                name: 'PluginModal',
+                path: '/plugin/modal',
+                component: PluginModal,
+                meta: {
+                    navTitle: 'Modal'
                 }
             }
         ]

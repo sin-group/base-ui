@@ -1,5 +1,5 @@
 <template>
-    <b-dialog :open="visible" :title="title" @close="close">
+    <b-dialog :open="visible" :title="title" dialog-class="sm" @close="close">
         {{ message }}
         <button slot="actions" class="simple lg" @click="close">确定</button>
     </b-dialog>
@@ -10,7 +10,7 @@
     import AlertType from '../../constant/AlertType';
 
     export default {
-        name: 'b-alert',
+        name: 'BAlert',
 
         components: {
             BDialog
@@ -31,8 +31,6 @@
                 vm.visible = false;
             }
         }
-    }
+    };
 </script>
 
-<style>
-</style>

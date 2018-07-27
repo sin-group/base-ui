@@ -1,5 +1,5 @@
 <template>
-    <b-dialog :open="visible" :title="title" @close="close">
+    <b-dialog :open="visible" :title="title" dialog-class="sm" @close="close">
         <div class="message-modal-body">
             <p>{{ message }}</p>
         </div>
