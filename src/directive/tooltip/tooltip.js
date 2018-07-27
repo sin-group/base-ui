@@ -32,8 +32,10 @@ export default {
     },
 
     inserted(el, {value}, vnode) {
+        vnode.$$curTipText = value;
+
         vnode.$$tooltipMouseover = () => {
-            toolTipEle.innerText = value;
+            toolTipEle.innerText = vnode.$$curTipText;
             Object.assign(toolTipEle.style, {
                 display: 'block'
             });
@@ -53,6 +55,10 @@ export default {
 
         el.addEventListener('mouseover', vnode.$$tooltipMouseover);
         el.addEventListener('mouseout', vnode.$$tooltipMouseout);
+    },
+
+    update(el, {value}, vnode) {
+        vnode.$$curTipText = value;
     },
 
     unbind(el, binding, vnode) {

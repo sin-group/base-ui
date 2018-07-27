@@ -16,9 +16,9 @@
             justify-content: space-between;
 
             .b-select-shadow-span {
-                top: -50px;
                 font-size: 14px;
                 position: fixed;
+                visibility: hidden;
             }
 
             ul {
