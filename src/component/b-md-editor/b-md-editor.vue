@@ -8,11 +8,11 @@
     <div class="b-md-editor">
         <div class="app-bar">
             <button
-                v-for="action in ActionList"
+                v-for="action in actionList"
                 :key="action.name"
                 class="simple"
                 @click="callAction(action)">
-                <i :class="'b-icon-' + (action.description || 'adjust')"></i>
+                <i :class="action.icon"></i>
             </button>
         </div>
 
@@ -30,7 +30,28 @@
 </template>
 
 <script type="text/babel">
-    import {ActionList} from '../../constant/ActionConf';
+
+    import bold from './action/bold';
+    import code from './action/code';
+    import header from './action/header';
+    import italic from './action/italic';
+    import link from './action/link';
+    import quote from './action/quote';
+
+    const DEFAULT_ACTION_LIST = [
+        header,
+        bold,
+        italic,
+        link,
+        quote,
+        code
+    ];
+
+    const DEFAULT_OPTIONS = {
+        override: false,
+        actionList: [], // 用户定义的 action list
+        actionOrder: null // 定义 action 展示的顺序，用 name 指定
+    };
 
     export default {
         name: 'BMdEditor',
@@ -45,259 +66,109 @@
                 type: String,
                 required: true
             },
+
             options: {
                 type: Object,
-                default: () => {}
+                default: () => ({})
             },
+
             customizedStyle: {
                 type: Object,
-                default: () => {}
+                default: () => ({})
             }
-        },
-
-        data() {
-            return {
-                actionMap: {
-                    onHeader: this.onHeader,
-                    onBold: this.onBold,
-                    onItalic: this.onItalic,
-                    onLink: this.onLink,
-                    onQuote: this.onQuote,
-                    onCode: this.onCode
-                },
-                actionPreMap: {
-                    onBold: {
-                        preLeftPattern: '** ',
-                        preRightPattern: ' **',
-                        patternLength: 3,
-                        addPattern: '** bold text **',
-                        addPatternLength: 15
-                    },
-                    onItalic: {
-                        preLeftPattern: '_ ',
-                        preRightPattern: ' _',
-                        patternLength: 2,
-                        addPattern: '_ italic text _',
-                        addPatternLength: 15
-                    }
-                }
-            };
         },
 
         computed: {
-            ActionList() {
-                const {options} = this;
-                return options && options.actionList ? options.actionList : ActionList;
+            actionList() {
+                const options = Object.assign({}, DEFAULT_OPTIONS, this.options);
+                const {override, actionList: optionActionList, actionOrder} = options;
+                const actionList = override ? optionActionList : [...DEFAULT_ACTION_LIST, ...optionActionList];
+
+                if (actionOrder) {
+                    const actionMap = actionList.reduce((map, cur) => {
+                        map[cur.name] = cur; // 用 name 作为 key
+                        return map;
+                    }, {});
+
+                    return actionOrder.map(name => actionMap[name]);
+                }
+
+                return actionList;
             }
         },
 
+        created() {
+            Object.defineProperties(this, { // could not use computed, so use this for convenient
+                textarea: {
+                    get() {
+                        return this.$refs && this.$refs.textarea;
+                    }
+                },
+
+                text: {
+                    get() {
+                        return this.textarea && this.textarea.value;
+                    }
+                },
+
+                selectionStart: {
+                    get() {
+                        return this.textarea && this.textarea.selectionStart;
+                    }
+                },
+
+                selectionEnd: {
+                    get() {
+                        return this.textarea && this.textarea.selectionEnd;
+                    }
+                },
+
+                selectionText: {
+                    get() {
+                        const {textarea, selectionStart, selectionEnd, text} = this;
+                        if (!textarea) return '';
+                        return (selectionStart === selectionEnd) ? '' : text.slice(selectionStart, selectionEnd);
+                    }
+                }
+            });
+        },
+
         methods: {
-            callAction(action) {
-                if (action.method) {
-                    const {$refs: {textarea, textarea: {value: originText}}} = this;
-                    const {mdText, leftSelectionChange, rightSelectionChange} = action.method(originText, textarea);
-                    this.emitChange(mdText);
-                    this.postHandleCursor(3, leftSelectionChange, rightSelectionChange);
-                } else {
-                    this.actionMap[action.methodName]();
+            callAction(action = {}) {
+                if (action.insert) {
+                    return this.handleInsert(action);
                 }
 
-            },
-
-            preHandleBlock(leftPattern, rightPattern, patternLength, addPattern) {
-                const {$refs: {textarea, textarea: {selectionStart, selectionEnd, value: originText}}} = this;
-                const preResult = {newText: '', cursorCase: 0};
-                if ('selectionStart' in textarea) {
-                    if (selectionStart !== selectionEnd) {
-                        if (originText.substring(selectionStart - patternLength, selectionStart) === leftPattern
-                            && originText.substring(selectionEnd, selectionEnd + patternLength) === rightPattern) {
-                            preResult.newText = `${originText.substring(0, selectionStart - patternLength)
-                                }${originText.substring(selectionStart, selectionEnd)
-                                }${originText.substring(selectionEnd + patternLength)}`;
-                            preResult.cursorCase = 1;
-                        } else {
-                            preResult.newText = `${originText.substring(0, selectionStart)
-                                }${leftPattern}${originText.substring(selectionStart, selectionEnd)
-                                }${rightPattern}${originText.substring(selectionEnd)}`;
-                            preResult.cursorCase = 0;
-                        }
-                    } else {
-                        preResult.newText = `${originText.substring(0, selectionStart)
-                             }${addPattern}${originText.substring(selectionEnd)}`;
-                        preResult.cursorCase = 2;
-                    }
+                if (action.modify) {
+                    return this.handleModify(action);
                 }
-                return preResult;
+
+                return null;
             },
 
-            postHandleCursor(cursorCase, patternLength, addPatternLength) {
-                const {textarea, textarea: {selectionStart, selectionEnd}} = this.$refs;
-                setTimeout(() => {
-                    if (cursorCase === 0) {
-                        textarea.setSelectionRange(selectionStart + patternLength,
-                            selectionEnd + patternLength);
-                    } else if (cursorCase === 1) {
-                        textarea.setSelectionRange(selectionStart - patternLength,
-                            selectionEnd - patternLength);
-                    } else if (cursorCase === 2) {
-                        textarea.setSelectionRange(selectionStart + patternLength,
-                            selectionEnd + (addPatternLength - patternLength));
-                    } else {
-                        textarea.setSelectionRange(selectionStart + patternLength,
-                            selectionEnd + addPatternLength);
-                    }
-                    textarea.focus();
-                }, 1);
-            },
-
-            onHeader() {
-                const {$refs: {textarea, textarea: {selectionStart, value: originText}}} = this;
-                if ('selectionStart' in textarea) {
-                    let newText = '';
-                    let selectionChange = 0;
-                    const topLineIndex = originText.lastIndexOf('\n', selectionStart - 1) + 1;
-                    if (originText.charAt(topLineIndex) !== '#'
-                        && originText.charAt(topLineIndex) !== ' ') {
-                        newText = `${originText.substring(0, topLineIndex)
-                            }# ${originText.substring(topLineIndex)}`;
-                        selectionChange = 2;
-                    } else {
-                        newText = `${originText.substring(0, topLineIndex)
-                        }#${originText.substring(topLineIndex)}`;
-                        selectionChange = 1;
-                    }
-                    this.emitChange(newText);
-                    this.postHandleCursor(3, selectionChange, selectionChange);
-                }
-            },
-
-            onBold() {
-                const {
-                    preLeftPattern,
-                    preRightPattern,
-                    patternLength,
-                    addPattern,
-                    addPatternLength
-                } = this.actionPreMap.onBold;
-                const result = this.preHandleBlock(preLeftPattern,
-                    preRightPattern,
-                    patternLength,
-                    addPattern);
-                this.emitChange(result.newText);
-                this.postHandleCursor(result.cursorCase,
-                    patternLength,
-                    addPatternLength);
-            },
-
-            onItalic() {
-                const {
-                    preLeftPattern,
-                    preRightPattern,
-                    patternLength,
-                    addPattern,
-                    addPatternLength
-                } = this.actionPreMap.onItalic;
-                const result = this.preHandleBlock(preLeftPattern,
-                    preRightPattern,
-                    patternLength,
-                    addPattern);
-                this.emitChange(result.newText);
-                this.postHandleCursor(result.cursorCase,
-                    patternLength,
-                    addPatternLength);
-            },
-
-            onLink() {
-                const {$refs: {textarea, textarea: {selectionStart, selectionEnd, value: originText}}} = this;
-                if ('selectionStart' in textarea) {
-                    let newText = '';
-                    let leftSelectionChange = 0;
-                    let rightSelectionChange = 0;
-                    if (selectionStart !== selectionEnd) {
-                        newText = `${originText.substring(0, selectionStart)
-                             }[${originText.substring(selectionStart, selectionEnd)
-                             }](link_url)${originText.substring(selectionEnd)}`;
-                        leftSelectionChange = (selectionEnd - selectionStart) + 3;
-                        rightSelectionChange = 11;
-                    } else {
-                        newText = `${originText.substring(0, selectionStart)
-                             }[link_text](link_url)${originText.substring(selectionEnd)}`;
-                        leftSelectionChange = 12;
-                        rightSelectionChange = 20;
-                    }
-                    this.emitChange(newText);
-                    this.postHandleCursor(3, leftSelectionChange, rightSelectionChange);
-                }
-            },
-
-            onQuote() {
-                const {$refs: {textarea, textarea: {selectionStart, value: originText}}} = this;
-                if ('selectionStart' in textarea) {
-                    let newText = '';
-                    let selectionChange;
-                    const topLineIndex = originText.lastIndexOf('\n', selectionStart - 1) + 1;
-                    if (originText.charAt(topLineIndex) !== '>'
-                        && originText.charAt(topLineIndex) !== ' ') {
-                        newText = `${originText.substring(0, topLineIndex)
-                            }> ${originText.substring(topLineIndex)}`;
-                        selectionChange = 2;
-                    } else {
-                        newText = `${originText.substring(0, topLineIndex)
-                        }${originText.substring(topLineIndex + 2)}`;
-                        selectionChange = -2;
-                    }
-                    this.emitChange(newText);
-                    this.postHandleCursor(3, selectionChange, selectionChange);
-                }
-            },
-
-            onCode() {
-                const {$refs: {textarea, textarea: {selectionStart, selectionEnd, value: originText}}} = this;
-                let newText = '';
-                let leftSelectionChange = 0;
-                let rightSelectionChange = 0;
-                const cursorCase = 3;
-                if ('selectionStart' in textarea) {
-                    if (selectionStart !== selectionEnd) {
-                        // 选到行首
-                        if (originText.charAt(selectionStart - 1) === '\n' || selectionStart === 0) {
-                            if (originText.substring(selectionStart - 4, selectionStart) === '```\n'
-                                && originText.substring(selectionEnd, selectionEnd + 4) === '\n```') {
-                                newText = `${originText.substring(0, selectionStart - 4)
-                                    }${originText.substring(selectionStart, selectionEnd)
-                                    }${originText.substring(selectionEnd + 4)}`;
-                                leftSelectionChange = -4;
-                                rightSelectionChange = -4;
-                            } else {
-                                newText = `${originText.substring(0, selectionStart)
-                                    }\`\`\`\n${originText.substring(selectionStart, selectionEnd)
-                                    }\n\`\`\`${originText.substring(selectionEnd)}`;
-                                leftSelectionChange = 4;
-                                rightSelectionChange = 4;
-                            }
-                        } else if (originText.substring(selectionStart - 1, selectionStart) === '`'
-                                && originText.substring(selectionEnd, selectionEnd + 1) === '`') {
-                                newText = `${originText.substring(0, selectionStart - 1)
-                                    }${originText.substring(selectionStart, selectionEnd)
-                                    }${originText.substring(selectionEnd + 1)}`;
-                                leftSelectionChange = -1;
-                                rightSelectionChange = -1;
-                            } else {
-                                newText = `${originText.substring(0, selectionStart)
-                                    }\`${originText.substring(selectionStart, selectionEnd)
-                                    }\`${originText.substring(selectionEnd)}`;
-                                leftSelectionChange = 1;
-                                rightSelectionChange = 1;
-                            }
-                    } else {
-                        newText = `${originText.substring(0, selectionStart)
-                             }\n\`\`\`\ncode block\n\`\`\`\n${originText.substring(selectionEnd)}`;
-                        leftSelectionChange = 5;
-                        rightSelectionChange = 15;
-                    }
-                }
+            async handleInsert(action) {
+                const {textarea, text, selectionText, selectionStart, selectionEnd} = this;
+                const replaceText = await action.insert(selectionText);
+                const newText = `${text.slice(0, selectionStart)}${replaceText}${text.slice(selectionEnd)}`;
                 this.emitChange(newText);
-                this.postHandleCursor(cursorCase, leftSelectionChange, rightSelectionChange);
+                this.$nextTick(() => {
+                    textarea.setSelectionRange(selectionStart, selectionStart + replaceText.length);
+                    textarea.focus();
+                });
+            },
+
+            async handleModify(action) {
+                const {textarea, text, selectionStart, selectionEnd} = this;
+                const {
+                    text: newText,
+                    selectionStart: newSelectionStart,
+                    selectionEnd: newSelectionEnd
+                } = await action.modify({text, selectionStart, selectionEnd});
+                this.emitChange(newText);
+                this.$nextTick(() => {
+                    textarea.setSelectionRange(newSelectionStart, newSelectionEnd);
+                    textarea.focus();
+                });
             },
 
             onInput() {
