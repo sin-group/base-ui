@@ -27,23 +27,14 @@ export default {
                 modalInstance.$mount(`#${ModalEleId}`);
                 modalInstance.visible = true;
 
-                const destroy = () => {
-                    if (!document.body.contains(modalInstance.$el)) return;
-
-                    modalInstance.visible = false;
-                    modalInstance.$destroy();
-                    document.body.removeChild(modalInstance.$el);
-                };
-
                 return new Promise((resolve, reject) => {
                     Object.assign(modalInstance, {
                         resolve(data) {
-                            destroy();
+                            modalInstance.visible = false;
                             resolve(data);
                         },
 
                         reject() {
-                            destroy();
                             reject();
                         }
                     });

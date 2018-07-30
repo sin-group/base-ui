@@ -19,6 +19,8 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.b-icon-insert-row:before { content: "\e6ee"; }
+
 .b-icon-cross:before { content: "\e621"; }
 
 .b-icon-tick:before { content: "\e61e"; }

@@ -93,7 +93,8 @@
         'collapse-down',
         'collapse-up',
         'cross',
-        'tick'
+        'tick',
+        'insert-row'
     ];
 
     export default {
