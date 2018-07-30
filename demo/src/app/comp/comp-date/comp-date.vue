@@ -6,29 +6,83 @@
 <template>
 
     <div class="comp-date">
-        <h4 class="heading">Date</h4>
 
-        <div class="card">
-            <form class="form-inline">
-                <b-form-group label="Basic">
-                    <b-date v-model="editing.basic"/>
-                </b-form-group>
+        <div class="doc card">
+            <div class="overview">
+                <h2>
+                    <span class="title">日期选择器</span>
+                    <code>b-date</code>
+                </h2>
+                <b-md-view :md-text="MD.CompDateOverview"/>
+            </div>
 
-                <b-form-group label="With Default Value">
-                    <b-date v-model="editing.default"/>
-                </b-form-group>
+            <div class="case">
+                <h3>基本用法</h3>
+                <b-md-view :md-text="MD.CompDateBasic"/>
 
-                <b-form-group label="Disabled">
-                    <b-date v-model="editing.disabled" :disabled="true"/>
-                </b-form-group>
+                <demo-box>
+                    <div slot="code"><b-md-view :md-text="MD.CompDateBasicCode"/></div>
+                    <div slot="main">
+                        <b-date v-model="demo.basic"/>
+                    </div>
+                    <div slot="output">The output is {{ demo.basic }}</div>
+                </demo-box>
+            </div>
 
-                <b-form-group label="Format Round to Day End">
-                    <b-date v-model="editing.dayEnd" :day-end="true" format="ISO"/>
-                </b-form-group>
-            </form>
+            <div class="case">
+                <h3>Round 模式</h3>
+                <b-md-view :md-text="MD.CompDateRound"/>
+
+                <demo-box>
+                    <div slot="code"><b-md-view :md-text="MD.CompDateRoundCode"/></div>
+                    <div slot="main">
+                        <b-form-group label="Dat Start (Default)">
+                            <b-date v-model="demo.dayStart"/>
+                        </b-form-group>
+
+                        <b-form-group label="Day End">
+                            <b-date v-model="demo.dayEnd" :day-end="true"/>
+                        </b-form-group>
+                    </div>
+                    <div slot="output">
+                        Day Start Mode: {{ demo.dayStart }} <br>
+                        Day End Mode: {{ demo.dayEnd }}
+                    </div>
+                </demo-box>
+            </div>
+
+            <div class="case">
+                <h3>Format</h3>
+                <b-md-view :md-text="MD.CompDateFormat"/>
+
+                <demo-box>
+                    <div slot="code"><b-md-view :md-text="MD.CompDateFormatCode"/></div>
+                    <div slot="main">
+                        <b-form-group label="Function Format">
+                            <b-date v-model="demo.formatFunction" :format="getDate"/>
+                        </b-form-group>
+
+                        <b-form-group label="String Format">
+                            <b-date v-model="demo.formatString" format="ISO"/>
+                        </b-form-group>
+                    </div>
+                    <div slot="output">
+                        Function Format: {{ demo.formatFunction }} <br>
+                        String Format: {{ demo.formatString }}
+                    </div>
+                </demo-box>
+            </div>
+
+            <div class="case">
+                <h3>一致性</h3>
+                <b-md-view :md-text="MD.CompDateConsistent"/>
+            </div>
+
+            <div class="case">
+                <h3>API</h3>
+                <b-md-view :md-text="MD.CompDateAPI"/>
+            </div>
         </div>
-
-        <pre class="json-preview">{{ $j(editing) }}</pre>
 
     </div>
 
@@ -36,16 +90,24 @@
 
 <script type="text/babel">
 
+    import MD from '../../../common/md';
+
+    const getDate = timestamp => (new Date(timestamp)).toJSON().slice(0, 10);
+
     export default {
         name: 'CompDate',
 
         data() {
             return {
-                editing: {
+                MD,
+                getDate,
+
+                demo: {
                     basic: null,
-                    default: 1325347208888, // default time will be round to dayStart
-                    disabled: 1516284344350,
-                    dayEnd: null
+                    dayStart: null,
+                    dayEnd: null,
+                    formatFunction: null,
+                    formatString: null
                 }
             };
         }

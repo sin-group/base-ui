@@ -1,7 +1,9 @@
 @import "../../style/variables.scss";
 
 .b-md-view {
+    max-width: 100%;
     padding: 10px 20px;
+    overflow-x: auto;
     color: $gray-dark;
 
     h1:first-child {
@@ -21,8 +23,36 @@
         }
     }
 
+    li {
+        ul,
+        ol {
+            margin-top: 8px;
+        }
+    }
+
     hr {
         margin-bottom: 20px;
+    }
+
+    p,
+    li,
+    table,
+    blockquote,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        line-height: 1.6;
+
+        code {
+            padding: 0 5px;
+            border-radius: 3px;
+            background-color: $gray-lighter;
+            color: $primary-dark;
+            font-family: Menlo, Courier, monospace;
+        }
     }
 
     table {

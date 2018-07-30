@@ -6,40 +6,54 @@
 <template>
 
     <div class="comp-date-string">
-        <h4 class="heading">Date String</h4>
+        <div class="doc card">
+            <div class="overview">
+                <h2>
+                    <span class="title">日期（字面量）选择器</span>
+                    <code>b-date-string</code>
+                </h2>
+                <b-md-view :md-text="MD.CompDateStringOverview"/>
+            </div>
 
-        <div class="card">
-            <form class="form-inline">
-                <b-form-group label="Basic">
-                    <b-date-string v-model="editing.basic"/>
-                </b-form-group>
+            <div class="case">
+                <h3>基本用法</h3>
+                <b-md-view :md-text="MD.CompDateStringBasic"/>
 
-                <b-form-group label="With Default Value">
-                    <b-date-string v-model="editing.default"/>
-                </b-form-group>
+                <demo-box>
+                    <div slot="code"><b-md-view :md-text="MD.CompDateStringBasicCode"/></div>
+                    <div slot="main">
+                        <b-date-string v-model="demo.basic"/>
+                    </div>
+                    <div slot="output">The output is {{ demo.basic }}</div>
+                </demo-box>
+            </div>
 
-                <b-form-group label="Disabled">
-                    <b-date-string v-model="editing.disabled" :disabled="true"/>
-                </b-form-group>
-            </form>
+            <div class="case">
+                <h3>一致性</h3>
+                <b-md-view :md-text="MD.CompDateStringConsistent"/>
+            </div>
+
+            <div class="case">
+                <h3>API</h3>
+                <b-md-view :md-text="MD.CompDateStringAPI"/>
+            </div>
         </div>
-
-        <pre class="json-preview">{{ $j(editing) }}</pre>
     </div>
 
 </template>
 
 <script type="text/babel">
 
+    import MD from '../../../common/md';
+
     export default {
         name: 'CompDateString',
 
         data() {
             return {
-                editing: {
-                    basic: null,
-                    default: '2018-04-01',
-                    disabled: '1993-09-17'
+                MD,
+                demo: {
+                    basic: null
                 }
             };
         }

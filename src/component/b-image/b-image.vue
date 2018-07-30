@@ -5,15 +5,17 @@
 
 <template>
 
-    <div class="b-image">
+    <div :class="{'b-resettable': canBeReset}" class="b-image">
         <b-input
             :value="image.name"
             :name="name"
+            :placeholder="placeholder"
             :disabled="disabled"
             type="text">
             <i
                 slot="right"
-                class="b-right-icon b-icon-image"></i>
+                class="b-right-icon b-icon-image"
+                @click="reset"></i>
         </b-input>
 
         <input
@@ -62,6 +64,16 @@
                 default: false
             },
 
+            placeholder: {
+                type: String,
+                default: '请选择'
+            },
+
+            enableReset: {
+                type: Boolean,
+                default: true
+            },
+
             checkSize: {
                 type: String,
                 default: ''
@@ -75,6 +87,15 @@
                     base64: ''
                 }
             };
+        },
+
+        computed: {
+            canBeReset() {
+                const vm = this;
+                const {image: {name}, disabled, enableReset} = vm;
+
+                return name && enableReset && !disabled;
+            }
         },
 
         methods: {
@@ -94,9 +115,12 @@
                 vm.$emit('change', file);
             },
 
-            remove() {
+            reset() {
                 const vm = this;
-                vm.image = {};
+                vm.image = {
+                    name: '',
+                    base64: ''
+                };
                 vm.$emit('change', null);
             },
 

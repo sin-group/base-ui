@@ -60,4 +60,12 @@
             }
         }
     }
+
+    &:hover {
+        &.b-resettable {
+            input[type="file"] {
+                width: calc(100% - 20px);
+            }
+        }
+    }
 }

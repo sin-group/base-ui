@@ -6,63 +6,72 @@
 <template>
 
     <div class="comp-image">
-        <h4 class="heading">Image</h4>
+        <div class="doc card">
+            <div class="overview">
+                <h2>
+                    <span class="title">图片选择器</span>
+                    <code>b-image</code>
+                </h2>
+                <b-md-view :md-text="MD.CompImageOverview"/>
+            </div>
 
-        <div class="card">
-            <form class="form-inline" @submit.prevent>
-                <b-form-group label="Basic">
-                    <b-image v-model="editing.basic"/>
-                </b-form-group>
+            <div class="case">
+                <h3>基本用法</h3>
+                <b-md-view :md-text="MD.CompImageBasic"/>
 
-                <b-form-group label="Basic">
-                    <b-image v-model="editing.crop"/>
-                </b-form-group>
-            </form>
+                <demo-box>
+                    <div slot="code"><b-md-view :md-text="MD.CompImageBasicCode"/></div>
+                    <div slot="main">
+                        <b-image v-model="demo.basic"/>
+                    </div>
+                    <div slot="output">The output is {{ genInfo(demo.basic) }}</div>
+                </demo-box>
+            </div>
+
+            <div class="case">
+                <h3>一致性</h3>
+                <b-md-view :md-text="MD.CompImageConsistent"/>
+            </div>
+
+            <div class="case">
+                <h3>API</h3>
+                <b-md-view :md-text="MD.CompImageAPI"/>
+            </div>
         </div>
-
-        <pre class="json-preview">{{ $j(editingData) }}</pre>
     </div>
 
 </template>
 
 <script type="text/babel">
 
+    import MD from '../../../common/md';
+
     export default {
         name: 'CompImage',
 
         data() {
             return {
-                editing: {
-                    basic: null,
-                    crop: null
+                MD,
+                demo: {
+                    basic: null
                 }
             };
         },
 
-        computed: {
-            editingData() {
-                const {editing} = this;
+        methods: {
+            genInfo(file) {
+                if (!file) return null;
 
-                return Object.keys(editing).reduce((acc, cur) => {
-                    const file = editing[cur];
-
-                    if (!file) {
-                        acc[cur] = null;
-                        return acc;
-                    }
-
-                    const {type, name, size, lastModified} = file;
-                    acc[cur] = {
-                        type,
-                        name,
-                        size,
-                        lastModified
-                    };
-
-                    return acc;
-                }, {});
+                const {type, name, size, lastModified} = file;
+                return {
+                    type,
+                    name,
+                    size,
+                    lastModified
+                };
             }
         }
+
     };
 
 </script>

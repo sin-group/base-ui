@@ -6,68 +6,217 @@
 <template>
 
     <div class="comp-form">
-        <h4 class="heading">Form</h4>
+        <div class="doc card">
+            <div class="overview">
+                <h2>
+                    <span class="title">表单</span>
+                    <code>b-form</code>
+                </h2>
+                <b-md-view :md-text="MD.CompFormOverview"/>
+            </div>
 
-        <div class="card">
-            <b-form v-model="data" :options="options" class="form-block" @reset="reset">
-                <b-form-group slot="custom" label="自定义 field">
-                    <b-input v-model="data.custom"/>
-                </b-form-group>
-            </b-form>
+            <div class="case">
+                <h3>基本用法</h3>
+                <b-md-view :md-text="MD.CompFormBasic"/>
+
+                <demo-box>
+                    <div slot="code"><b-md-view :md-text="MD.CompFormBasicCode"/></div>
+                    <div slot="main">
+                        <b-form v-model="demo.basic" :options="BasicOptions"/>
+                    </div>
+                    <div slot="output">The output is {{ demo.basic }}</div>
+                </demo-box>
+            </div>
+
+            <div class="case">
+                <h3>表单事件</h3>
+                <b-md-view :md-text="MD.CompFormEvent"/>
+
+                <demo-box>
+                    <div slot="code"><b-md-view :md-text="MD.CompFormEventCode"/></div>
+                    <div slot="main">
+                        <b-form
+                            v-model="demo.event"
+                            :options="EventOptions"
+                            @reset="resetEvent"/>
+                    </div>
+                    <div slot="output">The output is {{ demo.event }}</div>
+                </demo-box>
+            </div>
+
+            <div class="case">
+                <h3>自定义表单项</h3>
+                <b-md-view :md-text="MD.CompFormCustomizedElement"/>
+
+                <demo-box>
+                    <div slot="code"><b-md-view :md-text="MD.CompFormCustomizedElementCode"/></div>
+                    <div slot="main">
+                        <b-form
+                            v-model="demo.custom"
+                            :options="CustomOptions">
+                            <div slot-scope="scope" slot="myComp">
+                                <b-form-group label="我的组件">
+                                    <button
+                                        style="margin-top: 10px;
+"
+                                        @click="$toast.info(scope)">
+                                        This is my component, let me check scope info
+                                    </button>
+                                </b-form-group>
+                            </div>
+                        </b-form>
+                    </div>
+                </demo-box>
+            </div>
+
+            <div class="case">
+                <h3>收起过长表单内容</h3>
+                <b-md-view :md-text="MD.CompFormFold"/>
+
+                <demo-box>
+                    <div slot="code"><b-md-view :md-text="MD.CompFormFoldCode"/></div>
+                    <div slot="main">
+                        <b-form
+                            v-model="demo.fold"
+                            :options="FoldOptions"/>
+                    </div>
+                </demo-box>
+            </div>
+
+            <div class="case">
+                <h3>展示类型</h3>
+                <b-md-view :md-text="MD.CompFormStyle"/>
+
+                <demo-box>
+                    <div slot="code"><b-md-view :md-text="MD.CompFormStyleCode"/></div>
+                    <div slot="main">
+                        <p><code>.form-inline (Default)</code></p>
+
+                        <b-form
+                            v-model="demo.style"
+                            :options="StyleOptions"
+                            @reset="resetStyle"/>
+
+                        <div
+                            style="margin: 50px 0;
+">
+                            <p><code>.form-block</code></p>
+
+                            <b-form
+                                v-model="demo.style"
+                                :options="StyleOptions"
+                                class="form-block"
+                                @reset="resetStyle"/>
+                        </div>
+
+                        <div
+                            style="margin: 50px 0;
+">
+                            <p><code>.form-block-horizontal</code></p>
+
+                            <b-form
+                                v-model="demo.style"
+                                :options="StyleOptions"
+                                class="form-block-horizontal"
+                                @reset="resetStyle"/>
+                        </div>
+                    </div>
+                </demo-box>
+            </div>
+
+            <div class="case">
+                <h3>表单一致性</h3>
+                <b-md-view :md-text="MD.CompFormConsistent"/>
+            </div>
+
+            <div class="case">
+                <h3>API</h3>
+                <b-md-view :md-text="MD.CompFormAPI"/>
+            </div>
         </div>
-
-        <pre class="json-preview">{{ $j(data) }}</pre>
     </div>
 
 </template>
 
 <script type="text/babel">
-    const options = {
-        fieldDefs: [
-            {label: '名称', field: 'name'},
-            {field: 'custom'},
-            {type: 'br'},
-            {label: '科目', field: 'type', type: 'select', props: {map: {a: 'a', b: 'b'}}},
-            {label: '科目层级', field: 'level', type: 'select', props: {
-                map: {
-                    one: '一级',
-                    two: '二级',
-                    three: '三级'
-                },
-                multiple: true
-            }},
-            {label: '省市', field: 'area', type: 'select-cascader', props: {
-                list: [
-                    {label: '北京', value: 1, children: [{label: '北京', value: 2}]},
-                    {label: '湖北', value: 3, children: [{label: '武汉', value: 4}, {label: '黄冈', value: 5}]},
-                    {label: '广东', value: 6, children: [{label: '广州', value: 7}, {label: '深圳', value: 8}]}
-                ]
-            }},
-            {label: '时间', field: 'time', type: 'date'},
-            {label: '生日', field: 'timeString', type: 'dateString'}
-        ],
-        btnDefs: [
-            {text: 'Reset', event: 'reset'}
-        ]
-    };
+
+    import MD from '../../../common/md';
 
     export default {
         name: 'CompForm',
 
         data() {
             return {
-                options,
-
-                data: {
-                    name: '123',
-                    custom: ''
+                MD,
+                BasicOptions: {
+                    fieldDefs: [
+                        {label: '关键词', field: 'keyword'},
+                        {label: '优先级', field: 'priority', type: 'select', props: {
+                            map: {
+                                low: '低',
+                                middle: '中',
+                                high: '高'
+                            }
+                        }}
+                    ]
+                },
+                EventOptions: {
+                    fieldDefs: [
+                        {label: '日期', field: 'date', type: 'date'}
+                    ],
+                    btnDefs: [
+                        {text: 'Reset', event: 'reset', props: {class: 'normal'}}
+                    ]
+                },
+                CustomOptions: {
+                    fieldDefs: [
+                        {label: '我的组件', field: 'myComp'}
+                    ]
+                },
+                StyleOptions: {
+                    fieldDefs: [
+                        {label: '名称', field: 'name'},
+                        {label: '科目层级', field: 'level', type: 'select', props: {
+                            map: {
+                                one: '一级',
+                                two: '二级',
+                                three: '三级'
+                            }
+                        }}
+                    ],
+                    btnDefs: [
+                        {text: 'Reset', event: 'reset', props: {class: 'normal'}}
+                    ]
+                },
+                FoldOptions: {
+                    mainFieldCount: 4,
+                    fieldDefs: [
+                        {label: '表单项 1', field: 'item1'},
+                        {label: '表单项 2', field: 'item2'},
+                        {label: '表单项 3', field: 'item3'},
+                        {label: '表单项 4', field: 'item4'},
+                        {label: '表单项 5', field: 'item5'},
+                        {label: '表单项 6', field: 'item6'},
+                        {label: '表单项 7', field: 'item7'}
+                    ]
+                },
+                demo: {
+                    basic: {},
+                    event: {},
+                    custom: {},
+                    style: {},
+                    fold: {}
                 }
             };
         },
 
         methods: {
-            reset() {
-                this.data = {};
+            resetEvent() {
+                this.demo.event = {};
+            },
+
+            resetStyle() {
+                this.demo.style = {};
             }
         }
     };

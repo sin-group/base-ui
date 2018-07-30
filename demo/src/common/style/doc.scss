@@ -1,0 +1,57 @@
+@import "../../../../src/style/variables.scss";
+
+.doc {
+    .overview {
+        margin: 0 -20px;
+        padding: 20px 40px 10px;
+        border-bottom: 1px solid $gray-light;
+        margin-bottom: 50px;
+
+        h2 {
+            font-size: 38px;
+            color: $gray-dark;
+            margin: 20px 0 0 -5px;
+            vertical-align: middle;
+
+            code {
+                padding: 6px 15px;
+                background-color: $gray-dark;
+                color: $white;
+                border-radius: 8px;
+                font-size: 15px;
+                line-height: 1;
+                font-family: monospace;
+                vertical-align: middle;
+                word-break: keep-all;
+            }
+
+            .title {
+                margin-right: 5px;
+            }
+        }
+
+        .b-md-view {
+            padding: 0;
+            font-size: 14px;
+            color: lighten($gray-dark, 10);
+        }
+    }
+
+    .case {
+        h3,
+        h4 {
+            color: $gray-dark;
+        }
+
+        h3 {
+            margin-left: -20px;
+            margin-bottom: 0;
+            padding-left: 32px;
+            border-left: 7px solid $primary-light;
+        }
+
+        pre {
+            border: 1px solid $gray-light;
+        }
+    }
+}

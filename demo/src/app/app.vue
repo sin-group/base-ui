@@ -53,9 +53,12 @@ import BaseUI from '../../../src/base-ui';
 import Vue from '../../common/vue';
 import router from '../common/router';
 import routes from '../common/router/routes';
+import Component from '../common/component';
 import BaseUIOptions from '../common/constant/BaseUIOptions';
+import '../common/style/main.scss';
 
 Vue.use(BaseUI, BaseUIOptions);
+Vue.use(Component);
 
 // assign function on Vue instance
 Object.assign(Vue.prototype, {

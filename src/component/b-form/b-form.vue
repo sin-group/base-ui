@@ -18,7 +18,8 @@
                         :value="data[fieldDef.field]"
                         :is="is(fieldDef.type)"
                         v-bind="fieldDef.props"
-                        @change="emitChange(arguments, fieldDef)"/>
+                        @change="emitChange(arguments, fieldDef)"
+                        @input="emitInput(arguments, fieldDef)"/>
                 </b-form-group>
             </slot>
 
@@ -73,6 +74,11 @@
             options: {
                 type: Object,
                 default: () => {}
+            },
+
+            emitInputAsChange: {
+                type: Boolean,
+                default: true
             }
         },
 
@@ -88,7 +94,7 @@
                 const {options: {fieldDefs, mainFieldCount}, isFold} = vm;
 
                 return isFold && isNumber(mainFieldCount)
-                    ? fieldDefs.slice(0, mainFieldCount - 1)
+                    ? fieldDefs.slice(0, mainFieldCount)
                     : fieldDefs;
             },
 
@@ -123,6 +129,23 @@
                 }
 
                 this.$emit('change', emitData, field);
+            },
+
+            emitInput(data, {field}) {
+                const vm = this;
+                const {emitInputAsChange} = vm;
+                const value = data[0];
+
+                const emitData = {
+                    ...vm.data,
+                    [field]: value
+                };
+
+                if (emitInputAsChange) {
+                    vm.$emit('change', emitData, field);
+                } else {
+                    vm.$emit('input', emitData, field);
+                }
             },
 
             emitEvent(event) {
