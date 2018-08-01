@@ -7,7 +7,8 @@
                     :key="selecting.label"
                     :class="{selected: isItemSelected(selecting, level), disabled: selecting.disabled}"
                     class="select-item"
-                    @click="choose(selecting, level)">
+                    @click="choose(selecting, level)"
+                    @dblclick="choose(selecting, level, {confirm: true})">
                     {{ selecting.label }}
                 </div>
             </div>
@@ -69,7 +70,7 @@
         },
 
         methods: {
-            choose(selecting, level) {
+            choose(selecting, level, options = {}) {
                 const vm = this;
 
                 if (selecting.disabled) return;
@@ -79,7 +80,7 @@
 
                 vm.selectedList[level] = selecting;
                 vm.selectedList.splice(level + 1, tailNum);
-                vm.$emit('choose', vm.selectedList);
+                vm.$emit('choose', vm.selectedList, options);
             },
 
             isItemSelected({label}, level) {

@@ -42,7 +42,7 @@
 
                 &.selected {
                     position: relative;
-                    background-color: lighten($primary-dark, 10);
+                    background-color: $primary-dark;
                     color: $white;
                 }
 

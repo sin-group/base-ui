@@ -32,7 +32,7 @@
                             @keydown="handleKeyDown">
                     </li>
 
-                    <li v-if="showPlaceholder" class="b-select-placeholder">请选择</li>
+                    <li v-if="showPlaceholder" class="b-select-placeholder">{{ placeholder }}</li>
                 </ul>
                 <div ref="reset" class="b-select-reset">
                     <i
@@ -59,7 +59,7 @@
 <script type="text/babel">
 
     import KeyCodeMap from '../../util/keyCodeMap';
-    import {isString, isArray, isNumber} from '../../util/check';
+    import {isString, isArray, isNumber, isValueEmpty} from '../../util/check';
 
     import BInput from '../b-input';
     import BSelectMenu from './b-select-menu.vue';
@@ -98,6 +98,10 @@
                 type: Boolean,
                 default: false
             },
+            placeholder: {
+                type: String,
+                default: ''
+            },
             enableReset: {
                 type: Boolean,
                 default: true
@@ -125,11 +129,13 @@
 
             showPlaceholder() {
                 const vm = this;
-                return !vm.isValueValid(vm.value) && !vm.searchText;
+                return vm.isValueEmpty(vm.value) && !vm.searchText;
             }
         },
 
         methods: {
+            isValueEmpty,
+
             isValueValid(value) {
                 const {multiple} = this;
 

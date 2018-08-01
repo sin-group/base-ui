@@ -197,15 +197,19 @@
                 this.closeMenu();
             },
 
-            choose(selectedList) {
+            choose(selectedList, {confirm}) {
                 const vm = this;
                 const {options: {
                     enableEmitList = false
                 }} = vm;
 
                 const leafItem = selectedList[selectedList.length - 1];
-                if (!leafItem.children || !leafItem.children.length) {
-                    vm.closeMenu(); // if is leaf item, close menu
+
+                // if is leaf item or confirm close, close menu
+                const closeFlag = !leafItem.children || !leafItem.children.length || confirm;
+
+                if (closeFlag) {
+                    vm.closeMenu();
                 }
 
                 if (enableEmitList) {
@@ -213,8 +217,8 @@
                     return;
                 }
 
-                // when enableEmitList is false, emit change only if is leaf item
-                if (!leafItem.children || !leafItem.children.length) {
+                // when enableEmitList is false, emit change only if closeFlag is true
+                if (closeFlag) {
                     vm.$emit('change', leafItem.value);
                 }
             },
