@@ -5,7 +5,7 @@ export default {
 
     install(Vue, {router, store}) {
         const $modal = {
-            open(component, resolved = {}) {
+            open(component, props = {}) {
                 if (!component) {
                     throw new Error('Please pass component');
                 }
@@ -18,7 +18,7 @@ export default {
                     store,
 
                     propsData: {
-                        ...resolved
+                        ...props
                     }
                 });
 
@@ -35,6 +35,7 @@ export default {
                         },
 
                         reject() {
+                            modalInstance.visible = false;
                             reject();
                         }
                     });
