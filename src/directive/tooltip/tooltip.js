@@ -32,10 +32,10 @@ export default {
     },
 
     inserted(el, {value}, vnode) {
-        vnode.$$curTipText = value;
+        el.dataset.tipText = value;
 
         vnode.$$tooltipMouseover = () => {
-            toolTipEle.innerText = vnode.$$curTipText;
+            toolTipEle.innerText = el.dataset.tipText;
             Object.assign(toolTipEle.style, {
                 display: 'block'
             });
@@ -57,8 +57,8 @@ export default {
         el.addEventListener('mouseout', vnode.$$tooltipMouseout);
     },
 
-    update(el, {value}, vnode) {
-        vnode.$$curTipText = value;
+    update(el, {value}) {
+        el.dataset.tipText = value;
     },
 
     unbind(el, binding, vnode) {
