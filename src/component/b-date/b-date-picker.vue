@@ -40,7 +40,8 @@
             <b-select-menu
                 :map="YearMap"
                 :value="'' + year"
-                @choose="chooseYear"/>
+                @choose="chooseYear"
+                @choose-selected="chooseYear"/>
 
             <div class="choose-year-action">
                 <button type="button" class="simple back" @click="switchChooseMode(ChooseType.MONTH_AND_DATE)">

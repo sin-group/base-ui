@@ -133,7 +133,7 @@
             selectedText() {
                 const {selectedList} = this;
 
-                return selectedList.map(({label}) => label).join('/');
+                return selectedList.filter(({label}) => !!label).map(({label}) => label).join('/');
             },
 
             hint() {
@@ -173,6 +173,7 @@
 
             onInput(value) {
                 this.searchText = value;
+                this.openMenu();
             },
 
             openMenu() {
@@ -225,7 +226,7 @@
 
             chooseFilter(value) {
                 try {
-                    this.choose(JSON.parse(value));
+                    this.choose(JSON.parse(value), {confirm: true});
                 } catch (err) {
                     // ignore err
                 }
@@ -235,14 +236,12 @@
 
             handleKeyDown(TargetValue, {keyCode}) {
                 const vm = this;
-                const {$refs: {filterMenu}, showSelectMenu} = vm;
-
-                if (showSelectMenu) return;
+                const {$refs: {filterMenu}, menuOpen, selectedText} = vm;
 
                 switch (keyCode) {
                     case KeyCodeMap.up:
                     case KeyCodeMap.down: {
-                        filterMenu.handleKeyDown(keyCode);
+                        if (filterMenu) filterMenu.handleKeyDown(keyCode);
                         break;
                     }
                     case KeyCodeMap.tab:
@@ -251,8 +250,15 @@
                         break;
                     }
                     case KeyCodeMap.enter: {
-                        filterMenu.handleKeyDown(keyCode);
-                        vm.closeMenu();
+                        if (filterMenu) filterMenu.handleKeyDown(keyCode);
+
+                        if (menuOpen) {
+                            vm.closeMenu();
+                        } else {
+                            vm.searchText = selectedText;
+                            vm.openMenu();
+                        }
+
                         break;
                     }
                     default: // ignore

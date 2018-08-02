@@ -67,17 +67,16 @@ export const getSelectedListFromListValue = (list, value) => {
     return selectedList;
 };
 
-export const getValueFilterMap = (list = [], enableEmitList = false) => {
+export const getValueFilterMap = (list = []) => {
     const filterMap = {};
     const rec = (node) => {
         const isLeaf = !node.children || !node.children.length;
-        if (enableEmitList || isLeaf) {
-            const nodeChain = getNodeChain(node);
-            const key = JSON.stringify(nodeChain.map(({label, value}) => ({label, value})));
-            const chainLabel = nodeChain.map(({label}) => label).join('/');
-            filterMap[key] = chainLabel;
-            if (isLeaf) return;
-        }
+
+        const nodeChain = getNodeChain(node);
+        const key = JSON.stringify(nodeChain.map(({label, value}) => ({label, value})));
+        const chainLabel = nodeChain.map(({label}) => label).join('/');
+        filterMap[key] = chainLabel;
+        if (isLeaf) return;
 
         node.children.forEach((item) => {
             rec(item);
