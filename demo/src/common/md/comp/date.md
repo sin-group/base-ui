@@ -28,18 +28,26 @@
 
 %%Round
 
-`b-date` 默认 round 模式为 `dayStart`，输出该日期当地时区第一秒（00:00:00）的 timestamp 值；若 props `dayEnd` 为 true，则输出该日期当地时区最后一秒（23:59:59）timestmap 值
+参数 `roundMode` 默认为 `'normal'`，输出 timestamp 值； 
+
+若 props `roundMode` 为 `'dayStart'`， 输出该日期当地时区第一秒（00:00:00）的 timestamp 值； 
+
+若 props `roundMode` 为 `'dayEnd'`， 则输出该日期当地时区最后一秒（23:59:59）timestmap 值
 
 %%RoundCode
 
 ```html
 <template>
-    <b-form-group label="Dat Start (Default)">
-        <b-date v-model="dayStart"></b-date>
+    <b-form-group label="Normal (Default)">
+        <b-date v-model="normal"/>
+    </b-form-group>
+
+    <b-form-group label="Day Start">
+        <b-date v-model="dayStart" round-mode="dayStart"/>
     </b-form-group>
 
     <b-form-group label="Day End">
-        <b-date v-model="dayEnd" :dayEnd="true"></b-date>
+        <b-date v-model="dayEnd" round-mode="dayEnd"/>
     </b-form-group>
 </template>
 
@@ -47,6 +55,7 @@
     export default {
         data() {
             return {
+                normal: null,
                 dayStart: null,
                 dayEnd: null
             };
@@ -111,7 +120,7 @@
 |`placeholder`|`String`|表单项提示，默认为 `''`|
 |`format`|`String Function`|输出格式|
 |`enableReset`|`Boolean`|是否可重置，默认为 `true`|
-|`dayEnd`|`Boolean`|Round 模式，默认为 `false`|
+|`roundMode`|`String`|Round 模式，默认为 `'normal'`|
 
 #### Events
 

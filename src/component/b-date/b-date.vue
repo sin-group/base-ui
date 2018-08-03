@@ -27,7 +27,7 @@
 
 <script type="text/babel">
 
-import {getDate, roundTimestamp} from '../../util/time';
+import {getDate, roundTimestamp, RoundModeType} from '../../util/time';
 import {isFunc} from '../../util/check';
 
 import BInput from '../b-input';
@@ -78,9 +78,9 @@ export default {
             type: Boolean,
             default: true
         },
-        dayEnd: {
-            type: Boolean,
-            default: false
+        roundMode: {
+            type: String,
+            default: RoundModeType.Normal
         }
     },
 
@@ -118,9 +118,9 @@ export default {
 
     mounted() {
         const vm = this;
-        const {timeStamp} = vm;
+        const {roundMode, timeStamp} = vm;
 
-        if (timeStamp) {
+        if (roundMode !== RoundModeType.Normal && timeStamp) {
             vm.choose(timeStamp);
         }
     },
@@ -143,13 +143,9 @@ export default {
         choose(timeStamp) {
             const vm = this;
             let value = timeStamp;
-            const {format, dayEnd} = vm;
+            const {format, roundMode} = vm;
 
-            if (dayEnd) {
-                value = roundTimestamp(value, 'dayEnd');
-            } else {
-                value = roundTimestamp(value, 'dayStart');
-            }
+            value = roundTimestamp(value, roundMode);
 
             if (isFunc(format)) {
                 value = format(value);

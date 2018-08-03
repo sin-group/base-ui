@@ -21,6 +21,12 @@ export const DayTypeList = ['日', '一', '二', '三', '四', '五', '六'];
 export const MonthTypeList = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
 export const DailyMillisecond = 24 * 60 * MillisecondInMinute;
 
+export const RoundModeType = {
+    Normal: 'normal',
+    DayStart: 'dayStart',
+    DayEnd: 'dayEnd'
+};
+
 export const getTimeComponent = (time) => {
     const timeStamp = getTimestamp(time);
 
@@ -124,11 +130,11 @@ export const roundTimestamp = (timestamp, type) => { // eslint-disable-line
     const date = time.getDate();
 
     switch (type) {
-        case 'dayEnd': {
+        case RoundModeType.DayEnd: {
             const roundMilliseconds = MillisecondInDay - 1;
             return timestamp && new Date(year, month, date).getTime() + roundMilliseconds;
         }
-        case 'dayStart': {
+        case RoundModeType.DayStart: {
             return timestamp && new Date(year, month, date).getTime();
         }
         default: {

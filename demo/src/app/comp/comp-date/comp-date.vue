@@ -36,17 +36,22 @@
                 <demo-box>
                     <div slot="code"><b-md-view :md-text="MD.CompDateRoundCode"/></div>
                     <div slot="main">
-                        <b-form-group label="Dat Start (Default)">
-                            <b-date v-model="demo.dayStart"/>
+                        <b-form-group label="Normal (Default)">
+                            <b-date v-model="demo.roundNormal"/>
+                        </b-form-group>
+
+                        <b-form-group label="Day Start">
+                            <b-date v-model="demo.roundDayStart" round-mode="dayStart"/>
                         </b-form-group>
 
                         <b-form-group label="Day End">
-                            <b-date v-model="demo.dayEnd" :day-end="true"/>
+                            <b-date v-model="demo.roundDayEnd" round-mode="dayEnd"/>
                         </b-form-group>
                     </div>
                     <div slot="output">
-                        Day Start Mode: {{ demo.dayStart }} <br>
-                        Day End Mode: {{ demo.dayEnd }}
+                        Default: {{ demo.roundNormal }} <br>
+                        Day Start Mode: {{ demo.roundDayStart }} <br>
+                        Day End Mode: {{ demo.roundDayEnd }}
                     </div>
                 </demo-box>
             </div>
@@ -104,10 +109,11 @@
 
                 demo: {
                     basic: null,
-                    dayStart: null,
-                    dayEnd: null,
                     formatFunction: null,
-                    formatString: null
+                    formatString: null,
+                    roundDayStart: null,
+                    roundDayEnd: null,
+                    roundNormal: null
                 }
             };
         }
