@@ -1,5 +1,5 @@
 <template>
-    <b-dialog :open="visible" title="Test Modal" dialog-class="sm">
+    <b-dialog :open="visible" title="Test Modal" dialog-class="sm" @close="cancel">
         <div class="test-gulp-modal-body">
             <form class="form-block">
                 <b-form-group label="Name">

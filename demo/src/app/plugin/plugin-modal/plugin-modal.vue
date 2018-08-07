@@ -9,7 +9,7 @@
         <h4 class="heading">Modal</h4>
         <div class="card">
             <button @click="messageModal">Message Modal</button>
-            <button @click="modal">Customized Modal</button>
+            <button @click="openModal">Customized Modal</button>
         </div>
     </div>
 
@@ -23,7 +23,7 @@
         name: 'PluginModal',
 
         methods: {
-            modal() {
+            openModal() {
                 const vm = this;
 
                 vm.$modal

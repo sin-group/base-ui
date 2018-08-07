@@ -1,19 +1,24 @@
 <template>
     <transition name="b-dialog-slide">
-        <div v-b-prevent-scroll v-if="open" class="b-dialog-wrapper">
-            <div class="b-dialog-mask" @click="close"></div>
+        <div
+            v-b-prevent-scroll
+            v-if="open"
+            :class="[dialogClass, {'enable-scroll': !bodyScroll}]"
+            class="b-dialog-wrapper"
+            @click.self="close">
+            <div class="b-dialog-content-wrapper" @click.self="close">
+                <div class="b-dialog">
+                    <h3 v-if="showTitle" class="b-dialog-title">
+                        <slot name="title">{{ title }}</slot>
+                    </h3>
 
-            <div :class="dialogClass" class="b-dialog">
-                <h3 v-if="showTitle" class="b-dialog-title">
-                    <slot name="title">{{ title }}</slot>
-                </h3>
+                    <div :class="{'enable-scroll': bodyScroll}" class="b-dialog-body">
+                        <slot></slot>
+                    </div>
 
-                <div class="b-dialog-body">
-                    <slot></slot>
-                </div>
-
-                <div v-if="$slots.actions" class="b-dialog-actions">
-                    <slot name="actions"></slot>
+                    <div v-if="$slots.actions" class="b-dialog-actions">
+                        <slot name="actions"></slot>
+                    </div>
                 </div>
             </div>
         </div>
@@ -31,6 +36,11 @@
             },
 
             open: {
+                type: Boolean,
+                default: false
+            },
+
+            bodyScroll: {
                 type: Boolean,
                 default: false
             },
