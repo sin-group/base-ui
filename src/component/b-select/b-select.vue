@@ -20,7 +20,6 @@
                         :class="{'b-select-value-grey': menuOpen || disabled}"
                         class="b-select-selected-value">{{ getValueText(value) }}</li>
 
-
                     <li class="b-select-search">
                         <input
                             ref="input"

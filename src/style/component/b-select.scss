@@ -80,6 +80,10 @@
                     position: absolute;
                     left: 0;
                     top: 0;
+                    max-width: 100%;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow-x: hidden;
 
                     &.b-select-value-grey {
                         color: $gray;
