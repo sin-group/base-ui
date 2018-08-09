@@ -19,6 +19,7 @@
                 font-size: 14px;
                 position: fixed;
                 visibility: hidden;
+                white-space: pre-wrap;
             }
 
             ul {
@@ -91,10 +92,14 @@
                 }
 
                 .b-select-placeholder {
-                    position: relative;
-                    left: -5px;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    max-width: 100%;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow-x: hidden;
                     color: $gray;
-                    user-select: none;
                 }
             }
 

@@ -20,6 +20,8 @@
                         :class="{'b-select-value-grey': menuOpen || disabled}"
                         class="b-select-selected-value">{{ getValueText(value) }}</li>
 
+                    <li v-if="showPlaceholder" class="b-select-placeholder">{{ placeholder }}</li>
+
                     <li class="b-select-search">
                         <input
                             ref="input"
@@ -30,8 +32,6 @@
                             @input="input"
                             @keydown="handleKeyDown">
                     </li>
-
-                    <li v-if="showPlaceholder" class="b-select-placeholder">{{ placeholder }}</li>
                 </ul>
                 <div ref="reset" class="b-select-reset">
                     <i
@@ -240,6 +240,7 @@
 
                 if (!value.includes(choice)) {
                     vm.$emit('change', [...value, choice]);
+                    vm.searchText = null;
                 }
                 vm.$nextTick(() => vm.$refs.input.focus());
             },
@@ -248,7 +249,7 @@
                 const vm = this;
 
                 if (vm.canBeReset) {
-                    vm.searchText = null;
+                    vm.closeMenu();
                     vm.$emit('change', vm.multiple ? [] : null);
                 }
             },
