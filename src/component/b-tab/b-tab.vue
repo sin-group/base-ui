@@ -13,7 +13,9 @@
                 :class="{active: index === activeIndex}"
                 class="b-tab-item"
                 @click="tap(item, index)">
-                {{ item.label }}
+                <slot :active="index === activeIndex" :item="item">
+                    {{ item.label }}
+                </slot>
             </li>
         </ul>
     </div>
