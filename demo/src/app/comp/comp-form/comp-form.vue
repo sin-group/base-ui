@@ -182,7 +182,9 @@
                                 two: '二级',
                                 three: '三级'
                             }
-                        }}
+                        }},
+                        {label: '日期', field: 'date', type: 'date'},
+                        {label: '开始时间', field: 'timeStart', type: 'date-time'}
                     ],
                     btnDefs: [
                         {text: 'Reset', event: 'reset', props: {class: 'normal'}}

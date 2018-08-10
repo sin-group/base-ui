@@ -1,0 +1,119 @@
+@import "../../style/variables.scss";
+@import "../../style/mixin/arrow.scss";
+
+.b-date-time {
+    display: flex;
+    min-width: 256px;
+    color: black;
+
+    .date {
+        .b-date {
+            .b-input {
+                width: 106px;
+                min-width: 106px;
+
+                .content {
+                    input {
+                        margin-top: 5px;
+                        width: 100%;
+                        min-width: 106px;
+                    }
+                }
+
+                .b-right-icon {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .time {
+        min-width: 50px;
+
+        &.division {
+            .b-select {
+                .b-select-input-wrap {
+                    .b-select-input-area {
+                        ul {
+                            &:after {
+                                float: right;
+                                transform: translateX(8px);
+                                content: ":";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .b-select {
+            width: 50px;
+
+            .b-select-input-wrap {
+                .b-select-input-area {
+                    width: 50px;
+
+                    ul {
+                        margin: 0 auto;
+                    }
+
+                    .b-select-reset {
+                        .b-right-icon {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            .b-popper-wrap {
+                .b-select-menu {
+                    li {
+                        min-width: 50px;
+                    }
+                }
+            }
+        }
+    }
+
+    .time:last-child {
+        display: inline-flex;
+        align-items: baseline;
+
+        .b-right-icon {
+            width: 0;
+            transform: translateX(-14px);
+            color: $gray;
+
+            &.b-date-time-icon-active {
+                cursor: pointer;
+
+                &:hover {
+                    color: $primary;
+
+                    &:before {
+                        content: "\e60c";
+                    }
+                }
+            }
+        }
+    }
+}
+
+.form-block,
+.form-block-horizontal {
+    .b-date-time {
+        display: flex;
+        min-width: 256px;
+        color: black;
+
+        .date {
+            flex-grow: 1;
+
+            .b-date {
+                .b-input {
+                    width: unset;
+                }
+            }
+        }
+    }
+}

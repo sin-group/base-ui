@@ -19,7 +19,7 @@
 
         <b-popper :visible="visible">
             <b-date-picker
-                :time-stamp="timeStamp"
+                :timestamp="timestamp"
                 @choose="choose"/>
         </b-popper>
     </div>
@@ -35,7 +35,7 @@ import BPopover from '../b-popper';
 import BDatePicker from './b-date-picker.vue';
 
 const FORMAT_MAP = {
-    ISO: timeStamp => new Date(timeStamp).toISOString()
+    ISO: timestamp => new Date(timestamp).toISOString()
 };
 
 export default {
@@ -100,7 +100,7 @@ export default {
             return getDate(value);
         },
 
-        timeStamp() {
+        timestamp() {
             const vm = this;
             const {value} = vm;
 
@@ -118,10 +118,10 @@ export default {
 
     mounted() {
         const vm = this;
-        const {roundMode, timeStamp} = vm;
+        const {roundMode, timestamp} = vm;
 
-        if (roundMode !== RoundModeType.Normal && timeStamp) {
-            vm.choose(timeStamp);
+        if (roundMode !== RoundModeType.Normal && timestamp) {
+            vm.choose(timestamp);
         }
     },
 
@@ -140,9 +140,9 @@ export default {
             vm.visible = false;
         },
 
-        choose(timeStamp) {
+        choose(timestamp) {
             const vm = this;
-            let value = timeStamp;
+            let value = timestamp;
             const {format, roundMode} = vm;
 
             value = roundTimestamp(value, roundMode);

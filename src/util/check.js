@@ -14,6 +14,8 @@ export const isFunc = value => typeof value === 'function';
 
 export const isNumber = value => typeof value === typeof 0;
 
+export const isValidNumber = value => isNumber(value) && !Number.isNaN(value);
+
 // check if is [], {}, '', undefined, null, NaN
 export const isValueEmpty = value => (
     (isArray(value) && !value.length)

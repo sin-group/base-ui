@@ -1,8 +1,10 @@
 @import "../../../../src/style/variables.scss";
 
 .doc {
+    padding: 10px;
+
     .overview {
-        margin: 0 -20px;
+        margin: 0 -10px;
         padding: 20px 40px 10px;
         border-bottom: 1px solid $gray-light;
         margin-bottom: 50px;
@@ -10,7 +12,7 @@
         h2 {
             font-size: 38px;
             color: $gray-dark;
-            margin: 20px 0 0 -5px;
+            margin: 20px 0 0 -10px;
             vertical-align: middle;
 
             code {
@@ -26,7 +28,8 @@
             }
 
             .title {
-                margin-right: 5px;
+                margin-right: 10px;
+                margin-left: -5px;
             }
         }
 
@@ -44,14 +47,18 @@
         }
 
         h3 {
-            margin-left: -20px;
+            margin-left: -10px;
             margin-bottom: 0;
-            padding-left: 32px;
+            padding-left: 22px;
             border-left: 7px solid $primary-light;
         }
 
         pre {
             border: 1px solid $gray-light;
+        }
+
+        .demo-box {
+            margin-top: 10px;
         }
     }
 }

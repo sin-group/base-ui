@@ -100,12 +100,12 @@
         },
 
         model: {
-            prop: 'timeStamp',
+            prop: 'timestamp',
             event: 'choose'
         },
 
         props: {
-            timeStamp: {
+            timestamp: {
                 type: Number,
                 default: Date.now()
             }
@@ -113,8 +113,8 @@
 
         data() {
             const vm = this;
-            const {timeStamp} = vm;
-            const initTimestamp = (timeStamp || timeStamp === 0) ? timeStamp : Date.now();
+            const {timestamp} = vm;
+            const initTimestamp = (timestamp || timestamp === 0) ? timestamp : Date.now();
             const {year, month, date} = getTimeDigitalComponent(initTimestamp);
 
             return {
@@ -157,13 +157,13 @@
 
                 return [...Array(MonthDatesNum).keys()]
                     .map((i) => { // get a panel date object array
-                        const timeStamp = firstDateTime + (i * DailyMillisecond);
+                        const timestamp = firstDateTime + (i * DailyMillisecond);
                         const {
                             year,
                             month,
                             date,
                             day
-                        } = getTimeDigitalComponent(timeStamp);
+                        } = getTimeDigitalComponent(timestamp);
 
                         const viewMonthFlag = month === viewMonth;
                         const selectedDateFlag
@@ -173,7 +173,7 @@
                         const currentDateFlag = year === curYear && month === curMonth && date === curDate;
 
                         return {
-                            timeStamp,
+                            timestamp,
                             month,
                             date,
                             day,
@@ -228,7 +228,7 @@
             },
 
             choose(date) {
-                this.$emit('choose', date.timeStamp);
+                this.$emit('choose', date.timestamp);
             },
 
             chooseYear(year) {

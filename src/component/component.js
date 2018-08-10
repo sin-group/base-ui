@@ -6,6 +6,7 @@
 
 import BDate from './b-date';
 import BDateString from './b-date-string';
+import BDateTime from './b-date-time';
 import BDialog from './b-dialog';
 import BForm from './b-form';
 import BFormGroup from './b-form-group';
@@ -31,6 +32,7 @@ export default {
     install(Vue) {
         Vue.component('b-date', BDate);
         Vue.component('b-date-string', BDateString);
+        Vue.component('b-date-time', BDateTime);
         Vue.component('b-dialog', BDialog);
         Vue.component('b-form', BForm);
         Vue.component('b-form-group', BFormGroup);

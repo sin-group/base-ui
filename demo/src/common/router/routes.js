@@ -18,6 +18,7 @@ import StyleTypography from '../../app/style/style-typography';
 import Comp from '../../app/comp';
 import CompDate from '../../app/comp/comp-date';
 import CompDateString from '../../app/comp/comp-date-string';
+import CompDateTime from '../../app/comp/comp-date-time';
 import CompForm from '../../app/comp/comp-form';
 import CompImage from '../../app/comp/comp-image';
 import CompInput from '../../app/comp/comp-input';
@@ -151,6 +152,14 @@ export default [
                 component: CompDateString,
                 meta: {
                     navTitle: 'Date String'
+                }
+            },
+            {
+                name: 'CompDateTime',
+                path: '/component/date-time',
+                component: CompDateTime,
+                meta: {
+                    navTitle: 'Date Time'
                 }
             },
             {

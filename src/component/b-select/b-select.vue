@@ -176,7 +176,7 @@
 
             handleKeyDown({keyCode}) {
                 const vm = this;
-                const {$refs: {menu}, menuOpen, value, multiple} = vm;
+                const {$refs: {menu}, menuOpen, value, multiple, searchText} = vm;
 
                 switch (keyCode) {
                     case KeyCodeMap.up:
@@ -188,7 +188,11 @@
                         menu.handleKeyDown(keyCode);
                         break;
                     }
-                    case KeyCodeMap.tab:
+                    case KeyCodeMap.tab: {
+                        vm.$emit('tab', searchText);
+                        vm.closeMenu();
+                        break;
+                    }
                     case KeyCodeMap.esc: {
                         vm.closeMenu();
                         break;

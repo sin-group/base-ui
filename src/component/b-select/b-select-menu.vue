@@ -109,6 +109,10 @@
                 } else {
                     vm.initHighlight(valueList);
                 }
+            },
+
+            value() {
+                this.initHighlight(this.valueList);
             }
         },
 

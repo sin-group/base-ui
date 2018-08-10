@@ -3,16 +3,18 @@
  * @date 05/01/2018-4:52 PM
  * @file filter-util
  */
+import {isValidNumber} from './check';
 
 const DatePresentationReg = /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).(\d{3})/;
 const DateFormat = 'YYYY-MM-DD';
 const DateMinuteFormat = 'YYYY-MM-DD HH:mm';
 const DateTimeFormat = 'YYYY-MM-DD HH:mm:ss';
+const TimeFormat = 'HH:mm:ss';
 const MillisecondInMinute = 60 * 1e3;
 const MillisecondInDay = MillisecondInMinute * 60 * 24;
 
 const getTimestamp = (time) => {
-    if (typeof time === typeof 0) return time;
+    if (!isValidNumber(time)) return time;
 
     return (new Date(time)).getTime();
 };
@@ -28,13 +30,14 @@ export const RoundModeType = {
 };
 
 export const getTimeComponent = (time) => {
-    const timeStamp = getTimestamp(time);
+    const timestamp = getTimestamp(time);
 
-    if (Number.isNaN(timeStamp)) return {};
+    if (!isValidNumber(timestamp)) return {};
 
     const offset = (new Date()).getTimezoneOffset() * MillisecondInMinute;
-    const day = (new Date(timeStamp - offset)).getDay();
-    const timePresentation = new Date(timeStamp - offset).toJSON();
+    const day = (new Date(timestamp - offset)).getDay();
+    const timePresentation = new Date(timestamp - offset).toJSON();
+
     const [
         entity, // eslint-disable-line no-unused-vars
         year,
@@ -58,7 +61,7 @@ export const getTimeComponent = (time) => {
     };
 };
 
-export const getTimeDigitalComponent = (timeStamp) => {
+export const getTimeDigitalComponent = (timestamp) => {
     const {
         year,
         month,
@@ -68,7 +71,7 @@ export const getTimeDigitalComponent = (timeStamp) => {
         second,
         millisecond,
         day
-    } = getTimeComponent(timeStamp);
+    } = getTimeComponent(timestamp);
 
     return {
         year: +year,
@@ -82,8 +85,8 @@ export const getTimeDigitalComponent = (timeStamp) => {
     };
 };
 
-export const genDateStringWithFormat = (timeStamp, format) => {
-    const {year, month, date, hour, minute, second, millisecond} = getTimeComponent(timeStamp);
+export const genDateStringWithFormat = (timestamp, format) => {
+    const {year, month, date, hour, minute, second, millisecond} = getTimeComponent(timestamp);
 
     return format
         .replace(/YYYY/g, () => year)
@@ -96,24 +99,31 @@ export const genDateStringWithFormat = (timeStamp, format) => {
 };
 
 export const getDate = (time) => {
-    const timeStamp = getTimestamp(time);
-    if (Number.isNaN(timeStamp)) return time;
+    const timestamp = getTimestamp(time);
+    if (!isValidNumber(timestamp)) return time;
 
-    return genDateStringWithFormat(timeStamp, DateFormat);
+    return genDateStringWithFormat(timestamp, DateFormat);
 };
 
 export const getDateMinute = (time) => {
-    const timeStamp = getTimestamp(time);
-    if (Number.isNaN(timeStamp)) return time;
+    const timestamp = getTimestamp(time);
+    if (!isValidNumber(timestamp)) return time;
 
-    return genDateStringWithFormat(timeStamp, DateMinuteFormat);
+    return genDateStringWithFormat(timestamp, DateMinuteFormat);
 };
 
 export const getDateTime = (time) => {
-    const timeStamp = getTimestamp(time);
-    if (Number.isNaN(timeStamp)) return time;
+    const timestamp = getTimestamp(time);
+    if (!isValidNumber(timestamp)) return time;
 
-    return genDateStringWithFormat(timeStamp, DateTimeFormat);
+    return genDateStringWithFormat(timestamp, DateTimeFormat);
+};
+
+export const getTime = (time) => {
+    const timestamp = getTimestamp(time);
+    if (!isValidNumber(timestamp)) return time;
+
+    return genDateStringWithFormat(timestamp, TimeFormat);
 };
 
 export const isValidDateString = (dateStr) => {

@@ -19,7 +19,7 @@
 
         <b-popper :visible="visible">
             <b-date-picker
-                :time-stamp="timeStamp"
+                :timestamp="timestamp"
                 @choose="choose"/>
         </b-popper>
     </div>
@@ -83,7 +83,7 @@ export default {
             return (!value || isValidDateString(value)) ? value : 'Invalid Date String';
         },
 
-        timeStamp() {
+        timestamp() {
             const vm = this;
             const {value} = vm;
 

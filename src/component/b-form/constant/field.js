@@ -10,6 +10,7 @@ import BSelectArray from '../../b-select-array';
 import BSelectCascader from '../../b-select-cascader';
 import BDate from '../../b-date';
 import BDateString from '../../b-date-string';
+import BDateTime from '../../b-date-time';
 import BSwitch from '../../b-switch';
 
 export const FieldTypes = {
@@ -19,6 +20,7 @@ export const FieldTypes = {
     selectCascader: 'select-cascader',
     date: 'date',
     dateString: 'dateString',
+    dateTime: 'date-time',
     switch: 'switch'
 };
 
@@ -29,5 +31,6 @@ export const FieldMap = {
     [FieldTypes.selectCascader]: BSelectCascader,
     [FieldTypes.date]: BDate,
     [FieldTypes.dateString]: BDateString,
+    [FieldTypes.dateTime]: BDateTime,
     [FieldTypes.switch]: BSwitch
 };

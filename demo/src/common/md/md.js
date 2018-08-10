@@ -9,6 +9,7 @@ import IntroConcepts from './intro-concepts.md';
 
 import CompDate from './comp/date.md';
 import CompDateString from './comp/date-string.md';
+import CompDateTime from './comp/date-time.md';
 import CompForm from './comp/form.md';
 import CompImage from './comp/image.md';
 
@@ -20,6 +21,7 @@ export default {
 
     ...genMdTextMap(CompDate, 'CompDate'),
     ...genMdTextMap(CompDateString, 'CompDateString'),
+    ...genMdTextMap(CompDateTime, 'CompDateTime'),
     ...genMdTextMap(CompForm, 'CompForm'),
     ...genMdTextMap(CompImage, 'CompImage')
 };
