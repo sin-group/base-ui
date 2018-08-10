@@ -17,9 +17,12 @@
 
             .b-select-shadow-span {
                 font-size: 14px;
-                position: fixed;
+                position: absolute;
+                top: 0;
+                left: 0;
                 visibility: hidden;
                 white-space: pre-wrap;
+                z-index: -1;
             }
 
             ul {
