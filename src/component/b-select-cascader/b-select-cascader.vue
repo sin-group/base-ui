@@ -99,6 +99,10 @@
             enableReset: {
                 type: Boolean,
                 default: true
+            },
+            enableSelectNonLeaf: {
+                type: Boolean,
+                default: false
             }
         },
 
@@ -200,14 +204,12 @@
 
             choose(selectedList, {confirm}) {
                 const vm = this;
-                const {options: {
-                    enableEmitList = false
-                }} = vm;
+                const {options: {enableEmitList = false}, enableSelectNonLeaf} = vm;
 
                 const leafItem = selectedList[selectedList.length - 1];
 
                 // if is leaf item or confirm close, close menu
-                const closeFlag = !leafItem.children || !leafItem.children.length || confirm;
+                const closeFlag = !leafItem.children || !leafItem.children.length || (enableSelectNonLeaf && confirm);
 
                 if (closeFlag) {
                     vm.closeMenu();
