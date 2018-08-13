@@ -55,7 +55,7 @@
 </template>
 
 <script type="text/babel">
-    import {getDate} from '../../util/time';
+    import {getTimeDigitalComponent} from '../../util/time';
 
     import BDatePicker from '../b-date/b-date-picker.vue';
     import BInput from '../b-input';
@@ -139,10 +139,10 @@
                     vm.minute = '0';
                     vm.second = '0';
                 }
-                const {date, hour, minute, second} = vm;
-                const newValueString = `${getDate(date)} ${hour}:${minute}:${second}`;
+                const {hour, minute, second} = vm;
+                const {year, month, date} = getTimeDigitalComponent(vm.date);
 
-                vm.$emit('change', new Date(newValueString).getTime());
+                vm.$emit('change', new Date(year, month - 1, date, hour, minute, second).getTime());
             },
 
             reset() {
