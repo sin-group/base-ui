@@ -30,7 +30,7 @@
                             <div class="filter-area"></div>
 
                             <span
-                                :class="{'enabled-click': enableSort}"
+                                :class="{'enabled-click': isShowSortIcon(colDef.field)}"
                                 class="sort-click-area"
                                 @click="toggleSort(colDef.field)">
                                 {{ colDef.label || colDef.name }}
@@ -275,11 +275,11 @@
             toggleSort(field) {
                 const vm = this;
                 const {
-                    options: {enableClientSort, enableServerSort},
+                    options: {enableServerSort},
                     sortInfo: {order: originOrder, field: originFiled}
                 } = vm;
 
-                if (enableClientSort || enableServerSort) {
+                if (vm.isShowSortIcon(field)) {
                     const order = originFiled === field ? NextOrderType[originOrder] : OrderType.DESC;
                     vm.sortInfo.field = field;
                     vm.sortInfo.order = order;
