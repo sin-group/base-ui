@@ -220,8 +220,6 @@
                 const vm = this;
                 const {multiple} = vm;
 
-                if (!value) return vm.closeMenu();
-
                 return multiple ? vm.chooseMultiple(value) : vm.chooseValue(value);
             },
 
@@ -234,8 +232,7 @@
                 }
 
                 vm.$emit('change', changeValue);
-                vm.menuOpen = false;
-                vm.$refs.input.blur();
+                vm.closeMenu();
             },
 
             chooseMultiple(choice) {
@@ -253,8 +250,8 @@
                 const vm = this;
 
                 if (vm.canBeReset) {
-                    vm.closeMenu();
                     vm.$emit('change', vm.multiple ? [] : null);
+                    vm.closeMenu();
                 }
             },
 
@@ -279,6 +276,7 @@
                 valueCopy.splice(vm.value.indexOf(choice), 1);
 
                 vm.$emit('change', valueCopy);
+                vm.updateInputElement();
                 vm.$nextTick(() => {
                     vm.menuOpen = menuOpenBefore;
                     vm.$refs.input.focus();
