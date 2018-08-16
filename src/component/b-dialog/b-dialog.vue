@@ -5,8 +5,8 @@
             v-if="open"
             :class="[dialogClass, {'enable-scroll': !bodyScroll}]"
             class="b-dialog-wrapper"
-            @click.self="close">
-            <div class="b-dialog-content-wrapper" @click.self="close">
+            @click.self="onClickOutside">
+            <div class="b-dialog-content-wrapper" @click.self="onClickOutside">
                 <div class="b-dialog">
                     <h3 v-if="showTitle" class="b-dialog-title">
                         <slot name="title">{{ title }}</slot>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+
     export default {
         name: 'BDialog',
 
@@ -48,14 +49,12 @@
             dialogClass: {
                 type: [String, Array, Object],
                 default: null
-            }
-        },
+            },
 
-        data() {
-            const vm = this;
-            return {
-                visible: vm.open
-            };
+            closeOnClickOutside: {
+                type: Boolean,
+                default: true
+            }
         },
 
         computed: {
@@ -65,6 +64,12 @@
         },
 
         methods: {
+            onClickOutside() {
+                if (this.closeOnClickOutside) {
+                    this.close();
+                }
+            },
+
             close() {
                 const vm = this;
                 vm.$emit('close');
