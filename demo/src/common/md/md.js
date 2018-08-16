@@ -12,6 +12,7 @@ import CompDateString from './comp/date-string.md';
 import CompDateTime from './comp/date-time.md';
 import CompForm from './comp/form.md';
 import CompImage from './comp/image.md';
+import CompInput from './comp/input.md';
 
 import {genMdTextMap} from './helper';
 
@@ -23,5 +24,6 @@ export default {
     ...genMdTextMap(CompDateString, 'CompDateString'),
     ...genMdTextMap(CompDateTime, 'CompDateTime'),
     ...genMdTextMap(CompForm, 'CompForm'),
-    ...genMdTextMap(CompImage, 'CompImage')
+    ...genMdTextMap(CompImage, 'CompImage'),
+    ...genMdTextMap(CompInput, 'CompInput')
 };

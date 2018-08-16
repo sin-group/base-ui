@@ -18,6 +18,7 @@
 
             <div class="case">
                 <h3>基本用法</h3>
+                <b-md-view :md-text="MD.CompDateTimeBasic"/>
 
                 <demo-box>
                     <div slot="code"><b-md-view :md-text="MD.CompDateTimeBasicCode"/></div>
