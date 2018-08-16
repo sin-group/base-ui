@@ -3,7 +3,7 @@
  * @date 05/01/2018-4:52 PM
  * @file filter-util
  */
-import {isValidNumber} from './check';
+import {isValidNumber, isDateISOString} from './check';
 
 const DatePresentationReg = /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).(\d{3})/;
 const DateFormat = 'YYYY-MM-DD';
@@ -14,8 +14,7 @@ const MillisecondInMinute = 60 * 1e3;
 const MillisecondInDay = MillisecondInMinute * 60 * 24;
 
 const getTimestamp = (time) => {
-    if (!isValidNumber(time)) return time;
-
+    if (!isValidNumber(time) && !isDateISOString(time)) return time;
     return (new Date(time)).getTime();
 };
 

@@ -16,6 +16,9 @@ export const isNumber = value => typeof value === typeof 0;
 
 export const isValidNumber = value => isNumber(value) && !Number.isNaN(value);
 
+// like this 2018-08-16T05:16:23.569Z
+export const isDateISOString = (value = '') => /^\d{4}-\d{2}-\d{2}\w\d{2}:\d{2}:\d{2}\.\d{3}\w$/.test(value);
+
 // check if is [], {}, '', undefined, null, NaN
 export const isValueEmpty = value => (
     (isArray(value) && !value.length)
