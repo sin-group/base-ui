@@ -50,9 +50,10 @@
                     </tr>
                 </thead>
 
-                <tbody>
+                <component :is="tbodyComponent" v-bind="tbodyProps" v-on="tbodyListeners">
                     <tr
                         v-for="(record, index) in renderedRecords"
+                        ref="rows"
                         :key="index"
                         :class="getRowClass(record, index)">
                         <td v-if="options.enableSelection" class="select-area">
@@ -80,7 +81,7 @@
                             </slot>
                         </td>
                     </tr>
-                </tbody>
+                </component>
             </table>
         </div>
 
@@ -128,13 +129,30 @@
                 type: Object,
                 default: () => {}
             },
+
             records: {
                 type: Array,
                 default: () => []
             },
+
             pagination: {
                 type: Object,
                 default: () => {}
+            },
+
+            tbodyComponent: {
+                type: [String, Object],
+                default: 'tbody'
+            },
+
+            tbodyProps: {
+                type: Object,
+                default: null
+            },
+
+            tbodyListeners: {
+                type: Object,
+                default: null
             }
         },
 
