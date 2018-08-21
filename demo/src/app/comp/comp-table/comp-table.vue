@@ -53,7 +53,7 @@
             onSelect({selectedRecords}) {
                 const vm = this;
                 vm.selectedInfo = {
-                    selectedAccountIds: selectedRecords.map(({loanAccountId}) => loanAccountId)
+                    selectedAccountIds: selectedRecords.map(({id}) => id)
                 };
             }
         }
