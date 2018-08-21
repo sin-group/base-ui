@@ -1,21 +1,19 @@
-import LoanCreditsStatusMap from './loan-credit-status-map';
-
 export default {
     enableSelection: true,
     enableClientSort: true,
     enableClientPagination: true,
-    // enableServerSort: true,
+
     sortInfo: {
         field: 'name',
         order: 'DESC'
     },
     colDefs: [
-        {field: 'loanAccountId', label: 'Account Id'},
-        {field: 'mobileNumber', label: 'Mobile'},
+        {field: 'id', label: 'Id'},
+        {field: 'mobile', label: 'Mobile'},
         {field: 'name', label: 'Name'},
-        {field: 'ruleSetResult.Advance', label: '风控 Advance'},
-        {field: 'loanCreditsStatus', label: 'Status', map: LoanCreditsStatusMap},
-        {field: 'timeCompletedAuthFlow', label: 'Time', filter: 'b-date-time'},
+        {field: 'age', label: 'Age'},
+        {field: 'status', label: 'Status'},
+        {field: 'lastLoginTime', label: 'Time', filter: 'b-date-time'},
         {field: 'op', label: 'Operation'}
     ],
 
