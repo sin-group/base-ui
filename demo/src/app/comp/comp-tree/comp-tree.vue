@@ -5,7 +5,7 @@
         </h4>
 
         <div class="card">
-            <b-tree :data="treeData" :options="options">
+            <b-tree :data="treeData" :options="options" @drag="onDrag">
                 <div slot-scope="scope" class="tree-node">
                     <span class="node-name">{{ scope.node.name }}</span>
                     <button class="sm" @click="viewNode(scope.node)">view node</button>
@@ -42,16 +42,16 @@
                 },
                 {
                     id: 4,
-                    name: 'node-1-1',
+                    name: 'node-1-2',
                     children: [
                         {
                             id: 9,
-                            name: 'node-1-1-1',
+                            name: 'node-1-2-1',
                             children: []
                         },
                         {
                             id: 10,
-                            name: 'node-1-1-2',
+                            name: 'node-1-2-2',
                             children: []
                         }
                     ]
@@ -76,6 +76,7 @@
                 treeData,
 
                 options: {
+                    enableDrag: true,
                     filterDefs: [
                         {name: '名称', field: 'name'},
                         {
@@ -100,6 +101,14 @@
                         record: {id, name}
                     })
                     .catch(x => x);
+            },
+
+            onDrag({dragNode, dropNode, afterData}) { // eslint-disable-line
+                const vm = this;
+
+                setTimeout(() => { // fake async
+                    vm.treeData = afterData;
+                }, 1000);
             }
         }
     };
