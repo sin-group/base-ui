@@ -55,6 +55,8 @@
     }
 
     &.b-switch-disabled {
+        cursor: not-allowed;
+
         .b-switch-wrap {
             background-color: $gray-light;
 
