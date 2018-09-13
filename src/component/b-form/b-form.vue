@@ -5,7 +5,7 @@
 
 <template>
 
-    <form class="b-form" @submit.prevent="emitEvent('submit')">
+    <form :novalidate="novalidate" class="b-form" @submit.prevent="emitEvent('submit')">
         <template v-for="(fieldDef, index) in renderFieldDefs">
             <slot
                 v-if="fieldDef.field"
@@ -69,6 +69,11 @@
             data: {
                 type: Object,
                 required: true
+            },
+
+            novalidate: {
+                type: Boolean,
+                default: true
             },
 
             options: {

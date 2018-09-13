@@ -287,6 +287,7 @@
 |Name|Type|Desc|
 |:-:|:-:|:-:|
 |`data`|`Object`|model value|
+|`novalidate`|`Boolean`|提交表单前是否不验证，默认为 `true`|
 |`options`|`Object`|表单配置项|
 
 #### Events
