@@ -8,6 +8,8 @@
             @click.self="onClickOutside">
             <div class="b-dialog-content-wrapper" @click.self="onClickOutside">
                 <div class="b-dialog">
+                    <i v-if="showCloseIcon" class="b-dialog-icon-close b-icon-cross" @click="close"></i>
+
                     <h3 v-if="showTitle" class="b-dialog-title">
                         <slot name="title">{{ title }}</slot>
                     </h3>
@@ -60,6 +62,10 @@
         computed: {
             showTitle() {
                 return this.title || (this.$slots && this.$slots.title && this.$slots.title.length > 0);
+            },
+
+            showCloseIcon() {
+                return this.$listeners.close;
             }
         },
 

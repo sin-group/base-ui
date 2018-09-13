@@ -25,7 +25,6 @@
         methods: {
             openModal() {
                 const vm = this;
-
                 vm.$modal
                     .open(TestGulpModal)
                     .then((resolve) => {

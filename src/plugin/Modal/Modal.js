@@ -1,5 +1,11 @@
+
+import keyCodeMap from '../../util/keyCodeMap';
+
 import {createVueInstanceEle} from '../helper/helper';
 import MessageModal from './component/message-modal';
+
+let isBModalEscListened = false;
+const modalInstanceList = [];
 
 export default {
 
@@ -19,6 +25,28 @@ export default {
 
                     propsData: {
                         ...props
+                    },
+
+                    mounted() {
+                        const vm = this;
+                        vm.initEscReject();
+                    },
+
+                    methods: {
+                        initEscReject() {
+                            const vm = this;
+                            modalInstanceList.push(vm);
+
+                            if (!isBModalEscListened) {
+                                document.addEventListener('keyup', ({keyCode}) => {
+                                    if (keyCode === keyCodeMap.esc && modalInstanceList.length) {
+                                        const modal = modalInstanceList.pop();
+                                        modal.reject();
+                                    }
+                                });
+                                isBModalEscListened = true;
+                            }
+                        }
                     }
                 });
 
