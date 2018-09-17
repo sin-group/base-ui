@@ -94,6 +94,21 @@
         },
 
         data() {
+            const {value} = this;
+            if (value) {
+                const {year, month, date, hour, minute, second} = getTimeDigitalComponent(value);
+                const initDate = new Date(year, month - 1, date).getTime();
+                return {
+                    HoursMap: genMap(24),
+                    MinutesMap: genMap(60),
+                    SecondsMap: genMap(60),
+                    date: initDate,
+                    hour,
+                    minute,
+                    second
+                };
+            }
+
             return {
                 HoursMap: genMap(24),
                 MinutesMap: genMap(60),
