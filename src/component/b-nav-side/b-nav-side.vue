@@ -22,22 +22,46 @@
                     </div>
                 </div>
 
-                <div v-for="rootRoute in navRoutes" :key="rootRoute.name" class="action-group nav-wrap">
-                    <div class="action-header">
-                        <router-link :to="{name: rootRoute.name}">
+                <div v-if="navRoutes">
+                    <div v-for="rootRoute in navRoutes" :key="rootRoute.name" class="action-group nav-wrap">
+                        <!-- has children -->
+                        <button
+                            v-if="rootRoute.children.length"
+                            class="action-bar router-level-1"
+                            @click="onToggleNavChildrenOpen(rootRoute)"
+                        >
+                            {{ rootRoute.meta.navTitle }}
+
+                            <span class="toggle-icon">
+                                <i v-if="rootRoute.$$open" class="b-icon-bottom"></i>
+                                <i v-else class="b-icon-right"></i>
+                            </span>
+                        </button>
+
+                        <!-- no child -->
+                        <router-link
+                            v-else
+                            :to="{name: rootRoute.name}"
+                            class="action-bar router-level-1"
+                        >
                             {{ rootRoute.meta.navTitle }}
                         </router-link>
-                    </div>
 
-                    <router-link
-                        v-for="secondRoute in rootRoute.children"
-                        :key="secondRoute.name"
-                        :to="{name: secondRoute.name}"
-                        :class="{active: secondRoute.name === $route.name}"
-                        class="action-bar">
-                        {{ secondRoute.meta.navTitle }}
-                        <i class="b-icon-arrow-right"></i>
-                    </router-link>
+                        <!-- children -->
+                        <div v-if="rootRoute.$$open">
+                            <div
+                                v-for="secondRoute in rootRoute.children"
+                                :key="secondRoute.name"
+                            >
+                                <router-link
+                                    :to="{name: secondRoute.name}"
+                                    :class="{active: secondRoute.name === $route.name}"
+                                    class="action-bar router-level-2">
+                                    {{ secondRoute.meta.navTitle }}
+                                </router-link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -57,24 +81,38 @@
             }
         },
 
-        computed: {
-            navRoutes() {
-                const vm = this;
-                const {routes} = vm;
+        data() {
+            const vm = this;
+            const {routes, genNavRoutes} = vm;
 
-                const navRoutes = routes.filter(({meta}) => (meta && meta.navTitle));
-                navRoutes.forEach((rootRoute) => {
-                    const secondRoutes = rootRoute.children;
-                    rootRoute.children = secondRoutes.filter(({meta}) => (meta && meta.navTitle));
-                });
-
-                return navRoutes;
-            }
+            return {
+                navRoutes: genNavRoutes(routes)
+            };
         },
 
         methods: {
             onToggle() {
                 this.$emit('toggle');
+            },
+
+            onToggleNavChildrenOpen(route) {
+                route.$$open = !route.$$open;
+            },
+
+            genNavRoutes(routes) {
+                const vm = this;
+
+                const rootRoutes = routes.filter(({meta}) => (meta && meta.navTitle));
+
+                rootRoutes.forEach((rootRoute) => {
+                    const defaultRootOpen = rootRoute.meta.defaultOpen;
+                    vm.$set(rootRoute, '$$open', defaultRootOpen !== undefined ? defaultRootOpen : true);
+
+                    const secondRoutes = rootRoute.children || [];
+                    rootRoute.children = secondRoutes.filter(({meta}) => (meta && meta.navTitle));
+                });
+
+                return rootRoutes;
             }
         }
     };

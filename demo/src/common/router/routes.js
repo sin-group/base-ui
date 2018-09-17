@@ -133,7 +133,7 @@ export default [
         name: 'Component',
         path: '/component',
         component: Comp,
-        redirect: '/component/output',
+        redirect: '/component/date',
         meta: {
             navTitle: 'Component'
         },

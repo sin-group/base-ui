@@ -19,16 +19,6 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.b-icon-insert-row:before { content: "\e6ee"; }
-
-.b-icon-cross:before { content: "\e621"; }
-
-.b-icon-tick:before { content: "\e61e"; }
-
-.b-icon-collapse-down:before { content: "\ecb4"; }
-
-.b-icon-collapse-up:before { content: "\e631"; }
-
 .b-icon-user-search:before { content: "\e64e"; }
 
 .b-icon-download:before { content: "\e600"; }
@@ -69,6 +59,8 @@
 
 .b-icon-phone:before { content: "\e66f"; }
 
+.b-icon-collapse-up:before { content: "\e631"; }
+
 .b-icon-eye:before { content: "\e63a"; }
 
 .b-icon-cancel:before { content: "\eab0"; }
@@ -86,6 +78,10 @@
 .b-icon-package:before { content: "\e9c5"; }
 
 .b-icon-info:before { content: "\e67d"; }
+
+.b-icon-tick:before { content: "\e61e"; }
+
+.b-icon-cross:before { content: "\e621"; }
 
 .b-icon-google-plus:before { content: "\e721"; }
 
@@ -147,6 +143,8 @@
 
 .b-icon-search:before { content: "\e606"; }
 
+.b-icon-insert-row:before { content: "\e6ee"; }
+
 .b-icon-bold:before { content: "\e6fe"; }
 
 .b-icon-create:before { content: "\e603"; }
@@ -170,3 +168,11 @@
 .b-icon-arrow-top:before { content: "\eaa9"; }
 
 .b-icon-arrow-left:before { content: "\eaaa"; }
+
+.b-icon-shenhebaobiao:before { content: "\e62c"; }
+
+.b-icon-collapse-down:before { content: "\ecb4"; }
+
+.b-icon-bottom:before { content: "\ecb5"; }
+
+.b-icon-top:before { content: "\ecb6"; }

@@ -4,12 +4,16 @@ $header-front-color: $primary-dark;
 $header-front-hover-color: $primary-dark;
 $header-background-coor: $white;
 $nav-side-width: 200px;
+$nav-header-font-size: 15px;
 $nav-font-size: 13px;
 $nav-font-color: $white;
 $nav-front-link-color: $white;
 $nav-background-color: $primary-dark;
-$nav-background-active-color: lighten($gray-light, 10);
-$nav-background-hover-color: lighten($gray-light, 1);
+$nav-background-active-color: lighten($gray-light, 5);
+$nav-background-hover-color: lighten($gray-light, 20);
+$nav-background-nested-color: lighten($primary-dark, 0);
+$nav-background-nested-active-color: lighten($gray-light, 5);
+$nav-background-nested-hover-color: lighten($gray-light, 20);
 $nav-border-color: darken($primary-dark, 5);
 
 .b-layout {
@@ -177,7 +181,7 @@ $nav-border-color: darken($primary-dark, 5);
             background-color: $nav-background-color;
 
             .nav-wrap {
-                margin-bottom: 20px;
+                margin-bottom: 10px;
             }
 
             .action-header {
@@ -199,14 +203,43 @@ $nav-border-color: darken($primary-dark, 5);
                 font-size: $nav-font-size;
 
                 &:hover {
-                    background-color: $nav-background-hover-color;
-                    color: $primary-dark;
+                    background-color: rgba($nav-background-hover-color, .3);
                 }
 
                 &.active {
-                    background-color: $nav-background-active-color;
-                    color: $primary-dark;
+                    background-color: rgba($nav-background-hover-color, .2);
                 }
+
+                &-nested {
+                    padding-left: 30px;
+                    background-color: $nav-background-nested-color;
+
+                    &:hover {
+                        background-color: $nav-background-nested-hover-color;
+                        color: $primary-dark;
+                    }
+
+                    &.active {
+                        background-color: $nav-background-nested-active-color;
+                        color: $primary-dark;
+                    }
+                }
+
+                .toggle-icon {
+                    i {
+                        font-size: 12px;
+                    }
+                }
+            }
+
+            .router-level-1 {
+                font-size: $nav-header-font-size;
+                font-weight: "bold";
+            }
+
+            .router-level-2 {
+                padding-left: 30px;
+                font-weight: 100;
             }
         }
     }

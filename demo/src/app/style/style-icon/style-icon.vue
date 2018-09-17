@@ -45,6 +45,8 @@
         'arrow-bottom',
         'left',
         'right',
+        'top',
+        'bottom',
         'refresh',
         'quote',
         'download',
