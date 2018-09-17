@@ -38,13 +38,6 @@ button {
         }
     }
 
-    &.disabled {
-        color: $black;
-        cursor: not-allowed;
-        background-color: $gray-lighter;
-        border: 1px dashed $gray;
-    }
-
     &.danger {
         color: $red;
         background-color: $gray-lighter;
@@ -63,6 +56,19 @@ button {
         }
     }
 
+    &.disabled {
+        color: $black;
+        cursor: not-allowed;
+        background-color: $gray-lighter;
+        border: 1px dashed $gray;
+
+        &:hover {
+            color: $black;
+            background-color: $gray-lighter;
+            border-color: $gray;
+        }
+    }
+
     &.simple {
         color: $primary;
         background-color: $white;
@@ -78,17 +84,11 @@ button {
 
         &.disabled {
             color: $gray;
-            cursor: not-allowed;
 
             &:hover {
                 background-color: transparent;
             }
         }
-    }
-
-    &.block {
-        display: block;
-        width: 100%;
     }
 
     &.link {
@@ -113,9 +113,18 @@ button {
             border-bottom-color: transparent;
         }
 
-        &:disabled {
-            background-color: transparent;
+        &.disabled {
+            color: $gray;
+
+            &:hover {
+                border-color: transparent;
+            }
         }
+    }
+
+    &.block {
+        display: block;
+        width: 100%;
     }
 
     &.lg {
