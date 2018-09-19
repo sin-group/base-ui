@@ -12,8 +12,8 @@
                 <h2>
                     <span class="title">日期时间选择器</span>
                     <code>b-date-time</code>
-                    <b-md-view :md-text="MD.CompDateTimeOverview"/>
                 </h2>
+                <b-md-view :md-text="MD.CompDateTimeOverview"/>
             </div>
 
             <div class="case">

@@ -4,6 +4,7 @@
  * @file component
  */
 
+import BButton from './b-button';
 import BDate from './b-date';
 import BDateString from './b-date-string';
 import BDateTime from './b-date-time';
@@ -30,6 +31,7 @@ import BTree from './b-tree';
 export default {
 
     install(Vue) {
+        Vue.component('b-button', BButton);
         Vue.component('b-date', BDate);
         Vue.component('b-date-string', BDateString);
         Vue.component('b-date-time', BDateTime);

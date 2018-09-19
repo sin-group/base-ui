@@ -16,6 +16,7 @@ import StyleLayout from '../../app/style/style-layout';
 import StyleTypography from '../../app/style/style-typography';
 
 import Comp from '../../app/comp';
+import CompButton from '../../app/comp/comp-button';
 import CompDate from '../../app/comp/comp-date';
 import CompDateString from '../../app/comp/comp-date-string';
 import CompDateTime from '../../app/comp/comp-date-time';
@@ -138,6 +139,14 @@ export default [
             navTitle: 'Component'
         },
         children: [
+            {
+                name: 'CompButton',
+                path: '/component/button',
+                component: CompButton,
+                meta: {
+                    navTitle: 'Button'
+                }
+            },
             {
                 name: 'CompDate',
                 path: '/component/date',

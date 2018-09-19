@@ -1,0 +1,233 @@
+@import "../../style/variables.scss";
+
+.b-button {
+    display: inline-block;
+
+    &.normal {
+        button {
+            color: $gray-darker;
+            background-color: $white;
+            border-color: $gray;
+
+            &:hover {
+                color: $primary;
+                background-color: $white;
+                border-color: $gray;
+            }
+
+            &:active {
+                color: $primary;
+                border-color: $primary;
+            }
+        }
+    }
+
+    &.danger {
+        button {
+            color: $red;
+            background-color: $gray-lighter;
+            border-color: $gray-light;
+
+            &:hover {
+                color: $white;
+                background-color: $red;
+                border-color: $red;
+            }
+
+            &:active {
+                color: $white;
+                background-color: $red-dark;
+                border-color: $red;
+            }
+        }
+    }
+
+    button {
+        height: 30px;
+        padding: 0 15px;
+        font-size: 14px;
+        font-weight: 400;
+        color: $white;
+        text-align: center;
+        cursor: pointer;
+        background-color: $primary-dark;
+        border: 1px solid $primary-dark;
+        border-radius: 3px;
+        outline: none;
+        box-shadow: none;
+        transition: background-color .3s;
+
+        &:hover {
+            background-color: $primary;
+        }
+
+        &:active {
+            background-color: $primary-dark;
+        }
+
+        &:disabled {
+            color: $gray;
+            cursor: not-allowed;
+            background-color: $gray-lighter;
+            border: 1px dashed $gray;
+
+            &:hover {
+                color: $gray;
+                background-color: $gray-lighter;
+                border-color: $gray;
+            }
+        }
+    }
+
+    &.simple {
+        button {
+            color: $primary;
+            background-color: transparent;
+            border: none;
+
+            &:hover {
+                background-color: $gray-light;
+            }
+
+            &:active {
+                background-color: $gray;
+            }
+
+            &:disabled {
+                color: $gray;
+                border: none;
+
+                &:hover {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+
+    &.link {
+        display: inline;
+
+        button {
+            height: unset;
+            font-size: inherit;
+            font-weight: inherit;
+            color: $primary-dark;
+            background-color: transparent;
+            border-color: transparent;
+            border-radius: 0;
+            padding: 0;
+
+            &:hover {
+                color: $primary;
+                background-color: transparent;
+            }
+
+            &:active {
+                color: $primary-dark;
+                background-color: transparent;
+                border-bottom-color: transparent;
+            }
+
+            &:disabled {
+                color: $gray;
+
+                &:hover {
+                    border-color: transparent;
+                }
+            }
+        }
+    }
+
+    &.round {
+        button {
+            border-radius: 20px;
+        }
+    }
+
+    &.icon {
+        vertical-align: middle;
+
+        button {
+            height: 40px;
+            width: 40px;
+            padding: 0;
+            background-color: transparent;
+            border: none;
+            border-radius: 50%;
+            color: $primary;
+
+            i {
+                line-height: 1;
+                font-size: 30px;
+            }
+
+            &:hover {
+                background-color: $primary-lighter;
+            }
+
+            &:disabled {
+                color: $gray;
+
+                &:hover {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+
+    &.block {
+        display: block;
+        width: 100%;
+    }
+
+    &.lg {
+        button {
+            font-size: 15px;
+            font-weight: 500;
+            padding: 0 20px;
+            height: 35px;
+        }
+
+        &.icon {
+            button {
+                height: 50px;
+                width: 50px;
+                padding: 0;
+
+                i {
+                    font-size: 40px;
+                }
+            }
+        }
+    }
+
+    &.sm {
+        button {
+            font-size: 10px;
+            font-weight: 300;
+            padding: 0 10px;
+            height: 24px;
+        }
+
+        &.danger {
+            font-weight: 350;
+        }
+
+        &.icon {
+            button {
+                height: 30px;
+                width: 30px;
+                padding: 0;
+
+                i {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+
+    i {
+        font-size: 14px;
+        font-weight: bold;
+    }
+}

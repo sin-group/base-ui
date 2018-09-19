@@ -80,7 +80,7 @@
         }
 
         .main {
-            margin-top: 30px;
+            margin: 30px 0;
 
             p {
                 code {
