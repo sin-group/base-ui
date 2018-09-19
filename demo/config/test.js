@@ -6,7 +6,7 @@
 
 module.exports = {
     build: {
-        publicPath: 'https://guardian-test.yangqianguan.com/cdn/base-ui/static/'
+        publicPath: 'https://public-test.yangqianguan.com/cdn/base-ui/static/'
     },
 
     run: {
