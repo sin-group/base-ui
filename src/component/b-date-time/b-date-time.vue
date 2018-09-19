@@ -9,41 +9,41 @@
         class="b-date-time">
         <div class="date">
             <b-date
-                v-model="date"
+                :value="timeComponents.dateStartTime"
                 :disabled="disabled"
-                @change="handleChooseTime"/>
+                @change="handleDateChange"/>
         </div>
 
         <div class="time division">
             <b-select
-                v-model="hour"
+                :value="timeComponents.hour"
                 :map="HoursMap"
                 :enable-reset="false"
                 :disabled="disableTime"
                 placeholder="HH"
-                @tab="handleHourTab"
-                @change="handleChooseTime"/>
+                @tab="handleHourChange"
+                @change="handleHourChange"/>
         </div>
 
         <div class="time division">
             <b-select
-                v-model="minute"
+                :value="timeComponents.minute"
                 :map="MinutesMap"
                 :enable-reset="false"
                 :disabled="disableTime"
                 placeholder="mm"
-                @tab="handleMinuteTab"
-                @change="handleChooseTime"/>
+                @tab="handleMinuteChange"
+                @change="handleMinuteChange"/>
         </div>
 
         <div class="time">
             <b-select
-                v-model="second"
+                :value="timeComponents.second"
                 :map="SecondsMap"
                 :disabled="disableTime"
                 placeholder="ss"
-                @tab="handleSecondTab"
-                @change="handleChooseTime"/>
+                @tab="handleSecondChange"
+                @change="handleSecondChange"/>
             <i
                 v-if="enabledReset"
                 :class="{'b-date-time-icon-active': !disableTime}"
@@ -94,81 +94,74 @@
         },
 
         data() {
-            const {value} = this;
-            if (value) {
-                const {year, month, date, hour, minute, second} = getTimeDigitalComponent(value);
-                const initDate = new Date(year, month - 1, date).getTime();
-                return {
-                    HoursMap: genMap(24),
-                    MinutesMap: genMap(60),
-                    SecondsMap: genMap(60),
-                    date: initDate,
-                    hour,
-                    minute,
-                    second
-                };
-            }
-
             return {
                 HoursMap: genMap(24),
                 MinutesMap: genMap(60),
-                SecondsMap: genMap(60),
-                date: null,
-                hour: null,
-                minute: null,
-                second: null
+                SecondsMap: genMap(60)
             };
         },
 
         computed: {
             disableTime() {
-                return this.date === null;
+                return this.timeComponents.dateStartTime === null;
+            },
+
+            timeComponents() {
+                const {value} = this;
+                if (!value) {
+                    return {
+                        dateStartTime: null,
+                        hour: null,
+                        minute: null,
+                        second: null
+                    };
+                }
+
+                const {year, month, date, hour, minute, second} = getTimeDigitalComponent(value);
+                const dateStartTime = new Date(year, month - 1, date).getTime();
+
+                return {
+                    dateStartTime,
+                    hour,
+                    minute,
+                    second
+                };
             }
         },
 
         methods: {
-            handleHourTab(searchText) {
-                this.handleTab(searchText, 'hour', this.HoursMap);
+            handleDateChange(dateStartTime) {
+                this.handleChooseTime(dateStartTime, 'dateStartTime');
             },
 
-            handleMinuteTab(searchText) {
-                this.handleTab(searchText, 'minute', this.MinutesMap);
+            handleHourChange(searchText) {
+                this.handleChooseTime(searchText, 'hour', this.HoursMap);
             },
 
-            handleSecondTab(searchText) {
-                this.handleTab(searchText, 'second', this.SecondsMap);
+            handleMinuteChange(searchText) {
+                this.handleChooseTime(searchText, 'minute', this.MinutesMap);
             },
 
-            handleTab(value, field, map) {
+            handleSecondChange(searchText) {
+                this.handleChooseTime(searchText, 'second', this.SecondsMap);
+            },
+
+            handleChooseTime(value, field, map) {
                 const vm = this;
                 const normalizdValue = paddingSearchText(value);
-                if (map[normalizdValue] === undefined) return;
-                vm[field] = normalizdValue;
-                vm.handleChooseTime();
-            },
+                if (map && map[normalizdValue] === undefined) return;
 
-            handleChooseTime() {
-                const vm = this;
-                if (vm.hour === null && vm.minute === null && vm.second === null) {
-                    vm.hour = '0';
-                    vm.minute = '0';
-                    vm.second = '0';
-                }
-                const {hour, minute, second} = vm;
-                const {year, month, date} = getTimeDigitalComponent(vm.date);
+                const {dateStartTime, hour, minute, second} = {
+                    ...vm.timeComponents,
+                    [field]: value
+                };
+                const {year, month, date} = getTimeDigitalComponent(dateStartTime);
 
                 vm.$emit('change', new Date(year, month - 1, date, hour, minute, second).getTime());
             },
 
             reset() {
-                const vm = this;
-                if (vm.value === null) return;
-                vm.hour = null;
-                vm.minute = null;
-                vm.second = null;
-                vm.date = null;
-
-                vm.$emit('change', null);
+                this.$emit('change', null);
             }
         }
     };

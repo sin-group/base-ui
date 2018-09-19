@@ -90,6 +90,13 @@
             };
         },
 
+        mounted() {
+            const vm = this;
+            vm.$watch('routes', () => {
+                vm.refreshNavRoutes();
+            });
+        },
+
         methods: {
             onToggle() {
                 this.$emit('toggle');
@@ -97,6 +104,13 @@
 
             onToggleNavChildrenOpen(route) {
                 route.$$open = !route.$$open;
+            },
+
+            refreshNavRoutes() {
+                const vm = this;
+                const {routes, genNavRoutes} = vm;
+
+                vm.navRoutes = genNavRoutes(routes);
             },
 
             genNavRoutes(routes) {

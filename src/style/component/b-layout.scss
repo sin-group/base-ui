@@ -4,7 +4,7 @@ $header-front-color: $primary-dark;
 $header-front-hover-color: $primary-dark;
 $header-background-coor: $white;
 $nav-side-width: 200px;
-$nav-header-font-size: 15px;
+$nav-header-font-size: 14px;
 $nav-font-size: 13px;
 $nav-font-color: $white;
 $nav-front-link-color: $white;
@@ -234,12 +234,11 @@ $nav-border-color: darken($primary-dark, 5);
 
             .router-level-1 {
                 font-size: $nav-header-font-size;
-                font-weight: "bold";
             }
 
             .router-level-2 {
                 padding-left: 30px;
-                font-weight: 100;
+                font-weight: 400;
             }
         }
     }
