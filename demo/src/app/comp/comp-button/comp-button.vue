@@ -23,22 +23,21 @@
                     <div slot="code"><b-md-view :md-text="MD.CompButtonBasicCode"/></div>
                     <div slot="main" class="button-line">
                         <b-button @click="handleClick">来点我呀</b-button>
+                        <b-button disabled @click="handleClick">Disabled</b-button>
                     </div>
                 </demo-box>
             </div>
 
             <div class="case">
-                <h3>样式</h3>
-                <b-md-view :md-text="MD.CompButtonStyle"/>
+                <h3>主题</h3>
+                <b-md-view :md-text="MD.CompButtonTheme"/>
 
                 <demo-box>
-                    <div slot="code"><b-md-view :md-text="MD.CompButtonStyleCode"/></div>
+                    <div slot="code"><b-md-view :md-text="MD.CompButtonThemeCode"/></div>
                     <div slot="main" class="button-line">
-                        <b-button @click="handleClick">Primary</b-button>
-                        <b-button class="normal" @click="handleClick">Normal</b-button>
-                        <b-button class="danger" @click="handleClick">Danger</b-button>
-                        <b-button disabled @click="handleClick">Disabled</b-button>
-                        <b-button :btn-style="btnStyle" @click="handleClick">Customized</b-button>
+                        <b-button @click="handleClick">Normal</b-button>
+                        <b-button theme="primary" @click="handleClick">Primary</b-button>
+                        <b-button theme="danger" @click="handleClick">Danger</b-button>
                     </div>
                 </demo-box>
             </div>
@@ -50,24 +49,24 @@
                 <demo-box>
                     <div slot="code"><b-md-view :md-text="MD.CompButtonSizeCode"/></div>
                     <div slot="main" class="button-line">
-                        <b-button class="sm" @click="handleClick">Primary</b-button>
-                        <b-button class="normal sm" @click="handleClick">Normal</b-button>
-                        <b-button class="danger sm" @click="handleClick">Danger</b-button>
-                        <b-button class="sm" disabled @click="handleClick">Disabled</b-button>
+                        <b-button size="sm" @click="handleClick">Normal</b-button>
+                        <b-button theme="primary" size="sm" @click="handleClick">Primary</b-button>
+                        <b-button theme="danger" size="sm" @click="handleClick">Danger</b-button>
+                        <b-button size="sm" disabled @click="handleClick">Disabled</b-button>
                     </div>
 
                     <div slot="main" class="button-line">
-                        <b-button @click="handleClick">Primary</b-button>
-                        <b-button class="normal" @click="handleClick">Normal</b-button>
-                        <b-button class="danger" @click="handleClick">Danger</b-button>
+                        <b-button @click="handleClick">Normal</b-button>
+                        <b-button theme="primary" @click="handleClick">Primary</b-button>
+                        <b-button theme="danger" @click="handleClick">Danger</b-button>
                         <b-button disabled @click="handleClick">Disabled</b-button>
                     </div>
 
                     <div slot="main" class="button-line">
-                        <b-button class="lg" @click="handleClick">Primary</b-button>
-                        <b-button class="normal lg" @click="handleClick">Normal</b-button>
-                        <b-button class="danger lg" @click="handleClick">Danger</b-button>
-                        <b-button class="lg" disabled @click="handleClick">Disabled</b-button>
+                        <b-button size="lg" @click="handleClick">Normal</b-button>
+                        <b-button theme="primary" size="lg" @click="handleClick">Primary</b-button>
+                        <b-button theme="danger" size="lg" @click="handleClick">Danger</b-button>
+                        <b-button size="lg" disabled @click="handleClick">Disabled</b-button>
                     </div>
                 </demo-box>
             </div>
@@ -79,7 +78,7 @@
                 <demo-box>
                     <div slot="code"><b-md-view :md-text="MD.CompButtonShapeCode"/></div>
                     <div slot="main" class="button-line">
-                        <b-button size="sm" @click="handleClick">Default</b-button>
+                        <b-button size="sm" @click="handleClick">Normal</b-button>
                         <b-button shape="round" size="sm" @click="handleClick">Round</b-button>
                         <b-button shape="icon" size="sm" @click="handleClick">
                             <i class="b-icon-love"></i>
@@ -88,7 +87,7 @@
                         <b-button shape="link" size="sm" @click="handleClick">Link</b-button>
                     </div>
                     <div slot="main" class="button-line">
-                        <b-button @click="handleClick">Default</b-button>
+                        <b-button @click="handleClick">Normal</b-button>
                         <b-button shape="round" @click="handleClick">Round</b-button>
                         <b-button shape="icon" @click="handleClick">
                             <i class="b-icon-love"></i>
@@ -97,13 +96,26 @@
                         <b-button shape="link" @click="handleClick">Link</b-button>
                     </div>
                     <div slot="main" class="button-line">
-                        <b-button size="lg" @click="handleClick">Default</b-button>
+                        <b-button size="lg" @click="handleClick">Normal</b-button>
                         <b-button shape="round" size="lg" @click="handleClick">Round</b-button>
                         <b-button shape="icon" size="lg" @click="handleClick">
                             <i class="b-icon-love"></i>
                         </b-button>
                         <b-button shape="simple" size="lg" @click="handleClick">Simple</b-button>
                         <b-button shape="link" size="lg" @click="handleClick">Link</b-button>
+                    </div>
+                </demo-box>
+            </div>
+
+            <div class="case">
+                <h3>样式</h3>
+                <b-md-view :md-text="MD.CompButtonStyle"/>
+
+                <demo-box>
+                    <div slot="code"><b-md-view :md-text="MD.CompButtonStyleCode"/></div>
+                    <div slot="main" class="button-line">
+                        <b-button @click="handleClick">Normal</b-button>
+                        <b-button :btn-style="btnStyle" @click="handleClick">Customized</b-button>
                     </div>
                 </demo-box>
             </div>

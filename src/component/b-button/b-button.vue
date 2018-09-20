@@ -20,7 +20,7 @@
 </template>
 
 <script type="text/babel">
-    import {isValidType, isValidShape, isValidSize} from './helper/helper';
+    import {isValidTheme, isValidType, isValidShape, isValidSize} from './helper/helper';
 
     export default {
         name: 'BButton',
@@ -41,6 +41,12 @@
                 default: false
             },
 
+            theme: {
+                type: String,
+                validator: isValidTheme,
+                default: 'normal'
+            },
+
             name: {
                 type: String,
                 default: null
@@ -49,30 +55,31 @@
             shape: {
                 type: String,
                 validator: isValidShape,
-                default: null
+                default: 'normal'
             },
 
             size: {
                 type: String,
                 validator: isValidSize,
-                default: null
+                default: 'md'
             },
 
             type: {
                 type: String,
                 validator: isValidType,
-                default: null
+                default: 'submit'
             }
         },
 
         computed: {
             className() {
                 const vm = this;
-                const {shape, size} = vm;
+                const {theme, shape, size} = vm;
 
                 return [
-                    ...(shape ? [shape] : []),
-                    ...(size ? [size] : [])
+                    `theme-${theme}`,
+                    `shape-${shape}`,
+                    `size-${size}`
                 ];
             }
         },

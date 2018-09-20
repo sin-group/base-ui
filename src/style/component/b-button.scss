@@ -3,26 +3,24 @@
 .b-button {
     display: inline-block;
 
-    &.normal {
+    &.theme-primary {
         button {
-            color: $gray-darker;
-            background-color: $white;
-            border-color: $gray;
+            color: $white;
+            background-color: $primary-dark;
+            border-color: $primary-dark;
 
             &:hover {
-                color: $primary;
-                background-color: $white;
-                border-color: $gray;
+                color: $white;
+                background-color: $primary;
             }
 
             &:active {
-                color: $primary;
-                border-color: $primary;
+                background-color: $primary-dark;
             }
         }
     }
 
-    &.danger {
+    &.theme-danger {
         button {
             color: $red;
             background-color: $gray-lighter;
@@ -47,22 +45,23 @@
         padding: 0 15px;
         font-size: 14px;
         font-weight: 400;
-        color: $white;
         text-align: center;
         cursor: pointer;
-        background-color: $primary-dark;
-        border: 1px solid $primary-dark;
+        color: $gray-darker;
+        background-color: $white;
+        border: 1px solid $gray;
         border-radius: 3px;
         outline: none;
         box-shadow: none;
         transition: background-color .3s;
 
         &:hover {
-            background-color: $primary;
+            color: $primary;
         }
 
         &:active {
-            background-color: $primary-dark;
+            color: $primary;
+            border-color: $primary;
         }
 
         &:disabled {
@@ -79,7 +78,7 @@
         }
     }
 
-    &.simple {
+    &.shape-simple {
         button {
             color: $primary;
             background-color: transparent;
@@ -104,7 +103,7 @@
         }
     }
 
-    &.link {
+    &.shape-link {
         display: inline;
 
         button {
@@ -138,13 +137,13 @@
         }
     }
 
-    &.round {
+    &.shape-round {
         button {
             border-radius: 20px;
         }
     }
 
-    &.icon {
+    &.shape-icon {
         vertical-align: middle;
 
         button {
@@ -180,7 +179,7 @@
         width: 100%;
     }
 
-    &.lg {
+    &.size-lg {
         button {
             font-size: 15px;
             font-weight: 500;
@@ -201,7 +200,7 @@
         }
     }
 
-    &.sm {
+    &.size-sm {
         button {
             font-size: 10px;
             font-weight: 300;

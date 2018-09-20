@@ -1,8 +1,12 @@
+export const ThemeArray = ['normal', 'danger', 'primary'];
+
 export const TypeArray = ['button', 'reset', 'submit'];
 
-export const ShapeArray = ['round', 'icon', 'link', 'simple'];
+export const ShapeArray = ['normal', 'round', 'icon', 'link', 'simple'];
 
 export const SizeArray = ['sm', 'md', 'lg'];
+
+export const isValidTheme = value => ThemeArray.includes(value);
 
 export const isValidType = value => TypeArray.includes(value);
 
