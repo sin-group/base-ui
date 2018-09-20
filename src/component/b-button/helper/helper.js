@@ -2,7 +2,7 @@ export const ThemeArray = ['normal', 'danger', 'primary'];
 
 export const TypeArray = ['button', 'reset', 'submit'];
 
-export const ShapeArray = ['normal', 'round', 'icon', 'link', 'simple'];
+export const ShapeArray = ['block', 'normal', 'round', 'icon', 'link', 'simple'];
 
 export const SizeArray = ['sm', 'md', 'lg'];
 

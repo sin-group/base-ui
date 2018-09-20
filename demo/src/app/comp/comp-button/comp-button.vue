@@ -104,6 +104,15 @@
                         <b-button shape="simple" size="lg" @click="handleClick">Simple</b-button>
                         <b-button shape="link" size="lg" @click="handleClick">Link</b-button>
                     </div>
+                    <div slot="main" class="button-line">
+                        <b-button shape="block" size="sm" @click="handleClick">Block</b-button>
+                    </div>
+                    <div slot="main" class="button-line">
+                        <b-button shape="block" @click="handleClick">Block</b-button>
+                    </div>
+                    <div slot="main" class="button-line">
+                        <b-button shape="block" size="lg" @click="handleClick">Block</b-button>
+                    </div>
                 </demo-box>
             </div>
 

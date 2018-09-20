@@ -3,43 +3,6 @@
 .b-button {
     display: inline-block;
 
-    &.theme-primary {
-        button {
-            color: $white;
-            background-color: $primary-dark;
-            border-color: $primary-dark;
-
-            &:hover {
-                color: $white;
-                background-color: $primary;
-            }
-
-            &:active {
-                background-color: $primary-dark;
-            }
-        }
-    }
-
-    &.theme-danger {
-        button {
-            color: $red;
-            background-color: $gray-lighter;
-            border-color: $gray-light;
-
-            &:hover {
-                color: $white;
-                background-color: $red;
-                border-color: $red;
-            }
-
-            &:active {
-                color: $white;
-                background-color: $red-dark;
-                border-color: $red;
-            }
-        }
-    }
-
     button {
         height: 30px;
         padding: 0 15px;
@@ -74,6 +37,43 @@
                 color: $gray;
                 background-color: $gray-lighter;
                 border-color: $gray;
+            }
+        }
+    }
+
+    &.theme-primary {
+        button {
+            color: $white;
+            background-color: $primary-dark;
+            border-color: $primary-dark;
+
+            &:hover {
+                color: $white;
+                background-color: $primary;
+            }
+
+            &:active {
+                background-color: $primary-dark;
+            }
+        }
+    }
+
+    &.theme-danger {
+        button {
+            color: $red;
+            background-color: $gray-lighter;
+            border-color: $gray-light;
+
+            &:hover {
+                color: $white;
+                background-color: $red;
+                border-color: $red;
+            }
+
+            &:active {
+                color: $white;
+                background-color: $red-dark;
+                border-color: $red;
             }
         }
     }
@@ -122,7 +122,7 @@
             }
 
             &:active {
-                color: $primary-dark;
+                opacity: .7;
                 background-color: transparent;
                 border-bottom-color: transparent;
             }
@@ -174,9 +174,12 @@
         }
     }
 
-    &.block {
+    &.shape-block {
         display: block;
-        width: 100%;
+
+        button {
+            width: 100%;
+        }
     }
 
     &.size-lg {
@@ -187,7 +190,7 @@
             height: 35px;
         }
 
-        &.icon {
+        &.shape-icon {
             button {
                 height: 50px;
                 width: 50px;
@@ -212,7 +215,7 @@
             font-weight: 350;
         }
 
-        &.icon {
+        &.shape-icon {
             button {
                 height: 30px;
                 width: 30px;

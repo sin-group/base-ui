@@ -93,7 +93,7 @@
 
 %%Shape
 
-可以通过设置 `b-button` 的 `shape` 属性来改变按钮的形状，可选值为 `'normal'`、`'round'`、`'icon'`、`'simple'`、`'link'`，默认为 `'normal'`。
+可以通过设置 `b-button` 的 `shape` 属性来改变按钮的形状，可选值为 `'block'`、`'normal'`、`'round'`、`'icon'`、`'simple'`、`'link'`，默认为 `'normal'`。
 
 %%ShapeCode
 
@@ -125,6 +125,15 @@
         </b-button>
         <b-button shape="simple" size="lg" @click="handleClick">Simple</b-button>
         <b-button shape="link" size="lg" @click="handleClick">Link</b-button>
+    </div>
+    <div class="button-line">
+        <b-button shape="block" size="sm" @click="handleClick">Block</b-button>
+    </div>
+    <div class="button-line">
+        <b-button shape="block" @click="handleClick">Block</b-button>
+    </div>
+    <div class="button-line">
+        <b-button shape="block" size="lg" @click="handleClick">Block</b-button>
     </div>
 </template>
 
@@ -189,7 +198,7 @@
 |`btn-style`|`Object`|自定义按钮的样式|
 |`disabled`|`Boolean`|是否禁用，默认为 `false`|
 |`name`|`String`|button name，默认为 `null`|
-|`shape`|`String`|按钮的形状，可选值为 `'normal'`、`'icon'`、`'link'`、`'round'`、`'simple'`，默认为 `'normal'`|
+|`shape`|`String`|按钮的形状，可选值为 `'block'`、`'normal'`、`'icon'`、`'link'`、`'round'`、`'simple'`，默认为 `'normal'`|
 |`size`|`String`|按钮的大小，可选值为 `'sm'`、`'md'`、`'lg'`，默认为 `'md'`|
 |`theme`|`String`|按钮的主题，可选值为 `'normal'`、`'danger'`、`'primary'`，默认为 `'normal'`|
 |`type`|`String`|按钮的类型，可选值为 `'button'`、`'reset'`、`'submit'`，默认为 `'submit'`|
