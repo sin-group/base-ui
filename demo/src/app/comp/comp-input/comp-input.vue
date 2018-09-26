@@ -32,12 +32,17 @@
                         <b-form-group label="E-mail">
                             <b-input v-model="demo.email" type="email"/>
                         </b-form-group>
+
+                        <b-form-group label="Disabled">
+                            <b-input v-model="demo.disabled" disabled/>
+                        </b-form-group>
                     </div>
                     <div slot="output">
                         Default: {{ demo.text }} <br>
                         Password: {{ demo.password }} <br>
                         Number: {{ demo.number }} <br>
-                        E-mail: {{ demo.email }}
+                        E-mail: {{ demo.email }} <br>
+                        Disabled: {{ demo.disabled }}
                     </div>
                 </demo-box>
             </div>

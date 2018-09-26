@@ -36,6 +36,7 @@ input {
         &:disabled {
             cursor: not-allowed;
             border-color: $gray;
+            color: $gray;
 
             &:active {
                 border-color: $gray;

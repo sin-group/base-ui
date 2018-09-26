@@ -25,6 +25,10 @@
     <b-form-group label="E-mail">
         <b-input v-model="email" type="email"/>
     </b-form-group>
+
+    <b-form-group label="Disabled">
+        <b-input v-model="disabled" disabled/>
+    </b-form-group>
 </template>
 
 <script>
@@ -34,7 +38,8 @@
                 text: '',
                 password: '',
                 number: '',
-                email: ''
+                email: '',
+                disabled: 'disabled text'
             };
         }
     };

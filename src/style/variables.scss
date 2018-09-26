@@ -7,6 +7,7 @@ $gray-light: #e0e0e0 !default;
 $gray: #bdbdbd !default;
 $gray-dark: #616161 !default;
 $gray-darker: #212121 !default;
+$gray-transparent: rgba(0, 0, 0, .54);
 
 $blue-lighter: #c5cae9 !default;
 $blue-light: #9fa8da !default;
@@ -77,3 +78,5 @@ $error: $red-light !default;
 
 // Shadow
 $standard-box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12) !default;
+$enhanced-box-shadow-hover: 1px 2px 1px 1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12) !default;
+$enhanced-box-shadow-active: 1px 2px 1px 1px rgba(0, 0, 0, .3), 0 1px 1px 0 rgba(0, 0, 0, .34), 0 1px 3px 0 rgba(0, 0, 0, .32) !default;

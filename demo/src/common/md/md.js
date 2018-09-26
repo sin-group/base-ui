@@ -8,6 +8,7 @@ import IntroOverview from './intro-overview.md';
 import IntroConcepts from './intro-concepts.md';
 
 import CompButton from './comp/button.md';
+import CompCard from './comp/card.md';
 import CompDate from './comp/date.md';
 import CompDateString from './comp/date-string.md';
 import CompDateTime from './comp/date-time.md';
@@ -22,6 +23,7 @@ export default {
     IntroConcepts,
 
     ...genMdTextMap(CompButton, 'CompButton'),
+    ...genMdTextMap(CompCard, 'CompCard'),
     ...genMdTextMap(CompDate, 'CompDate'),
     ...genMdTextMap(CompDateString, 'CompDateString'),
     ...genMdTextMap(CompDateTime, 'CompDateTime'),

@@ -7,7 +7,9 @@
 
     <div class="demo-box">
         <div class="action">
-            <button @click="visible = !visible"><i class="b-icon-code"></i></button>
+            <b-button shape="icon" @click="visible = !visible">
+                <i class="b-icon-code"></i>
+            </b-button>
         </div>
 
         <transition name="slide-fade">

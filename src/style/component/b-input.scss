@@ -59,6 +59,7 @@
     &.disabled {
         .b-input {
             input {
+                color: $gray;
                 cursor: not-allowed;
                 user-select: none;
             }

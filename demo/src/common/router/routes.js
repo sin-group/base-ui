@@ -17,6 +17,7 @@ import StyleTypography from '../../app/style/style-typography';
 
 import Comp from '../../app/comp';
 import CompButton from '../../app/comp/comp-button';
+import CompCard from '../../app/comp/comp-card';
 import CompDate from '../../app/comp/comp-date';
 import CompDateString from '../../app/comp/comp-date-string';
 import CompDateTime from '../../app/comp/comp-date-time';
@@ -145,6 +146,14 @@ export default [
                 component: CompButton,
                 meta: {
                     navTitle: 'Button'
+                }
+            },
+            {
+                name: 'CompCard',
+                path: '/component/card',
+                component: CompCard,
+                meta: {
+                    navTitle: 'Card'
                 }
             },
             {

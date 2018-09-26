@@ -5,6 +5,11 @@
  */
 
 import BButton from './b-button';
+import BCard from './b-card';
+import BCardActions from './b-card/b-card-footer';
+import BCardContent from './b-card/b-card-body';
+import BCardHeader from './b-card/b-card-header';
+import BCardMedia from './b-card/b-card-media';
 import BDate from './b-date';
 import BDateString from './b-date-string';
 import BDateTime from './b-date-time';
@@ -32,6 +37,11 @@ export default {
 
     install(Vue) {
         Vue.component('b-button', BButton);
+        Vue.component('b-card', BCard);
+        Vue.component('b-card-footer', BCardActions);
+        Vue.component('b-card-body', BCardContent);
+        Vue.component('b-card-header', BCardHeader);
+        Vue.component('b-card-media', BCardMedia);
         Vue.component('b-date', BDate);
         Vue.component('b-date-string', BDateString);
         Vue.component('b-date-time', BDateTime);
