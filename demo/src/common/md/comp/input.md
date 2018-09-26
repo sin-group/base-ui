@@ -113,6 +113,7 @@
 |:-:|:-:|:-:|
 |`blur`|`(value: any) => void`|model value, 获得键盘焦点时触发|
 |`change`|`(value: any) => void`|model value, value 改变时触发|
+|`click`|`(value: any) => void`|model value, 点击输入框时触发|
 |`focus`|`(value: any) => void`|model value, 获得焦点时触发|
 |`input`|`(value: any) => void`|model value, 输入内容时触发|
 |`keyup`|`(value: any) => void`|model value, 按下 `up` 键时触发|

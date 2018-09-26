@@ -1,5 +1,5 @@
 <template>
-    <div class="b-input">
+    <div class="b-input" @click="handleClick">
         <slot v-if="$slots.left" name="left"></slot>
 
         <div class="content">
@@ -163,6 +163,13 @@
                 const {trimValue} = vm;
 
                 vm.$emit('change', trimValue(event.target.value), event);
+            },
+
+            handleClick(event) {
+                const vm = this;
+
+                vm.$emit('click', event);
+                vm.$emit('touchstart', event);
             },
 
             handleKeyUp(event) {

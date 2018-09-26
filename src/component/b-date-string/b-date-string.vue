@@ -6,10 +6,10 @@
         <b-input
             :name="name"
             :value="timeDisplay"
-            :disabled="disabled"
             :placeholder="placeholder"
             type="text"
-            @focus="openDatePicker">
+            disabled
+            @click="openDatePicker">
             <i
                 slot="right"
                 :class="{'b-date-icon-active': visible}"

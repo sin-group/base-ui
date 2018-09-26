@@ -27,6 +27,7 @@ import CompInput from '../../app/comp/comp-input';
 import CompMdEditor from '../../app/comp/comp-md-editor';
 import CompMdView from '../../app/comp/comp-md-view';
 import CompPagination from '../../app/comp/comp-pagination';
+import CompPopper from '../../app/comp/comp-popper';
 import CompSelect from '../../app/comp/comp-select';
 import CompSelectArray from '../../app/comp/comp-select-array';
 import CompSelectCascader from '../../app/comp/comp-select-cascader';
@@ -226,6 +227,14 @@ export default [
                 component: CompPagination,
                 meta: {
                     navTitle: 'Pagination'
+                }
+            },
+            {
+                name: 'CompPopper',
+                path: '/component/popper',
+                component: CompPopper,
+                meta: {
+                    navTitle: 'Popper'
                 }
             },
             {

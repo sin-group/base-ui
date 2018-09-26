@@ -6,7 +6,7 @@
 <template>
 
     <div v-if="visible" :class="{'in-dialog': isInBDialog}" class="b-popper-wrap">
-        <div ref="popper" class="b-popper">
+        <div ref="popper" :name="name" class="b-popper">
             <slot></slot>
         </div>
     </div>
@@ -17,14 +17,26 @@
 
     import BDialog from '../b-dialog';
     import {getWindowRect, getRect} from '../../util/dom';
+    import {isValidPlacement} from './helper/helper';
 
     export default {
         name: 'BPopper',
 
         props: {
+            name: {
+                type: String,
+                default: null
+            },
+
             visible: {
                 type: Boolean,
                 default: false
+            },
+
+            placement: {
+                type: String,
+                validator: isValidPlacement,
+                default: 'bottom-start'
             }
         },
 
@@ -61,6 +73,9 @@
 
         methods: {
             makePosition(ref, el) {
+                const vm = this;
+                const {placement} = vm;
+
                 const refRect = getRect(ref);
                 const elRect = getRect(el);
                 const windowRect = getWindowRect();
@@ -72,12 +87,99 @@
                     x = -(elRect.width - refRect.width);
                 }
 
-                if ((elRect.bottom > windowRect.innerHeight && (refRect.top > elRect.height))
-                    || (elRect.bottom < refRect.bottom)) {
-                    y = -(elRect.height + refRect.height);
-                }
+                const TotalHeight = refRect.height + elRect.height;
+                const DiffWidth = refRect.width - elRect.width;
 
-                Object.assign(el.style, {left: `${x}px`, top: `${y}px`});
+                switch (placement) {
+                    case 'top-start': {
+                        Object.assign(el.style, {
+                            left: `${x}px`,
+                            top: `${y - TotalHeight}px`
+                        });
+                        break;
+                    }
+                    case 'top': {
+                        Object.assign(el.style, {
+                            left: `${x + DiffWidth / 2}px`,
+                            top: `${y - TotalHeight}px`
+                        });
+                        break;
+                    }
+                    case 'top-end': {
+                        Object.assign(el.style, {
+                            left: `${x + DiffWidth}px`,
+                            top: `${y - TotalHeight}px`
+                        });
+                        break;
+                    }
+                    case 'right-start': {
+                        Object.assign(el.style, {
+                            left: `${x + refRect.width}px`,
+                            top: `${y - refRect.height}px`
+                        });
+                        break;
+                    }
+                    case 'right': {
+                        Object.assign(el.style, {
+                            left: `${x + refRect.width}px`,
+                            top: `${y - TotalHeight / 2}px`
+                        });
+                        break;
+                    }
+                    case 'right-end': {
+                        Object.assign(el.style, {
+                            left: `${x + refRect.width}px`,
+                            top: `${y - elRect.height}px`
+                        });
+                        break;
+                    }
+                    case 'bottom-start': {
+                        Object.assign(el.style, {
+                            left: `${x}px`,
+                            top: `${y}px`
+                        });
+                        break;
+                    }
+                    case 'bottom': {
+                        Object.assign(el.style, {
+                            left: `${x + DiffWidth / 2}px`,
+                            top: `${y}px`
+                        });
+                        break;
+                    }
+                    case 'bottom-end': {
+                        Object.assign(el.style, {
+                            left: `${x + DiffWidth}px`,
+                            top: `${y}px`
+                        });
+                        break;
+                    }
+                    case 'left-start': {
+                        Object.assign(el.style, {
+                            left: `${x - elRect.width}px`,
+                            top: `${y - refRect.height}px`
+                        });
+                        break;
+                    }
+                    case 'left': {
+                        Object.assign(el.style, {
+                            left: `${x - elRect.width}px`,
+                            top: `${y - TotalHeight / 2}px`
+                        });
+                        break;
+                    }
+                    case 'left-end': {
+                        Object.assign(el.style, {
+                            left: `${x - elRect.width}px`,
+                            top: `${y - elRect.height}px`
+                        });
+                        break;
+                    }
+                    default: {
+                        Object.assign(el.style, {left: `${x}px`, top: `${y}px`});
+                        break;
+                    }
+                }
             }
         }
     };

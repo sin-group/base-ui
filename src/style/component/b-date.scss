@@ -1,0 +1,25 @@
+@import "../../style/variables.scss";
+@import "../../style/mixin/arrow.scss";
+
+.b-date {
+    .b-input {
+        input {
+            &:disabled {
+                color: $black;
+                opacity: 1;
+                -webkit-text-fill-color: $black;
+                -webkit-opacity: 1;
+            }
+        }
+    }
+
+    &:disabled {
+        .b-input {
+            input {
+                &:disabled {
+                    color: $gray;
+                }
+            }
+        }
+    }
+}

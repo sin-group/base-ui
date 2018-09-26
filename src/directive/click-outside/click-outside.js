@@ -31,9 +31,11 @@ export default {
 
         vnode['@@b-click-outside'] = genDocumentHandler(el, binding.value, vnode);
         on(document, 'click', vnode['@@b-click-outside']);
+        on(document, 'touchstart', vnode['@@b-click-outside']);
     },
 
     unbind(el, binding, vnode) {
         off(document, 'click', vnode['@@b-click-outside']);
+        off(document, 'touchstart', vnode['@@b-click-outside']);
     }
 };
