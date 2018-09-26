@@ -205,7 +205,9 @@
                 const vm = this;
                 const {paginatedRecords: renderedRecords} = vm;
 
-                vm.isAllSelected = renderedRecords.every(record => !!record.$$selected);
+                vm.isAllSelected = renderedRecords.every(
+                    ({$$selected, $$disableSelect}) => ($$selected || $$disableSelect)
+                );
                 return renderedRecords;
             },
 
@@ -325,7 +327,7 @@
                 });
 
                 vm.$emit(EventTypes.ON_SELECT, {
-                    selectedRecords: records.filter(record => !!record.$$selected),
+                    selectedRecords: records.filter(record => record.$$selected),
                     selectedRecord: null
                 });
             },
@@ -334,9 +336,11 @@
                 const vm = this;
                 const {renderedRecords, records} = this;
 
-                vm.isAllSelected = renderedRecords.every(record => !!record.$$selected);
+                vm.isAllSelected = renderedRecords.every(
+                    ({$$selected, $$disableSelect}) => ($$selected || $$disableSelect)
+                );
                 vm.$emit(EventTypes.ON_SELECT, {
-                    selectedRecords: records.filter(record => !!record.$$selected),
+                    selectedRecords: records.filter(record => record.$$selected),
                     selectedRecord: selectRecord
                 });
             },
