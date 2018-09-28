@@ -16,10 +16,18 @@
 }
 
 .b-date,
+.b-date-time,
+.b-date-string,
 .b-image,
 .b-select {
     .b-input {
         position: relative;
+
+        &.b-date-input-active {
+            input {
+                border-color: $primary;
+            }
+        }
 
         input {
             padding-right: 15px;

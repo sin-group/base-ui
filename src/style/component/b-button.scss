@@ -17,15 +17,17 @@
         border-radius: 3px;
         outline: none;
         box-shadow: none;
-        transition: background-color .3s;
+        transition: .4s;
 
         &:hover {
             color: $primary;
+            background-color: rgba($gray-light, .7);
         }
 
         &:active {
             color: $primary;
             border-color: $primary;
+            background-color: $white;
         }
 
         &:disabled {
@@ -54,7 +56,8 @@
             }
 
             &:active {
-                background-color: $primary-dark;
+                background-color: rgba($primary-dark, .7);
+                border-color: rgba($primary-dark, .7);
             }
         }
     }
@@ -117,15 +120,15 @@
             border-radius: 0;
             padding: 0;
 
-            &:hover {
-                color: $primary;
-                background-color: transparent;
-            }
-
             &:active {
                 opacity: .7;
                 background-color: transparent;
                 border-bottom-color: transparent;
+            }
+
+            &:hover {
+                color: $primary;
+                background-color: transparent;
             }
 
             &:disabled {
@@ -152,21 +155,27 @@
             width: 30px;
             padding: 0;
             background-color: transparent;
-            border: none;
+            border: 1px solid;
+            border-color: transparent;
             border-radius: 50%;
             color: $gray-darker;
 
             i {
                 position: relative;
-                top: 1px;
                 line-height: 1;
-                font-size: 20px;
+                font-size: 16px;
                 font-weight: 100;
             }
 
             &:hover {
                 color: $primary;
                 background-color: $primary-lighter;
+            }
+
+            &:active {
+                color: rgba($primary, .7);
+                background-color: rgba($primary-lighter, .7);
+                border-color: $primary-light;
             }
 
             &:disabled {
@@ -197,11 +206,14 @@
 
         &.shape-icon {
             button {
+                position: relative;
                 height: 35px;
                 width: 35px;
                 padding: 0;
 
                 i {
+                    position: relative;
+                    top: 2px;
                     font-size: 28px;
                     font-weight: 100;
                 }
@@ -223,7 +235,7 @@
 
         &.shape-icon {
             button {
-                min-height: 24px;
+                height: 24px;
                 width: 24px;
                 padding: 0;
 
@@ -238,13 +250,5 @@
     i {
         font-size: 14px;
         font-weight: bold;
-    }
-
-    @media screen and (max-width: $tablet-min) {
-        display: block;
-
-        button {
-            width: 100%;
-        }
     }
 }

@@ -4,6 +4,7 @@
         :class="{disabled: disabled, 'b-resettable': canBeReset}"
         class="b-date">
         <b-input
+            :class="{'b-date-input-active': visible}"
             :name="name"
             :value="displayTime"
             :placeholder="placeholder"

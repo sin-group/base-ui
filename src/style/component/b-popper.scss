@@ -12,9 +12,20 @@
 
     .b-popper {
         position: absolute;
+        animation: .15s ease popper-show;
 
         .action-card {
             margin: 0;
+        }
+    }
+
+    @keyframes popper-show {
+        0% {
+            opacity: .4;
+        }
+
+        100% {
+            opacity: 1;
         }
     }
 }

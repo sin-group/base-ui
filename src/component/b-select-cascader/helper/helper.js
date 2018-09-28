@@ -60,7 +60,7 @@ export const getSelectedListFromListValue = (list, value) => {
     while (curNode.children && curNode.children.length) {
         const curValue = value[curLevel];
         curNode = curNode.children.find(item => isValueEqual(curValue, item.value)) || {};
-        selectedList.push(curNode ? {label: curNode.label, value: curNode.value} : {});
+        selectedList.push({label: curNode.label, value: curNode.value});
         curLevel += 1;
     }
 

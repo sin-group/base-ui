@@ -172,6 +172,16 @@
 
 <style lang="scss" scoped>
     .card {
+        .b-button {
+            @media screen and (max-width: 480px) {
+                display: block;
+
+                button {
+                    width: 100%;
+                }
+            }
+        }
+
         .case {
             .demo-box {
                 .button-line {
