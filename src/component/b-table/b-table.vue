@@ -360,7 +360,7 @@
                     pagination = {}
                 } = vm;
 
-                if (sortInfo && (enableServerSort || enableClientSort)) vm.sortInfo = sortInfo;
+                if (sortInfo && (enableServerSort || enableClientSort)) Object.assign(vm.sortInfo, sortInfo);
                 if (enableClientPagination || enableServerPagination) {
                     Object.assign(
                         vm.innerPagination,
