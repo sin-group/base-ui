@@ -11,14 +11,17 @@
         </div>
 
         <div>
-            <div @click="onNavClick">
+            <div v-if="isNavOpen" @click="onNavClick">
                 <slot name="side-left"></slot>
             </div>
 
             <div :class="{'menu-opened': isNavOpen}" class="content">
                 <slot name="content"></slot>
             </div>
-            <slot name="side-right"></slot>
+
+            <div v-if="isNavOpen" @click="onNavClick">
+                <slot name="side-right"></slot>
+            </div>
         </div>
 
         <slot name="footer"></slot>

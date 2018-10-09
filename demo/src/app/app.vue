@@ -19,13 +19,11 @@
             </div>
 
             <div slot="side-left">
-                <div v-if="isNavOpen">
-                    <b-nav-side :routes="routes" @toggle="toggleNav">
-                        <div slot="nav-top">
-                            <router-link :to="{name: 'Index'}" class="logo">BaseUI</router-link>
-                        </div>
-                    </b-nav-side>
-                </div>
+                <b-nav-side :routes="routes" @toggle="toggleNav">
+                    <div slot="nav-top">
+                        <router-link :to="{name: 'Index'}" class="logo">BaseUI</router-link>
+                    </div>
+                </b-nav-side>
             </div>
 
             <div slot="content">
