@@ -21,7 +21,8 @@
                 ref="textarea"
                 :value="value"
                 class="textarea"
-                @input="onInput"></textarea>
+                @input="onInput"
+                @keydown="handleKeyDown"></textarea>
 
             <b-md-view :md-text="value" class="md-view"/>
         </div>
@@ -31,12 +32,15 @@
 
 <script type="text/babel">
 
+    import KeyCodeMap from '../../util/keyCodeMap';
+
     import bold from './action/bold';
     import code from './action/code';
     import header from './action/header';
     import italic from './action/italic';
     import link from './action/link';
     import quote from './action/quote';
+    import tab from './action/tab';
 
     const DEFAULT_ACTION_LIST = [
         header,
@@ -51,6 +55,10 @@
         override: false,
         actionList: [], // 用户定义的 action list
         actionOrder: null // 定义 action 展示的顺序，用 name 指定
+    };
+
+    const KeyCodeEventMap = {
+        [KeyCodeMap.tab]: tab
     };
 
     export default {
@@ -144,6 +152,14 @@
                 }
 
                 return null;
+            },
+
+            handleKeyDown(event) {
+                if (KeyCodeEventMap[event.keyCode]) {
+                    event.preventDefault();
+                    this.callAction(KeyCodeEventMap[event.keyCode]);
+                }
+                return false;
             },
 
             async handleInsert(action) {
