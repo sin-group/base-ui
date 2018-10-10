@@ -16,6 +16,7 @@ import CompForm from './comp/form.md';
 import CompImage from './comp/image.md';
 import CompInput from './comp/input.md';
 import CompPopper from './comp/popper.md';
+import CompTable from './comp/table.md';
 
 import {genMdTextMap} from './helper';
 
@@ -31,5 +32,6 @@ export default {
     ...genMdTextMap(CompForm, 'CompForm'),
     ...genMdTextMap(CompImage, 'CompImage'),
     ...genMdTextMap(CompInput, 'CompInput'),
-    ...genMdTextMap(CompPopper, 'CompPopper')
+    ...genMdTextMap(CompPopper, 'CompPopper'),
+    ...genMdTextMap(CompTable, 'CompTable')
 };

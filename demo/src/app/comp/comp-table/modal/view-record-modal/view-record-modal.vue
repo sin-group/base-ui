@@ -1,11 +1,10 @@
 <template>
-    <b-dialog :open="visible" title="View Record" @close="cancel">
+    <b-dialog :open="visible" dialog-class="sm" title="View Record" @close="cancel">
         <div class="view-record-modal-body">
             <pre class="json-preview">{{ $j(record) }}</pre>
         </div>
 
         <button slot="actions" class="simple lg" @click="cancel()">取消</button>
-        <button slot="actions" class="simple lg" @click="confirm()">确定</button>
     </b-dialog>
 </template>
 

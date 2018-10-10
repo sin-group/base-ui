@@ -254,6 +254,7 @@
 
             getRowClass(record, index) {
                 const {records, options: {genRowClass}} = this;
+
                 return {
                     selected: record.$$selected,
                     ...(typeof genRowClass === 'function' ? genRowClass(record, index, records) : {})
@@ -323,7 +324,7 @@
 
                 renderedRecords.forEach((record) => {
                     if (record.$$disableSelect) return;
-                    record.$$selected = isAllSelected;
+                    vm.$set(record, '$$selected', isAllSelected);
                 });
 
                 vm.$emit(EventTypes.ON_SELECT, {

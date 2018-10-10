@@ -38,7 +38,7 @@
 
             &:hover {
                 color: $white;
-                background-color: $primary-light;
+                background-color: rgba($primary, .7);
 
                 &.disabled {
                     color: $white;

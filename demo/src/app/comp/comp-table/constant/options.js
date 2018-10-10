@@ -1,4 +1,80 @@
-export default {
+import {GenderMap} from './conf';
+
+export const BasicOptions = {
+    colDefs: [
+        {field: 'mobile', label: '手机号'},
+        {field: 'name', label: '姓名'},
+        {field: 'gender', label: '性别', map: GenderMap},
+        {field: 'registerTime', label: '最近登录时间', filter: 'b-date-minute'}
+    ]
+};
+
+export const CustomizedColOptions = {
+    colDefs: [
+        {field: 'mobile', label: '手机号'},
+        {field: 'name', label: '姓名'},
+        {field: 'gender', label: '性别', map: GenderMap},
+        {field: 'registerTime', label: '最近登录时间', filter: 'b-date-minute'},
+        {field: 'op', label: '操作'}
+    ]
+};
+
+export const ClientPaginationOptions = {
+    enableClientPagination: true,
+    colDefs: [
+        {field: 'mobile', label: '手机号'},
+        {field: 'name', label: '姓名'},
+        {field: 'registerTime', label: '最近登录时间', filter: 'b-date-minute'}
+    ]
+};
+
+export const ServerPaginationOptions = {
+    enableServerPagination: true,
+    colDefs: [
+        {field: 'mobile', label: '手机号'},
+        {field: 'name', label: '姓名'},
+        {field: 'registerTime', label: '最近登录时间', filter: 'b-date-minute'}
+    ]
+};
+
+export const ClientSortOptions = {
+    enableClientPagination: true,
+    enableClientSort: true,
+    sortInfo: {
+        field: 'registerTime',
+        order: 'DESC'
+    },
+    colDefs: [
+        {field: 'mobile', label: '手机号'},
+        {field: 'name', label: '姓名'},
+        {field: 'age', label: '年龄'},
+        {field: 'registerTime', label: '最近登录时间', filter: 'b-date-minute'}
+    ]
+};
+
+export const ServerSortOptions = {
+    enableClientPagination: true,
+    enableServerSort: true,
+    colDefs: [
+        {field: 'mobile', label: '手机号'},
+        {field: 'name', label: '姓名'},
+        {field: 'age', label: '年龄'},
+        {field: 'registerTime', label: '最近登录时间', filter: 'b-date-minute'}
+    ]
+};
+
+export const RowSelectionOptions = {
+    enableClientPagination: true,
+    enableSelection: true,
+    colDefs: [
+        {field: 'mobile', label: '手机号'},
+        {field: 'name', label: '姓名'},
+        {field: 'age', label: '年龄'},
+        {field: 'registerTime', label: '最近登录时间', filter: 'b-date-minute'}
+    ]
+};
+
+export const FullOptions = {
     enableSelection: true,
     enableClientSort: true,
     enableClientPagination: true,
