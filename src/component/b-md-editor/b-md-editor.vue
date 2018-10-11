@@ -36,6 +36,7 @@
 
     import bold from './action/bold';
     import code from './action/code';
+    import untab from './action/untab';
     import header from './action/header';
     import italic from './action/italic';
     import link from './action/link';
@@ -59,6 +60,10 @@
 
     const KeyCodeEventMap = {
         [KeyCodeMap.tab]: tab
+    };
+
+    const KeyCodeShiftEventMap = {
+        [KeyCodeMap.tab]: untab
     };
 
     export default {
@@ -155,11 +160,17 @@
             },
 
             handleKeyDown(event) {
+                if (event.shiftKey && KeyCodeShiftEventMap[event.keyCode]) {
+                    event.preventDefault();
+                    this.callAction(KeyCodeShiftEventMap[event.keyCode]);
+                    return;
+                }
                 if (KeyCodeEventMap[event.keyCode]) {
                     event.preventDefault();
                     this.callAction(KeyCodeEventMap[event.keyCode]);
+
                 }
-                return false;
+
             },
 
             async handleInsert(action) {

@@ -4,26 +4,38 @@
  * @file tab
  */
 
+const TabString = '    ';
+
 export default {
     name: 'tab',
 
     modify({text, selectionStart, selectionEnd}) {
         const lineFirstCharIndex = text.lastIndexOf('\n', selectionStart - 1) + 1;
-        const selectionText = text.slice(selectionStart, selectionEnd);
 
-        let newText;
+        const preText = text.slice(0, lineFirstCharIndex);
+        const selectionFirstLineText = text.slice(lineFirstCharIndex, selectionStart);
+        const selectionText = text.slice(selectionStart, selectionEnd);
+        const postText = text.slice(selectionEnd);
+
+        let newSelectionFirstLineText = selectionFirstLineText;
+        let newSelectionText = selectionText;
+
         if (selectionStart === selectionEnd) {
-            newText = `${text.slice(0, selectionStart)}    ${text.slice(selectionStart)}`;
+            newSelectionText = TabString;
         } else {
-            newText = `${text.slice(0, lineFirstCharIndex)
-                }    ${text.slice(lineFirstCharIndex, selectionStart)
-                }${selectionText.replace(/\n/g, '\n    ')}${text.slice(selectionEnd)}`;
+            newSelectionFirstLineText = `${TabString}${selectionFirstLineText}`;
+            newSelectionText = selectionText.replace(/\n/g, `\n${TabString}`);
+            if (selectionText[selectionText.length - 1] === '\n') {
+                newSelectionText = newSelectionText.slice(0, newSelectionText.length - TabString.length);
+            }
         }
+
+        const newText = `${preText}${newSelectionFirstLineText}${newSelectionText}${postText}`;
 
         const lengthRevise = newText.length - text.length;
         return {
             text: newText,
-            selectionStart: selectionStart + 4,
+            selectionStart: selectionStart + TabString.length,
             selectionEnd: selectionEnd + lengthRevise
         };
     }
