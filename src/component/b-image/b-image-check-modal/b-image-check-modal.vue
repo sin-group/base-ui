@@ -8,7 +8,7 @@
     <b-dialog :dialog-class="checkSize" :open="visible" class="b-image-check-modal" @close="cancel">
         <div class="b-image-check-modal-body" @click="cancel">
             <div class="image-preview">
-                <img :src="image.base64">
+                <img :src="image.uri">
             </div>
         </div>
     </b-dialog>
