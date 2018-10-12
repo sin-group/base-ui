@@ -35,7 +35,7 @@
                     </div>
                 </div>
 
-                <b-button class="create" shape="icon">
+                <b-button v-if="multiple" class="create" shape="icon">
                     <input
                         :multiple="multiple"
                         :value="valueToAdd"
