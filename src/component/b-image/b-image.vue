@@ -7,7 +7,7 @@
 
     <div :class="{'b-resettable': canBeReset}" class="b-image">
         <b-input
-            :value="image.name"
+            :value="imageName"
             :name="name"
             :placeholder="placeholder"
             :disabled="disabled"
@@ -19,16 +19,31 @@
         </b-input>
 
         <input
+            :multiple="multiple"
+            :value="valueToSelect"
             type="file"
             accept="image/x-png,image/gif,image/jpeg"
-            @change="onChange">
+            @change="onSelect">
 
         <div class="image-preview-wrap">
-            <div v-if="image.base64" class="image-preview">
-                <img :src="image.base64">
-                <div class="mask" @click="checkImage">
-                    <i class="b-icon-search"></i>
+            <div v-if="previewImages.length" class="image-preview-list">
+                <div v-for="(image, index) in previewImages" :key="index" class="image-preview">
+                    <img :src="image.uri">
+                    <div class="mask" @click="checkImage(image)">
+                        <i class="b-icon-search"></i>
+                        <i class="b-icon-trash" @click.stop="remove(index)"></i>
+                    </div>
                 </div>
+
+                <b-button class="create" shape="icon">
+                    <input
+                        :multiple="multiple"
+                        :value="valueToAdd"
+                        type="file"
+                        accept="image/x-png,image/gif,image/jpeg"
+                        @change="onAdd">
+                    <i class="b-icon-create"></i>
+                </b-button>
             </div>
         </div>
     </div>
@@ -40,6 +55,9 @@
     import {getBase64} from '../../util/image';
     import BInput from '../b-input';
     import BImageCheckModal from './b-image-check-modal';
+
+    const OUTSIDE = 'OUTSIDE';
+    const INSIDE = 'INSIDE';
 
     export default {
         name: 'BImage',
@@ -69,6 +87,22 @@
                 default: '请选择'
             },
 
+            multiple: {
+                type: Boolean,
+                default: false
+            },
+
+            previewMode: {
+                type: String,
+                validator: val => [OUTSIDE, INSIDE].indexOf(val) !== -1,
+                default: INSIDE
+            },
+
+            previewList: {
+                type: Array,
+                default: () => ([])
+            },
+
             enableReset: {
                 type: Boolean,
                 default: true
@@ -82,52 +116,132 @@
 
         data() {
             return {
-                image: {
-                    name: '',
-                    base64: ''
-                }
+                OUTSIDE,
+                INSIDE,
+
+                images: [],
+                files: [],
+                valueToSelect: null,
+                valueToAdd: null
             };
         },
 
         computed: {
             canBeReset() {
                 const vm = this;
-                const {image: {name}, disabled, enableReset} = vm;
+                const {previewImages, disabled, enableReset} = vm;
 
-                return name && enableReset && !disabled;
+                return previewImages.length && enableReset && !disabled;
+            },
+
+            imageName() {
+                const vm = this;
+                const {previewImages} = vm;
+                if (!previewImages.length) return '';
+
+                if (previewImages.length === 1 && previewImages[0].name) {
+                    return previewImages[0].name;
+                }
+
+                return `${previewImages.length} images`;
+            },
+
+            previewImages() {
+                const vm = this;
+                const {images, previewList, previewMode} = vm;
+
+                return previewMode === INSIDE ? images : previewList;
             }
         },
 
         methods: {
+            onSelect(event) {
+                const vm = this;
+                const {multiple} = this;
+
+                if (multiple) {
+                    vm.onAdd(event);
+                    return;
+                }
+
+                vm.onChange(event);
+            },
+
             async onChange(event) {
                 const vm = this;
-                const files = event.target.files || event.dataTransfer.files;
+                const {multiple} = vm;
+                const oriFiles = event.target.files || event.dataTransfer.files;
 
-                if (!files.length) return;
+                if (!oriFiles.length) return;
+                vm.files = Array.from(oriFiles);
+                vm.images = [];
 
-                const file = files[0];
-                vm.image = {
-                    name: file.name,
-                    base64: await getBase64(file),
-                    file
-                };
+                await Promise.all(vm.files.map(async (file) => {
+                    vm.images.push({
+                        name: file.name,
+                        uri: await getBase64(file),
+                        file
+                    });
+                }));
 
-                vm.$emit('change', file);
+                if (!multiple) {
+                    vm.$emit('change', vm.files[0]);
+                    return;
+                }
+
+                vm.$emit('change', vm.files);
+                vm.valueToSelect = null;
+            },
+
+            async onAdd(event) {
+                const vm = this;
+                const {previewMode} = vm;
+                const oriFiles = event.target.files || event.dataTransfer.files;
+
+                if (!oriFiles.length) return;
+
+                const newFiles = Array.from(oriFiles);
+
+                if (previewMode === INSIDE) {
+                    await Promise.all(newFiles.map(async (file) => {
+                        vm.images.push({
+                            name: file.name,
+                            uri: await getBase64(file),
+                            file
+                        });
+                    }));
+
+                    vm.$emit('change', vm.files.concat(newFiles));
+                }
+
+                vm.$emit('add', newFiles);
+                vm.valueToAdd = null;
             },
 
             reset() {
                 const vm = this;
-                vm.image = {
-                    name: '',
-                    base64: ''
-                };
+                vm.images = [];
                 vm.$emit('change', null);
             },
 
-            checkImage() {
+            checkImage(image) {
                 const vm = this;
-                const {image, checkSize} = vm;
+                const {checkSize} = vm;
                 vm.$modal.open(BImageCheckModal, {image, checkSize}).catch(x => x);
+            },
+
+            remove(index) {
+                const vm = this;
+                const {previewMode} = vm;
+
+                if (previewMode === INSIDE) {
+                    vm.images.splice(index, 1);
+                    vm.files.splice(index, 1);
+
+                    vm.$emit('change', vm.files);
+                }
+
+                vm.$emit('remove', index);
             }
         }
     };

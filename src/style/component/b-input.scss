@@ -39,6 +39,7 @@
             right: 0;
             bottom: 8px;
             color: $gray;
+            z-index: $z-index-right-reset;
 
             &.b-date-icon-active,
             &.b-select-icon-active {

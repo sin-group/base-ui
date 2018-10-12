@@ -29,6 +29,52 @@
             </div>
 
             <div class="case">
+                <h3>多选</h3>
+                <b-md-view :md-text="MD.CompImageMultiple"/>
+
+                <demo-box>
+                    <div slot="code"><b-md-view :md-text="MD.CompImageMultipleCode"/></div>
+                    <div slot="main">
+                        <b-image v-model="demo.multiple" multiple/>
+                    </div>
+                    <div slot="output">The output is {{ genInfo(demo.multiple) }}</div>
+                </demo-box>
+            </div>
+
+            <div class="case">
+                <h3>预览类型</h3>
+                <b-md-view :md-text="MD.CompImagePreviewMode"/>
+
+                <demo-box>
+                    <div slot="code"><b-md-view :md-text="MD.CompImagePreviewModeCode"/></div>
+                    <div slot="main">
+                        <div>
+                            <b-form-group label="Inside">
+                                <b-image
+                                    v-model="demo.previewModeInside"
+                                    multiple
+                                    preview-mode="INSIDE"
+                                />
+                            </b-form-group>
+                        </div>
+
+                        <div>
+                            <b-form-group label="Outside">
+                                <b-image
+                                    :preview-list="demo.previewModeOutside"
+                                    multiple
+                                    preview-mode="OUTSIDE"
+                                    @change="onOutsideChange"
+                                    @remove="onOutsideRemove"
+                                    @add="onOutsideAdd"
+                                />
+                            </b-form-group>
+                        </div>
+                    </div>
+                </demo-box>
+            </div>
+
+            <div class="case">
                 <h3>一致性</h3>
                 <b-md-view :md-text="MD.CompImageConsistent"/>
             </div>
@@ -46,6 +92,21 @@
 
     import MD from '../../../common/md';
 
+    const getBase64 = (file) => {
+        const reader = new FileReader();
+
+        return new Promise((resolve, reject) => {
+            reader.onload = () => {
+                resolve(reader.result);
+            };
+
+            reader.onerror = reject;
+
+            reader.readAsDataURL(file);
+        });
+    };
+
+
     export default {
         name: 'CompImage',
 
@@ -53,22 +114,54 @@
             return {
                 MD,
                 demo: {
-                    basic: null
+                    basic: null,
+                    multiple: [],
+                    previewModeInside: [],
+                    previewModeOutside: []
                 }
             };
         },
 
         methods: {
-            genInfo(file) {
-                if (!file) return null;
+            genInfo(data) {
+                if (!data) return null;
+                if (data.constructor === Array) {
+                    return data.map(({type, name, size, lastModified}) => ({
+                        type,
+                        name,
+                        size,
+                        lastModified
+                    }));
+                }
 
-                const {type, name, size, lastModified} = file;
+                const {type, name, size, lastModified} = data;
                 return {
                     type,
                     name,
                     size,
                     lastModified
                 };
+            },
+
+            async onOutsideChange(data) {
+                const vm = this;
+                vm.demo.previewModeOutside = [];
+                for (let i = 0; i < data.length; i += 1) {
+                    const uri = await getBase64(data[i]); // eslint-disable-line no-await-in-loop
+                    vm.demo.previewModeOutside.push({uri});
+                }
+            },
+
+            onOutsideRemove(index) {
+                this.demo.previewModeOutside.splice(index, 1);
+            },
+
+            async onOutsideAdd(data) {
+                const vm = this;
+                for (let i = 0; i < data.length; i += 1) {
+                    const uri = await getBase64(data[i]); // eslint-disable-line no-await-in-loop
+                    vm.demo.previewModeOutside.push({uri});
+                }
             }
         }
 

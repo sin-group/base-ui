@@ -6,13 +6,11 @@
 <template>
 
     <b-dialog :dialog-class="checkSize" :open="visible" class="b-image-check-modal" @close="cancel">
-        <div class="b-image-check-modal-body">
+        <div class="b-image-check-modal-body" @click="cancel">
             <div class="image-preview">
                 <img :src="image.base64">
             </div>
         </div>
-
-        <button slot="actions" class="simple lg" @click="cancel()">取消</button>
     </b-dialog>
 
 </template>
@@ -67,3 +65,4 @@
     };
 
 </script>
+

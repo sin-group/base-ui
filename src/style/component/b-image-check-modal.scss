@@ -1,21 +1,39 @@
 @import "../variables.scss";
 
 .b-image-check-modal {
-    .b-image-check-modal-body {
-        position: relative;
-        padding-top: 25px;
+    cursor: zoom-out;
 
-        .image-preview {
-            img {
-                position: relative;
-                top: 0;
-                left: 50%;
-                max-width: 100%;
-                max-height: 100%;
-                transform: translate(-50%, 0);
-                border-radius: 3px;
-                box-shadow: $standard-box-shadow;
+    .b-dialog-icon-close {
+        display: none;
+    }
+
+    .b-dialog-content-wrapper {
+        .b-image-check-modal-body {
+            position: relative;
+            padding-top: 25px;
+
+            .image-preview {
+                img {
+                    position: relative;
+                    top: 0;
+                    left: 50%;
+                    max-width: 100%;
+                    max-height: 100%;
+                    transform: translate(-50%, 0);
+                    border-radius: 3px;
+                    box-shadow: $standard-box-shadow;
+                }
+            }
+        }
+
+        .b-dialog {
+            background-color: transparent;
+            box-shadow: none;
+
+            .close {
+                color: white;
             }
         }
     }
 }
+

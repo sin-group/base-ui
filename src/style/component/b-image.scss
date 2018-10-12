@@ -35,11 +35,26 @@
                 color: $white;
                 transition: .5s;
             }
+
+            .b-icon-trash {
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 5px;
+                font-size: 18px;
+                opacity: 0;
+                color: $gray-dark;
+                background-color: rgba($white, .7);
+                border-radius: 2px;
+                transition: .5s;
+            }
         }
 
         .image-preview {
             display: inline-block;
             position: relative;
+            margin-right: 10px;
+            margin-bottom: 10px;
 
             &:hover {
                 .mask {
@@ -48,15 +63,44 @@
                     .b-icon-search {
                         opacity: 1;
                     }
+
+                    .b-icon-trash {
+                        opacity: .7;
+
+                        &:hover {
+                            color: $red;
+                            opacity: 1;
+                        }
+                    }
                 }
             }
 
             img {
-                min-width: 20px;
-                max-width: $form-inline-width;
+                min-height: 20px;
+                max-height: $form-inline-height;
                 border-radius: 3px;
                 box-shadow: $standard-box-shadow;
                 transition: 1s;
+            }
+        }
+
+        .image-preview-list {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .create {
+            position: relative;
+            left: 20px;
+            bottom: 5px;
+            cursor: pointer;
+
+            input {
+                width: 100%;
+                height: 100%;
+                z-index: 100;
+                cursor: pointer;
             }
         }
     }

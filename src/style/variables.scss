@@ -33,6 +33,7 @@ $tablet-min: 480px !default;
 
 // Form
 $form-inline-width: 256px;
+$form-inline-height: 100px;
 
 // Element
 $mat-height: 48px !default;
@@ -56,6 +57,7 @@ $date-picker-btn-width: 28px !default;
 $all-transition: all .36s cubic-bezier(.78, .14, .15, .86) !default;
 
 // Z-Index
+$z-index-right-reset: 900 !default;
 $z-index-nav-left: 9990 !default;
 $z-index-nav-left-mask: 9989 !default;
 $z-index-nav-top: 9988 !default;
