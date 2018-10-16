@@ -75,7 +75,7 @@ props `preview-mode` 用来控制图片预览由内部或外部控制，可选�
 }
 ```
 
-通常，外部控制图片预览需要开发者监听 `add`, `remove` 事件处理，从而产生 `preview-list`
+通常，外部控制图片预览需要开发者监听 `add`, `remove`, `reset` 事件，从而处理 `preview-list`
 
 ```
 <b-image
@@ -84,6 +84,7 @@ props `preview-mode` 用来控制图片预览由内部或外部控制，可选�
     preview-mode="OUTSIDE"
     @add="onAdd"
     @remove="onRemove"
+    @reset="onReset"
 />
 ...
 onAdd(files) {
@@ -92,6 +93,10 @@ onAdd(files) {
 
 onRemove(index) {
     // index 为删除的图片 index
+}
+
+onReset() {
+    // handle reset
 }
 ```
 
@@ -114,6 +119,7 @@ onRemove(index) {
             preview-mode="OUTSIDE"
             @add="onOutsideAdd"
             @remove="onOutsideRemove"
+            @reset="onReset"
         />
     </b-form-group>
 </template>
@@ -139,6 +145,10 @@ onRemove(index) {
 
             onOutsideRemove(index) {
                 this.outside.splice(index, 1);
+            },
+
+            onReset() {
+                this.outside = [];
             }
         }
     };

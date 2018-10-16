@@ -18,6 +18,7 @@ import BForm from './b-form';
 import BFormGroup from './b-form-group';
 import BHeader from './b-header';
 import BImage from './b-image';
+import BImageGallery from './b-image-gallery';
 import BInput from './b-input';
 import BLayout from './b-layout';
 import BNavSide from './b-nav-side';
@@ -51,6 +52,7 @@ export default {
         Vue.component('b-form-group', BFormGroup);
         Vue.component('b-header', BHeader);
         Vue.component('b-image', BImage);
+        Vue.component('b-image-gallery', BImageGallery);
         Vue.component('b-input', BInput);
         Vue.component('b-layout', BLayout);
         Vue.component('b-nav-side', BNavSide);

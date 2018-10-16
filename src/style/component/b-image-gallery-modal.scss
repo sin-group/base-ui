@@ -1,0 +1,106 @@
+@import "../variables.scss";
+
+.b-image-gallery-modal {
+    cursor: zoom-out;
+    background-color: rgba($black, .7);
+
+    .b-dialog-icon-close {
+        display: none;
+    }
+
+    .b-dialog-content-wrapper {
+        .b-image-check-modal-body {
+            position: relative;
+            padding-top: 25px;
+            user-select: none;
+
+            .image-preview {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    position: relative;
+                    max-width: 100%;
+                    max-height: 100%;
+                    border-radius: 4px;
+                    box-shadow: $standard-box-shadow;
+                    animation: .4s ease-in image-fade-in;
+
+                    @keyframes image-fade-in {
+                        0% {
+                            opacity: .6;
+                        }
+
+                        100% {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        .b-dialog {
+            background-color: transparent;
+            box-shadow: none;
+        }
+    }
+}
+
+.b-image-gallery-modal-wrapper {
+    .gallery-tip {
+        position: fixed;
+        top: 30px;
+        left: 50%;
+        color: $white;
+        font-weight: 100;
+        transition: .4s;
+        transform: translate(-50%, 0);
+        z-index: $z-index-image-gallery-overlay;
+        user-select: none;
+    }
+
+    .go-left,
+    .go-right {
+        position: fixed;
+        top: 50%;
+        margin: 10px;
+        padding: 10px;
+        font-size: 40px;
+        border-radius: 50%;
+        color: $white;
+        cursor: pointer;
+        transform: translate(0, -50%);
+        transition: .4s;
+        z-index: $z-index-image-gallery-overlay;
+
+        &:hover {
+            background-color: $gray-dark;
+            box-shadow: $standard-box-shadow;
+        }
+    }
+
+    .go-left {
+        left: calc(50vw - 480px);
+    }
+
+    .go-right {
+        right: calc(50vw - 480px);
+    }
+
+    @media screen and (max-width: 960px) {
+        .go-left,
+        .go-right {
+            padding: 5px;
+            font-size: 30px;
+        }
+
+        .go-left {
+            left: 10px;
+        }
+
+        .go-right {
+            right: 10px;
+        }
+    }
+}

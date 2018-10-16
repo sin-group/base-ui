@@ -1,0 +1,4 @@
+{
+    "name": "comp-image-gallery",
+    "main": "./comp-image-gallery.vue"
+}

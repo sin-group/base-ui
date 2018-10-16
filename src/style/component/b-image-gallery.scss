@@ -1,0 +1,59 @@
+@import "../variables.scss";
+
+.b-image-gallery {
+    position: relative;
+
+    .mask {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 3px;
+        transition: 1s;
+
+        .b-icon-search {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            opacity: 0;
+            color: $white;
+            transition: .5s;
+        }
+    }
+
+    .image-preview {
+        display: inline-block;
+        position: relative;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+
+        &:hover {
+            .mask {
+                background-color: rgba($black, .3);
+
+                .b-icon-search {
+                    opacity: 1;
+                }
+            }
+        }
+
+        img {
+            min-height: 20px;
+            max-height: $form-inline-height;
+            border-radius: 3px;
+            box-shadow: $standard-box-shadow;
+            transition: 1s;
+        }
+    }
+
+    .image-preview-list {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+}

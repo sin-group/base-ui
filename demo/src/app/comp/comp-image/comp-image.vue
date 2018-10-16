@@ -67,6 +67,7 @@
                                     @change="onOutsideChange"
                                     @remove="onOutsideRemove"
                                     @add="onOutsideAdd"
+                                    @reset="onOutsideReset"
                                 />
                             </b-form-group>
                         </div>
@@ -154,6 +155,10 @@
 
             onOutsideRemove(index) {
                 this.demo.previewModeOutside.splice(index, 1);
+            },
+
+            onOutsideReset() {
+                this.demo.previewModeOutside = [];
             },
 
             async onOutsideAdd(data) {

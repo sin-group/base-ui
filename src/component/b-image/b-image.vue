@@ -143,6 +143,10 @@
                     return previewImages[0].name;
                 }
 
+                if (previewImages.length === 1) {
+                    return '1 image';
+                }
+
                 return `${previewImages.length} images`;
             },
 
@@ -220,7 +224,14 @@
 
             reset() {
                 const vm = this;
+                const {previewMode, multiple} = vm;
                 vm.images = [];
+
+                if (previewMode === OUTSIDE && multiple) {
+                    vm.$emit('reset');
+                    return;
+                }
+
                 vm.$emit('change', null);
             },
 

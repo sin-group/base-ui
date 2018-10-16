@@ -14,6 +14,7 @@ import CompDateString from './comp/date-string.md';
 import CompDateTime from './comp/date-time.md';
 import CompForm from './comp/form.md';
 import CompImage from './comp/image.md';
+import CompImageGallery from './comp/image-gallery.md';
 import CompInput from './comp/input.md';
 import CompLayout from './comp/layout.md';
 import CompPopper from './comp/popper.md';
@@ -32,6 +33,7 @@ export default {
     ...genMdTextMap(CompDateTime, 'CompDateTime'),
     ...genMdTextMap(CompForm, 'CompForm'),
     ...genMdTextMap(CompImage, 'CompImage'),
+    ...genMdTextMap(CompImageGallery, 'CompImageGallery'),
     ...genMdTextMap(CompInput, 'CompInput'),
     ...genMdTextMap(CompLayout, 'CompLayout'),
     ...genMdTextMap(CompPopper, 'CompPopper'),

@@ -23,6 +23,7 @@ import CompDateString from '../../app/comp/comp-date-string';
 import CompDateTime from '../../app/comp/comp-date-time';
 import CompForm from '../../app/comp/comp-form';
 import CompImage from '../../app/comp/comp-image';
+import CompImageGallery from '../../app/comp/comp-image-gallery';
 import CompInput from '../../app/comp/comp-input';
 import CompLayout from '../../app/comp/comp-layout';
 import CompMdEditor from '../../app/comp/comp-md-editor';
@@ -196,6 +197,14 @@ export default [
                 component: CompImage,
                 meta: {
                     navTitle: 'Image'
+                }
+            },
+            {
+                name: 'CompImageGallery',
+                path: '/component/image-gallery',
+                component: CompImageGallery,
+                meta: {
+                    navTitle: 'Image Gallery'
                 }
             },
             {
