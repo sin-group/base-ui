@@ -232,11 +232,16 @@
 
             remove(index) {
                 const vm = this;
-                const {previewMode} = vm;
+                const {previewMode, multiple} = vm;
 
                 if (previewMode === INSIDE) {
                     vm.images.splice(index, 1);
                     vm.files.splice(index, 1);
+
+                    if (!multiple) {
+                        vm.$emit('change', null);
+                        return;
+                    }
 
                     vm.$emit('change', vm.files);
                 }

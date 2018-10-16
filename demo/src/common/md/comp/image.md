@@ -52,22 +52,22 @@
 
 当用户选择图片后，此时有两种模式来展示这些图片的预览：
 
-* 由 `b-image` 内部管理图片预览的展示，如上面两个例子所示；此时开发者无需处理预览相关内容
-* 外部传入图片 uri list，此时开发者可以在选择后直接上传图片至远端服务器取得这些图片信息来渲染图片预览，这样可以保持预览图片上传成功才显示或经过服务端处理
+* **内部自动处理**：由 `b-image` 内部管理图片预览的展示，如上面两个例子所示；此时开发者无需处理预览相关内容
+* **外部手动处理**：外部传入图片 uri list，此时开发者可以在选择后直接上传图片至远端服务器取得这些图片信息来渲染图片预览，这样可以保持预览图片上传成功才显示或经过服务端处理
 
-props `previewMode` 用来控制图片预览由内部或外部控制，可选择 `INSIDE`，`OUTSIDE`，默认 `INSIDE`
+props `preview-mode` 用来控制图片预览由内部或外部控制，可选择 `INSIDE`，`OUTSIDE`，默认 `INSIDE`
 
-`previewMode` 为 `OUTSIDE` 时，传入 `previewList` 控制图片预览:
+`preview-mode` 为 `OUTSIDE` 时，传入 `preview-list` 控制图片预览:
 
 ```html
 <b-image
-    :previewList="images"
-    multiple
+    :preview-list="images"
     preview-mode="OUTSIDE"
+    multiple
 />
 ```
 
-`previewList` 是一个 `Array`，每个元素形如
+`preview-list` 是一个 `Array`，每个元素形如
 
 ```
 {
@@ -75,11 +75,11 @@ props `previewMode` 用来控制图片预览由内部或外部控制，可选择
 }
 ```
 
-通常，外部控制图片预览需要开发者监听 `add`, `remove` 事件处理，从而产生 `previewList`
+通常，外部控制图片预览需要开发者监听 `add`, `remove` 事件处理，从而产生 `preview-list`
 
 ```
 <b-image
-    :previewList="images"
+    :preview-list="images"
     multiple
     preview-mode="OUTSIDE"
     @add="onAdd"
@@ -109,7 +109,7 @@ onRemove(index) {
 
     <b-form-group label="Outside">
         <b-image
-            :previewList="outside"
+            :preview-list="outside"
             multiple
             preview-mode="OUTSIDE"
             @add="onOutsideAdd"
@@ -165,10 +165,10 @@ onRemove(index) {
 |`name`|`String`|表单 name|`''`|
 |`disabled`|`Boolean`|是否禁用|`false`|
 |`placeholder`|`String`|输入栏提示|`''`|
-|`enableReset`|`Boolean`|是否可重置|`true`|
+|`enable-reset`|`Boolean`|是否可重置|`true`|
 |`multiple`|`Boolean`|是否支持多选|`false`|
-|`previewMode`|`['INSIDE', 'OUTSIDE']`|内部或外部控制图片预览模式|`'INSIDE'`|
-|`previewList`|`Array`|`previewMode` 在 `'OUTSIDE'` 模式下预览图片列表|`[]`|
+|`preview-mode`|`['INSIDE', 'OUTSIDE']`|内部或外部控制图片预览模式|`'INSIDE'`|
+|`preview-list`|`Array`|`preview-mode` 在 `'OUTSIDE'` 模式下预览图片列表|`[]`|
 
 #### Events
 

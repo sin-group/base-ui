@@ -6,8 +6,8 @@
                 <h2>
                     <span class="title">输入框</span>
                     <code>b-input</code>
-                    <b-md-view :md-text="MD.CompInputOverview"/>
                 </h2>
+                <b-md-view :md-text="MD.CompInputOverview"/>
             </div>
 
             <div class="case">

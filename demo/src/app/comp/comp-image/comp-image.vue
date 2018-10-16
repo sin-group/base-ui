@@ -42,7 +42,7 @@
             </div>
 
             <div class="case">
-                <h3>预览类型</h3>
+                <h3>预览模式</h3>
                 <b-md-view :md-text="MD.CompImagePreviewMode"/>
 
                 <demo-box>

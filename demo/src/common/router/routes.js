@@ -24,6 +24,7 @@ import CompDateTime from '../../app/comp/comp-date-time';
 import CompForm from '../../app/comp/comp-form';
 import CompImage from '../../app/comp/comp-image';
 import CompInput from '../../app/comp/comp-input';
+import CompLayout from '../../app/comp/comp-layout';
 import CompMdEditor from '../../app/comp/comp-md-editor';
 import CompMdView from '../../app/comp/comp-md-view';
 import CompPagination from '../../app/comp/comp-pagination';
@@ -203,6 +204,14 @@ export default [
                 component: CompInput,
                 meta: {
                     navTitle: 'Input'
+                }
+            },
+            {
+                name: 'CompLayout',
+                path: '/component/layout',
+                component: CompLayout,
+                meta: {
+                    navTitle: 'Layout'
                 }
             },
             {

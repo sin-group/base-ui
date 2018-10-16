@@ -11,11 +11,11 @@
         </div>
 
         <div>
-            <div v-if="isNavOpen" @click="onNavClick">
+            <div v-if="isNavOpen" class="side-left" @click="onNavClick">
                 <slot name="side-left"></slot>
             </div>
 
-            <div :class="{'menu-opened': isNavOpen}" class="content">
+            <div :class="{'menu-opened': isWideContent}" class="content">
                 <slot name="content"></slot>
             </div>
 
@@ -26,7 +26,7 @@
 
         <slot name="footer"></slot>
 
-        <div v-if="isNavOpen" class="nav-mask lg-hide sm-show" @click="onNavClick"></div>
+        <div v-if="isWideContent" class="nav-mask lg-hide sm-show" @click="onNavClick"></div>
     </div>
 
 </template>
@@ -47,6 +47,12 @@
             isNavOpen: {
                 type: Boolean,
                 default: true
+            }
+        },
+
+        computed: {
+            isWideContent() {
+                return this.isNavOpen && this.$slots['side-left'];
             }
         },
 

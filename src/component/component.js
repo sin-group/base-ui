@@ -21,6 +21,7 @@ import BImage from './b-image';
 import BInput from './b-input';
 import BLayout from './b-layout';
 import BNavSide from './b-nav-side';
+import BNavTop from './b-nav-top';
 import BMdEditor from './b-md-editor';
 import BMdView from './b-md-view';
 import BPagination from './b-pagination';
@@ -53,6 +54,7 @@ export default {
         Vue.component('b-input', BInput);
         Vue.component('b-layout', BLayout);
         Vue.component('b-nav-side', BNavSide);
+        Vue.component('b-nav-top', BNavTop);
         Vue.component('b-md-editor', BMdEditor);
         Vue.component('b-md-view', BMdView);
         Vue.component('b-pagination', BPagination);
