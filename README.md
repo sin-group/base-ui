@@ -4,7 +4,7 @@
 
 ## Links
 
-* [Demo](https://base-ui.yangqianguan.com)
+* [Doc](https://base-ui.yangqianguan.com)
 
 ## Install
 
