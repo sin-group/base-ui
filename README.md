@@ -19,10 +19,10 @@ npm install base-ui --save
 import Vue from 'vue';
 import BaseUI from 'base-ui';
 
-// third party style
+// base-ui style
 import 'base-ui/dist/base-ui.css';
 
-// use dependency
+// use plugin
 Vue.use(BaseUI);
 ```
 
