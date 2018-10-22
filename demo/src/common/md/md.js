@@ -17,6 +17,7 @@ import CompImage from './comp/image.md';
 import CompImageGallery from './comp/image-gallery.md';
 import CompInput from './comp/input.md';
 import CompLayout from './comp/layout.md';
+import CompPagination from './comp/pagination.md';
 import CompPopper from './comp/popper.md';
 import CompTable from './comp/table.md';
 
@@ -36,6 +37,7 @@ export default {
     ...genMdTextMap(CompImageGallery, 'CompImageGallery'),
     ...genMdTextMap(CompInput, 'CompInput'),
     ...genMdTextMap(CompLayout, 'CompLayout'),
+    ...genMdTextMap(CompPagination, 'CompPagination'),
     ...genMdTextMap(CompPopper, 'CompPopper'),
     ...genMdTextMap(CompTable, 'CompTable')
 };
