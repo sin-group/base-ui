@@ -46,7 +46,6 @@
     "eslint-loader": "2.1.0",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jsx-a11y": "6.1.2",
-    "eslint-plugin-react": "7.11.1",
     "eslint-plugin-vue": "4.7.1",
     "husky": "1.0.0-rc.2",
     "json3": "3.3.2",
