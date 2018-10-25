@@ -99,7 +99,7 @@
             isRoot() {
                 const vm = this;
 
-                return vm.data.length > 0 && vm.data.every(node => !node.$$parent);
+                return vm.data && vm.data.length > 0 && vm.data.every(node => !node.$$parent);
             },
 
             needFilter() {
