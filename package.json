@@ -19,6 +19,7 @@
   "homepage": "https://github.com/sin-group/base-ui#readme",
   "dependencies": {
     "@yqg/node": "0.0.4",
+    "chalk": "2.4.1",
     "compression": "1.7.3",
     "config": "2.0.1",
     "es5-shim": "4.5.10",
