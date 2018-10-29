@@ -29,7 +29,8 @@
                 :map="map"
                 :value="value"
                 :search-text="searchText"
-                @choose="choose"/>
+                @choose="choose"
+                @close="closeMenu"/>
         </b-popper>
     </div>
 </template>

@@ -192,9 +192,14 @@
                 this.$emit('choose', item[valueField], item);
             },
 
+            handleClose() {
+                const vm = this;
+                vm.$emit('close');
+            },
+
             handleKeyDown(keyCode) {
                 const vm = this;
-                const {highlightIndex, menuList, value} = vm;
+                const {highlightIndex, menuList} = vm;
 
                 switch (keyCode) {
                     case KeyCodeMap.up: {
@@ -206,10 +211,10 @@
                         break;
                     }
                     case KeyCodeMap.enter: {
-                        if (highlightIndex > -1) {
+                        if (highlightIndex > -1 && menuList.length) {
                             vm.handleChoose(menuList[highlightIndex]);
                         } else {
-                            vm.handleChoose(value);
+                            vm.handleClose();
                         }
                         break;
                     }

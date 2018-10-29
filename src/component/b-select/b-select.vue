@@ -50,6 +50,7 @@
                 :multiple="multiple"
                 :search-text="searchText"
                 @choose="choose"
+                @close="closeMenu"
                 @choose-selected="handleSelectedChoice"/>
         </b-popper>
     </div>

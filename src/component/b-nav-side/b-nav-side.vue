@@ -42,6 +42,7 @@
                         <router-link
                             v-else
                             :to="{name: rootRoute.name}"
+                            :class="{active: rootRoute.name === $route.name}"
                             class="action-bar router-level-1"
                         >
                             {{ rootRoute.meta.navTitle }}

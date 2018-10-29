@@ -204,6 +204,11 @@
                 }
             },
 
+            handleClose() {
+                const vm = this;
+                vm.$emit('close');
+            },
+
             handleKeyDown(keyCode) {
                 const vm = this;
                 const {highlightIndex, menuList} = vm;
@@ -217,10 +222,10 @@
                         break;
                     }
                     case KeyCodeMap.enter: {
-                        if (highlightIndex > -1) {
+                        if (highlightIndex > -1 && menuList.length) {
                             vm.handleChoose(menuList[highlightIndex]);
                         } else {
-                            vm.handleChoose();
+                            vm.handleClose();
                         }
                         break;
                     }
