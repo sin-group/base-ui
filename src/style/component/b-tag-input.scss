@@ -1,0 +1,65 @@
+.yqg-tag-input {
+    .content-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        border-bottom: 1px solid #bdbdbd;
+
+        &-active {
+            border-bottom-color: #3f51b5;
+        }
+
+        .tag {
+            display: flex;
+            align-items: center;
+            max-width: calc(100% - 20px);
+            margin: 3px;
+            padding: 5px 5px;
+            font-size: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 3px;
+            background-color: #f3f3f3;
+            cursor: pointer;
+
+            .tag-area {
+                display: inline-block;
+                max-width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .close {
+                width: 15px;
+                margin-left: 5px;
+                font-size: 14px;
+
+                &:hover {
+                    color: #3f51b5;
+                }
+            }
+        }
+
+        .input-area {
+            position: relative;
+
+            .input-display {
+                display: inline-block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                font-size: 14px;
+                white-space: nowrap;
+                transition: 0s;
+                color: transparent;
+            }
+
+            .tag-input {
+                font-size: 14px;
+                border-width: 0;
+                outline: none;
+                transition: 0s;
+            }
+        }
+    }
+}
