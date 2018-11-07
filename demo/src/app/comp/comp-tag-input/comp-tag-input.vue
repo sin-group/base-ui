@@ -6,7 +6,7 @@
 <template>
 
     <div class="comp-tag-input">
-        <h4 class="heading">Switch</h4>
+        <h4 class="heading">TagInput</h4>
 
         <div class="card">
             <form class="form-block" @submit.prevent>
