@@ -33,6 +33,7 @@ import BSelectCascader from './b-select-cascader';
 import BSwitch from './b-switch';
 import BTab from './b-tab';
 import BTable from './b-table';
+import BTagInput from './b-tag-input';
 import BTree from './b-tree';
 
 export default {
@@ -67,6 +68,7 @@ export default {
         Vue.component('b-switch', BSwitch);
         Vue.component('b-tab', BTab);
         Vue.component('b-table', BTable);
+        Vue.component('b-tag-input', BTagInput);
         Vue.component('b-tree', BTree);
     }
 
