@@ -11,6 +11,7 @@ import scss from 'rollup-plugin-scss';
 import vue from 'rollup-plugin-vue';
 import {uglify} from 'rollup-plugin-uglify';
 
+// test pr
 export default {
     input: 'src/base-ui.js',
     output: {
