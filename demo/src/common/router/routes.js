@@ -36,6 +36,7 @@ import CompSelectCascader from '../../app/comp/comp-select-cascader';
 import CompSwitch from '../../app/comp/comp-switch';
 import CompTab from '../../app/comp/comp-tab';
 import CompTable from '../../app/comp/comp-table';
+import CompTagInput from '../../app/comp/comp-tag-input';
 import CompTree from '../../app/comp/comp-tree';
 
 import Plugin from '../../app/plugin';
@@ -301,6 +302,14 @@ export default [
                 component: CompTable,
                 meta: {
                     navTitle: 'Table'
+                }
+            },
+            {
+                name: 'CompTagInput',
+                path: '/component/tag-input',
+                component: CompTagInput,
+                meta: {
+                    navTitle: 'Tag Input'
                 }
             },
             {

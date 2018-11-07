@@ -20,6 +20,7 @@ import CompLayout from './comp/layout.md';
 import CompPagination from './comp/pagination.md';
 import CompPopper from './comp/popper.md';
 import CompTable from './comp/table.md';
+import CompTagInput from './comp/tag-input.md';
 
 import {genMdTextMap} from './helper';
 
@@ -39,5 +40,6 @@ export default {
     ...genMdTextMap(CompLayout, 'CompLayout'),
     ...genMdTextMap(CompPagination, 'CompPagination'),
     ...genMdTextMap(CompPopper, 'CompPopper'),
-    ...genMdTextMap(CompTable, 'CompTable')
+    ...genMdTextMap(CompTable, 'CompTable'),
+    ...genMdTextMap(CompTagInput, 'CompTagInput')
 };
