@@ -7,8 +7,6 @@
 
     <div class="comp-tag-input">
         <div class="doc card">
-            <h4 class="heading">TagInput</h4>
-
             <div class="case">
                 <h3>基本用法</h3>
                 <b-md-view :md-text="MD.CompTagInputBasic"/>
@@ -43,7 +41,9 @@
         data() {
             return {
                 MD,
-                basic: ['标签1', '标签2', '标签3']
+                basic: [
+                    '标签1', '标签2', '标签3'
+                ]
             };
         }
     };

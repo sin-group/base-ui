@@ -10,7 +10,7 @@
 
 ```html
 <template>
-    <b-tag-input v-model"tags"/>
+    <b-tag-input v-model="tags"/>
 </template>
 
 <script>
