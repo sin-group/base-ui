@@ -6,27 +6,26 @@
             <input
                 v-if="!multiLine"
                 ref="b-input"
+                v-model="filterValue"
                 :name="name"
                 :type="type"
                 :placeholder="placeholder"
                 :disabled="disabled"
-                :value="value"
                 :pattern="pattern"
                 :readonly="disabled"
                 :required="required"
-                @keyup="handleKeyUp"
-                @keydown="handleKeyDwon"
-                @change="handleChange"
-                @input="handleInput"
-                @focus="handleFocus"
-                @blur="handleBlur">
+                @keyup="emitEvent('keyup' ,$event)"
+                @keydown="emitEvent('keydown' ,$event)"
+                @focus="emitEvent('focus' ,$event)"
+                @blur="emitEvent('blur' ,$event)"
+                @input="handleInput" >
 
             <b-textarea
                 v-else
                 ref="b-textarea"
+                v-model="filterValue"
                 :placeholder="placeholder"
                 :disabled="disabled"
-                :value="value"
                 :pattern="pattern"
                 :required="required"
                 :rows="rows"
@@ -34,10 +33,9 @@
                 :multi-line-height="multiLineHeight"
                 :multi-padding-top="multiPaddingTop"
                 :multi-padding-bottom="multiPaddingBottom"
-                @change="handleChange"
-                @input="handleInput"
-                @focus="handleFocus"
-                @blur="handleBlur"/>
+                @focus="emitEvent('focus' ,$event)"
+                @blur="emitEvent('blur' ,$event)"
+                @input="handleInput"/>
         </div>
 
         <slot v-if="$slots.right" name="right"></slot>
@@ -127,22 +125,49 @@
             trim: {
                 type: Boolean,
                 default: false
+            },
+
+            filter: {
+                type: Object,
+                default: () => ({})
+            }
+        },
+
+        computed: {
+            filterValue: {
+                get() {
+                    return (this.filter.filter && this.filter.filter(this.value)) || this.value;
+                },
+
+                set(value) {
+                    const {trimValue} = this;
+                    const reverseValue = (this.filter.reverseFilter && this.filter.reverseFilter(value)) || value;
+
+                    vm.$emit('change', trimValue(event.target.value));
+                }
             }
         },
 
         methods: {
-            handleFocus(event) {
+            trimValue(value) {
                 const vm = this;
-                const {trimValue} = vm;
+                const {trim} = vm;
 
-                vm.$emit('focus', trimValue(event.target.value), event);
+                return trim && isString(value) ? value.trim() : value;
             },
 
-            handleBlur(event) {
-                const vm = this;
-                const {trimValue} = vm;
+            emitEvent(name, event) {
+                const {trimValue, $emit} = this;
+                const {target: {value}} = event;
 
-                vm.$emit('blur', trimValue(event.target.value), event);
+                emit(name, trimValue(value), event);
+            },
+
+            handleClick(event) {
+                const vm = this;
+
+                vm.$emit('click', event);
+                vm.$emit('touchstart', event);
             },
 
             handleInput(event) {
@@ -156,41 +181,6 @@
                 }
 
                 vm.$emit('input', trimValue(value), event);
-            },
-
-            handleChange(event) {
-                const vm = this;
-                const {trimValue} = vm;
-
-                vm.$emit('change', trimValue(event.target.value), event);
-            },
-
-            handleClick(event) {
-                const vm = this;
-
-                vm.$emit('click', event);
-                vm.$emit('touchstart', event);
-            },
-
-            handleKeyUp(event) {
-                const vm = this;
-                const {trimValue} = vm;
-
-                vm.$emit('keyup', trimValue(event.target.value), event);
-            },
-
-            handleKeyDwon(event) {
-                const vm = this;
-                const {trimValue} = vm;
-
-                vm.$emit('keydown', trimValue(event.target.value), event);
-            },
-
-            trimValue(value) {
-                const vm = this;
-                const {trim} = vm;
-
-                return trim && isString(value) ? value.trim() : value;
             },
 
             blur() {
