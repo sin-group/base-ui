@@ -133,21 +133,6 @@
             }
         },
 
-        watch: {
-            map(newMap) {
-                const {multiple, value} = this;
-                const newValueList = Object.keys(newMap);
-                let newValue = value;
-                if (multiple) {
-                    newValue = value.filter(item => newValueList.includes(item));
-                } else {
-                    newValue = newValueList.includes(value) ? value : null;
-                }
-
-                this.chooseValue(newValue);
-            }
-        },
-
         methods: {
             isValueEmpty,
 

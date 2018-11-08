@@ -69,6 +69,23 @@
             </div>
 
             <div class="case">
+                <h3>配置 Filter</h3>
+                <b-md-view :md-text="MD.CompInputFilter"/>
+
+                <demo-box>
+                    <div slot="code"><b-md-view :md-text="MD.CompInputFilterCode"/></div>
+                    <div slot="main">
+                        <b-form-group label="百分比">
+                            <b-input v-model="demo.filter" :filter="filter" type="number"/>
+                        </b-form-group>
+                    </div>
+                    <div slot="output">
+                        filter: {{ demo.filter }}
+                    </div>
+                </demo-box>
+            </div>
+
+            <div class="case">
                 <h3>一致性</h3>
                 <b-md-view :md-text="MD.CompInputConsistent"/>
             </div>
@@ -85,17 +102,28 @@
 <script>
     import MD from '../../../common/md';
 
+    const decimalToPercent = (pDigitNum = 2) => ({
+        // 0.101 => 10.1%
+        filter: x => x && (x = +x) && (Math.round(x * (10 ** (pDigitNum + 2))) / (10 ** pDigitNum)),
+
+        // 10.11% => 0.101
+        reverseFilter: x => x && (x = +x) && (Math.round(x * (10 ** pDigitNum)) / (10 ** (pDigitNum + 2)))
+    });
+
     export default {
         name: 'CompInput',
 
         data() {
             return {
+                filter: decimalToPercent(2),
+
                 MD,
                 demo: {
                     text: '',
                     password: '',
                     number: '',
                     email: '',
+                    filter: '',
                     multiLineText: '',
                     disabled: 'disabled text'
                 }
