@@ -158,7 +158,7 @@
                 const {trimValue, type, filter} = vm;
                 const valueTrimmed = (type === 'number' && value !== '') ? Number(value) : trimValue(value);
 
-                return (filter.reverseFilter && filter.reverseFilter(valueTrimmed)) || valueTrimmed;
+                return filter.reverseFilter ? filter.reverseFilter(valueTrimmed) : valueTrimmed;
             },
 
             emitEvent(name, event) {
