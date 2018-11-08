@@ -224,10 +224,10 @@
 
             reset() {
                 const vm = this;
-                const {previewMode, multiple} = vm;
+                const {previewMode} = vm;
                 vm.images = [];
 
-                if (previewMode === OUTSIDE && multiple) {
+                if (previewMode === OUTSIDE) {
                     vm.$emit('reset');
                     return;
                 }

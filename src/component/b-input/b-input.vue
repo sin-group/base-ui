@@ -140,7 +140,7 @@
                 },
 
                 set(value) {
-                    this.$emit('input', this.getValueReversed(value), event);
+                    this.$emit('input', this.getValueReversed(value));
                 }
             }
         },
@@ -156,9 +156,7 @@
             getValueReversed(value) {
                 const vm = this;
                 const {trimValue, type, filter} = vm;
-                const valueTrimmed = (type === 'number' && value !== '')
-                    ? Number(value)
-                    : trimValue(event.target.value);
+                const valueTrimmed = (type === 'number' && value !== '') ? Number(value) : trimValue(value);
 
                 return (filter.reverseFilter && filter.reverseFilter(valueTrimmed)) || valueTrimmed;
             },
