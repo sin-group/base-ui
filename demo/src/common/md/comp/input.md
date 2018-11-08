@@ -76,6 +76,46 @@
 </script>
 ```
 
+%%Filter
+
+类似 `angular` `model` 的 `Parsers` 与 `Formatters`， 参数 `filter` 默认为 `{}`； 
+
+`filter.filter` 和 `filter.reverseFilter` 可以理解为 `model` 的 `getter` & `setter`；
+
+例如下面通过配置 `filter` 达到输入 `12` 得到百分比 `0.12`；
+
+%%FilterCode
+
+```html
+<template>
+    <b-form-group label="Filter">
+        <b-input v-model="editing.filter" type="number" :filter="filter"/>
+    </b-form-group>
+</template>
+
+<script>
+
+    const decimalToPercent = (pDigitNum = 2) => ({
+        // 0.101 => 10.1%
+        filter: x => x && (x = +x) && (Math.round(x * (10 ** (pDigitNum + 2))) / (10 ** pDigitNum)),
+
+        // 10.11% => 0.101
+        reverseFilter: x => x && (x = +x) && (Math.round(x * (10 ** pDigitNum)) / (10 ** (pDigitNum + 2)))
+    });
+
+    export default {
+        data() {
+            return {
+                filter: decimalToPercent(2),
+                editing: {
+                    filter: ''
+                }
+            };
+        }
+    };
+</script>
+```
+
 %%Consistent
 
 `b-input` 满足以下表单组件一致性要求：
@@ -105,7 +145,7 @@
 |`trim`|`Boolean`|是否删除输入框两端的空白字符，默认为 `false`|
 |`type`|`String`|输入框类型，默认为 `'text'`|
 |`value`|`[String, Number]`|model value|
-
+|`filter`|`Object: {filter, reverseFilter}`|双向 filter 用法参见 case 3|
 
 #### Events
 
