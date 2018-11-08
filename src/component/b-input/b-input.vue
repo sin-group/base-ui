@@ -14,11 +14,11 @@
                 :pattern="pattern"
                 :readonly="disabled"
                 :required="required"
-                @keyup="emitEvent('keyup' ,$event)"
-                @keydown="emitEvent('keydown' ,$event)"
-                @focus="emitEvent('focus' ,$event)"
-                @blur="emitEvent('blur' ,$event)"
-                @input="handleInput" >
+                @keyup="emitEvent('keyup', $event)"
+                @keydown="emitEvent('keydown', $event)"
+                @focus="emitEvent('focus', $event)"
+                @blur="emitEvent('blur', $event)"
+                @change="handleChange">
 
             <b-textarea
                 v-else
@@ -33,9 +33,9 @@
                 :multi-line-height="multiLineHeight"
                 :multi-padding-top="multiPaddingTop"
                 :multi-padding-bottom="multiPaddingBottom"
-                @focus="emitEvent('focus' ,$event)"
-                @blur="emitEvent('blur' ,$event)"
-                @input="handleInput"/>
+                @focus="emitEvent('focus', $event)"
+                @blur="emitEvent('blur', $event)"
+                @change="handleChange"/>
         </div>
 
         <slot v-if="$slots.right" name="right"></slot>
@@ -140,10 +140,7 @@
                 },
 
                 set(value) {
-                    const {trimValue} = this;
-                    const reverseValue = (this.filter.reverseFilter && this.filter.reverseFilter(value)) || value;
-
-                    vm.$emit('change', trimValue(event.target.value));
+                    this.$emit('input', this.getValueReversed(value), event);
                 }
             }
         },
@@ -156,11 +153,27 @@
                 return trim && isString(value) ? value.trim() : value;
             },
 
+            getValueReversed(value) {
+                const vm = this;
+                const {trimValue, type, filter} = vm;
+                const valueTrimmed = (type === 'number' && value !== '')
+                    ? Number(value)
+                    : trimValue(event.target.value);
+
+                return (filter.reverseFilter && filter.reverseFilter(valueTrimmed)) || valueTrimmed;
+            },
+
             emitEvent(name, event) {
-                const {trimValue, $emit} = this;
+                const {trimValue} = this;
                 const {target: {value}} = event;
 
-                emit(name, trimValue(value), event);
+                this.$emit(name, trimValue(value), event);
+            },
+
+            handleChange(event) {
+                const {filterValue} = this;
+
+                this.$emit('change', this.getValueReversed(filterValue), event);
             },
 
             handleClick(event) {
@@ -168,19 +181,6 @@
 
                 vm.$emit('click', event);
                 vm.$emit('touchstart', event);
-            },
-
-            handleInput(event) {
-                const vm = this;
-                const {trimValue} = vm;
-                const value = event.target ? event.target.value : event;
-
-                if (vm.type === 'number') {
-                    vm.$emit('input', Number(value), event);
-                    return;
-                }
-
-                vm.$emit('input', trimValue(value), event);
             },
 
             blur() {
