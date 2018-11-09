@@ -134,7 +134,7 @@
             },
 
             handleInput(event) {
-                this.$emit('input', event);
+                this.$emit('input', event.target.value, event);
             },
             handleChange(event) {
                 this.$emit('change', event);
