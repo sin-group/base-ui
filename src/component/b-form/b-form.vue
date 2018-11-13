@@ -45,6 +45,7 @@
         <button
             v-if="options.mainFieldCount"
             class="link"
+            type="button"
             @click="changeFold">
             Collapse <i :class="{'b-icon-collapse-up': !isFold, 'b-icon-collapse-down': isFold}"></i>
         </button>
