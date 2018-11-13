@@ -133,6 +133,12 @@
             }
         },
 
+        data() {
+            return {
+                valueTemp: null
+            };
+        },
+
         computed: {
             filterValue: {
                 get() {
@@ -140,7 +146,8 @@
                 },
 
                 set(value) {
-                    this.$emit('input', this.getValueReversed(value));
+                    this.valueTemp = this.getValueReversed(value);
+                    this.$emit('input', this.valueTemp);
                 }
             }
         },
@@ -169,9 +176,8 @@
             },
 
             handleChange(event) {
-                const {filterValue} = this;
-
-                this.$emit('change', this.getValueReversed(filterValue), event);
+                const {valueTemp} = this;
+                this.$emit('change', valueTemp, event);
             },
 
             handleClick(event) {
