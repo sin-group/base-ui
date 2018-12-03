@@ -16,7 +16,7 @@ const checkNotNull = (data) => {
 
 class Valid {
 
-    constructor($toast, ruleMap) {
+    constructor($toast, ruleMap, i18n) {
         this.ruleMap = ruleMap;
 
         Object.assign(this, {
@@ -38,7 +38,13 @@ class Valid {
 
                     // check required
                     if (required && !checkNotNull(fieldData)) {
-                        $toast.error(`${selectable ? '请选择' : '请输入'}${name}`);
+                        if (i18n && i18n.t) {
+                            $toast.error(`${selectable
+                                ? i18n.t('requireSelect')
+                                : i18n.t('requireInput')}${i18n.t(name)}`);
+                        } else {
+                            $toast.error(`${selectable ? '请选择' : '请输入'}${name}`);
+                        }
                         return false;
                     }
 
@@ -65,9 +71,9 @@ class Valid {
 
 export default {
 
-    install(Vue, {ruleMap}) {
+    install(Vue, {ruleMap, i18n}) {
         const $toast = new Toast(Vue);
-        const $valid = new Valid($toast, ruleMap);
+        const $valid = new Valid($toast, ruleMap, i18n);
 
         Object.assign(Vue.prototype, {$valid});
     }
