@@ -9,7 +9,7 @@ const modalInstanceList = [];
 
 export default {
 
-    install(Vue, {router, store}) {
+    install(Vue, {router, store, i18n}) {
         const $modal = {
             open(component, props = {}) {
                 if (!component) {
@@ -22,6 +22,7 @@ export default {
                 const modalInstance = new Comp({
                     router,
                     store,
+                    i18n,
 
                     propsData: {
                         ...props
