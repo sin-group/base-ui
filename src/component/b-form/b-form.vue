@@ -16,7 +16,7 @@
                     :has-star="fieldDef.hasStar">
                     <component
                         :value="data[fieldDef.field]"
-                        :is="is(fieldDef.type)"
+                        :is="is(fieldDef)"
                         v-bind="fieldDef.props"
                         @change="emitChange(arguments, fieldDef)"
                         @input="emitInput(arguments, fieldDef)"/>
@@ -112,8 +112,8 @@
         },
 
         methods: {
-            is(type) {
-                return FieldMap[type] || FieldMap.text;
+            is({type, component}) {
+                return component || FieldMap[type] || FieldMap.text;
             },
 
             btnType(props = {}) {
