@@ -58,6 +58,14 @@
         justify-content: flex-end;
     }
 
+    &.keep-top {
+        align-items: flex-start;
+
+        .b-dialog-content-wrapper {
+            margin-top: 20px;
+        }
+    }
+
     &.enable-scroll {
         overflow-y: auto;
     }

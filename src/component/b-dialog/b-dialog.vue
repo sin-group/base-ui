@@ -3,7 +3,10 @@
         <div
             v-b-prevent-scroll
             v-if="open"
-            :class="[dialogClass, {'enable-scroll': !bodyScroll}]"
+            :class="[dialogClass, {
+                'enable-scroll': !bodyScroll,
+                'keep-top': keepTop
+            }]"
             class="b-dialog-wrapper"
             @click.self="onClickOutside">
             <div class="b-dialog-content-wrapper" @click.self="onClickOutside">
@@ -39,6 +42,11 @@
             },
 
             open: {
+                type: Boolean,
+                default: false
+            },
+
+            keepTop: {
                 type: Boolean,
                 default: false
             },
