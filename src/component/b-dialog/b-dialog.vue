@@ -3,7 +3,9 @@
         <div
             v-b-prevent-scroll
             v-if="open"
-            :class="[dialogClass, {'enable-scroll': !bodyScroll}]"
+            :class="[dialogClass, `position-${position}`, {
+                'enable-scroll': !bodyScroll
+            }]"
             class="b-dialog-wrapper"
             @click.self="onClickOutside">
             <div class="b-dialog-content-wrapper" @click.self="onClickOutside">
@@ -41,6 +43,14 @@
             open: {
                 type: Boolean,
                 default: false
+            },
+
+            position: {
+                type: String,
+                default: 'center',
+                validator(val) {
+                    return ['top', 'center'].includes(val);
+                }
             },
 
             bodyScroll: {

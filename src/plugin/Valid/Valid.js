@@ -7,6 +7,7 @@
 import {Toast} from '../Toast/Toast';
 
 import {pickValue} from '../helper/helper';
+import {isFunc} from '../../util/check';
 
 const checkNotNull = (data) => {
     if (data === null || typeof data === 'undefined') return false;
@@ -35,28 +36,30 @@ class Valid {
                     } = option;
 
                     const fieldData = pickValue(data, field);
+                    const nameString = isFunc(name) ? name() : name;
+                    const messageString = isFunc(message) ? message() : name;
 
                     // check required
                     if (required && !checkNotNull(fieldData)) {
                         if (i18n && i18n.t) {
                             $toast.error(`${selectable
                                 ? i18n.t('requireSelect')
-                                : i18n.t('requireInput')}${i18n.t(name)}`);
+                                : i18n.t('requireInput')} ${nameString}`);
                         } else {
-                            $toast.error(`${selectable ? '请选择' : '请输入'}${name}`);
+                            $toast.error(`${selectable ? '请选择' : '请输入'} ${nameString}`);
                         }
                         return false;
                     }
 
                     // check rule
                     if (rule && !ruleMap[rule](fieldData)) {
-                        $toast.error(message);
+                        $toast.error(messageString);
                         return false;
                     }
 
                     // check customized rule
                     if (validate && !validate(fieldData, field, data)) {
-                        if (message) $toast.error(message);
+                        if (messageString) $toast.error(messageString);
 
                         return false;
                     }

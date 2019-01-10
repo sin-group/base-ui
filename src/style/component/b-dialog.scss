@@ -8,8 +8,6 @@
     background-color: rgba(0, 0, 0, .4);
     z-index: $z-index-dialog-wrapper;
     display: flex;
-    align-items: center;
-    justify-content: center;
 
     .b-dialog-content-wrapper {
         flex: 1;
@@ -56,6 +54,20 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
+    }
+
+    &.position-center {
+        align-items: center;
+        justify-content: center;
+    }
+
+    &.position-top {
+        align-items: flex-start;
+        justify-content: center;
+
+        .b-dialog-content-wrapper {
+            margin-top: 20px;
+        }
     }
 
     &.enable-scroll {
