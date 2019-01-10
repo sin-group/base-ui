@@ -44,9 +44,9 @@ class Valid {
                         if (i18n && i18n.t) {
                             $toast.error(`${selectable
                                 ? i18n.t('requireSelect')
-                                : i18n.t('requireInput')}${nameString}`);
+                                : i18n.t('requireInput')} ${nameString}`);
                         } else {
-                            $toast.error(`${selectable ? '请选择' : '请输入'}${nameString}`);
+                            $toast.error(`${selectable ? '请选择' : '请输入'} ${nameString}`);
                         }
                         return false;
                     }
