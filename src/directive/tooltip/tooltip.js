@@ -31,10 +31,10 @@ export default {
         }
     },
 
-    inserted(el, {value}, vnode) {
+    inserted(el, {value}) {
         el.dataset.tipText = value;
 
-        vnode.$$tooltipMouseover = () => {
+        el.$$tooltipMouseover = () => {
             toolTipEle.innerText = el.dataset.tipText;
             Object.assign(toolTipEle.style, {
                 display: 'block'
@@ -47,24 +47,27 @@ export default {
             });
         };
 
-        vnode.$$tooltipMouseout = () => {
+        el.$$tooltipMouseout = () => {
             Object.assign(toolTipEle.style, {
                 display: 'none'
             });
         };
 
-        el.addEventListener('mouseover', vnode.$$tooltipMouseover);
-        el.addEventListener('mouseout', vnode.$$tooltipMouseout);
+        el.addEventListener('mouseover', el.$$tooltipMouseover);
+        el.addEventListener('mouseout', el.$$tooltipMouseout);
     },
 
     update(el, {value}) {
         el.dataset.tipText = value;
+        if (el.$$tooltipMouseout && toolTipEle && toolTipEle.style.display === 'block') {
+            el.$$tooltipMouseover();
+        }
     },
 
-    unbind(el, binding, vnode) {
-        if (vnode.$$tooltipMouseout) vnode.$$tooltipMouseout();
+    unbind(el) {
+        if (el.$$tooltipMouseout) el.$$tooltipMouseout();
 
-        el.removeEventListener('mouseover', vnode.$$tooltipMouseover);
-        el.removeEventListener('mouseout', vnode.$$tooltipMouseout);
+        el.removeEventListener('mouseover', el.$$tooltipMouseover);
+        el.removeEventListener('mouseout', el.$$tooltipMouseout);
     }
 };
