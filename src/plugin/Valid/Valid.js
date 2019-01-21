@@ -37,7 +37,7 @@ class Valid {
 
                     const fieldData = pickValue(data, field);
                     const nameString = isFunc(name) ? name() : name;
-                    const messageString = isFunc(message) ? message() : name;
+                    const messageString = isFunc(message) ? message() : message;
 
                     // check required
                     if (required && !checkNotNull(fieldData)) {
