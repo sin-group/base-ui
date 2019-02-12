@@ -96,7 +96,8 @@
         'collapse-up',
         'cross',
         'tick',
-        'insert-row'
+        'insert-row',
+        'date'
     ];
 
     export default {
