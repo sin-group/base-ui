@@ -14,6 +14,7 @@
                 :pattern="pattern"
                 :readonly="disabled"
                 :required="required"
+                :maxlength="maxlength"
                 @keyup="emitEvent('keyup', $event)"
                 @keydown="emitEvent('keydown', $event)"
                 @focus="emitEvent('focus', $event)"
@@ -130,6 +131,11 @@
             filter: {
                 type: Object,
                 default: () => ({})
+            },
+
+            maxlength: {
+                type: String,
+                default: ''
             }
         },
 
