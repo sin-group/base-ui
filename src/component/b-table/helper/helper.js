@@ -12,8 +12,8 @@ const compareStringsAsc = (left, right) => left.localeCompare(right);
 const compareStringsDesc = (left, right) => right.localeCompare(left);
 const compareNullAsc = (left, right) => {
     if (left === right) return 0;
-    if (left === null) return -1;
-    if (right === null) return 1;
+    if (left == null) return -1;
+    if (right == null) return 1;
 
     throw new Error();
 };
