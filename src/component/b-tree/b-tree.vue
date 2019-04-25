@@ -8,6 +8,9 @@
             <div class="btn-group">
                 <button type="button" @click="reset">重置</button>
             </div>
+            <div class="b-button theme-normal">
+                <button type="button" theme="normal" @click="toogle" v-text="toggleName">展开/收起</button>
+            </div>
         </div>
 
         <p v-if="hasNoFilteredData">暂无符合条件的节点</p>
@@ -36,7 +39,13 @@
 <script type="text/babel">
 
     import BTreeNode from './b-tree-node.vue';
-    import {preOrderTreeList, checkTreeListHasNode, cloneTreeList} from './util';
+    import {
+        preOrderTreeList,
+        checkTreeListHasNode,
+        cloneTreeList,
+        toggleNodeFoldStates,
+        isTreeListAllFold
+        } from './util';
 
     const renderChildTree = {
         props: {
@@ -64,6 +73,10 @@
 
     let Uid = 0;
     let DraggingNode = null;
+    const TOGGLE_NAME_MAP = {
+        SHOW: '展开',
+        HIDE: '收起'
+    };
 
     export default {
         name: 'BTree',
@@ -158,6 +171,18 @@
                 const vm = this;
 
                 return vm.needFilter && vm.renderData.length === 0;
+            },
+
+            isAllFold() {
+                const vm = this;
+                const {renderData} = vm;
+                return isTreeListAllFold(renderData);
+            },
+
+            toggleName() {
+                const vm = this;
+                const {isAllFold} = vm;
+                return isAllFold ? TOGGLE_NAME_MAP.SHOW : TOGGLE_NAME_MAP.HIDE;
             }
         },
 
@@ -200,6 +225,13 @@
 
                 Object.keys(vm.filter).forEach(key => (vm.filter[key] = ''));
                 preOrderTreeList(vm.data, node => (node.$$isFiltered = false));
+            },
+
+            toogle() {
+                const vm = this;
+                const {renderData, isAllFold} = vm;
+
+                toggleNodeFoldStates(renderData, isAllFold);
             },
 
             onDrag(node) {

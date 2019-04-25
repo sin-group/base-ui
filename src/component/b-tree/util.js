@@ -27,6 +27,24 @@ export const preOrderTreeList = genTraverseTreeListFunc(PreOrder);
 
 export const postOrderTreeList = genTraverseTreeListFunc(PostOrder);
 
+export const isTreeListAllFold = (treeList) => {
+    let allFold = true;
+    preOrderTreeList(treeList, (node) => {
+        if (node.$$deep === 1) {
+            if (node.$$isFold) return;
+            allFold = false;
+        }
+    });
+    return allFold;
+};
+
+export const toggleNodeFoldStates = (treeList, isAllFold) => {
+    preOrderTreeList(treeList, (node) => {
+        if (node.children.length === 0) return;
+        node.$$isFold = !isAllFold;
+    });
+};
+
 export const checkTreeListHasNode = (treeList, targetNode) => {
     let isTreeListHasNode = false;
     const rec = (node) => {
