@@ -1,6 +1,6 @@
 {
   "name": "base-ui",
-  "version": "0.0.162",
+  "version": "0.0.163",
   "description": "A component library for Better Vue developmemt",
   "main": "./dist/base-ui.min.js",
   "repository": {
@@ -60,7 +60,7 @@
     "rollup-plugin-postcss": "1.6.2",
     "rollup-plugin-scss": "0.4.0",
     "rollup-plugin-uglify": "4.0.0",
-    "rollup-plugin-vue": "3.0.0",
+    "rollup-plugin-vue": "5.0.0",
     "stylelint": "9.5.0",
     "stylelint-config-standard": "18.2.0",
     "vue": "2.5.16",
