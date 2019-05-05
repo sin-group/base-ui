@@ -9,7 +9,7 @@
                 <button type="button" @click="reset">重置</button>
             </div>
             <div class="b-button theme-normal">
-                <button type="button" theme="normal" @click="toogle" v-text="toggleName">展开/收起</button>
+                <button type="button" theme="normal" @click="toogle" v-text="toggleName"></button>
             </div>
         </div>
 
@@ -229,9 +229,9 @@
 
             toogle() {
                 const vm = this;
-                const {renderData, isAllFold} = vm;
+                const {renderData, isAllFold, options: {foldDeep = 2}} = vm;
 
-                toggleNodeFoldStates(renderData, isAllFold);
+                toggleNodeFoldStates(renderData, isAllFold, foldDeep);
             },
 
             onDrag(node) {
