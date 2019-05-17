@@ -30,6 +30,7 @@ export const postOrderTreeList = genTraverseTreeListFunc(PostOrder);
 export const isTreeListAllFold = (treeList) => {
     let allFold = true;
     preOrderTreeList(treeList, (node) => {
+        // 只检查最外层是否折叠
         if (node.$$deep === 1) {
             if (node.$$isFold) return;
             allFold = false;
@@ -38,9 +39,9 @@ export const isTreeListAllFold = (treeList) => {
     return allFold;
 };
 
-export const toggleNodeFoldStates = (treeList, isAllFold) => {
+export const toggleNodeFoldStates = (treeList, isAllFold, foldDeep) => {
     preOrderTreeList(treeList, (node) => {
-        if (node.children.length === 0) return;
+        if (node.$$deep > (foldDeep)) return;
         node.$$isFold = !isAllFold;
     });
 };
@@ -88,4 +89,3 @@ export const cloneTreeList = (treeList) => {
     treeList.forEach(tree => copyList.push(deepClone(tree, hash)));
     return copyList;
 };
-
