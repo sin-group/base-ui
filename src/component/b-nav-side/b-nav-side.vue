@@ -30,6 +30,11 @@
                             class="action-bar router-level-1"
                             @click="onToggleNavChildrenOpen(rootRoute)"
                         >
+                            <span v-if="rootRoute.meta.hasIcon">
+                                <slot :name="rootRoute.name">
+                                    <i :class="rootRoute.meta.iconClass"></i>
+                                </slot>
+                            </span>
                             {{ rootRoute.meta.navTitle }}
 
                             <span class="toggle-icon">
@@ -45,6 +50,11 @@
                             :class="{active: rootRoute.name === $route.name}"
                             class="action-bar router-level-1"
                         >
+                            <span v-if="rootRoute.meta.hasIcon">
+                                <slot :name="rootRoute.name">
+                                    <i :class="rootRoute.meta.iconClass"></i>
+                                </slot>
+                            </span>
                             {{ rootRoute.meta.navTitle }}
                         </router-link>
 
@@ -72,64 +82,64 @@
 
 <script type="text/babel">
 
-    export default {
-        name: 'BNavSide',
+export default {
+    name: 'BNavSide',
 
-        props: {
-            routes: {
-                type: Array,
-                required: true
-            }
+    props: {
+        routes: {
+            type: Array,
+            required: true
+        }
+    },
+
+    data() {
+        const vm = this;
+        const {routes, genNavRoutes} = vm;
+
+        return {
+            navRoutes: genNavRoutes(routes)
+        };
+    },
+
+    mounted() {
+        const vm = this;
+        vm.$watch('routes', () => {
+            vm.refreshNavRoutes();
+        });
+    },
+
+    methods: {
+        onToggle() {
+            this.$emit('toggle');
         },
 
-        data() {
+        onToggleNavChildrenOpen(route) {
+            route.$$open = !route.$$open;
+        },
+
+        refreshNavRoutes() {
             const vm = this;
             const {routes, genNavRoutes} = vm;
 
-            return {
-                navRoutes: genNavRoutes(routes)
-            };
+            vm.navRoutes = genNavRoutes(routes);
         },
 
-        mounted() {
+        genNavRoutes(routes) {
             const vm = this;
-            vm.$watch('routes', () => {
-                vm.refreshNavRoutes();
+
+            const rootRoutes = routes.filter(({meta}) => (meta && meta.navTitle));
+
+            rootRoutes.forEach((rootRoute) => {
+                const defaultRootOpen = rootRoute.meta.defaultOpen;
+                vm.$set(rootRoute, '$$open', defaultRootOpen !== undefined ? defaultRootOpen : true);
+
+                const secondRoutes = rootRoute.children || [];
+                rootRoute.children = secondRoutes.filter(({meta}) => (meta && meta.navTitle));
             });
-        },
 
-        methods: {
-            onToggle() {
-                this.$emit('toggle');
-            },
-
-            onToggleNavChildrenOpen(route) {
-                route.$$open = !route.$$open;
-            },
-
-            refreshNavRoutes() {
-                const vm = this;
-                const {routes, genNavRoutes} = vm;
-
-                vm.navRoutes = genNavRoutes(routes);
-            },
-
-            genNavRoutes(routes) {
-                const vm = this;
-
-                const rootRoutes = routes.filter(({meta}) => (meta && meta.navTitle));
-
-                rootRoutes.forEach((rootRoute) => {
-                    const defaultRootOpen = rootRoute.meta.defaultOpen;
-                    vm.$set(rootRoute, '$$open', defaultRootOpen !== undefined ? defaultRootOpen : true);
-
-                    const secondRoutes = rootRoute.children || [];
-                    rootRoute.children = secondRoutes.filter(({meta}) => (meta && meta.navTitle));
-                });
-
-                return rootRoutes;
-            }
+            return rootRoutes;
         }
-    };
+    }
+};
 
 </script>
