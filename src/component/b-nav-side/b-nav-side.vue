@@ -30,6 +30,11 @@
                             class="action-bar router-level-1"
                             @click="onToggleNavChildrenOpen(rootRoute)"
                         >
+                            <span v-if="rootRoute.meta.hasIcon">
+                                <slot :name="rootRoute.name">
+                                    <i :class="rootRoute.meta.iconClass"></i>
+                                </slot>
+                            </span>
                             {{ rootRoute.meta.navTitle }}
 
                             <span class="toggle-icon">
@@ -45,6 +50,11 @@
                             :class="{active: rootRoute.name === $route.name}"
                             class="action-bar router-level-1"
                         >
+                            <span v-if="rootRoute.meta.hasIcon">
+                                <slot :name="rootRoute.name">
+                                    <i :class="rootRoute.meta.iconClass"></i>
+                                </slot>
+                            </span>
                             {{ rootRoute.meta.navTitle }}
                         </router-link>
 
