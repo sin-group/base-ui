@@ -8,7 +8,7 @@
                 'b-select-menu-highlight': index === highlightIndex
             }"
             @click="handleChoose(item)">
-            <span>{{ map[item] }}</span>
+            <span>{{ map[item].text||map[item] }}</span>
             <i v-if="multiple" class="b-icon-tick"></i>
         </li>
 
@@ -69,10 +69,16 @@
             menuList() {
                 const vm = this;
                 const {map, searchText} = vm;
-
-                return searchText
-                    ? Object.keys(map).filter(value => map[value].match(new RegExp(searchText, 'i')))
-                    : Object.keys(map);
+                if (searchText) {
+                    const reg = new RegExp(searchText, 'i');
+                    return Object.keys(map).filter((value) => {
+                        if (map[value] && map[value].filter) {
+                            return reg.test(map[value].filter) || reg.test(map[value].text);
+                        }
+                        return reg.test(map[value]);
+                    });
+                }
+                    return Object.keys(map);
             },
             listHeight() {
                 const vm = this;
@@ -103,8 +109,7 @@
             searchText(text) {
                 const vm = this;
                 const {menuList, map, valueList} = vm;
-
-                if (menuList.indexOf(map[text]) > -1) {
+                if (menuList.includes(map[text])) {
                     vm.initHighlight([map[text]]);
                 } else {
                     vm.initHighlight(valueList);

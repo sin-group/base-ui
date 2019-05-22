@@ -24,18 +24,24 @@
                     <b-select v-model="editing.disabled" :map="UpDownMap" disabled/>
                 </b-form-group>
             </form>
+            <pre class="json-preview">{{ $j(editing) }}</pre>
+            <div class="case">
+                <h3>API</h3>
+                <b-md-view :md-text="MD.CompSelectAPI"/>
+            </div>
         </div>
-
-        <pre class="json-preview">{{ $j(editing) }}</pre>
     </div>
 </template>
 
+
 <script type="text/babel">
+    import MD from '../../../common/md';
+
     const SelectMap = {
-        'バカ': '混蛋',
-        '変態': '变态',
-        'うるさい': '吵死了',
-        'バカ，変態，うるさい': '但使龙城飞将在，八嘎变态无路赛！无路赛！无路赛！无路赛！无路赛！无路赛！无路赛！'
+        'バカ': {text: '混蛋', filter: 'hundan1'},
+        '変態': {text: '变态', filter: 'biantai2'},
+        'うるさい': {text: '吵死了', filter: 'chaosile3'},
+        'バカ，変態，うるさい': {text: '但使龙城飞将在，八嘎变态无路赛！无路赛！无路赛！无路赛！无路赛！无路赛！无路赛！', filter: 'danshilongchengfeijiangzai4'}
     };
 
     const SelectedMap = {
@@ -76,6 +82,7 @@
 
         data() {
             return {
+                MD,
                 SelectMap,
                 SelectedMap,
                 UpDownMap,
