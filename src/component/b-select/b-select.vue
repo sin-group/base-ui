@@ -147,7 +147,6 @@
             getValueText(value) {
                 const vm = this;
                 const {map} = vm;
-
                 return map[value] ? map[value].trim() : value;
             },
 
