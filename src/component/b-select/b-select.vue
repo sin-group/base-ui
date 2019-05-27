@@ -147,7 +147,11 @@
             getValueText(value) {
                 const vm = this;
                 const {map} = vm;
-                return map[value] ? map[value].trim() : value;
+                if (map[value]) {
+                    if (map[value].text) return map[value].text.trim();
+                    return map[value].trim();
+                }
+                return value;
             },
 
             changeOpen() {
