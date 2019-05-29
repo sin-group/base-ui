@@ -443,10 +443,19 @@ $navFontSize: 13px;
 
             .router-level-1 {
                 font-size: $nav-header-font-size;
+
+                .router-icon {
+                    margin-right: 10px;
+                }
             }
 
             .router-level-2 {
                 padding-left: 30px;
+                font-weight: 400;
+            }
+
+            .router-level-2-icon {
+                padding-left: 48px;
                 font-weight: 400;
             }
         }
