@@ -1,4 +1,6 @@
 .b-table {
+    position: relative;
+
     &.b-table-with-extra-th {
         td,
         th {
@@ -9,6 +11,37 @@
     .table-area {
         overflow-x: auto;
         overflow-y: hidden;
+    }
+
+    .layout-fixed-left,
+    .layout-fixed-right {
+        position: absolute;
+        top: 0;
+        overflow: hidden;
+        border-left: 0;
+        box-shadow: none;
+        transition: box-shadow .3s ease;
+    }
+
+    .layout-fixed-left {
+        left: 0;
+    }
+
+    .layout-fixed-right {
+        right: 0;
+    }
+
+    .fixed-left,
+    .fixed-right {
+        width: fill-available;
+    }
+
+    .table-fixed-left-scroll {
+        box-shadow: 6px 0 6px -4px rgba(0, 0, 0, .2);
+    }
+
+    .table-fixed-right-scroll {
+        box-shadow: -6px 0 6px -4px rgba(0, 0, 0, .2);
     }
 
     .foot-area {

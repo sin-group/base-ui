@@ -7,6 +7,7 @@
 * 客户端 & 服务端分页
 * 客户端（可对中文排序） & 服务端排序
 * 行选择
+* 固定列
 
 下面的说明将进一步介绍 `b-table` 的用法。
 
@@ -31,6 +32,9 @@
 * `field`: 字段
 * `label`: 表头显示名
 * `map`: 接受一个 `Object`，可以将该 cell 的值映射为对应的 value
+* `width`: 接受一个 `Number`，表示该列列宽,默认为 150
+* `fixed`: ['left','right']`，表示该列是否固定,默认不固定
+
 * `filter`: 接受一个 `String`，它的作用如同 Vue 的 filter 语义，目前内置包含
     * `b-date`: `YYYY-MM-DD` 格式的日期
     * `b-date-minute`: `YYYY-MM-DD HH:mm` 格式的日期 + 时分
@@ -62,33 +66,73 @@ valueOrigin -> valueMapped -> valueFiltered -> value
             return {
                 options: {
                     colDefs: [
-                        {field: 'mobile', label: '手机号'},
-                        {field: 'name', label: '姓名'},
+                        {field: 'mobile', label: '手机号',fixed:'left'},
+                        {field: 'name', label: '姓名',fixed:'left'},
                         {field: 'gender', label: '性别', map: GenderMap},
-                        {field: 'registerTime', label: '最近登录时间', filter: 'b-date-minute'}
+                        {field: 'gender1', label: '性别1', map: GenderMap},
+                        {field: 'gender2', label: '性别2', map: GenderMap},
+                        {field: 'gender3', label: '性别3', map: GenderMap},
+                        {field: 'gender4', label: '性别4', map: GenderMap},
+                        {field: 'gender5', label: '性别5', map: GenderMap},
+                        {field: 'gender6', label: '性别6', map: GenderMap},
+                        {field: 'gender7', label: '性别7', map: GenderMap},
+                        {field: 'gender8', label: '性别8', map: GenderMap},
+                        {field: 'registerTime', label: '最近登录时间', filter: 'b-date-minute',fixed:'right'}
                     ]
                 },
                 records: [{
-                    mobile: '239-517-9188',
-                    name: 'hbrazur0',
-                    gender: 'Male',
-                    registerTime: 1539134672157
-                }, {
-                    mobile: '850-671-4012',
-                    name: 'ndoiley1',
-                    gender: 'Female',
-                    registerTime: 1539125528997
-                }, {
-                    mobile: '357-993-0036',
-                    name: 'hchitson2',
-                    gender: 'Female',
-                    registerTime: 1539121749439
-                }, {
-                    mobile: '612-994-8930',
-                    name: 'bwitchalls3',
-                    gender: 'Male',
-                    registerTime: 1539154789428
-                }]
+                            mobile: '239-517-9188',
+                            name: 'hbrazur0',
+                            gender: 'Male',
+                            gender1: 'Male',
+                            gender2: 'Male',
+                            gender3: 'Male',
+                            gender4: 'Male',
+                            gender5: 'Male',
+                            gender6: 'Male',
+                            gender7: 'Male',
+                            gender8: 'Male',
+                            registerTime: 1539134672157
+                        }, {
+                            mobile: '850-671-4012',
+                            name: 'ndoiley1',
+                            gender: 'Female',
+                            gender1: 'Female',
+                            gender2: 'Female',
+                            gender3: 'Female',
+                            gender4: 'Female',
+                            gender5: 'Male',
+                            gender6: 'Male',
+                            gender7: 'Male',
+                            gender8: 'Male',
+                            registerTime: 1539125528997
+                        }, {
+                            mobile: '357-993-0036',
+                            name: 'hchitson2',
+                            gender: 'Female',
+                            gender1: 'Female',
+                            gender2: 'Female',
+                            gender3: 'Female',
+                            gender4: 'Female',
+                            gender5: 'Male',
+                            gender6: 'Male',
+                            gender7: 'Male',
+                            gender8: 'Male',
+                            registerTime: 1539121749439
+                        }, {
+                            mobile: '612-994-8930',
+                            name: 'bwitchalls3',
+                            gender: 'Male',
+                            gender1: 'Male',
+                            gender2: 'Male',
+                            gender3: 'Male',
+                            gender4: 'Male',
+                            gender5: 'Male',
+                            gender6: 'Male',
+                            gender7: 'Male',
+                            gender8: 'Male',
+                            registerTime: 1539154789428
+                        }]
             };
         }
     };
