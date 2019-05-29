@@ -30,12 +30,15 @@
                             class="action-bar router-level-1"
                             @click="onToggleNavChildrenOpen(rootRoute)"
                         >
-                            <span v-if="rootRoute.meta.hasIcon">
-                                <slot :name="rootRoute.name">
-                                    <i :class="rootRoute.meta.iconClass"></i>
-                                </slot>
+                            <span>
+                                <template v-if="rootRoute.meta.hasIcon">
+                                    <slot :name="rootRoute.name" >
+                                        <i :class="rootRoute.meta.iconClass" class="router-icon"></i>
+                                    </slot>
+                                </template>
+                                {{ rootRoute.meta.navTitle }}
                             </span>
-                            {{ rootRoute.meta.navTitle }}
+
 
                             <span class="toggle-icon">
                                 <i v-if="rootRoute.$$open" class="b-icon-bottom"></i>
@@ -51,11 +54,13 @@
                             class="action-bar router-level-1"
                         >
                             <span v-if="rootRoute.meta.hasIcon">
-                                <slot :name="rootRoute.name">
-                                    <i :class="rootRoute.meta.iconClass"></i>
-                                </slot>
+                                <template v-if="rootRoute.meta.hasIcon">
+                                    <slot :name="rootRoute.name" >
+                                        <i :class="rootRoute.meta.iconClass" class="router-icon"></i>
+                                    </slot>
+                                </template>
+                                {{ rootRoute.meta.navTitle }}
                             </span>
-                            {{ rootRoute.meta.navTitle }}
                         </router-link>
 
                         <!-- children -->
@@ -66,8 +71,11 @@
                             >
                                 <router-link
                                     :to="{name: secondRoute.name}"
-                                    :class="{active: secondRoute.name === $route.name}"
-                                    class="action-bar router-level-2">
+                                    :class="{
+                                        active: secondRoute.name === $route.name,
+                                        'router-level-2-icon':rootRoute.meta.hasIcon}"
+                                    class="action-bar router-level-2"
+                                >
                                     {{ secondRoute.meta.navTitle }}
                                 </router-link>
                             </div>
