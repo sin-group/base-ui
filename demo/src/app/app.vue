@@ -79,7 +79,6 @@ export default {
     navOpenChange(isNavOpen) {
       this.isNavOpen = isNavOpen;
     },
-
     toggleNav() {
       this.isNavOpen = !this.isNavOpen;
     }

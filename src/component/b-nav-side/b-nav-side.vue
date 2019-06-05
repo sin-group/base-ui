@@ -122,13 +122,16 @@
             },
 
             onToggleNavChildrenOpen(route) {
+                const vm = this;
+
                 route.$$open = !route.$$open;
+                const openedMenu = vm.filternavRoutes.filter(router => router.$$open).map(router => router.name);
+                this.$emit('on-open-change', openedMenu);
             },
 
             refreshNavRoutes() {
                 const vm = this;
                 const {routes, genNavRoutes} = vm;
-
                 vm.navRoutes = genNavRoutes(routes);
             },
 
