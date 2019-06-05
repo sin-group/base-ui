@@ -125,7 +125,7 @@
                 const vm = this;
 
                 route.$$open = !route.$$open;
-                const openedMenu = vm.filternavRoutes.filter(router => router.$$open).map(router => router.name);
+                const openedMenu = vm.navRoutes.filter(router => router.$$open).map(router => router.name);
                 this.$emit('on-open-change', openedMenu);
             },
 
