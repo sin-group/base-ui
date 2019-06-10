@@ -53,14 +53,12 @@
                             :class="{active: rootRoute.name === $route.name}"
                             class="action-bar router-level-1"
                         >
-                            <span v-if="rootRoute.meta.hasIcon">
-                                <template v-if="rootRoute.meta.hasIcon">
-                                    <slot :name="rootRoute.name" >
-                                        <i :class="rootRoute.meta.iconClass" class="router-icon"></i>
-                                    </slot>
-                                </template>
-                                {{ rootRoute.meta.navTitle }}
-                            </span>
+                            <template v-if="rootRoute.meta.hasIcon">
+                                <slot :name="rootRoute.name" >
+                                    <i :class="rootRoute.meta.iconClass" class="router-icon"></i>
+                                </slot>
+                            </template>
+                            {{ rootRoute.meta.navTitle }}
                         </router-link>
 
                         <!-- children -->
