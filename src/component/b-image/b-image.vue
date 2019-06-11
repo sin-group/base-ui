@@ -40,6 +40,7 @@
                         :multiple="multiple"
                         :value="valueToAdd"
                         type="file"
+                        style="width:100%;"
                         accept="image/x-png,image/gif,image/jpeg"
                         @change="onAdd">
                     <i class="b-icon-create"></i>
