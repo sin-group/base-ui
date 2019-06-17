@@ -30,7 +30,12 @@ export default {
         babel({
             presets: [['env', {modules: false}], 'stage-3'],
             exclude: 'node_modules/**',
-            plugins: ['external-helpers'],
+            plugins: [
+                'external-helpers',
+                'transform-class-properties',
+                'transform-decorators-legacy',
+                'transform-vue-jsx'
+            ],
             babelrc: false
         }),
         commonjs(),
