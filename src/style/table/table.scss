@@ -11,6 +11,7 @@
     border-collapse: collapse;
     background-color: $white;
     border-radius: 2px;
+    table-layout: fixed;
 
     thead {
         tr {
@@ -71,12 +72,7 @@
             vertical-align: middle;
             border-bottom: 1px solid rgba(0, 0, 0, .12);
             transition: background .3s cubic-bezier(.25, .8, .5, 1);
-
             will-change: backgaound;
-
-            &:hover {
-                background-color: $gray-lighter;
-            }
 
             &.selected {
                 background-color: lighten($primary-lighter, 10);
@@ -86,6 +82,10 @@
                 padding: 10px;
                 line-height: normal;
             }
+        }
+
+        .hover-row {
+            background-color: $gray-lighter;
         }
     }
 
