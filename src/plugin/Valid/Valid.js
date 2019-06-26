@@ -29,7 +29,8 @@ class Valid {
                         field = '',
                         required = false,
                         selectable = false,
-                        name = '',
+                        label = '',
+                        name = label,
                         rule = '',
                         message = '',
                         validate = null
