@@ -23,7 +23,7 @@
     "compression": "1.7.3",
     "config": "2.0.1",
     "es5-shim": "4.5.10",
-    "express": "4.16.3"
+    "express": "4.19.2"
   },
   "devDependencies": {
     "@yqg/arcanist": "0.0.2",
